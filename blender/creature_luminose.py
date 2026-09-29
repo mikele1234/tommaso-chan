@@ -68,6 +68,11 @@ ANIM_FRAMES = 120
 BL = bpy.app.version
 TAU = 2.0 * pi
 _STATE = {"coll": None}
+
+# Registro delle animazioni create (usato dall'esportatore per Roblox)
+ANIMAZIONI = []
+# Valori "a riposo" delle proprieta' guidate da driver (prima dell'animazione)
+VALORI_RIPOSO = []
 _LAYOUT_RNG = random.Random(7)
 
 
@@ -202,10 +207,19 @@ def empty(name, loc=(0, 0, 0), size=0.2):
     return ob
 
 
-def add_driver(owner, path, expr, index=-1):
+def add_driver(owner, path, expr, index=-1, meta=None):
+    """Driver con espressione semplice. `meta` descrive l'animazione in forma
+    leggibile per l'esportazione (es. tipo='rot', amp, cyc, ph)."""
+    try:
+        cur = getattr(owner, path)
+        VALORI_RIPOSO.append((owner, path, index, cur[index] if index >= 0 else cur))
+    except (AttributeError, TypeError, IndexError):
+        pass
     fc = owner.driver_add(path, index) if index >= 0 else owner.driver_add(path)
     fc.driver.type = 'SCRIPTED'
     fc.driver.expression = expr
+    if meta is not None:
+        ANIMAZIONI.append(dict(owner=owner, path=path, index=index, **meta))
     return fc
 
 
@@ -442,7 +456,8 @@ def wing_pair(prefix, ctrl, mat, attach, elev, sweep, roll=0.0, rings=14,
             sign = 1 if left else -1
             w = TAU * cyc / ANIM_FRAMES
             add_driver(piv, "rotation_euler",
-                       "%d*radians(%.3f)*sin(frame*%.6f+%.3f)" % (sign, amp, w, ph), 1)
+                       "%d*radians(%.3f)*sin(frame*%.6f+%.3f)" % (sign, amp, w, ph), 1,
+                       meta=dict(tipo='rot', amp=sign * radians(amp), cyc=cyc, ph=ph))
         else:
             place_wing(ob, ax, elev, sweep, roll, left)
         obs.append(ob)
@@ -567,6 +582,10 @@ class NodeBuilder:
         if pulse:
             lo, hi = pulse[0], pulse[1]
             rest = tuple(pulse[2:])
+            if "rbx_pulse" not in self.mat:
+                cyc = rest[0] if rest else 1
+                ph = rest[1] if len(rest) > 1 else 0.0
+                self.mat["rbx_pulse"] = [lo / max(hi, 1e-6), 1.0, float(cyc), float(ph)]
             return self.value(strength * k, wave(lo * k, hi * k, *rest))
         return self.value(strength * k)
 
@@ -588,6 +607,14 @@ class NodeBuilder:
     def emission(self, color, strength):
         return self.node('ShaderNodeEmission',
                          {'Color': color, 'Strength': strength}).outputs[0]
+
+    def bake_output(self, name, shader_socket):
+        """Uscita non collegata, usata solo per 'cuocere' le texture per Roblox.
+        Non cambia il render in Blender."""
+        nd = shader_socket.node
+        nd.name = name
+        nd.label = name + " (bake Roblox)"
+        return nd
 
     def mix_shader(self, fac, a, b):
         nd = self.node('ShaderNodeMixShader')
@@ -682,6 +709,8 @@ def m_emit(name, color, strength, pulse=None):
     s = nb.glow(strength, pulse)
     nb.output(nb.emission(color, s))
     diffuse_display(mat, color)
+    mat["rbx_kind"] = "neon"
+    mat["rbx_color"] = list(color[:3])
     return mat
 
 
@@ -743,6 +772,27 @@ def m_body(name, base, rough=0.45, metal=0.0, coat=0.0, coat_rough=0.05,
         shader = nb.add_shader(shader, nb.emission(rim, r))
     nb.output(shader)
     diffuse_display(mat, base)
+    # descrizione per l'esportazione Roblox
+    top = max(emit_str, emit_pulse[1] if emit_pulse else 0.0) if emit is not None else 0.0
+    mat["rbx_color"] = list(base[:3])
+    mat["rbx_rough"] = float(rough)
+    mat["rbx_metal"] = float(metal)
+    if top >= 1.0:
+        mat["rbx_kind"] = "neon"
+        mat["rbx_color"] = list(emit[:3])
+        if alpha is not None:
+            mat["rbx_transp"] = round(1.0 - alpha, 3)
+    elif mottle:
+        mat["rbx_kind"] = "bake"
+        nb.bake_output("RBX_COLOR", nb.emission(base_col, 1.0))
+        if bump:
+            mat["rbx_normal"] = 1
+    else:
+        mat["rbx_kind"] = "solid"
+        if emit is not None and top > 0:
+            mat["rbx_glow"] = list(emit[:3])
+    if rim is not None and rim_str >= 1.0:
+        mat["rbx_highlight"] = list(rim[:3])
     return mat
 
 
@@ -756,6 +806,7 @@ def m_glass_eye(name, tint=(1, 1, 1)):
     nb.output(nb.mix_shader(fac, nb.transparent(), gl.outputs[0]))
     set_transparent(mat)
     diffuse_display(mat, (0.8, 0.9, 1.0))
+    mat["rbx_kind"] = "drop"          # le cornee non servono su Roblox
     return mat
 
 
@@ -776,6 +827,8 @@ def m_halo(name, color, strength, pulse=None, softness=2.0):
     nb.link(vol, nb.out.inputs['Volume'])
     set_transparent(mat)
     diffuse_display(mat, color)
+    mat["rbx_kind"] = "aura"
+    mat["rbx_color"] = list(color[:3])
     return mat
 
 
@@ -794,6 +847,8 @@ def m_radial_glow(name, stops, strength, axes=('X', 'Y'), pulse=None):
     s = nb.glow(strength, pulse)
     nb.output(nb.emission(col, s))
     diffuse_display(mat, stops[len(stops) // 2][1])
+    mat["rbx_kind"] = "neon"
+    mat["rbx_color"] = list(stops[1][1][:3])
     return mat
 
 
@@ -825,6 +880,9 @@ def m_ghost(name, base, glow, alpha=0.35, core=0.15, rim=1.4, pulse=None, wisps=
     nb.output(shader)
     set_transparent(mat, blended=False)
     diffuse_display(mat, base)
+    mat["rbx_kind"] = "ghost"
+    mat["rbx_color"] = list(core_color[:3])
+    mat["rbx_highlight"] = list(glow[:3])
     return mat
 
 
@@ -946,6 +1004,25 @@ def m_wing(name, ramp, alpha=0.3, membrane_str=1.5, vein_ramp=None,
     nb.output(nb.mix_shader(mask, membrane, veins))
     set_transparent(mat)
     diffuse_display(mat, ramp[len(ramp) // 2][1])
+
+    # --- uscite per le texture Roblox (colore, emissione, opacita') ---------
+    c_str = cell_str if cell_str is not None else vein_str
+    top = max(vein_str, membrane_str, c_str if cell_mask is not None else 0.0)
+    c_col = nb.emission(col, 1.0)
+    c_emi = nb.emission(col, membrane_str / top)
+    a_val = max(0.12, min(1.0, alpha + membrane_str * 0.6))
+    c_alp = nb.emission((1, 1, 1), a_val)
+    if cell_mask is not None:
+        c_col = nb.mix_shader(cell_mask, c_col, nb.emission(cell_color, 1.0))
+        c_emi = nb.mix_shader(cell_mask, c_emi, nb.emission(cell_color, c_str / top))
+        c_alp = nb.mix_shader(cell_mask, c_alp, nb.emission((1, 1, 1), 1.0))
+    nb.bake_output("RBX_COLOR", nb.mix_shader(mask, c_col, nb.emission(vcol, 1.0)))
+    nb.bake_output("RBX_EMIT", nb.mix_shader(mask, c_emi, nb.emission(vcol, 1.0)))
+    nb.bake_output("RBX_ALPHA", nb.mix_shader(mask, c_alp, nb.emission((1, 1, 1), 1.0)))
+    mat["rbx_kind"] = "bake"
+    mat["rbx_alpha"] = 1
+    mat["rbx_wing"] = 1
+    mat["rbx_emit_strength"] = float(top)
     return mat
 
 
@@ -975,6 +1052,11 @@ def m_feather(name, base, base_tip, glow, glow_str, edge_w=0.16,
     em = nb.emission(glow, s)
     nb.output(nb.mix_shader(mask, bsdf.outputs[0], em))
     diffuse_display(mat, base)
+    nb.bake_output("RBX_COLOR", nb.mix_shader(mask, nb.emission(col, 1.0), nb.emission(glow, 1.0)))
+    nb.bake_output("RBX_EMIT", nb.mix_shader(mask, nb.emission((0, 0, 0), 1.0), nb.emission(glow, 1.0)))
+    mat["rbx_kind"] = "bake"
+    mat["rbx_uv_only"] = 1
+    mat["rbx_emit_strength"] = float(glow_str)
     return mat
 
 
@@ -995,6 +1077,10 @@ def m_bark(name, base=(0.09, 0.05, 0.025), dark=(0.03, 0.017, 0.01)):
     nb.set(bsdf, 'Normal', nb.bump(h, 0.6, 0.02))
     nb.output(bsdf.outputs[0])
     diffuse_display(mat, base)
+    nb.bake_output("RBX_COLOR", nb.emission(col, 1.0))
+    mat["rbx_kind"] = "bake"
+    mat["rbx_normal"] = 1
+    mat["rbx_rough"] = 0.85
     return mat
 
 
@@ -1070,7 +1156,10 @@ def add_light(name, kind, loc, energy, color=(1, 1, 1), size=0.1, rot=None,
         ob.rotation_euler = [radians(a) for a in rot]
     link(ob)
     if pulse:
-        add_driver(ld, "energy", wave(pulse[0] * k, pulse[1] * k, *pulse[2:]))
+        add_driver(ld, "energy", wave(pulse[0] * k, pulse[1] * k, *pulse[2:]),
+                   meta=dict(tipo='luce', lo=pulse[0] * k, hi=pulse[1] * k,
+                             cyc=pulse[2] if len(pulse) > 2 else 1,
+                             ph=pulse[3] if len(pulse) > 3 else 0.0))
     return ob
 
 
@@ -1795,7 +1884,8 @@ def build_frog():
     no_shadow(sac)
     w = TAU * 2 / ANIM_FRAMES
     for i, base in enumerate((0.14, 0.12, 0.11)):
-        add_driver(sac, "scale", "%.4f*(0.82+0.3*(0.5+0.5*sin(frame*%.6f)))" % (base, w), i)
+        add_driver(sac, "scale", "%.4f*(0.82+0.3*(0.5+0.5*sin(frame*%.6f)))" % (base, w), i,
+                   meta=dict(tipo='scala', lo=0.82, hi=1.12, cyc=2, ph=0.0) if i == 0 else None)
     add_light("Rana_LuceGola", 'POINT', (0, -0.62, 0.16), 6.0, (1.0, 0.4, 0.05), 0.08,
               pulse=(1.0, 12.0, 2, 0.0))
 
@@ -2070,9 +2160,10 @@ def build_wolf():
         m = sphere("Lupo_Lucciola_%02d" % i, loc, random.uniform(0.008, 0.016), m_mote,
                    seg=12, rings=6)
         no_shadow(m)
-        speed = w * random.choice((1, 2))
-        add_driver(m, "location", "%.4f+0.06*sin(frame*%.6f+%.3f)"
-                   % (loc[2], speed, random.uniform(0, TAU)), 2)
+        cyc = random.choice((1, 2))
+        ph = random.uniform(0, TAU)
+        add_driver(m, "location", "%.4f+0.06*sin(frame*%.6f+%.3f)" % (loc[2], w * cyc, ph), 2,
+                   meta=dict(tipo='bob', amp=0.06, cyc=cyc, ph=ph))
     add_light("Lupo_LuceInterna", 'POINT', (0, -0.2, 0.85), 6.0, (0.1, 1.0, 0.85), 0.4,
               pulse=(3.0, 9.0, 1, 0.0))
     add_light("Lupo_LuceTerra", 'POINT', (0, -0.1, 0.25), 4.0, (0.1, 1.0, 0.85), 0.5,
@@ -2125,6 +2216,11 @@ def build_moth():
     m_ant = m_body("Lucina_Antenna", (0.25, 0.18, 0.1), rough=0.4, emit=warm, emit_str=0.3)
     m_metal = m_body("Lucina_Attacco_Metallo", (0.8, 0.75, 0.6), rough=0.25, metal=1.0)
     m_glass = m_glass_eye("Lucina_Vetro_Lampadina", (1.0, 0.95, 0.85))
+    # su Roblox il vetro della lampadina diventa Neon caldo semitrasparente
+    m_glass["rbx_kind"] = "neon"
+    m_glass["rbx_color"] = [1.0, 0.8, 0.45]
+    m_glass["rbx_transp"] = 0.45
+    m_glass["rbx_pulse"] = [0.7, 1.0, 1.0, 0.0]
     m_bulb_glow = m_halo("Lucina_Luce_Lampadina", (1.0, 0.75, 0.3), 14.0, pulse=(11.0, 16.0, 1, 0.0),
                          softness=1.4)
     m_fil = m_emit("Lucina_Filamento", (1.0, 0.7, 0.25), 40.0, pulse=(32.0, 46.0, 1, 0.0))
@@ -2186,8 +2282,10 @@ def build_moth():
     w = TAU / ANIM_FRAMES
     top = C + Vector((0, 0.0, R * 0.9))
     ant_piv = empty("Lucina_Antenna_Perno", top, 0.08)
-    add_driver(ant_piv, "rotation_euler", "radians(7)*sin(frame*%.6f)" % (w * 2), 0)
-    add_driver(ant_piv, "rotation_euler", "radians(5)*sin(frame*%.6f+1.3)" % (w * 1), 1)
+    add_driver(ant_piv, "rotation_euler", "radians(7)*sin(frame*%.6f)" % (w * 2), 0,
+               meta=dict(tipo='rot', amp=radians(7), cyc=2, ph=0.0))
+    add_driver(ant_piv, "rotation_euler", "radians(5)*sin(frame*%.6f+1.3)" % (w * 1), 1,
+               meta=dict(tipo='rot', amp=radians(5), cyc=1, ph=1.3))
     apts = [Vector(p) for p in ((0, 0.0, -0.05), (0, 0.02, 0.18), (0, -0.05, 0.4), (0, -0.2, 0.55),
                                 (0, -0.36, 0.56), (0, -0.46, 0.48))]
     ant = tube("Lucina_Antenna", apts, [0.022, 0.018, 0.015, 0.013, 0.012, 0.011], m_ant, bevel_res=3)
@@ -2197,8 +2295,10 @@ def build_moth():
     tipw = top + apts[-1]
     bulb_piv = empty("Lucina_Lampadina_Perno", apts[-1], 0.06)
     bulb_piv.parent = ant_piv
-    add_driver(bulb_piv, "rotation_euler", "radians(24)*sin(frame*%.6f+0.6)" % (w * 2), 0)
-    add_driver(bulb_piv, "rotation_euler", "radians(10)*sin(frame*%.6f)" % (w * 1), 1)
+    add_driver(bulb_piv, "rotation_euler", "radians(24)*sin(frame*%.6f+0.6)" % (w * 2), 0,
+               meta=dict(tipo='rot', amp=radians(24), cyc=2, ph=0.6))
+    add_driver(bulb_piv, "rotation_euler", "radians(10)*sin(frame*%.6f)" % (w * 1), 1,
+               meta=dict(tipo='rot', amp=radians(10), cyc=1, ph=0.0))
 
     def bulb_part(ob):
         # figlio del perno della lampadina, lasciandolo dov'e' nello spazio
@@ -2266,6 +2366,8 @@ def build_one(key, offset=(0, 0, 0), parent_coll=None, rot_z=0.0):
     coll = new_collection(title, parent_coll)
     set_collection(coll)
     random.seed(sum(ord(c) for c in key))
+    del ANIMAZIONI[:]
+    del VALORI_RIPOSO[:]
     fn()
     root = empty(title.split("_", 1)[1] + "_Radice", (0, 0, 0), 0.5)
     for ob in list(coll.objects):

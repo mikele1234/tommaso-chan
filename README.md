@@ -13,6 +13,7 @@ script Python: ogni forma, materiale, luce e animazione nasce dal codice in
 | `blender/creature_luminose.py` | Lo script che genera le creature (da eseguire dentro Blender o da riga di comando) |
 | `modelli/*.blend` | File Blender pronti da aprire: una scena per creatura + `00_tutte_le_creature.blend` |
 | `anteprime/*.png` | Render di anteprima (Cycles) |
+| `roblox/` | Versione pronta per **Roblox Studio**: file `.glb` + script Luau (vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md)) |
 
 ## Come aprirle
 
@@ -43,6 +44,15 @@ blender --background --python blender/creature_luminose.py -- \
         --creatura gufo --salva gufo.blend --render gufo.png \
         --campioni 64 --risoluzione 1280x720
 ```
+
+## Su Roblox Studio
+
+Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono le creature convertite
+per Roblox: un file `.glb` per creatura, da importare con *Import 3D* (con
+**Anchored** attivo), e lo script `CreatureLuminose.client.lua`, da incollare
+in un LocalScript in *StarterPlayerScripts*. Lo script accende Neon e luci e
+anima ali, lampadina, sacca vocale e lucciole. Le istruzioni complete sono in
+[`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 
 ## Parametri regolabili (in cima allo script)
 
