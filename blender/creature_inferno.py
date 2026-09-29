@@ -237,7 +237,7 @@ def m_semi(nome):
     col = NV.rgb_mix(nb, stag, rosso.outputs[2], verde.outputs[2])
     pb = nb.principled(base=(0.6, 0.02, 0.05), rough=0.08, sss=1.0, sss_radius=(1.0, 0.1, 0.1), coat=1.0, spec=0.7)
     nb.set(pb, 'Subsurface Scale', 0.05)
-    nb.output(nb.add_shader(pb.outputs[0], nb.emission(col, ST.lum(45.0))))
+    nb.output(nb.add_shader(pb.outputs[0], nb.emission(col, ST.lum(25.0))))
     CL.diffuse_display(mat, (0.8, 0.02, 0.06))
     mat["rbx_kind"] = "neon"
     mat["rbx_color"] = [1.0, 0.05, 0.1]
@@ -730,8 +730,8 @@ def build_persefone():
     DS.texspace("Persefone")
     m_chit = chitina("Persefone_Chitina_Prugna", (0.12, 0.018, 0.05), rough=0.3, coat=0.6, film=320.0)
     m_oro = CL.m_body("Persefone_Oro", (1.0, 0.72, 0.3), rough=0.25, metal=1.0)
-    m_buccia = CL.m_body("Persefone_Buccia_Melagrana", (0.5, 0.04, 0.05), rough=0.45, coat=0.4, sss=0.1,
-                         mottle=((0.75, 0.25, 0.12), 6.0), bump=(40.0, 0.25, 'noise'))
+    m_buccia = CL.m_body("Persefone_Buccia_Melagrana", (0.32, 0.018, 0.028), rough=0.45, coat=0.4, sss=0.1,
+                         mottle=((0.5, 0.09, 0.05), 6.0), bump=(40.0, 0.25, 'noise'))
     m_bianco = CL.m_body("Persefone_Albedo", (0.9, 0.78, 0.62), rough=0.7, sss=0.4, sss_radius=(1.0, 0.8, 0.6))
     m_seme = m_semi("Persefone_Semi_Rubino")
     m_spiga = CL.m_body("Persefone_Spighe_Grano", (0.85, 0.6, 0.22), rough=0.5, sheen=0.5)
@@ -786,8 +786,8 @@ def build_persefone():
         s = CL.sphere("Persefone_Seme_%d" % i, (0, 0, 0), 1.0, m_seme, seg=14, rings=7)
         s.matrix_world = CL.frame_matrix(p, V((0, 0, 1)), vd) @ Matrix.Diagonal((0.03, 0.028, 0.042, 1.0))
         semi.append(s)
-    ST.proxy(semi[0], Pc + vd * 0.32, (1.0, 0.1, 0.12), 5.0, nome="Persefone_Luce_Semi")
-    ST.proxy(semi[3], Pc + vd * 0.02, (1.0, 0.1, 0.12), 3.0, nome="Persefone_Luce_Dentro")
+    ST.proxy(semi[0], Pc + vd * 0.32, (1.0, 0.1, 0.12), 2.0, nome="Persefone_Luce_Semi")
+    ST.proxy(semi[3], Pc + vd * 0.02, (1.0, 0.1, 0.12), 0.8, nome="Persefone_Luce_Dentro")
     # la corona a punta in cima
     tip = fr @ V((0, 0, R * 0.95))
     for i in range(6):
@@ -807,10 +807,6 @@ def build_persefone():
         CL.sphere("Persefone_Occhio_" + s, (0.045 * sx, -0.35, 0.73), 0.024, m_chit, seg=14, rings=7)
         spiga("Persefone_Antenna_Spiga_" + s, (0.02 * sx, -0.36, 0.77), (0.35 * sx, -0.6, 0.75), 0.36, m_spiga,
               m_spiga)
-        for i, y in enumerate((-0.2, -0.1, 0.0)):
-            DS.leg("Persefone_Zampa_%s%d" % (s, i), [V((0.04 * sx, y, 0.58)), V((0.2 * sx, y - 0.03, 0.66)),
-                                                    V((0.38 * sx, y - 0.08 + 0.08 * i, 0.0))], [0.011, 0.009, 0.005],
-                   m_chit, joint_mat=m_oro)
     # ali sottili con i fiorellini alle punte
     fw = [(-12, 0.1), (0, 0.4), (10, 0.62), (20, 0.66), (30, 0.4), (42, 0.1)]
     hw = [(20, 0.1), (32, 0.36), (44, 0.5), (56, 0.44), (68, 0.1)]
@@ -826,6 +822,15 @@ def build_persefone():
             p = w.matrix_world @ V((-x if left else x, y, 0.0))
             n = w.matrix_world.to_3x3() @ V((0, 0, 1))
             fiore("Persefone_Fiore_%d%s" % (k, "L" if left else "R"), p, n, 0.035, m_petali, m_polline)
+    # tutto il corpo scende di 20 cm (zampe da insetto, non trampoli)
+    for ob in list(CL._STATE["coll"].objects):
+        if ob.parent is None and not any(c.type == 'CHILD_OF' for c in ob.constraints):
+            ob.location.z -= 0.2
+    for sx in (-1, 1):
+        for i, y in enumerate((-0.2, -0.1, 0.0)):
+            DS.leg("Persefone_Zampa_%s%d" % (side_name(sx), i), [V((0.04 * sx, y, 0.38)), V((0.2 * sx, y - 0.03, 0.48)),
+                                                                V((0.34 * sx, y - 0.08 + 0.08 * i, 0.0))],
+                   [0.011, 0.009, 0.005], m_chit, joint_mat=m_oro)
 
 
 # ============================================================================
@@ -1307,7 +1312,7 @@ CREATURE_INFERNO = {
     "cerbero":    ("I01_Cerbero-Piccino",             build_cerbero,     ((0, -0.15, 0.62), 3.4, 12, 30, 50)),
     "caronte":    ("I02_Caronte-Barchetta",           build_caronte,     ((0, -0.15, 0.55), 3.4, 12, 40, 50)),
     "ade":        ("I03_Ade-Ombretta",                build_ade,         ((0, 0.0, 0.72), 3.8, 12, 30, 50)),
-    "persefone":  ("I04_Persefone-Melagrana",         build_persefone,   ((0, -0.05, 0.62), 2.8, 12, 45, 50)),
+    "persefone":  ("I04_Persefone-Melagrana",         build_persefone,   ((0, -0.05, 0.45), 2.8, 12, 45, 50)),
     "alichino":   ("I05_Alichino-Arlecchino",         build_alichino,    ((0, 0.05, 0.6), 2.9, 16, 35, 50)),
     "ghiacciolo": ("I06_Ghiacciolo-Re-di-Ghiaccio",   build_ghiacciolo,  ((0, 0.05, 0.75), 4.0, 12, 25, 50)),
     "flegetonte": ("I07_Flegetonte-Scintilla",        build_flegetonte,  ((0, 0.0, 0.5), 2.8, 14, 40, 50)),
