@@ -1,0 +1,159 @@
+{
+ "bob": {},
+ "luci": {
+  "Ghiacciolo__Luce_01": {
+   "b0": 0.382,
+   "b1": 0.382,
+   "c": [
+    1.0,
+    0.5953,
+    0.1831
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.39
+  },
+  "Ghiacciolo__Luce_02": {
+   "b0": 0.382,
+   "b1": 0.382,
+   "c": [
+    1.0,
+    0.8712,
+    0.7375
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.39
+  },
+  "Ghiacciolo__Luce_03": {
+   "b0": 0.382,
+   "b1": 0.382,
+   "c": [
+    0.7354,
+    0.3492,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.39
+  },
+  "Ghiacciolo__Luce_04": {
+   "b0": 1.35,
+   "b1": 1.35,
+   "c": [
+    0.7542,
+    0.818,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.65
+  },
+  "Ghiacciolo__Luce_05": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    0.7542,
+    0.818,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  }
+ },
+ "parti": {
+  "Ghiacciolo__Chitina_Brinata": {
+   "c": [
+    0.1718,
+    0.1828,
+    0.2209
+   ],
+   "k": "solid"
+  },
+  "Ghiacciolo__Corna": {
+   "c": [
+    0.1897,
+    0.1897,
+    0.206
+   ],
+   "k": "solid"
+  },
+  "Ghiacciolo__Cuore": {
+   "c": [
+    0.7542,
+    0.818,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Ghiacciolo__Faccia_Gialla": {
+   "c": [
+    0.9309,
+    0.9063,
+    0.7674
+   ],
+   "k": "solid"
+  },
+  "Ghiacciolo__Faccia_Nera": {
+   "c": [
+    0.1121,
+    0.0999,
+    0.1232
+   ],
+   "k": "solid"
+  },
+  "Ghiacciolo__Faccia_Rossa": {
+   "c": [
+    0.7354,
+    0.1897,
+    0.1517
+   ],
+   "k": "solid"
+  },
+  "Ghiacciolo__Ghiaccio_Cocito": {
+   "c": [
+    0.7977,
+    0.9453,
+    1.0
+   ],
+   "k": "glass",
+   "m": "Ice",
+   "t": 0.45
+  },
+  "Ghiacciolo__Membrana_Ali": {
+   "c": [
+    0.2478,
+    0.2717,
+    0.3133
+   ],
+   "k": "solid"
+  },
+  "Ghiacciolo__Puntino_Giallo": {
+   "c": [
+    1.0,
+    0.8712,
+    0.7375
+   ],
+   "k": "neon"
+  },
+  "Ghiacciolo__Puntino_Rosso": {
+   "c": [
+    1.0,
+    0.5953,
+    0.1831
+   ],
+   "k": "neon"
+  },
+  "Ghiacciolo__Puntino_Viola": {
+   "c": [
+    0.7354,
+    0.3492,
+    1.0
+   ],
+   "k": "neon"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

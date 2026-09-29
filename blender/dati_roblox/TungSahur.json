@@ -1,0 +1,193 @@
+{
+ "bob": {},
+ "luci": {
+  "TungSahur__Luce_01": {
+   "b0": 1.559,
+   "b1": 1.559,
+   "c": [
+    1.0,
+    0.4488,
+    0.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 8.14
+  },
+  "TungSahur__Luce_02": {
+   "b0": 1.207,
+   "b1": 1.207,
+   "c": [
+    1.0,
+    0.4488,
+    0.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.32
+  },
+  "TungSahur__Luce_03": {
+   "b0": 0.349,
+   "b1": 0.349,
+   "c": [
+    1.0,
+    0.2478,
+    0.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.31
+  },
+  "TungSahur__Luce_04": {
+   "b0": 0.349,
+   "b1": 0.349,
+   "c": [
+    1.0,
+    0.2478,
+    0.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.31
+  },
+  "TungSahur__Luce_05": {
+   "b0": 1.207,
+   "b1": 1.207,
+   "c": [
+    1.0,
+    0.5371,
+    0.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.32
+  }
+ },
+ "parti": {
+  "TungSahur__Alucce": {
+   "ali": true,
+   "e": 8.0,
+   "k": "tex"
+  },
+  "TungSahur__Bocca": {
+   "c": [
+    0.2478,
+    0.0,
+    0.0
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Cornetti": {
+   "c": [
+    0.5371,
+    0.1517,
+    0.0999
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Corteccia_Lava": {
+   "e": 32.0,
+   "k": "tex"
+  },
+  "TungSahur__Denti": {
+   "c": [
+    0.9777,
+    0.964,
+    0.9309
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Iridi_Rosse": {
+   "c": [
+    1.0,
+    0.2478,
+    0.0
+   ],
+   "k": "neon"
+  },
+  "TungSahur__Mazza_Rovente": {
+   "c": [
+    1.0,
+    0.4614,
+    0.0
+   ],
+   "k": "neon"
+  },
+  "TungSahur__Occhi_Bianchi": {
+   "c": [
+    0.964,
+    0.964,
+    0.9547
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Pupille": {
+   "c": [
+    0.0507,
+    0.0507,
+    0.0507
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Rami": {
+   "k": "tex"
+  },
+  "TungSahur__Riflessi": {
+   "c": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "TungSahur__Sneakers_Lacci": {
+   "c": [
+    0.9777,
+    0.9777,
+    0.9777
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Sneakers_Rosse": {
+   "c": [
+    0.8808,
+    0.1517,
+    0.1517
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Sneakers_Striscia": {
+   "c": [
+    0.1517,
+    0.1517,
+    0.1517
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Sneakers_Suola": {
+   "c": [
+    0.964,
+    0.9547,
+    0.9357
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Sopracciglia": {
+   "c": [
+    0.061,
+    0.0507,
+    0.0507
+   ],
+   "k": "solid"
+  },
+  "TungSahur__Vena_Rabbia": {
+   "c": [
+    1.0,
+    0.2478,
+    0.0
+   ],
+   "k": "neon"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

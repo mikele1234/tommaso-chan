@@ -1,0 +1,98 @@
+{
+ "bob": {},
+ "luci": {
+  "Persefone__Luce_01": {
+   "b0": 0.493,
+   "b1": 0.493,
+   "c": [
+    1.0,
+    0.3492,
+    0.3811
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.65
+  },
+  "Persefone__Luce_02": {
+   "b0": 0.312,
+   "b1": 0.312,
+   "c": [
+    1.0,
+    0.3492,
+    0.3811
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.23
+  }
+ },
+ "parti": {
+  "Persefone__Albedo": {
+   "c": [
+    0.9547,
+    0.8962,
+    0.8095
+   ],
+   "k": "solid"
+  },
+  "Persefone__Ali_Sottili": {
+   "ali": true,
+   "e": 2.4,
+   "k": "tex"
+  },
+  "Persefone__Buccia_Melagrana": {
+   "k": "tex"
+  },
+  "Persefone__Chitina_Prugna": {
+   "c": [
+    0.3811,
+    0.1428,
+    0.2478
+   ],
+   "k": "solid"
+  },
+  "Persefone__Fiori_Centro": {
+   "c": [
+    0.7977,
+    1.0,
+    0.5371
+   ],
+   "k": "neon"
+  },
+  "Persefone__Fiori_Petali": {
+   "c": [
+    1.0,
+    0.9317,
+    0.8833
+   ],
+   "k": "neon"
+  },
+  "Persefone__Oro": {
+   "c": [
+    1.0,
+    0.865,
+    0.5838
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Persefone__Semi_Rubino": {
+   "c": [
+    1.0,
+    0.2478,
+    0.3492
+   ],
+   "k": "neon"
+  },
+  "Persefone__Spighe_Grano": {
+   "c": [
+    0.9309,
+    0.7977,
+    0.5064
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}
