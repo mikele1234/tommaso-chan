@@ -2354,6 +2354,143 @@ def build_moth():
 
 
 # ============================================================================
+# STRUMENTI AGGIUNTIVI (usati dalle serie della neve e dell'oceano)
+# ============================================================================
+
+# Tinte pure dell'arcobaleno, nell'ordine della ruota dei colori: passando
+# dall'una all'altra si ottiene lo stesso ciclo del nodo Hue/Saturation.
+ARCOBALENO = [(1.0, 0.0, 0.0), (1.0, 1.0, 0.0), (0.0, 1.0, 0.0),
+              (0.0, 1.0, 1.0), (0.0, 0.0, 1.0), (1.0, 0.0, 1.0)]
+
+
+def hue_expr(cycles, phase, channel):
+    """Espressione driver per un canale (0=R, 1=G, 2=B) di una tinta che fa il
+    giro completo dell'arcobaleno `cycles` volte ogni ANIM_FRAMES.
+    phase e' in giri (0..1)."""
+    h = "fmod(frame*%.6f+%.4f,1.0)" % (cycles / ANIM_FRAMES, phase)
+    if channel == 0:
+        return "min(max(abs(6*%s-3)-1,0),1)" % h
+    return "min(max(2-abs(6*%s-%d),0),1)" % (h, 2 if channel == 1 else 4)
+
+
+def color_cycle_light(ob, cycles, phase=0.0):
+    """Luce che cambia colore passando per tutto l'arcobaleno."""
+    ld = ob.data
+    for i in range(3):
+        add_driver(ld, "color", hue_expr(cycles, phase, i), i)
+    ANIMAZIONI.append(dict(owner=ld, path="color", index=-1, tipo='colore',
+                           pal=[list(c) for c in ARCOBALENO], cyc=cycles, ph=phase))
+    return ob
+
+
+def m_hue_cycle(name, strength, cycles, phase=0.0, sat=1.0):
+    """Emissione che scorre su tutti i colori: il nodo Hue/Saturation/Value ha
+    la tonalita' guidata da un driver su #frame."""
+    mat = new_material(name)
+    nb = NodeBuilder(mat)
+    hs = nb.node('ShaderNodeHueSaturation')
+    nb.set(hs, 'Color', (1.0, 0.0, 0.0))
+    nb.set(hs, 'Saturation', sat)
+    nb.set(hs, 'Fac', 1.0)
+    # Hue = 0.5 lascia il colore invariato: si parte dal rosso e si gira
+    add_driver(hs.inputs['Hue'], "default_value",
+               "fmod(frame*%.6f+%.4f,1.0)" % (cycles / ANIM_FRAMES, phase + 0.5))
+    s = nb.glow(strength)
+    nb.output(nb.emission(hs.outputs['Color'], s))
+    diffuse_display(mat, (1.0, 0.2, 0.6))
+    mat["rbx_kind"] = "neon"
+    mat["rbx_color"] = [1.0, 0.0, 0.0]
+    mat["rbx_cycle"] = {"pal": [list(c) for c in ARCOBALENO], "cyc": float(cycles), "ph": float(phase)}
+    return mat
+
+
+def m_sparkle(name, color, strength, twinkle=6.0):
+    """Granelli luminosi che scintillano ognuno col suo ritmo (per le
+    particelle: il valore casuale di Object Info e' diverso per ogni istanza)."""
+    mat = new_material(name)
+    nb = NodeBuilder(mat)
+    oi = nb.node('ShaderNodeObjectInfo')
+    t = nb.value(0.0, "frame*%.6f" % (TAU * twinkle / ANIM_FRAMES))
+    x = nb.math('ADD', nb.math('MULTIPLY', oi.outputs['Random'], 97.0), t)
+    tw = nb.maprange(nb.math('SINE', x), -1.0, 1.0, 0.15, 1.0)
+    s = nb.glow(strength)
+    nb.output(nb.emission(color, nb.math('MULTIPLY', tw, s)))
+    diffuse_display(mat, color)
+    mat["rbx_kind"] = "neon"
+    mat["rbx_color"] = list(color[:3])
+    return mat
+
+
+def particle_scatter(emitter, inst_ob, count, size=1.0, size_random=0.6, emit_from='VOLUME', seed=3):
+    """Sistema particellare che istanzia `inst_ob` dentro (o sopra)
+    l'emettitore. E' di tipo HAIR, quindi le particelle sono fisse e si vedono
+    subito, in ogni frame, senza simulazione. L'emettitore resta invisibile."""
+    try:
+        md = emitter.modifiers.new("Particelle", 'PARTICLE_SYSTEM')
+        ps = md.particle_system.settings
+        ps.type = 'HAIR'
+    except Exception as exc:
+        print("[creature] particelle non disponibili:", exc)
+        return None
+    for attr, val in (('count', count), ('hair_length', 0.05), ('emit_from', emit_from),
+                      ('use_emit_random', True), ('render_type', 'OBJECT'),
+                      ('instance_object', inst_ob), ('particle_size', size),
+                      ('size_random', size_random), ('use_rotations', True),
+                      ('rotation_factor_random', 1.0), ('use_advanced_hair', True)):
+        if hasattr(ps, attr):
+            try:
+                setattr(ps, attr, val)
+            except (TypeError, ValueError, AttributeError):
+                pass
+    md.particle_system.seed = seed
+    emitter.show_instancer_for_render = False
+    emitter.show_instancer_for_viewport = False
+    emitter["rbx_drop"] = 1           # su Roblox non esistono particelle
+    inst_ob["rbx_drop"] = 1
+    return md
+
+
+def vgroup_from_uv(ob, name, fn):
+    """Gruppo di vertici con peso fn(u, v) calcolato dalle UV (es. densita'
+    del pelo solo alla base delle ali)."""
+    me = ob.data
+    uvl = me.uv_layers.active
+    w = {}
+    for lp in me.loops:
+        u, v = uvl.data[lp.index].uv
+        w[lp.vertex_index] = max(w.get(lp.vertex_index, 0.0), float(fn(u, v)))
+    vg = ob.vertex_groups.new(name=name)
+    for i, val in w.items():
+        if val > 0:
+            vg.add([i], min(1.0, val), 'REPLACE')
+    return vg
+
+
+def float_all(name, center, amp, cycles=1, phase=0.0, sway=None):
+    """Tutta la creatura galleggia: un perno che sale e scende (e, se richiesto,
+    oscilla: sway = (gradi_x, gradi_y)) a cui si attacca tutto quello che e'
+    stato costruito finora."""
+    center = vec(center)
+    coll = _STATE["coll"]
+    obs = [o for o in coll.objects if o.parent is None]
+    piv = empty(name, center, 0.12)
+    inv = Matrix.Translation(-center)
+    for o in obs:
+        o.parent = piv
+        o.matrix_parent_inverse = inv
+    w = TAU * cycles / ANIM_FRAMES
+    add_driver(piv, "location", "%.4f+%.4f*sin(frame*%.6f+%.3f)" % (center.z, amp, w, phase), 2,
+               meta=dict(tipo='mov', amp=amp, cyc=cycles, ph=phase))
+    if sway:
+        for i, deg in enumerate(sway):
+            if deg:
+                ph = phase + 1.1 * (i + 1)
+                add_driver(piv, "rotation_euler", "radians(%.3f)*sin(frame*%.6f+%.3f)" % (deg, w, ph), i,
+                           meta=dict(tipo='rot', amp=radians(deg), cyc=cycles, ph=ph))
+    return piv
+
+
+# ============================================================================
 # REGISTRO DELLE CREATURE
 # ============================================================================
 

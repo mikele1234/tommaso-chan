@@ -16,11 +16,13 @@
     Cosa fa:
       * trasforma in Neon le parti luminose (occhi, punti, bulbilli, cristalli...)
       * crea le luci (PointLight) nei punti giusti e le fa pulsare
-      * aggiunge un contorno luminoso (Highlight) al gatto e al lupo
-      * rende il lupo spettrale (materiale ForceField) e le ali dell'avvoltoio
-        di vetro "miraggio"; accende il faretto del cactus (SpotLight)
-      * anima ali, antenne, lampadina, sacca vocale, lucciole, coda dello
-        scorpione, lingua della vipera, sfera di magma dello scarabeo
+      * aggiunge contorni luminosi (Highlight), anche con i colori che scorrono
+      * usa ForceField, Glass, Ice, Snow... dove serve (lupo spettrale, ali
+        dell'avvoltoio, pancia del pinguino, volpe di ghiaccio, medusa...)
+      * accende i faretti (SpotLight): cactus, gufo, civetta, granchio-faro
+      * fa scorrere i colori (naso LED del pupazzo, aurora dell'orso)
+      * anima ali, antenne, code, colli, pinne, sfere che rotolano e fari che
+        girano, e fa galleggiare le creature marine
       * aggiunge un BloomEffect in Lighting per far "accendere" il Neon
 ]]
 
@@ -44,6 +46,25 @@ end
 
 local function colore(c)
 	return Color3.new(c[1], c[2], c[3])
+end
+
+-- colore di un ciclo: la tavolozza scorre cc.cyc volte per CICLO
+local function ciclo(cc, t)
+	local pal = cc.pal
+	local n = #pal
+	local x = ((cc.cyc * t / CICLO + cc.ph) % 1) * n
+	local i = math.floor(x)
+	local f = x - i
+	local a = pal[(i % n) + 1]
+	local b = pal[((i + 1) % n) + 1]
+	return Color3.new(a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f, a[3] + (b[3] - a[3]) * f)
+end
+
+local function materiale(nome)
+	local ok, m = pcall(function()
+		return Enum.Material[nome]
+	end)
+	return ok and m or nil
 end
 
 local function trova(model, nome)
@@ -180,6 +201,11 @@ local function prepara(radice)
 					p.Color = colore(s.c)
 					p.Material = s.metallo and Enum.Material.Metal or Enum.Material.SmoothPlastic
 				end
+				-- materiale Roblox specifico (Ice, Snow, Slate...)
+				local m = s.m and materiale(s.m)
+				if m then
+					p.Material = m
+				end
 			elseif s.k == "tex" then
 				if s.ali then
 					p.CastShadow = false
@@ -200,6 +226,16 @@ local function prepara(radice)
 			end
 			if s.h then
 				contorno(p, s.h)
+			end
+			if s.cc then
+				local c0 = ciclo(s.cc, 0)
+				if s.k ~= "tex" then
+					p.Color = c0
+				end
+				local h = p:FindFirstChild("Contorno_Creatura")
+				if h then
+					h.OutlineColor = c0
+				end
 			end
 		end
 	end
@@ -224,7 +260,7 @@ local function prepara(radice)
 				luce.Angle = l.ang or 60
 			end
 			luce.Name = "Luce_Creatura"
-			luce.Color = colore(l.c)
+			luce.Color = l.cc and ciclo(l.cc, 0) or colore(l.c)
 			luce.Range = l.r
 			luce.Brightness = (l.b0 + l.b1) / 2
 			luce.Shadows = false
@@ -245,7 +281,7 @@ local function prepara(radice)
 		assi[a] = v.Magnitude > 0 and v.Unit or nil
 	end
 
-	local inst = { assi = assi, perni = {}, luci = {}, neon = {}, scala = {}, bob = {} }
+	local inst = { assi = assi, perni = {}, luci = {}, neon = {}, scala = {}, bob = {}, colori = {} }
 	for nome, pv in pairs(cfg.perni) do
 		local m = trova(model, nome)
 		if m then
@@ -270,6 +306,20 @@ local function prepara(radice)
 		local p = trova(model, nome)
 		if p and s.p then
 			table.insert(inst.neon, { parte = p, base = s.t or 0, lo = s.p[1], cyc = s.p[3], ph = s.p[4] })
+		end
+		if p and s.cc then
+			table.insert(inst.colori, {
+				parte = s.k ~= "tex" and p or nil,
+				contorno = p:FindFirstChild("Contorno_Creatura"),
+				cc = s.cc,
+			})
+		end
+	end
+	for nome, l in pairs(cfg.luci) do
+		local p = trova(model, nome)
+		local luce = p and p:FindFirstChild("Luce_Creatura")
+		if luce and l.cc then
+			table.insert(inst.colori, { luce = luce, cc = l.cc })
 		end
 	end
 	for nome, s in pairs(cfg.scala) do
@@ -305,19 +355,24 @@ local function trasforma(inst, nome, t, cache)
 		T = trasforma(inst, pv.padre, t, cache)
 	end
 	local R = CFrame.identity
+	local D = Vector3.zero
 	for _, r in ipairs(pv.rot) do
 		local asse = inst.assi[r.asse]
 		if asse then
-			local ang
-			if r.spin then
-				ang = DUE_PI * r.cyc * t / CICLO + r.ph -- rotazione continua (sfera che rotola)
+			if r.mov then
+				D += asse * (r.amp * seno(r.cyc, r.ph, t)) -- galleggiamento (spostamento)
 			else
-				ang = r.amp * seno(r.cyc, r.ph, t)
+				local ang
+				if r.spin then
+					ang = DUE_PI * r.cyc * t / CICLO + r.ph -- rotazione continua (sfera che rotola)
+				else
+					ang = r.amp * seno(r.cyc, r.ph, t)
+				end
+				R = CFrame.fromAxisAngle(asse, ang) * R
 			end
-			R = CFrame.fromAxisAngle(asse, ang) * R
 		end
 	end
-	local W = T * CFrame.new(pv.centro) * R * CFrame.new(-pv.centro)
+	local W = T * CFrame.new(D) * CFrame.new(pv.centro) * R * CFrame.new(-pv.centro)
 	cache[nome] = W
 	return W
 end
@@ -346,6 +401,18 @@ local function anima(t)
 			if su then
 				for _, b in ipairs(inst.bob) do
 					b.parte.CFrame = b.riposo + su * (b.amp * seno(b.cyc, b.ph, t))
+				end
+			end
+			for _, c in ipairs(inst.colori) do
+				local col = ciclo(c.cc, t)
+				if c.parte then
+					c.parte.Color = col
+				end
+				if c.contorno then
+					c.contorno.OutlineColor = col
+				end
+				if c.luce then
+					c.luce.Color = col
 				end
 			end
 		end

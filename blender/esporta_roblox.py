@@ -2,8 +2,9 @@
 """
 ESPORTAZIONE DELLE CREATURE LUMINOSE PER ROBLOX STUDIO
 
-Costruisce ogni creatura (serie "luminose" di creature_luminose.py e serie
-"deserto" di creature_deserto.py) e la prepara per Roblox:
+Costruisce ogni creatura delle quattro serie (creature_luminose.py,
+creature_deserto.py, creature_neve.py, creature_oceano.py) e la prepara per
+Roblox:
 
   * al massimo 20.000 triangoli PER CREATURA (in totale): la creatura viene
     ricostruita a un livello di dettaglio piu' basso finche' rientra e, se
@@ -21,14 +22,17 @@ Costruisce ogni creatura (serie "luminose" di creature_luminose.py e serie
 Risultato (nella cartella di uscita):
     modelli/<nn>_<nome>.glb           prima serie
     modelli/deserto/<nn>_<nome>.glb   serie del deserto
+    modelli/neve/<nn>_<nome>.glb      serie della neve
+    modelli/oceano/<nn>_<nome>.glb    serie dell'oceano
     CreatureLuminose.client.lua       un solo LocalScript per tutte le creature
 
 USO
     blender --background --python blender/esporta_roblox.py -- --uscita roblox
-    opzioni:  --serie deserto        (solo una serie: luminose | deserto)
+    opzioni:  --serie deserto        (solo una serie: luminose | deserto | neve | oceano)
               --creatura vipera      (solo una creatura)
               --scala 3              (1 metro di Blender = 3 stud)
-              --max-triangoli 20000  (limite per creatura)
+              --max-triangoli 20000  (limite per creatura; 0 = nessun limite,
+                                      dettaglio pieno)
 """
 
 import bpy
@@ -58,6 +62,8 @@ def _carica(nome):
 
 CL = _carica("creature_luminose")
 DS = _carica("creature_deserto")
+NV = _carica("creature_neve")
+OC = _carica("creature_oceano")
 
 # Fattore di scala: 1 metro in Blender -> SCALA stud su Roblox.
 SCALA = 3.0
@@ -94,6 +100,34 @@ SERIE = {
             "avvoltoio": ("06_avvoltoio_miraggio",  "Avvoltoio"),
             "tarantola": ("07_tarantola_brace",     "Tarantola"),
             "cactus":    ("08_cactus_chill_guy",    "Cactus"),
+        },
+    },
+    "neve": {
+        "registro": NV.CREATURE_NEVE,
+        "cartella": os.path.join("modelli", "neve"),
+        "creature": {
+            "orso":     ("01_orso_aurora",        "Orso"),
+            "pinguino": ("02_pinguino_cristallo", "Pinguino"),
+            "renna":    ("03_renna_cometa",       "Renna"),
+            "volpe":    ("04_volpe_ghiacciaio",   "Volpe"),
+            "leopardo": ("05_leopardo_valanga",   "Leopardo"),
+            "yeti":     ("06_falena_yeti",        "Yeti"),
+            "civetta":  ("07_civetta_bufera",     "Civetta"),
+            "pupazzo":  ("08_pupazzo_skibidi",    "Pupazzo"),
+        },
+    },
+    "oceano": {
+        "registro": OC.CREATURE_OCEANO,
+        "cartella": os.path.join("modelli", "oceano"),
+        "creature": {
+            "medusa":     ("01_medusa_lanterna",       "Medusa"),
+            "cavalluccio": ("02_cavalluccio_neon",     "Cavalluccio"),
+            "granchio":   ("03_granchio_faro",         "Granchio"),
+            "manta":      ("04_manta_luminescente",    "Manta"),
+            "squalo":     ("05_squalo_plasma",         "Squalo"),
+            "tartaruga":  ("06_tartaruga_fosforica",   "Tartaruga"),
+            "pescatrice": ("07_rana_pescatrice_abisso", "Pescatrice"),
+            "blobfish":   ("08_blobfish_mewing",       "Blobfish"),
         },
     },
 }
@@ -153,6 +187,11 @@ def rest_pose():
         except (AttributeError, TypeError, ValueError, RuntimeError):
             pass
     bpy.context.view_layer.update()
+
+
+def skip(ob):
+    """Emettitori di particelle e oggetti che esistono solo in Blender."""
+    return bool(ob.get("rbx_drop"))
 
 
 def mat_of(ob):
@@ -388,7 +427,7 @@ def estimate_tris(objs):
     dg = bpy.context.evaluated_depsgraph_get()
     tot = 0
     for ob in objs:
-        if ob.type not in ('MESH', 'CURVE'):
+        if ob.type not in ('MESH', 'CURVE') or skip(ob):
             continue
         m = mat_of(ob)
         if m is None or m.get("rbx_kind") == "drop":
@@ -416,6 +455,8 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
     detail = 1.0
     for _it in range(8):
         anims, objs = build_creature(key, registry, detail)
+        if budget <= 0:                          # nessun limite: dettaglio pieno
+            break
         est = estimate_tris(objs) + 400          # + marcatori
         if est <= budget * 0.98 or detail <= 0.16:
             break
@@ -426,18 +467,23 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
     def ptr(x):
         return x.as_pointer()
 
-    rot = {}          # pivot -> lista di (asse, amp, cyc, ph, spin)
+    rot = {}          # pivot -> lista di (asse, amp, cyc, ph, spin, mov)
     own = {}          # oggetto -> ('scala'|'bob', meta)
     light_pulse = {}  # dati luce -> meta
+    light_color = {}  # dati luce -> ciclo di colori
     for a in anims:
         o = a["owner"]
-        if a["tipo"] == "rot":
+        if a["tipo"] in ("rot", "mov"):
+            mov = a["tipo"] == "mov"
             rot.setdefault(ptr(o), (o, []))[1].append(
-                ("XYZ"[a["index"]], a["amp"], a["cyc"], a["ph"], bool(a.get("spin"))))
+                ("XYZ"[a["index"]], a["amp"] * (scala if mov else 1.0), a["cyc"], a["ph"],
+                 bool(a.get("spin")), mov))
         elif a["tipo"] in ("scala", "bob"):
             own[ptr(o)] = (a["tipo"], a)
         elif a["tipo"] == "luce":
             light_pulse[ptr(o)] = a
+        elif a["tipo"] == "colore":
+            light_color[ptr(o)] = a
 
     def group_of(ob):
         o = ob
@@ -469,10 +515,12 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
         while par is not None and ptr(par) not in rot:
             par = par.parent
         entry = []
-        for ax, amp, cyc, ph, spin in sorted(lst):
+        for ax, amp, cyc, ph, spin, mov in sorted(lst):
             r = {"asse": ax, "amp": round(amp, 4), "cyc": cyc, "ph": round(ph, 3)}
             if spin:
                 r["spin"] = True
+            if mov:
+                r["mov"] = True           # spostamento (in stud) invece che rotazione
             entry.append(r)
         cfg["perni"][pivot_names[o.name]] = {
             "padre": pivot_names[par.name] if par is not None else None,
@@ -505,12 +553,15 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
             finals.append((dname, marker_mesh(pos + fwd * 0.5, marker_size), group_of(ob), None))
             entry["dir"] = dname
             entry["ang"] = round(min(180.0, math.degrees(ob.data.spot_size)), 1)
+        cc = light_color.get(ptr(ob.data))
+        if cc:
+            entry["cc"] = color_cycle(cc)
         cfg["luci"][mname] = entry
 
     # --- bake dei materiali con UV proprie (ali, piume, serpente, carapace) -----
     baked = {}
     for ob in objs:
-        if ob.type != 'MESH':
+        if ob.type != 'MESH' or skip(ob):
             continue
         m = mat_of(ob)
         if m is None or m.get("rbx_kind") != "bake" or m.name in baked:
@@ -525,7 +576,7 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
     dg = bpy.context.evaluated_depsgraph_get()
     pieces = {}       # (gruppo, materiale) -> lista di mesh
     for ob in objs:
-        if ob.type not in ('MESH', 'CURVE'):
+        if ob.type not in ('MESH', 'CURVE') or skip(ob):
             continue
         m = mat_of(ob)
         if m is None or m.get("rbx_kind") == "drop":
@@ -554,7 +605,7 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
     def total():
         return sum(tris(f[1]) for f in finals)
 
-    for _it in range(4):
+    for _it in range(4 if budget > 0 else 0):
         tot = total()
         if tot <= budget:
             break
@@ -616,6 +667,10 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
             s = {"k": "solid", "c": srgb(src.get("rbx_color", (0.5, 0.5, 0.5)))}
             if float(src.get("rbx_metal", 0.0)) > 0.5:
                 s["metallo"] = True
+        if src.get("rbx_material") and kind not in ("bake",):
+            s["m"] = str(src["rbx_material"])
+        if src.get("rbx_cycle"):
+            s["cc"] = color_cycle(src["rbx_cycle"])
         if src.get("rbx_rifl"):
             s["rifl"] = float(src["rbx_rifl"])
         if src.get("rbx_highlight"):
@@ -656,9 +711,15 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
     big = max(tris(o.data) for o in export_obs)
     print("[roblox] %-24s dettaglio %.2f  %3d pezzi  %6d triangoli (max %5d per pezzo)  -> %s"
           % (fname, detail, len(export_obs), tot, big, os.path.relpath(path)))
-    if tot > budget:
+    if 0 < budget < tot:
         print("[roblox] ATTENZIONE: %s supera il limite (%d > %d)" % (fname, tot, budget))
     return P, cfg
+
+
+def color_cycle(cc):
+    """Ciclo di colori per lo script Luau: tavolozza (sRGB), giri per ciclo, fase."""
+    return {"pal": [srgb(list(c)) for c in cc["pal"]], "cyc": float(cc["cyc"]),
+            "ph": round(float(cc["ph"]), 4)}
 
 
 def info_dir(serie):
