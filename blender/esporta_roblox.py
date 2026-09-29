@@ -2,8 +2,9 @@
 """
 ESPORTAZIONE DELLE CREATURE LUMINOSE PER ROBLOX STUDIO
 
-Costruisce ogni creatura delle quattro serie (creature_luminose.py,
-creature_deserto.py, creature_neve.py, creature_oceano.py) e la prepara per
+Costruisce ogni creatura delle otto serie (creature_luminose.py,
+creature_deserto.py, creature_neve.py, creature_oceano.py, creature_mostri.py,
+creature_inferno.py, creature_angeli.py, creature_draghi.py) e la prepara per
 Roblox:
 
   * al massimo 20.000 triangoli PER CREATURA (in totale): la creatura viene
@@ -24,11 +25,16 @@ Risultato (nella cartella di uscita):
     modelli/deserto/<nn>_<nome>.glb   serie del deserto
     modelli/neve/<nn>_<nome>.glb      serie della neve
     modelli/oceano/<nn>_<nome>.glb    serie dell'oceano
+    modelli/mostri/<nn>_<nome>.glb    serie dei mostri
+    modelli/inferno/<nn>_<nome>.glb   serie dell'inferno
+    modelli/angeli/<nn>_<nome>.glb    serie degli angeli
+    modelli/draghi/<nn>_<nome>.glb    serie dei draghi
     CreatureLuminose.client.lua       un solo LocalScript per tutte le creature
 
 USO
     blender --background --python blender/esporta_roblox.py -- --uscita roblox
-    opzioni:  --serie deserto        (solo una serie: luminose | deserto | neve | oceano)
+    opzioni:  --serie deserto        (solo una serie: luminose | deserto | neve | oceano |
+                                      mostri | inferno | angeli | draghi)
               --creatura vipera      (solo una creatura)
               --scala 3              (1 metro di Blender = 3 stud)
               --max-triangoli 20000  (limite per creatura; 0 = nessun limite,
@@ -64,6 +70,10 @@ CL = _carica("creature_luminose")
 DS = _carica("creature_deserto")
 NV = _carica("creature_neve")
 OC = _carica("creature_oceano")
+MO = _carica("creature_mostri")
+IN = _carica("creature_inferno")
+AN = _carica("creature_angeli")
+DR = _carica("creature_draghi")
 
 # Fattore di scala: 1 metro in Blender -> SCALA stud su Roblox.
 SCALA = 3.0
@@ -128,6 +138,62 @@ SERIE = {
             "tartaruga":  ("06_tartaruga_fosforica",   "Tartaruga"),
             "pescatrice": ("07_rana_pescatrice_abisso", "Pescatrice"),
             "blobfish":   ("08_blobfish_mewing",       "Blobfish"),
+        },
+    },
+    "mostri": {
+        "registro": MO.CREATURE_MOSTRI,
+        "cartella": os.path.join("modelli", "mostri"),
+        "creature": {
+            "pipistrello": ("01_pipistrello_sanguisuga", "Pipistrello"),
+            "scarabeo":    ("02_franken_scarabeo",       "FrankenScarabeo"),
+            "gargoyle":    ("03_gargoyle_ossidiana",     "Gargoyle"),
+            "zucca":       ("04_zucca_infestata",        "Zucca"),
+            "corvo":       ("05_corvo_peste",            "CorvoPeste"),
+            "occhio":      ("06_occhio_fluttuante",      "OcchioFluttuante"),
+            "calderone":   ("07_calderone_animato",      "Calderone"),
+            "verme":       ("08_verme_ohio_nextbot",     "VermeOhio"),
+        },
+    },
+    "inferno": {
+        "registro": IN.CREATURE_INFERNO,
+        "cartella": os.path.join("modelli", "inferno"),
+        "creature": {
+            "cerbero":    ("01_cerbero_piccino",          "Cerbero"),
+            "caronte":    ("02_caronte_barchetta",        "Caronte"),
+            "ade":        ("03_ade_ombretta",             "Ade"),
+            "persefone":  ("04_persefone_melagrana",      "Persefone"),
+            "alichino":   ("05_alichino_arlecchino",      "Alichino"),
+            "ghiacciolo": ("06_ghiacciolo_re_di_ghiaccio", "Ghiacciolo"),
+            "flegetonte": ("07_flegetonte_scintilla",     "Flegetonte"),
+            "tungtung":   ("08_tung_tung_tung_sahur",     "TungSahur"),
+        },
+    },
+    "angeli": {
+        "registro": AN.CREATURE_ANGELI,
+        "cartella": os.path.join("modelli", "angeli"),
+        "creature": {
+            "serafino":  ("01_fiammella_serafino",        "Serafino"),
+            "cherubino": ("02_quattro_musetti_cherubino", "Cherubino"),
+            "ofanim":    ("03_ruotina_ofanim",            "Ofanim"),
+            "michele":   ("04_scudo_stellato_michele",    "Michele"),
+            "gabriele":  ("05_trombettina_gabriele",      "Gabriele"),
+            "raffaele":  ("06_dottor_smeraldo_raffaele",  "Raffaele"),
+            "custode":   ("07_lanternina_custode",        "Custode"),
+            "halolo":    ("08_halolo_halola",             "Halolo"),
+        },
+    },
+    "draghi": {
+        "registro": DR.CREATURE_DRAGHI,
+        "cartella": os.path.join("modelli", "draghi"),
+        "creature": {
+            "tesorino": ("01_tesorino_drago_custode", "Tesorino"),
+            "long":     ("02_perla_drago_cinese",     "Long"),
+            "ryujin":   ("03_marea_re_drago",         "Ryujin"),
+            "quetzal":  ("04_quetzal_serpente_piumato", "Quetzal"),
+            "ddraig":   ("05_ddraig_drago_rosso",     "Ddraig"),
+            "idra":     ("06_idra_di_lerna",          "Idra"),
+            "wyvern":   ("07_blasone_wyvern",         "Wyvern"),
+            "ourobo":   ("08_ourobo_ourobo",          "Ourobo"),
         },
     },
 }

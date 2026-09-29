@@ -911,7 +911,7 @@ def m_wing(name, ramp, alpha=0.3, membrane_str=1.5, vein_ramp=None,
            vein_str=10.0, radial=(9, 0.10), cross=None, edge=0.07,
            side_edge=True, cells=None, cell_mix=0.0, v_mix=1.0, facing_mix=0.0,
            distort=0.0, spots=None, dots=None, pulse=None, shiny=True,
-           cell_color=None, cell_str=None):
+           cell_color=None, cell_str=None, film=0.0):
     """Ala luminosa procedurale.
     ramp       : rampa colori della membrana (fattore = v, facing, celle)
     alpha      : opacita' della membrana (0 = pura luce, 1 = opaca)
@@ -923,7 +923,8 @@ def m_wing(name, ramp, alpha=0.3, membrane_str=1.5, vein_ramp=None,
     distort    : ondulazione delle venature (effetto fulmine / organico)
     spots      : [(u, v, raggio, anello?)] macchie ocellari
     dots       : (n, v, raggio) fila di puntini vicino al bordo
-    pulse      : (min, max, cicli, fase) moltiplicatore dell'emissione."""
+    pulse      : (min, max, cicli, fase) moltiplicatore dell'emissione.
+    film       : spessore del Thin Film in nanometri (iridescenza, Blender 4.2+)."""
     mat = new_material(name)
     nb = NodeBuilder(mat)
     tc = nb.texcoord(use_space=False)
@@ -1011,7 +1012,11 @@ def m_wing(name, ramp, alpha=0.3, membrane_str=1.5, vein_ramp=None,
 
     if alpha > 0:
         if shiny:
-            surf = nb.principled(base=col, rough=0.12, spec=0.6, coat=0.5).outputs[0]
+            pb = nb.principled(base=col, rough=0.12, spec=0.6, coat=0.5)
+            if film:
+                nb.set(pb, 'Thin Film Thickness', film)
+                nb.set(pb, 'Thin Film IOR', 1.45)
+            surf = pb.outputs[0]
         else:
             surf = nb.node('ShaderNodeBsdfDiffuse', {'Color': col}).outputs[0]
         membrane = nb.mix_shader(alpha, nb.transparent(), surf)
@@ -2532,7 +2537,8 @@ def build_one(key, offset=(0, 0, 0), parent_coll=None, rot_z=0.0, registry=None)
     _STATE["texspace"] = None
     root = empty(title.split("_", 1)[1] + "_Radice", (0, 0, 0), 0.5)
     for ob in list(coll.objects):
-        if ob is not root and ob.parent is None:
+        # le luci agganciate con un vincolo Child Of seguono gia' il loro organo
+        if ob is not root and ob.parent is None and not any(c.type == 'CHILD_OF' for c in ob.constraints):
             ob.parent = root
     root.location = offset
     root.rotation_euler = (0, 0, radians(rot_z))
