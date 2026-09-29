@@ -1,0 +1,193 @@
+{
+ "bob": {},
+ "luci": {
+  "Orso__Luce_01": {
+   "b0": 0.636,
+   "b1": 1.8,
+   "c": [
+    0.3133,
+    1.0,
+    0.68
+   ],
+   "cyc": 1,
+   "ph": -0.0,
+   "r": 8.7
+  },
+  "Orso__Luce_02": {
+   "b0": 0.636,
+   "b1": 1.8,
+   "c": [
+    0.1897,
+    0.9309,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": -2.094,
+   "r": 8.7
+  },
+  "Orso__Luce_03": {
+   "b0": 0.636,
+   "b1": 1.8,
+   "c": [
+    0.7354,
+    0.4845,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": -4.189,
+   "r": 8.7
+  },
+  "Orso__Luce_04": {
+   "b0": 0.636,
+   "b1": 1.102,
+   "c": [
+    0.4845,
+    0.9547,
+    1.0
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 7.07
+  }
+ },
+ "parti": {
+  "Orso__Ali_Aurora__AlaAnt_L": {
+   "ali": true,
+   "e": 12.8,
+   "k": "tex"
+  },
+  "Orso__Ali_Aurora__AlaAnt_R": {
+   "ali": true,
+   "e": 12.8,
+   "k": "tex"
+  },
+  "Orso__Ali_Aurora__AlaPost_L": {
+   "ali": true,
+   "e": 12.8,
+   "k": "tex"
+  },
+  "Orso__Ali_Aurora__AlaPost_R": {
+   "ali": true,
+   "e": 12.8,
+   "k": "tex"
+  },
+  "Orso__Artigli": {
+   "c": [
+    0.1897,
+    0.1897,
+    0.206
+   ],
+   "k": "solid"
+  },
+  "Orso__Naso": {
+   "c": [
+    0.0999,
+    0.0999,
+    0.1284
+   ],
+   "k": "solid"
+  },
+  "Orso__Occhi": {
+   "c": [
+    0.061,
+    0.061,
+    0.0999
+   ],
+   "k": "solid"
+  },
+  "Orso__Pelliccia_Aurora": {
+   "cc": {
+    "cyc": 1.0,
+    "pal": [
+     [
+      0.3133,
+      1.0,
+      0.68
+     ],
+     [
+      0.1897,
+      0.9309,
+      1.0
+     ],
+     [
+      0.3492,
+      1.0,
+      0.865
+     ],
+     [
+      0.7354,
+      0.4845,
+      1.0
+     ]
+    ],
+    "ph": 0.0
+   },
+   "e": 9.6,
+   "h": [
+    0.1897,
+    0.9309,
+    1.0
+   ],
+   "k": "tex"
+  }
+ },
+ "perni": {
+  "Orso__Perno_AlaAnt_L": {
+   "membri": [
+    "Orso__Ali_Aurora__AlaAnt_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1571,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Orso__Perno_AlaAnt_R": {
+   "membri": [
+    "Orso__Ali_Aurora__AlaAnt_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1571,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Orso__Perno_AlaPost_L": {
+   "membri": [
+    "Orso__Ali_Aurora__AlaPost_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1571,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.35
+    }
+   ]
+  },
+  "Orso__Perno_AlaPost_R": {
+   "membri": [
+    "Orso__Ali_Aurora__AlaPost_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1571,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.35
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

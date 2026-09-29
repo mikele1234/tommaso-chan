@@ -1,0 +1,377 @@
+{
+ "bob": {},
+ "luci": {
+  "Pupazzo__Luce_01": {
+   "b0": 0.779,
+   "b1": 1.273,
+   "c": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "cc": {
+    "cyc": 12.0,
+    "pal": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      1.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      1.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ],
+     [
+      1.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "ph": 0.8
+   },
+   "cyc": 6,
+   "ph": 0.0,
+   "r": 7.47
+  },
+  "Pupazzo__Luce_02": {
+   "b0": 1.006,
+   "b1": 1.006,
+   "c": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "cc": {
+    "cyc": 12.0,
+    "pal": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      1.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      1.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ],
+     [
+      1.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "ph": 0.8
+   },
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.85
+  }
+ },
+ "parti": {
+  "Pupazzo__Alone_LED__Testa": {
+   "c": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "cc": {
+    "cyc": 12.0,
+    "pal": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      1.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      1.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ],
+     [
+      1.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "ph": 0.8
+   },
+   "k": "aura",
+   "t": 0.85
+  },
+  "Pupazzo__Alucce_Mosca__Aluccia_L": {
+   "ali": true,
+   "e": 2.0,
+   "k": "tex"
+  },
+  "Pupazzo__Alucce_Mosca__Aluccia_R": {
+   "ali": true,
+   "e": 2.0,
+   "k": "tex"
+  },
+  "Pupazzo__Bocca__Testa": {
+   "c": [
+    0.2478,
+    0.0999,
+    0.1517
+   ],
+   "k": "solid"
+  },
+  "Pupazzo__Carbone": {
+   "c": [
+    0.1517,
+    0.1517,
+    0.1601
+   ],
+   "k": "solid",
+   "m": "Slate"
+  },
+  "Pupazzo__Carbone__Testa": {
+   "c": [
+    0.1517,
+    0.1517,
+    0.1601
+   ],
+   "k": "solid",
+   "m": "Slate"
+  },
+  "Pupazzo__Gocce_Ghiaccio": {
+   "c": [
+    0.7977,
+    0.9309,
+    1.0
+   ],
+   "k": "neon",
+   "t": 0.2
+  },
+  "Pupazzo__LED_Piedini__Testa": {
+   "c": [
+    0.9063,
+    0.9063,
+    0.9163
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Pupazzo__LED_RGB__Testa": {
+   "c": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "cc": {
+    "cyc": 12.0,
+    "pal": [
+     [
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      1.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      1.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0
+     ],
+     [
+      1.0,
+      0.0,
+      1.0
+     ]
+    ],
+    "ph": 0.8
+   },
+   "k": "neon"
+  },
+  "Pupazzo__Neve_Bagnata": {
+   "c": [
+    0.9357,
+    0.9547,
+    0.9867
+   ],
+   "k": "solid",
+   "m": "Snow"
+  },
+  "Pupazzo__Neve_Bagnata__Collo": {
+   "c": [
+    0.9357,
+    0.9547,
+    0.9867
+   ],
+   "k": "solid",
+   "m": "Snow"
+  },
+  "Pupazzo__Neve_Bagnata__Testa": {
+   "c": [
+    0.9357,
+    0.9547,
+    0.9867
+   ],
+   "k": "solid",
+   "m": "Snow"
+  },
+  "Pupazzo__Pozzanghera": {
+   "c": [
+    0.1517,
+    0.1897,
+    0.2478
+   ],
+   "k": "solid",
+   "m": "Glass",
+   "rifl": 0.5
+  },
+  "Pupazzo__Rametti__Testa": {
+   "c": [
+    0.4614,
+    0.3492,
+    0.2478
+   ],
+   "k": "solid"
+  },
+  "Pupazzo__Zampette": {
+   "c": [
+    0.2209,
+    0.2209,
+    0.2478
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Pupazzo__Perno_Aluccia_L": {
+   "membri": [
+    "Pupazzo__Alucce_Mosca__Aluccia_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.2443,
+     "asse": "Y",
+     "cyc": 16,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Pupazzo__Perno_Aluccia_R": {
+   "membri": [
+    "Pupazzo__Alucce_Mosca__Aluccia_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.2443,
+     "asse": "Y",
+     "cyc": 16,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Pupazzo__Perno_Collo": {
+   "membri": [
+    "Pupazzo__Neve_Bagnata__Collo"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 2,
+     "ph": 0.0
+    },
+    {
+     "amp": 0.1571,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 1.1
+    }
+   ]
+  },
+  "Pupazzo__Perno_Testa": {
+   "membri": [
+    "Pupazzo__Luce_01",
+    "Pupazzo__Alone_LED__Testa",
+    "Pupazzo__Bocca__Testa",
+    "Pupazzo__Carbone__Testa",
+    "Pupazzo__LED_Piedini__Testa",
+    "Pupazzo__LED_RGB__Testa",
+    "Pupazzo__Neve_Bagnata__Testa",
+    "Pupazzo__Rametti__Testa"
+   ],
+   "padre": "Pupazzo__Perno_Collo",
+   "rot": [
+    {
+     "amp": 0.1396,
+     "asse": "X",
+     "cyc": 2,
+     "ph": 2.0
+    },
+    {
+     "amp": 0.2443,
+     "asse": "Y",
+     "cyc": 3,
+     "ph": 0.4
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

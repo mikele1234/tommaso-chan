@@ -1,0 +1,185 @@
+{
+ "bob": {},
+ "luci": {
+  "Yeti__Luce_01": {
+   "b0": 0.551,
+   "b1": 1.191,
+   "c": [
+    0.9309,
+    0.2478,
+    0.8808
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.28
+  },
+  "Yeti__Luce_02": {
+   "b0": 2.25,
+   "b1": 2.25,
+   "c": [
+    0.9063,
+    0.9309,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 9.75
+  },
+  "Yeti__Luce_03": {
+   "b0": 0.318,
+   "b1": 0.9,
+   "c": [
+    0.9063,
+    0.4236,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.6
+  },
+  "Yeti__Luce_04": {
+   "b0": 0.318,
+   "b1": 0.9,
+   "c": [
+    0.9063,
+    0.4236,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.6
+  }
+ },
+ "parti": {
+  "Yeti__Ali_Carnose__AlaAnt_L": {
+   "ali": true,
+   "e": 10.4,
+   "k": "tex"
+  },
+  "Yeti__Ali_Carnose__AlaAnt_R": {
+   "ali": true,
+   "e": 10.4,
+   "k": "tex"
+  },
+  "Yeti__Ali_Carnose__AlaPost_L": {
+   "ali": true,
+   "e": 10.4,
+   "k": "tex"
+  },
+  "Yeti__Ali_Carnose__AlaPost_R": {
+   "ali": true,
+   "e": 10.4,
+   "k": "tex"
+  },
+  "Yeti__Antenne": {
+   "c": [
+    0.9063,
+    0.8962,
+    0.9309
+   ],
+   "k": "solid"
+  },
+  "Yeti__Bagliore_Nella_Pelliccia": {
+   "c": [
+    1.0,
+    0.9163,
+    0.9867
+   ],
+   "h": [
+    0.9309,
+    0.2478,
+    0.8808
+   ],
+   "k": "ghost"
+  },
+  "Yeti__Occhi": {
+   "c": [
+    0.1897,
+    0.0,
+    0.1897
+   ],
+   "k": "solid"
+  },
+  "Yeti__Pelliccia": {
+   "c": [
+    0.9309,
+    0.2478,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.278,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Yeti__Zampe": {
+   "c": [
+    0.9309,
+    0.9212,
+    0.9547
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Yeti__Perno_AlaAnt_L": {
+   "membri": [
+    "Yeti__Ali_Carnose__AlaAnt_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Yeti__Perno_AlaAnt_R": {
+   "membri": [
+    "Yeti__Ali_Carnose__AlaAnt_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Yeti__Perno_AlaPost_L": {
+   "membri": [
+    "Yeti__Ali_Carnose__AlaPost_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.3
+    }
+   ]
+  },
+  "Yeti__Perno_AlaPost_R": {
+   "membri": [
+    "Yeti__Ali_Carnose__AlaPost_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.3
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

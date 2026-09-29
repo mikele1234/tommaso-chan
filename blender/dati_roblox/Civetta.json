@@ -1,0 +1,188 @@
+{
+ "bob": {},
+ "luci": {
+  "Civetta__Luce_01": {
+   "ang": 36.0,
+   "b0": 1.559,
+   "b1": 2.012,
+   "c": [
+    0.7977,
+    0.9309,
+    1.0
+   ],
+   "cyc": 1,
+   "dir": "Civetta__Luce_01_Dir",
+   "ph": 0.0,
+   "r": 9.2
+  },
+  "Civetta__Luce_02": {
+   "ang": 36.0,
+   "b0": 1.559,
+   "b1": 2.012,
+   "c": [
+    0.7977,
+    0.9309,
+    1.0
+   ],
+   "cyc": 1,
+   "dir": "Civetta__Luce_02_Dir",
+   "ph": 0.0,
+   "r": 9.2
+  },
+  "Civetta__Luce_03": {
+   "b0": 0.636,
+   "b1": 4.269,
+   "c": [
+    0.9309,
+    0.9686,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 14.46
+  },
+  "Civetta__Luce_04": {
+   "b0": 0.402,
+   "b1": 0.636,
+   "c": [
+    0.7674,
+    0.9309,
+    1.0
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 5.98
+  }
+ },
+ "parti": {
+  "Civetta__Becco": {
+   "c": [
+    0.2478,
+    0.2478,
+    0.2717
+   ],
+   "k": "solid"
+  },
+  "Civetta__Disco_Facciale": {
+   "c": [
+    0.9547,
+    0.964,
+    0.9777
+   ],
+   "k": "solid"
+  },
+  "Civetta__Ghiaccioli": {
+   "c": [
+    0.7674,
+    0.9309,
+    1.0
+   ],
+   "k": "neon",
+   "t": 0.2
+  },
+  "Civetta__Lampo_Bufera": {
+   "c": [
+    0.9309,
+    0.9686,
+    1.0
+   ],
+   "k": "aura",
+   "p": [
+    0.01,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Civetta__Neve": {
+   "c": [
+    0.9357,
+    0.9547,
+    0.9867
+   ],
+   "k": "solid",
+   "m": "Snow"
+  },
+  "Civetta__Occhio_Faro": {
+   "c": [
+    0.8543,
+    0.964,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.667,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Civetta__Palpebre": {
+   "c": [
+    0.1517,
+    0.1517,
+    0.1718
+   ],
+   "k": "solid"
+  },
+  "Civetta__Piuma_Cristallo": {
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Civetta__Piuma_Cristallo__Ala_L": {
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Civetta__Piuma_Cristallo__Ala_R": {
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Civetta__Piuma_Petto": {
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Civetta__Piumino": {
+   "c": [
+    0.9309,
+    0.9405,
+    0.9547
+   ],
+   "k": "solid"
+  },
+  "Civetta__Roccia": {
+   "k": "tex"
+  }
+ },
+ "perni": {
+  "Civetta__Perno_Ala_L": {
+   "membri": [
+    "Civetta__Piuma_Cristallo__Ala_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.2443,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Civetta__Perno_Ala_R": {
+   "membri": [
+    "Civetta__Piuma_Cristallo__Ala_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.2443,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

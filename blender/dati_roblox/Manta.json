@@ -1,0 +1,684 @@
+{
+ "bob": {
+  "Manta__Scaglie_Luminose__Scaglia_00": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 6.153
+  },
+  "Manta__Scaglie_Luminose__Scaglia_01": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 1.893
+  },
+  "Manta__Scaglie_Luminose__Scaglia_02": {
+   "amp": 0.15,
+   "cyc": 2,
+   "ph": 5.831
+  },
+  "Manta__Scaglie_Luminose__Scaglia_03": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 6.224
+  },
+  "Manta__Scaglie_Luminose__Scaglia_04": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 2.223
+  },
+  "Manta__Scaglie_Luminose__Scaglia_05": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 0.398
+  },
+  "Manta__Scaglie_Luminose__Scaglia_06": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 4.252
+  },
+  "Manta__Scaglie_Luminose__Scaglia_07": {
+   "amp": 0.15,
+   "cyc": 2,
+   "ph": 3.054
+  },
+  "Manta__Scaglie_Luminose__Scaglia_08": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 5.887
+  },
+  "Manta__Scaglie_Luminose__Scaglia_09": {
+   "amp": 0.15,
+   "cyc": 2,
+   "ph": 4.583
+  },
+  "Manta__Scaglie_Luminose__Scaglia_10": {
+   "amp": 0.15,
+   "cyc": 2,
+   "ph": 5.949
+  },
+  "Manta__Scaglie_Luminose__Scaglia_11": {
+   "amp": 0.15,
+   "cyc": 2,
+   "ph": 1.996
+  },
+  "Manta__Scaglie_Luminose__Scaglia_12": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 4.779
+  },
+  "Manta__Scaglie_Luminose__Scaglia_13": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 5.342
+  },
+  "Manta__Scaglie_Luminose__Scaglia_14": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 3.6
+  },
+  "Manta__Scaglie_Luminose__Scaglia_15": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 3.604
+  },
+  "Manta__Scaglie_Luminose__Scaglia_16": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 2.871
+  },
+  "Manta__Scaglie_Luminose__Scaglia_17": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 5.022
+  },
+  "Manta__Scaglie_Luminose__Scaglia_18": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 3.127
+  },
+  "Manta__Scaglie_Luminose__Scaglia_19": {
+   "amp": 0.15,
+   "cyc": 2,
+   "ph": 4.722
+  },
+  "Manta__Scaglie_Luminose__Scaglia_20": {
+   "amp": 0.15,
+   "cyc": 2,
+   "ph": 3.328
+  },
+  "Manta__Scaglie_Luminose__Scaglia_21": {
+   "amp": 0.15,
+   "cyc": 1,
+   "ph": 0.148
+  }
+ },
+ "luci": {
+  "Manta__Luce_01": {
+   "b0": 0.779,
+   "b1": 1.559,
+   "c": [
+    0.3492,
+    0.5838,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 8.14
+  },
+  "Manta__Luce_02": {
+   "b0": 0.779,
+   "b1": 1.423,
+   "c": [
+    0.7674,
+    0.4845,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 3.142,
+   "r": 7.82
+  }
+ },
+ "parti": {
+  "Manta__Ali_Falena_Luna__AlaAnt_L": {
+   "ali": true,
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Manta__Ali_Falena_Luna__AlaAnt_R": {
+   "ali": true,
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Manta__Ali_Falena_Luna__AlaPost_L": {
+   "ali": true,
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Manta__Ali_Falena_Luna__AlaPost_R": {
+   "ali": true,
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Manta__Occhi__Galleggiamento": {
+   "c": [
+    0.0999,
+    0.0999,
+    0.1517
+   ],
+   "k": "solid"
+  },
+  "Manta__Ocello_Cobalto__AlaAnt_L": {
+   "c": [
+    0.3492,
+    0.5838,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Manta__Ocello_Cobalto__AlaAnt_R": {
+   "c": [
+    0.3492,
+    0.5838,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Manta__Ocello_Cobalto__AlaPost_L": {
+   "c": [
+    0.3492,
+    0.5838,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Manta__Ocello_Cobalto__AlaPost_R": {
+   "c": [
+    0.3492,
+    0.5838,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Manta__Ocello_Viola__AlaAnt_L": {
+   "c": [
+    0.7674,
+    0.4845,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    1.0,
+    3.142
+   ]
+  },
+  "Manta__Ocello_Viola__AlaAnt_R": {
+   "c": [
+    0.7674,
+    0.4845,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    1.0,
+    3.142
+   ]
+  },
+  "Manta__Ocello_Viola__AlaPost_L": {
+   "c": [
+    0.7674,
+    0.4845,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    1.0,
+    3.142
+   ]
+  },
+  "Manta__Ocello_Viola__AlaPost_R": {
+   "c": [
+    0.7674,
+    0.4845,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    1.0,
+    3.142
+   ]
+  },
+  "Manta__Pelle__Galleggiamento": {
+   "k": "tex"
+  },
+  "Manta__Scaglie_Luminose__Scaglia_00": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_01": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_02": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_03": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_04": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_05": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_06": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_07": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_08": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_09": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_10": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_11": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_12": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_13": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_14": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_15": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_16": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_17": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_18": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_19": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_20": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Manta__Scaglie_Luminose__Scaglia_21": {
+   "c": [
+    0.6652,
+    0.8808,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.286,
+    1.0,
+    2.0,
+    0.0
+   ]
+  }
+ },
+ "perni": {
+  "Manta__Perno_AlaAnt_L": {
+   "membri": [
+    "Manta__Ali_Falena_Luna__AlaAnt_L",
+    "Manta__Ocello_Cobalto__AlaAnt_L",
+    "Manta__Ocello_Viola__AlaAnt_L"
+   ],
+   "padre": "Manta__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.2793,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Manta__Perno_AlaAnt_R": {
+   "membri": [
+    "Manta__Ali_Falena_Luna__AlaAnt_R",
+    "Manta__Ocello_Cobalto__AlaAnt_R",
+    "Manta__Ocello_Viola__AlaAnt_R"
+   ],
+   "padre": "Manta__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": -0.2793,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Manta__Perno_AlaPost_L": {
+   "membri": [
+    "Manta__Ali_Falena_Luna__AlaPost_L",
+    "Manta__Ocello_Cobalto__AlaPost_L",
+    "Manta__Ocello_Viola__AlaPost_L"
+   ],
+   "padre": "Manta__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.2793,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.25
+    }
+   ]
+  },
+  "Manta__Perno_AlaPost_R": {
+   "membri": [
+    "Manta__Ali_Falena_Luna__AlaPost_R",
+    "Manta__Ocello_Cobalto__AlaPost_R",
+    "Manta__Ocello_Viola__AlaPost_R"
+   ],
+   "padre": "Manta__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": -0.2793,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.25
+    }
+   ]
+  },
+  "Manta__Perno_Galleggiamento": {
+   "membri": [
+    "Manta__Luce_01",
+    "Manta__Luce_02",
+    "Manta__Occhi__Galleggiamento",
+    "Manta__Pelle__Galleggiamento"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0698,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 2.2
+    },
+    {
+     "amp": 0.3,
+     "asse": "Z",
+     "cyc": 1,
+     "mov": true,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

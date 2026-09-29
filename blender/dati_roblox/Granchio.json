@@ -1,0 +1,182 @@
+{
+ "bob": {},
+ "luci": {
+  "Granchio__Luce_01": {
+   "ang": 16.0,
+   "b0": 2.846,
+   "b1": 3.337,
+   "c": [
+    1.0,
+    0.9309,
+    0.7014
+   ],
+   "cyc": 2,
+   "dir": "Granchio__Luce_01_Dir",
+   "ph": 0.0,
+   "r": 12.29
+  },
+  "Granchio__Luce_02": {
+   "ang": 16.0,
+   "b0": 2.846,
+   "b1": 3.337,
+   "c": [
+    1.0,
+    0.9309,
+    0.7014
+   ],
+   "cyc": 2,
+   "dir": "Granchio__Luce_02_Dir",
+   "ph": 0.0,
+   "r": 12.29
+  },
+  "Granchio__Luce_03": {
+   "b0": 1.423,
+   "b1": 1.909,
+   "c": [
+    1.0,
+    0.9309,
+    0.7014
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 8.95
+  },
+  "Granchio__Luce_04": {
+   "b0": 1.559,
+   "b1": 1.559,
+   "c": [
+    0.8808,
+    0.9309,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 8.14
+  }
+ },
+ "parti": {
+  "Granchio__Balani": {
+   "c": [
+    0.7674,
+    0.7484,
+    0.722
+   ],
+   "k": "solid"
+  },
+  "Granchio__Bulbo_Vetro": {
+   "c": [
+    1.0,
+    0.9309,
+    0.7014
+   ],
+   "k": "neon",
+   "p": [
+    0.571,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "t": 0.15
+  },
+  "Granchio__Corallo": {
+   "c": [
+    0.9547,
+    0.5371,
+    0.6262
+   ],
+   "k": "solid"
+  },
+  "Granchio__Corallo_Arancio": {
+   "c": [
+    0.9777,
+    0.7354,
+    0.4236
+   ],
+   "k": "solid"
+  },
+  "Granchio__Corazza_Roccia": {
+   "k": "tex"
+  },
+  "Granchio__Crepa": {
+   "c": [
+    0.0999,
+    0.061,
+    0.0
+   ],
+   "k": "solid"
+  },
+  "Granchio__Fascio__Faro": {
+   "c": [
+    1.0,
+    0.9547,
+    0.7977
+   ],
+   "k": "aura",
+   "t": 0.85
+  },
+  "Granchio__Lampada_Faro": {
+   "c": [
+    1.0,
+    0.9777,
+    0.9063
+   ],
+   "k": "neon",
+   "p": [
+    0.773,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Granchio__Lanterna": {
+   "c": [
+    0.2717,
+    0.2478,
+    0.2209
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Granchio__Occhi": {
+   "c": [
+    0.0999,
+    0.0999,
+    0.0999
+   ],
+   "k": "solid"
+  },
+  "Granchio__Punte_Chele": {
+   "c": [
+    0.1897,
+    0.1718,
+    0.1718
+   ],
+   "k": "solid"
+  },
+  "Granchio__Zampe": {
+   "k": "tex"
+  }
+ },
+ "perni": {
+  "Granchio__Perno_Faro": {
+   "membri": [
+    "Granchio__Luce_01",
+    "Granchio__Luce_01_Dir",
+    "Granchio__Luce_02",
+    "Granchio__Luce_02_Dir",
+    "Granchio__Fascio__Faro"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0,
+     "asse": "Z",
+     "cyc": 2,
+     "ph": 0.0,
+     "spin": true
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

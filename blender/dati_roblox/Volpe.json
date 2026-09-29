@@ -1,0 +1,167 @@
+{
+ "bob": {},
+ "luci": {
+  "Volpe__Luce_01": {
+   "b0": 0.45,
+   "b1": 1.273,
+   "c": [
+    0.7674,
+    0.9309,
+    1.0
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 7.47
+  }
+ },
+ "parti": {
+  "Volpe__Ali_Ghiacciate__Ala2_L": {
+   "ali": true,
+   "e": 9.6,
+   "k": "tex"
+  },
+  "Volpe__Ali_Ghiacciate__Ala2_R": {
+   "ali": true,
+   "e": 9.6,
+   "k": "tex"
+  },
+  "Volpe__Ali_Ghiacciate__Ala_L": {
+   "ali": true,
+   "e": 9.6,
+   "k": "tex"
+  },
+  "Volpe__Ali_Ghiacciate__Ala_R": {
+   "ali": true,
+   "e": 9.6,
+   "k": "tex"
+  },
+  "Volpe__Alone_Cuore": {
+   "c": [
+    0.7674,
+    0.9309,
+    1.0
+   ],
+   "k": "aura",
+   "p": [
+    0.15,
+    1.0,
+    2.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Volpe__Corpo_Ghiaccio": {
+   "c": [
+    0.8962,
+    0.9686,
+    1.0
+   ],
+   "k": "glass",
+   "t": 0.45
+  },
+  "Volpe__Cuore_Luce": {
+   "c": [
+    0.7977,
+    0.9547,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.143,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Volpe__Naso": {
+   "c": [
+    0.2478,
+    0.3492,
+    0.4366
+   ],
+   "k": "solid"
+  },
+  "Volpe__Occhi": {
+   "c": [
+    0.7354,
+    0.9309,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Volpe__Punte_Ghiaccio": {
+   "c": [
+    0.7674,
+    0.9309,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.333,
+    1.0,
+    2.0,
+    0.5
+   ],
+   "t": 0.2
+  }
+ },
+ "perni": {
+  "Volpe__Perno_Ala2_L": {
+   "membri": [
+    "Volpe__Ali_Ghiacciate__Ala2_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.3142,
+     "asse": "Y",
+     "cyc": 36,
+     "ph": 1.4
+    }
+   ]
+  },
+  "Volpe__Perno_Ala2_R": {
+   "membri": [
+    "Volpe__Ali_Ghiacciate__Ala2_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.3142,
+     "asse": "Y",
+     "cyc": 36,
+     "ph": 1.4
+    }
+   ]
+  },
+  "Volpe__Perno_Ala_L": {
+   "membri": [
+    "Volpe__Ali_Ghiacciate__Ala_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.3142,
+     "asse": "Y",
+     "cyc": 36,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Volpe__Perno_Ala_R": {
+   "membri": [
+    "Volpe__Ali_Ghiacciate__Ala_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.3142,
+     "asse": "Y",
+     "cyc": 36,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

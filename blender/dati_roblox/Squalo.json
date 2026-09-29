@@ -1,0 +1,192 @@
+{
+ "bob": {},
+ "luci": {
+  "Squalo__Luce_01": {
+   "b0": 0.9,
+   "b1": 1.559,
+   "c": [
+    0.4236,
+    0.7014,
+    1.0
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 8.14
+  },
+  "Squalo__Luce_02": {
+   "b0": 0.636,
+   "b1": 1.191,
+   "c": [
+    0.7354,
+    0.8808,
+    1.0
+   ],
+   "cyc": 4,
+   "ph": 0.0,
+   "r": 7.28
+  }
+ },
+ "parti": {
+  "Squalo__Ali_Energia__Ala2_L": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Squalo__Ali_Energia__Ala2_R": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Squalo__Ali_Energia__Ala_L": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Squalo__Ali_Energia__Ala_R": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Squalo__Branchie__Galleggiamento": {
+   "c": [
+    0.5371,
+    0.7977,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Squalo__Occhi__Galleggiamento": {
+   "c": [
+    0.061,
+    0.061,
+    0.0999
+   ],
+   "k": "solid"
+  },
+  "Squalo__Pelle_Vasi_Plasma__Galleggiamento": {
+   "e": 10.4,
+   "k": "tex"
+  },
+  "Squalo__Pinne__Coda": {
+   "c": [
+    0.1897,
+    0.2209,
+    0.2601
+   ],
+   "k": "solid"
+  },
+  "Squalo__Pinne__Galleggiamento": {
+   "c": [
+    0.1897,
+    0.2209,
+    0.2601
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Squalo__Perno_Ala2_L": {
+   "membri": [
+    "Squalo__Ali_Energia__Ala2_L"
+   ],
+   "padre": "Squalo__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.3142,
+     "asse": "Y",
+     "cyc": 24,
+     "ph": 1.3
+    }
+   ]
+  },
+  "Squalo__Perno_Ala2_R": {
+   "membri": [
+    "Squalo__Ali_Energia__Ala2_R"
+   ],
+   "padre": "Squalo__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": -0.3142,
+     "asse": "Y",
+     "cyc": 24,
+     "ph": 1.3
+    }
+   ]
+  },
+  "Squalo__Perno_Ala_L": {
+   "membri": [
+    "Squalo__Ali_Energia__Ala_L"
+   ],
+   "padre": "Squalo__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.3142,
+     "asse": "Y",
+     "cyc": 24,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Squalo__Perno_Ala_R": {
+   "membri": [
+    "Squalo__Ali_Energia__Ala_R"
+   ],
+   "padre": "Squalo__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": -0.3142,
+     "asse": "Y",
+     "cyc": 24,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Squalo__Perno_Coda": {
+   "membri": [
+    "Squalo__Pinne__Coda"
+   ],
+   "padre": "Squalo__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.2793,
+     "asse": "Z",
+     "cyc": 2,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Squalo__Perno_Galleggiamento": {
+   "membri": [
+    "Squalo__Luce_01",
+    "Squalo__Luce_02",
+    "Squalo__Branchie__Galleggiamento",
+    "Squalo__Occhi__Galleggiamento",
+    "Squalo__Pelle_Vasi_Plasma__Galleggiamento",
+    "Squalo__Pinne__Galleggiamento"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0873,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 2.2
+    },
+    {
+     "amp": 0.18,
+     "asse": "Z",
+     "cyc": 1,
+     "mov": true,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

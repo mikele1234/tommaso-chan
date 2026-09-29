@@ -16,7 +16,9 @@ invisibili per luci e animazioni.
 **Limiti rispettati:**
 - **ogni creatura ha al massimo 20.000 triangoli in totale** (tra circa 15.000 e 19.900 a seconda della creatura);
 - nessun pezzo supera il limite di Roblox per singola mesh;
-- sono già in scala, alte o larghe tra 3 e 9 stud (un avatar è circa 5 stud).
+- sono già in scala: quasi tutte sono alte o larghe tra 2 e 8 stud (un avatar
+  è circa 5 stud); con scie, fasci di luce e ali aperte alcune arrivano a
+  10–15 stud (renna, manta, granchio-faro).
 
 ## 1. Importare le creature
 
@@ -29,6 +31,10 @@ invisibili per luci e animazioni.
    - lascia attivo **Import Only As Model**, così ogni creatura resta un unico Model;
    - lascia **Scale Unit** su *Stud*: le dimensioni sono già giuste.
 4. Premi **Import** e sposta ogni creatura dove vuoi, sempre come Model intero.
+
+Le creature marine che nuotano (medusa, cavalluccio, manta, squalo,
+tartaruga, rana pescatrice) sono già sollevate di qualche stud rispetto alla
+base del Model: appoggiando il Model sul fondale, galleggiano sopra di esso.
 
 > Non rinominare i pezzi dentro i Model: lo script li riconosce dal nome, per
 > esempio `Vipera__Striscia_3` o `Cactus__Faretto_Luce`. Rinominare il Model

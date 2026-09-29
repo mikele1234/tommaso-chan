@@ -1,0 +1,407 @@
+{
+ "bob": {},
+ "luci": {
+  "Medusa__Luce_01": {
+   "b0": 1.423,
+   "b1": 2.295,
+   "c": [
+    0.3492,
+    0.9547,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 9.85
+  },
+  "Medusa__Luce_02": {
+   "b0": 0.779,
+   "b1": 1.273,
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 1.0,
+   "r": 7.47
+  }
+ },
+ "parti": {
+  "Medusa__Antenne__Antenna_0": {
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "Medusa__Antenne__Antenna_1": {
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "Medusa__Antenne__Antenna_2": {
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "Medusa__Antenne__Antenna_3": {
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "Medusa__Antenne__Antenna_4": {
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "Medusa__Antenne__Antenna_5": {
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "Medusa__Antenne__Antenna_6": {
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "Medusa__Antenne__Antenna_7": {
+   "c": [
+    0.5838,
+    0.9777,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "Medusa__Gas_Luminoso__Galleggiamento__Gas": {
+   "c": [
+    0.3492,
+    0.9547,
+    1.0
+   ],
+   "k": "aura",
+   "p": [
+    0.429,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Medusa__Lanterna__Galleggiamento": {
+   "c": [
+    0.7977,
+    1.0,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.5,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Medusa__Ombrella_Gelatina__Galleggiamento__Ombrella": {
+   "c": [
+    0.3492,
+    0.9547,
+    1.0
+   ],
+   "h": [
+    0.3492,
+    0.9547,
+    1.0
+   ],
+   "k": "ghost"
+  },
+  "Medusa__Perline__Galleggiamento": {
+   "c": [
+    0.5838,
+    1.0,
+    0.9777
+   ],
+   "k": "neon",
+   "p": [
+    0.333,
+    1.0,
+    2.0,
+    0.0
+   ]
+  }
+ },
+ "perni": {
+  "Medusa__Perno_Antenna_0": {
+   "membri": [
+    "Medusa__Antenne__Antenna_0"
+   ],
+   "padre": "Medusa__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 0.0
+    },
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 1.3
+    }
+   ]
+  },
+  "Medusa__Perno_Antenna_1": {
+   "membri": [
+    "Medusa__Antenne__Antenna_1"
+   ],
+   "padre": "Medusa__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 0.8
+    },
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 2.1
+    }
+   ]
+  },
+  "Medusa__Perno_Antenna_2": {
+   "membri": [
+    "Medusa__Antenne__Antenna_2"
+   ],
+   "padre": "Medusa__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 1.6
+    },
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 2.9
+    }
+   ]
+  },
+  "Medusa__Perno_Antenna_3": {
+   "membri": [
+    "Medusa__Antenne__Antenna_3"
+   ],
+   "padre": "Medusa__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 2.4
+    },
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 3.7
+    }
+   ]
+  },
+  "Medusa__Perno_Antenna_4": {
+   "membri": [
+    "Medusa__Antenne__Antenna_4"
+   ],
+   "padre": "Medusa__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 3.2
+    },
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 4.5
+    }
+   ]
+  },
+  "Medusa__Perno_Antenna_5": {
+   "membri": [
+    "Medusa__Antenne__Antenna_5"
+   ],
+   "padre": "Medusa__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 4.0
+    },
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 5.3
+    }
+   ]
+  },
+  "Medusa__Perno_Antenna_6": {
+   "membri": [
+    "Medusa__Antenne__Antenna_6"
+   ],
+   "padre": "Medusa__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 4.8
+    },
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 6.1
+    }
+   ]
+  },
+  "Medusa__Perno_Antenna_7": {
+   "membri": [
+    "Medusa__Antenne__Antenna_7"
+   ],
+   "padre": "Medusa__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 5.6
+    },
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 6.9
+    }
+   ]
+  },
+  "Medusa__Perno_Galleggiamento": {
+   "membri": [
+    "Medusa__Luce_01",
+    "Medusa__Luce_02",
+    "Medusa__Gas_Luminoso__Galleggiamento__Gas",
+    "Medusa__Ombrella_Gelatina__Galleggiamento__Ombrella",
+    "Medusa__Lanterna__Galleggiamento",
+    "Medusa__Perline__Galleggiamento"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0524,
+     "asse": "X",
+     "cyc": 1,
+     "ph": -0.471
+    },
+    {
+     "amp": 0.0524,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.629
+    },
+    {
+     "amp": 0.24,
+     "asse": "Z",
+     "cyc": 1,
+     "mov": true,
+     "ph": -1.571
+    }
+   ]
+  }
+ },
+ "scala": {
+  "Medusa__Gas_Luminoso__Galleggiamento__Gas": {
+   "cyc": 1,
+   "hi": 1.07,
+   "lo": 0.93,
+   "ph": 3.141592653589793
+  },
+  "Medusa__Ombrella_Gelatina__Galleggiamento__Ombrella": {
+   "cyc": 1,
+   "hi": 1.07,
+   "lo": 0.93,
+   "ph": 3.141592653589793
+  }
+ }
+}

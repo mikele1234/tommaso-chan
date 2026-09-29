@@ -1,0 +1,130 @@
+{
+ "bob": {},
+ "luci": {
+  "Blobfish__Luce_01": {
+   "b0": 0.201,
+   "b1": 0.402,
+   "c": [
+    1.0,
+    0.5838,
+    0.8267
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.44
+  },
+  "Blobfish__Luce_02": {
+   "b0": 2.25,
+   "b1": 2.25,
+   "c": [
+    1.0,
+    0.964,
+    0.9777
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 9.75
+  }
+ },
+ "parti": {
+  "Blobfish__Alucce_Patetiche__Aluccia_L": {
+   "ali": true,
+   "e": 3.6,
+   "k": "tex"
+  },
+  "Blobfish__Alucce_Patetiche__Aluccia_R": {
+   "ali": true,
+   "e": 3.6,
+   "k": "tex"
+  },
+  "Blobfish__Bagliore_Ridicolo": {
+   "c": [
+    1.0,
+    0.5838,
+    0.8267
+   ],
+   "k": "aura",
+   "p": [
+    0.286,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Blobfish__Bava": {
+   "c": [
+    0.9547,
+    0.8543,
+    0.8808
+   ],
+   "k": "solid"
+  },
+  "Blobfish__Gelatina_Rosa": {
+   "k": "tex"
+  },
+  "Blobfish__Labbra": {
+   "c": [
+    0.7674,
+    0.5064,
+    0.5657
+   ],
+   "k": "solid"
+  },
+  "Blobfish__Mascella_Squadrata": {
+   "c": [
+    0.9547,
+    0.7484,
+    0.7674
+   ],
+   "k": "solid"
+  },
+  "Blobfish__Occhi": {
+   "c": [
+    0.0999,
+    0.0999,
+    0.1121
+   ],
+   "k": "solid"
+  },
+  "Blobfish__Zampetta": {
+   "c": [
+    0.6652,
+    0.4845,
+    0.4366
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Blobfish__Perno_Aluccia_L": {
+   "membri": [
+    "Blobfish__Alucce_Patetiche__Aluccia_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1745,
+     "asse": "Y",
+     "cyc": 2,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Blobfish__Perno_Aluccia_R": {
+   "membri": [
+    "Blobfish__Alucce_Patetiche__Aluccia_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1745,
+     "asse": "Y",
+     "cyc": 2,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

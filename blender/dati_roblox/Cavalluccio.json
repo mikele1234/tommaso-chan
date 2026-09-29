@@ -1,0 +1,167 @@
+{
+ "bob": {},
+ "luci": {
+  "Cavalluccio__Luce_01": {
+   "b0": 0.779,
+   "b1": 1.273,
+   "c": [
+    0.5371,
+    1.0,
+    0.5838
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.47
+  },
+  "Cavalluccio__Luce_02": {
+   "b0": 0.551,
+   "b1": 0.9,
+   "c": [
+    0.5371,
+    1.0,
+    0.5838
+   ],
+   "cyc": 1,
+   "ph": 1.5,
+   "r": 6.6
+  }
+ },
+ "parti": {
+  "Cavalluccio__Ali_Frenetiche__Ala_Dorsale_L": {
+   "ali": true,
+   "e": 10.0,
+   "k": "tex"
+  },
+  "Cavalluccio__Ali_Frenetiche__Ala_Dorsale_R": {
+   "ali": true,
+   "e": 10.0,
+   "k": "tex"
+  },
+  "Cavalluccio__Ali_Frenetiche__Ala_Pettorale_L": {
+   "ali": true,
+   "e": 10.0,
+   "k": "tex"
+  },
+  "Cavalluccio__Ali_Frenetiche__Ala_Pettorale_R": {
+   "ali": true,
+   "e": 10.0,
+   "k": "tex"
+  },
+  "Cavalluccio__Occhio__Galleggiamento": {
+   "c": [
+    0.2478,
+    0.5838,
+    0.2478
+   ],
+   "k": "neon"
+  },
+  "Cavalluccio__Pelle_Tribale__Galleggiamento": {
+   "e": 16.0,
+   "k": "tex"
+  },
+  "Cavalluccio__Scia_Ali__Galleggiamento": {
+   "c": [
+    0.5371,
+    1.0,
+    0.5838
+   ],
+   "k": "neon",
+   "p": [
+    0.444,
+    1.0,
+    4.0,
+    0.0
+   ],
+   "t": 0.75
+  },
+  "Cavalluccio__Testa_Tribale__Galleggiamento": {
+   "e": 16.0,
+   "k": "tex"
+  }
+ },
+ "perni": {
+  "Cavalluccio__Perno_Ala_Dorsale_L": {
+   "membri": [
+    "Cavalluccio__Ali_Frenetiche__Ala_Dorsale_L"
+   ],
+   "padre": "Cavalluccio__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.5236,
+     "asse": "Y",
+     "cyc": 36,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Cavalluccio__Perno_Ala_Dorsale_R": {
+   "membri": [
+    "Cavalluccio__Ali_Frenetiche__Ala_Dorsale_R"
+   ],
+   "padre": "Cavalluccio__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": -0.5236,
+     "asse": "Y",
+     "cyc": 36,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Cavalluccio__Perno_Ala_Pettorale_L": {
+   "membri": [
+    "Cavalluccio__Ali_Frenetiche__Ala_Pettorale_L"
+   ],
+   "padre": "Cavalluccio__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.6109,
+     "asse": "Y",
+     "cyc": 40,
+     "ph": 0.7
+    }
+   ]
+  },
+  "Cavalluccio__Perno_Ala_Pettorale_R": {
+   "membri": [
+    "Cavalluccio__Ali_Frenetiche__Ala_Pettorale_R"
+   ],
+   "padre": "Cavalluccio__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": -0.6109,
+     "asse": "Y",
+     "cyc": 40,
+     "ph": 0.7
+    }
+   ]
+  },
+  "Cavalluccio__Perno_Galleggiamento": {
+   "membri": [
+    "Cavalluccio__Luce_01",
+    "Cavalluccio__Luce_02",
+    "Cavalluccio__Occhio__Galleggiamento",
+    "Cavalluccio__Pelle_Tribale__Galleggiamento",
+    "Cavalluccio__Scia_Ali__Galleggiamento",
+    "Cavalluccio__Testa_Tribale__Galleggiamento"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0698,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 1.1
+    },
+    {
+     "amp": 0.15,
+     "asse": "Z",
+     "cyc": 1,
+     "mov": true,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

@@ -1,0 +1,323 @@
+{
+ "bob": {},
+ "luci": {
+  "Tartaruga__Luce_01": {
+   "b0": 0.45,
+   "b1": 1.35,
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "cyc": 1,
+   "ph": -0.785,
+   "r": 7.65
+  },
+  "Tartaruga__Luce_02": {
+   "b0": 0.45,
+   "b1": 1.35,
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "cyc": 1,
+   "ph": -3.142,
+   "r": 7.65
+  },
+  "Tartaruga__Luce_03": {
+   "b0": 0.45,
+   "b1": 1.35,
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "cyc": 1,
+   "ph": -5.498,
+   "r": 7.65
+  }
+ },
+ "parti": {
+  "Tartaruga__Becco__Galleggiamento": {
+   "c": [
+    0.3492,
+    0.3492,
+    0.2934
+   ],
+   "k": "solid"
+  },
+  "Tartaruga__Cella_0__Galleggiamento": {
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.114,
+    1.0,
+    1.0,
+    -0.0
+   ],
+   "t": 0.2
+  },
+  "Tartaruga__Cella_1__Galleggiamento": {
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.114,
+    1.0,
+    1.0,
+    -0.785
+   ],
+   "t": 0.2
+  },
+  "Tartaruga__Cella_2__Galleggiamento": {
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.114,
+    1.0,
+    1.0,
+    -1.571
+   ],
+   "t": 0.2
+  },
+  "Tartaruga__Cella_3__Galleggiamento": {
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.114,
+    1.0,
+    1.0,
+    -2.356
+   ],
+   "t": 0.2
+  },
+  "Tartaruga__Cella_4__Galleggiamento": {
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.114,
+    1.0,
+    1.0,
+    -3.142
+   ],
+   "t": 0.2
+  },
+  "Tartaruga__Cella_5__Galleggiamento": {
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.114,
+    1.0,
+    1.0,
+    -3.927
+   ],
+   "t": 0.2
+  },
+  "Tartaruga__Cella_6__Galleggiamento": {
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.114,
+    1.0,
+    1.0,
+    -4.712
+   ],
+   "t": 0.2
+  },
+  "Tartaruga__Cella_7__Galleggiamento": {
+   "c": [
+    0.3492,
+    1.0,
+    0.8808
+   ],
+   "k": "neon",
+   "p": [
+    0.114,
+    1.0,
+    1.0,
+    -5.498
+   ],
+   "t": 0.2
+  },
+  "Tartaruga__Guscio_Base__Galleggiamento": {
+   "c": [
+    0.1517,
+    0.206,
+    0.1897
+   ],
+   "k": "solid"
+  },
+  "Tartaruga__Occhi__Galleggiamento": {
+   "c": [
+    0.0999,
+    0.1284,
+    0.1121
+   ],
+   "k": "solid"
+  },
+  "Tartaruga__Pelle__Galleggiamento": {
+   "k": "tex"
+  },
+  "Tartaruga__Pelle__Pinna_Ant_L": {
+   "k": "tex"
+  },
+  "Tartaruga__Pelle__Pinna_Ant_R": {
+   "k": "tex"
+  },
+  "Tartaruga__Pelle__Pinna_Post_L": {
+   "k": "tex"
+  },
+  "Tartaruga__Pelle__Pinna_Post_R": {
+   "k": "tex"
+  },
+  "Tartaruga__Piastrone__Galleggiamento": {
+   "c": [
+    0.7354,
+    0.7084,
+    0.5838
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Tartaruga__Perno_Galleggiamento": {
+   "membri": [
+    "Tartaruga__Luce_01",
+    "Tartaruga__Luce_02",
+    "Tartaruga__Luce_03",
+    "Tartaruga__Becco__Galleggiamento",
+    "Tartaruga__Cella_0__Galleggiamento",
+    "Tartaruga__Cella_1__Galleggiamento",
+    "Tartaruga__Cella_2__Galleggiamento",
+    "Tartaruga__Cella_3__Galleggiamento",
+    "Tartaruga__Cella_4__Galleggiamento",
+    "Tartaruga__Cella_5__Galleggiamento",
+    "Tartaruga__Cella_6__Galleggiamento",
+    "Tartaruga__Cella_7__Galleggiamento",
+    "Tartaruga__Guscio_Base__Galleggiamento",
+    "Tartaruga__Occhi__Galleggiamento",
+    "Tartaruga__Pelle__Galleggiamento",
+    "Tartaruga__Piastrone__Galleggiamento"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0524,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 1.1
+    },
+    {
+     "amp": 0.0349,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 2.2
+    },
+    {
+     "amp": 0.21,
+     "asse": "Z",
+     "cyc": 1,
+     "mov": true,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Tartaruga__Perno_Pinna_Ant_L": {
+   "membri": [
+    "Tartaruga__Pelle__Pinna_Ant_L"
+   ],
+   "padre": "Tartaruga__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": -0.384,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    },
+    {
+     "amp": -0.1745,
+     "asse": "Z",
+     "cyc": 1,
+     "ph": 1.571
+    }
+   ]
+  },
+  "Tartaruga__Perno_Pinna_Ant_R": {
+   "membri": [
+    "Tartaruga__Pelle__Pinna_Ant_R"
+   ],
+   "padre": "Tartaruga__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.384,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    },
+    {
+     "amp": 0.1745,
+     "asse": "Z",
+     "cyc": 1,
+     "ph": 1.571
+    }
+   ]
+  },
+  "Tartaruga__Perno_Pinna_Post_L": {
+   "membri": [
+    "Tartaruga__Pelle__Pinna_Post_L"
+   ],
+   "padre": "Tartaruga__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": -0.2094,
+     "asse": "Z",
+     "cyc": 1,
+     "ph": 1.0
+    }
+   ]
+  },
+  "Tartaruga__Perno_Pinna_Post_R": {
+   "membri": [
+    "Tartaruga__Pelle__Pinna_Post_R"
+   ],
+   "padre": "Tartaruga__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.2094,
+     "asse": "Z",
+     "cyc": 1,
+     "ph": 1.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

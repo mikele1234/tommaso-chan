@@ -1,0 +1,246 @@
+{
+ "bob": {},
+ "luci": {
+  "Pescatrice__Luce_01": {
+   "b0": 0.779,
+   "b1": 1.35,
+   "c": [
+    0.8808,
+    1.0,
+    0.5371
+   ],
+   "cyc": 6,
+   "ph": 0.0,
+   "r": 7.65
+  },
+  "Pescatrice__Luce_02": {
+   "b0": 0.551,
+   "b1": 0.9,
+   "c": [
+    0.8808,
+    1.0,
+    0.5371
+   ],
+   "cyc": 6,
+   "ph": 0.0,
+   "r": 6.6
+  },
+  "Pescatrice__Luce_03": {
+   "b0": 1.273,
+   "b1": 1.273,
+   "c": [
+    0.6652,
+    0.8543,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.47
+  }
+ },
+ "parti": {
+  "Pescatrice__Alone_Esca__Esca": {
+   "c": [
+    0.8808,
+    1.0,
+    0.5371
+   ],
+   "k": "aura",
+   "p": [
+    0.25,
+    1.0,
+    6.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Pescatrice__Bocca__Galleggiamento": {
+   "c": [
+    0.2717,
+    0.0999,
+    0.1284
+   ],
+   "k": "solid"
+  },
+  "Pescatrice__Denti__Galleggiamento": {
+   "c": [
+    0.9163,
+    0.9063,
+    0.8543
+   ],
+   "k": "solid"
+  },
+  "Pescatrice__Esca_Vetro_Organico__Esca": {
+   "c": [
+    0.8808,
+    1.0,
+    0.7977
+   ],
+   "k": "glass",
+   "t": 0.55
+  },
+  "Pescatrice__Lucciola_Ali__Lucciola_Ala_L": {
+   "ali": true,
+   "e": 2.4,
+   "k": "tex"
+  },
+  "Pescatrice__Lucciola_Ali__Lucciola_Ala_R": {
+   "ali": true,
+   "e": 2.4,
+   "k": "tex"
+  },
+  "Pescatrice__Lucciola_Corpo__Esca": {
+   "c": [
+    0.1897,
+    0.1718,
+    0.1517
+   ],
+   "k": "solid"
+  },
+  "Pescatrice__Lucciola_Lanterna__Esca": {
+   "c": [
+    0.8808,
+    1.0,
+    0.5371
+   ],
+   "k": "neon",
+   "p": [
+    0.375,
+    1.0,
+    6.0,
+    0.0
+   ]
+  },
+  "Pescatrice__Lucciola_Pronoto__Esca": {
+   "c": [
+    0.9309,
+    0.5371,
+    0.3133
+   ],
+   "k": "solid"
+  },
+  "Pescatrice__Occhi__Galleggiamento": {
+   "c": [
+    0.3811,
+    0.4236,
+    0.4614
+   ],
+   "k": "solid"
+  },
+  "Pescatrice__Pelle_Abissale__Esca": {
+   "k": "tex"
+  },
+  "Pescatrice__Pelle_Abissale__Galleggiamento": {
+   "k": "tex"
+  },
+  "Pescatrice__Pelle_Abissale__Illicio": {
+   "k": "tex"
+  },
+  "Pescatrice__Pinne__Galleggiamento": {
+   "c": [
+    0.2209,
+    0.206,
+    0.206
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Pescatrice__Perno_Esca": {
+   "membri": [
+    "Pescatrice__Luce_01",
+    "Pescatrice__Alone_Esca__Esca",
+    "Pescatrice__Esca_Vetro_Organico__Esca",
+    "Pescatrice__Lucciola_Corpo__Esca",
+    "Pescatrice__Lucciola_Lanterna__Esca",
+    "Pescatrice__Lucciola_Pronoto__Esca",
+    "Pescatrice__Pelle_Abissale__Esca"
+   ],
+   "padre": "Pescatrice__Perno_Illicio",
+   "rot": [
+    {
+     "amp": 0.1745,
+     "asse": "X",
+     "cyc": 2,
+     "ph": 0.0
+    },
+    {
+     "amp": 0.1396,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 1.0
+    }
+   ]
+  },
+  "Pescatrice__Perno_Galleggiamento": {
+   "membri": [
+    "Pescatrice__Luce_02",
+    "Pescatrice__Luce_03",
+    "Pescatrice__Bocca__Galleggiamento",
+    "Pescatrice__Denti__Galleggiamento",
+    "Pescatrice__Occhi__Galleggiamento",
+    "Pescatrice__Pelle_Abissale__Galleggiamento",
+    "Pescatrice__Pinne__Galleggiamento"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0349,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 1.1
+    },
+    {
+     "amp": 0.15,
+     "asse": "Z",
+     "cyc": 1,
+     "mov": true,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Pescatrice__Perno_Illicio": {
+   "membri": [
+    "Pescatrice__Pelle_Abissale__Illicio"
+   ],
+   "padre": "Pescatrice__Perno_Galleggiamento",
+   "rot": [
+    {
+     "amp": 0.0698,
+     "asse": "X",
+     "cyc": 1,
+     "ph": 0.5
+    }
+   ]
+  },
+  "Pescatrice__Perno_Lucciola_Ala_L": {
+   "membri": [
+    "Pescatrice__Lucciola_Ali__Lucciola_Ala_L"
+   ],
+   "padre": "Pescatrice__Perno_Esca",
+   "rot": [
+    {
+     "amp": 0.6981,
+     "asse": "Y",
+     "cyc": 60,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Pescatrice__Perno_Lucciola_Ala_R": {
+   "membri": [
+    "Pescatrice__Lucciola_Ali__Lucciola_Ala_R"
+   ],
+   "padre": "Pescatrice__Perno_Esca",
+   "rot": [
+    {
+     "amp": -0.6981,
+     "asse": "Y",
+     "cyc": 60,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

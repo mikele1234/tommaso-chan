@@ -1,0 +1,208 @@
+{
+ "bob": {},
+ "luci": {
+  "Pinguino__Luce_01": {
+   "b0": 1.35,
+   "b1": 1.8,
+   "c": [
+    0.5838,
+    0.865,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 8.7
+  },
+  "Pinguino__Luce_02": {
+   "ang": 110.0,
+   "b0": 2.25,
+   "b1": 3.019,
+   "c": [
+    0.5838,
+    0.865,
+    1.0
+   ],
+   "cyc": 1,
+   "dir": "Pinguino__Luce_02_Dir",
+   "ph": 0.0,
+   "r": 11.54
+  }
+ },
+ "parti": {
+  "Pinguino__Ali_Brinate__Aluccia2_L": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Pinguino__Ali_Brinate__Aluccia2_R": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Pinguino__Ali_Brinate__Aluccia_L": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Pinguino__Ali_Brinate__Aluccia_R": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Pinguino__Alone": {
+   "c": [
+    0.5838,
+    0.865,
+    1.0
+   ],
+   "k": "aura",
+   "p": [
+    0.429,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Pinguino__Anello_Occhio": {
+   "c": [
+    0.9547,
+    0.9686,
+    0.9867
+   ],
+   "k": "solid"
+  },
+  "Pinguino__Arancio": {
+   "c": [
+    0.9777,
+    0.68,
+    0.2717
+   ],
+   "k": "solid"
+  },
+  "Pinguino__Becco": {
+   "c": [
+    0.1897,
+    0.1897,
+    0.206
+   ],
+   "k": "solid"
+  },
+  "Pinguino__Lastra_Ghiaccio": {
+   "c": [
+    0.7674,
+    0.8962,
+    0.9777
+   ],
+   "k": "solid",
+   "m": "Ice"
+  },
+  "Pinguino__Nucleo_Luce": {
+   "c": [
+    0.7014,
+    0.9163,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.5,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Pinguino__Occhi": {
+   "c": [
+    0.061,
+    0.061,
+    0.0999
+   ],
+   "k": "solid"
+  },
+  "Pinguino__Pancia_Vetro": {
+   "c": [
+    0.5838,
+    0.865,
+    1.0
+   ],
+   "k": "glass",
+   "t": 0.3
+  },
+  "Pinguino__Piumaggio": {
+   "k": "tex"
+  },
+  "Pinguino__Segmenti_Vetro": {
+   "c": [
+    0.7674,
+    0.9309,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.5,
+    1.0,
+    1.0,
+    0.0
+   ]
+  }
+ },
+ "perni": {
+  "Pinguino__Perno_Aluccia2_L": {
+   "membri": [
+    "Pinguino__Ali_Brinate__Aluccia2_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.4189,
+     "asse": "Y",
+     "cyc": 20,
+     "ph": 1.2
+    }
+   ]
+  },
+  "Pinguino__Perno_Aluccia2_R": {
+   "membri": [
+    "Pinguino__Ali_Brinate__Aluccia2_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.4189,
+     "asse": "Y",
+     "cyc": 20,
+     "ph": 1.2
+    }
+   ]
+  },
+  "Pinguino__Perno_Aluccia_L": {
+   "membri": [
+    "Pinguino__Ali_Brinate__Aluccia_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.4189,
+     "asse": "Y",
+     "cyc": 20,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Pinguino__Perno_Aluccia_R": {
+   "membri": [
+    "Pinguino__Ali_Brinate__Aluccia_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.4189,
+     "asse": "Y",
+     "cyc": 20,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

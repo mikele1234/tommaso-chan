@@ -16,11 +16,13 @@
     Cosa fa:
       * trasforma in Neon le parti luminose (occhi, punti, bulbilli, cristalli...)
       * crea le luci (PointLight) nei punti giusti e le fa pulsare
-      * aggiunge un contorno luminoso (Highlight) al gatto e al lupo
-      * rende il lupo spettrale (materiale ForceField) e le ali dell'avvoltoio
-        di vetro "miraggio"; accende il faretto del cactus (SpotLight)
-      * anima ali, antenne, lampadina, sacca vocale, lucciole, coda dello
-        scorpione, lingua della vipera, sfera di magma dello scarabeo
+      * aggiunge contorni luminosi (Highlight), anche con i colori che scorrono
+      * usa ForceField, Glass, Ice, Snow... dove serve (lupo spettrale, ali
+        dell'avvoltoio, pancia del pinguino, volpe di ghiaccio, medusa...)
+      * accende i faretti (SpotLight): cactus, gufo, civetta, granchio-faro
+      * fa scorrere i colori (naso LED del pupazzo, aurora dell'orso)
+      * anima ali, antenne, code, colli, pinne, sfere che rotolano e fari che
+        girano, e fa galleggiare le creature marine
       * aggiunge un BloomEffect in Lighting per far "accendere" il Neon
 ]]
 
@@ -127,6 +129,99 @@ local CONFIG = {
                         ["amp"] = -0.0873,
                         ["asse"] = "Y",
                         ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Blobfish"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Blobfish__Luce_01"] = {
+                ["b0"] = 0.201,
+                ["b1"] = 0.402,
+                ["c"] = {1.0, 0.5838, 0.8267},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 5.44,
+            },
+            ["Blobfish__Luce_02"] = {
+                ["b0"] = 2.25,
+                ["b1"] = 2.25,
+                ["c"] = {1.0, 0.964, 0.9777},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 9.75,
+            },
+        },
+        ["parti"] = {
+            ["Blobfish__Alucce_Patetiche__Aluccia_L"] = {
+                ["ali"] = true,
+                ["e"] = 3.6,
+                ["k"] = "tex",
+            },
+            ["Blobfish__Alucce_Patetiche__Aluccia_R"] = {
+                ["ali"] = true,
+                ["e"] = 3.6,
+                ["k"] = "tex",
+            },
+            ["Blobfish__Bagliore_Ridicolo"] = {
+                ["c"] = {1.0, 0.5838, 0.8267},
+                ["k"] = "aura",
+                ["p"] = {0.286, 1.0, 1.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Blobfish__Bava"] = {
+                ["c"] = {0.9547, 0.8543, 0.8808},
+                ["k"] = "solid",
+            },
+            ["Blobfish__Gelatina_Rosa"] = {
+                ["k"] = "tex",
+            },
+            ["Blobfish__Labbra"] = {
+                ["c"] = {0.7674, 0.5064, 0.5657},
+                ["k"] = "solid",
+            },
+            ["Blobfish__Mascella_Squadrata"] = {
+                ["c"] = {0.9547, 0.7484, 0.7674},
+                ["k"] = "solid",
+            },
+            ["Blobfish__Occhi"] = {
+                ["c"] = {0.0999, 0.0999, 0.1121},
+                ["k"] = "solid",
+            },
+            ["Blobfish__Zampetta"] = {
+                ["c"] = {0.6652, 0.4845, 0.4366},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {
+            ["Blobfish__Perno_Aluccia_L"] = {
+                ["membri"] = {
+                    "Blobfish__Alucce_Patetiche__Aluccia_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1745,
+                        ["asse"] = "Y",
+                        ["cyc"] = 2,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Blobfish__Perno_Aluccia_R"] = {
+                ["membri"] = {
+                    "Blobfish__Alucce_Patetiche__Aluccia_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.1745,
+                        ["asse"] = "Y",
+                        ["cyc"] = 2,
                         ["ph"] = 0.0,
                     },
                 },
@@ -241,6 +336,282 @@ local CONFIG = {
                         ["amp"] = -0.5934,
                         ["asse"] = "Y",
                         ["cyc"] = 48,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Cavalluccio"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Cavalluccio__Luce_01"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.273,
+                ["c"] = {0.5371, 1.0, 0.5838},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 7.47,
+            },
+            ["Cavalluccio__Luce_02"] = {
+                ["b0"] = 0.551,
+                ["b1"] = 0.9,
+                ["c"] = {0.5371, 1.0, 0.5838},
+                ["cyc"] = 1,
+                ["ph"] = 1.5,
+                ["r"] = 6.6,
+            },
+        },
+        ["parti"] = {
+            ["Cavalluccio__Ali_Frenetiche__Ala_Dorsale_L"] = {
+                ["ali"] = true,
+                ["e"] = 10.0,
+                ["k"] = "tex",
+            },
+            ["Cavalluccio__Ali_Frenetiche__Ala_Dorsale_R"] = {
+                ["ali"] = true,
+                ["e"] = 10.0,
+                ["k"] = "tex",
+            },
+            ["Cavalluccio__Ali_Frenetiche__Ala_Pettorale_L"] = {
+                ["ali"] = true,
+                ["e"] = 10.0,
+                ["k"] = "tex",
+            },
+            ["Cavalluccio__Ali_Frenetiche__Ala_Pettorale_R"] = {
+                ["ali"] = true,
+                ["e"] = 10.0,
+                ["k"] = "tex",
+            },
+            ["Cavalluccio__Occhio__Galleggiamento"] = {
+                ["c"] = {0.2478, 0.5838, 0.2478},
+                ["k"] = "neon",
+            },
+            ["Cavalluccio__Pelle_Tribale__Galleggiamento"] = {
+                ["e"] = 16.0,
+                ["k"] = "tex",
+            },
+            ["Cavalluccio__Scia_Ali__Galleggiamento"] = {
+                ["c"] = {0.5371, 1.0, 0.5838},
+                ["k"] = "neon",
+                ["p"] = {0.444, 1.0, 4.0, 0.0},
+                ["t"] = 0.75,
+            },
+            ["Cavalluccio__Testa_Tribale__Galleggiamento"] = {
+                ["e"] = 16.0,
+                ["k"] = "tex",
+            },
+        },
+        ["perni"] = {
+            ["Cavalluccio__Perno_Ala_Dorsale_L"] = {
+                ["membri"] = {
+                    "Cavalluccio__Ali_Frenetiche__Ala_Dorsale_L",
+                },
+                ["padre"] = "Cavalluccio__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.5236,
+                        ["asse"] = "Y",
+                        ["cyc"] = 36,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Cavalluccio__Perno_Ala_Dorsale_R"] = {
+                ["membri"] = {
+                    "Cavalluccio__Ali_Frenetiche__Ala_Dorsale_R",
+                },
+                ["padre"] = "Cavalluccio__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.5236,
+                        ["asse"] = "Y",
+                        ["cyc"] = 36,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Cavalluccio__Perno_Ala_Pettorale_L"] = {
+                ["membri"] = {
+                    "Cavalluccio__Ali_Frenetiche__Ala_Pettorale_L",
+                },
+                ["padre"] = "Cavalluccio__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.6109,
+                        ["asse"] = "Y",
+                        ["cyc"] = 40,
+                        ["ph"] = 0.7,
+                    },
+                },
+            },
+            ["Cavalluccio__Perno_Ala_Pettorale_R"] = {
+                ["membri"] = {
+                    "Cavalluccio__Ali_Frenetiche__Ala_Pettorale_R",
+                },
+                ["padre"] = "Cavalluccio__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.6109,
+                        ["asse"] = "Y",
+                        ["cyc"] = 40,
+                        ["ph"] = 0.7,
+                    },
+                },
+            },
+            ["Cavalluccio__Perno_Galleggiamento"] = {
+                ["membri"] = {
+                    "Cavalluccio__Luce_01",
+                    "Cavalluccio__Luce_02",
+                    "Cavalluccio__Occhio__Galleggiamento",
+                    "Cavalluccio__Pelle_Tribale__Galleggiamento",
+                    "Cavalluccio__Scia_Ali__Galleggiamento",
+                    "Cavalluccio__Testa_Tribale__Galleggiamento",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0698,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.1,
+                    },
+                    {
+                        ["amp"] = 0.15,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["mov"] = true,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Civetta"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Civetta__Luce_01"] = {
+                ["ang"] = 36.0,
+                ["b0"] = 1.559,
+                ["b1"] = 2.012,
+                ["c"] = {0.7977, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["dir"] = "Civetta__Luce_01_Dir",
+                ["ph"] = 0.0,
+                ["r"] = 9.2,
+            },
+            ["Civetta__Luce_02"] = {
+                ["ang"] = 36.0,
+                ["b0"] = 1.559,
+                ["b1"] = 2.012,
+                ["c"] = {0.7977, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["dir"] = "Civetta__Luce_02_Dir",
+                ["ph"] = 0.0,
+                ["r"] = 9.2,
+            },
+            ["Civetta__Luce_03"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 4.269,
+                ["c"] = {0.9309, 0.9686, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 14.46,
+            },
+            ["Civetta__Luce_04"] = {
+                ["b0"] = 0.402,
+                ["b1"] = 0.636,
+                ["c"] = {0.7674, 0.9309, 1.0},
+                ["cyc"] = 2,
+                ["ph"] = 0.0,
+                ["r"] = 5.98,
+            },
+        },
+        ["parti"] = {
+            ["Civetta__Becco"] = {
+                ["c"] = {0.2478, 0.2478, 0.2717},
+                ["k"] = "solid",
+            },
+            ["Civetta__Disco_Facciale"] = {
+                ["c"] = {0.9547, 0.964, 0.9777},
+                ["k"] = "solid",
+            },
+            ["Civetta__Ghiaccioli"] = {
+                ["c"] = {0.7674, 0.9309, 1.0},
+                ["k"] = "neon",
+                ["t"] = 0.2,
+            },
+            ["Civetta__Lampo_Bufera"] = {
+                ["c"] = {0.9309, 0.9686, 1.0},
+                ["k"] = "aura",
+                ["p"] = {0.01, 1.0, 1.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Civetta__Neve"] = {
+                ["c"] = {0.9357, 0.9547, 0.9867},
+                ["k"] = "solid",
+                ["m"] = "Snow",
+            },
+            ["Civetta__Occhio_Faro"] = {
+                ["c"] = {0.8543, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.667, 1.0, 1.0, 0.0},
+            },
+            ["Civetta__Palpebre"] = {
+                ["c"] = {0.1517, 0.1517, 0.1718},
+                ["k"] = "solid",
+            },
+            ["Civetta__Piuma_Cristallo"] = {
+                ["e"] = 12.0,
+                ["k"] = "tex",
+            },
+            ["Civetta__Piuma_Cristallo__Ala_L"] = {
+                ["e"] = 12.0,
+                ["k"] = "tex",
+            },
+            ["Civetta__Piuma_Cristallo__Ala_R"] = {
+                ["e"] = 12.0,
+                ["k"] = "tex",
+            },
+            ["Civetta__Piuma_Petto"] = {
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Civetta__Piumino"] = {
+                ["c"] = {0.9309, 0.9405, 0.9547},
+                ["k"] = "solid",
+            },
+            ["Civetta__Roccia"] = {
+                ["k"] = "tex",
+            },
+        },
+        ["perni"] = {
+            ["Civetta__Perno_Ala_L"] = {
+                ["membri"] = {
+                    "Civetta__Piuma_Cristallo__Ala_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.2443,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Civetta__Perno_Ala_R"] = {
+                ["membri"] = {
+                    "Civetta__Piuma_Cristallo__Ala_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.2443,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
                         ["ph"] = 0.0,
                     },
                 },
@@ -597,6 +968,122 @@ local CONFIG = {
         },
         ["scala"] = {},
     },
+    ["Granchio"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Granchio__Luce_01"] = {
+                ["ang"] = 16.0,
+                ["b0"] = 2.846,
+                ["b1"] = 3.337,
+                ["c"] = {1.0, 0.9309, 0.7014},
+                ["cyc"] = 2,
+                ["dir"] = "Granchio__Luce_01_Dir",
+                ["ph"] = 0.0,
+                ["r"] = 12.29,
+            },
+            ["Granchio__Luce_02"] = {
+                ["ang"] = 16.0,
+                ["b0"] = 2.846,
+                ["b1"] = 3.337,
+                ["c"] = {1.0, 0.9309, 0.7014},
+                ["cyc"] = 2,
+                ["dir"] = "Granchio__Luce_02_Dir",
+                ["ph"] = 0.0,
+                ["r"] = 12.29,
+            },
+            ["Granchio__Luce_03"] = {
+                ["b0"] = 1.423,
+                ["b1"] = 1.909,
+                ["c"] = {1.0, 0.9309, 0.7014},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 8.95,
+            },
+            ["Granchio__Luce_04"] = {
+                ["b0"] = 1.559,
+                ["b1"] = 1.559,
+                ["c"] = {0.8808, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 8.14,
+            },
+        },
+        ["parti"] = {
+            ["Granchio__Balani"] = {
+                ["c"] = {0.7674, 0.7484, 0.722},
+                ["k"] = "solid",
+            },
+            ["Granchio__Bulbo_Vetro"] = {
+                ["c"] = {1.0, 0.9309, 0.7014},
+                ["k"] = "neon",
+                ["p"] = {0.571, 1.0, 1.0, 0.0},
+                ["t"] = 0.15,
+            },
+            ["Granchio__Corallo"] = {
+                ["c"] = {0.9547, 0.5371, 0.6262},
+                ["k"] = "solid",
+            },
+            ["Granchio__Corallo_Arancio"] = {
+                ["c"] = {0.9777, 0.7354, 0.4236},
+                ["k"] = "solid",
+            },
+            ["Granchio__Corazza_Roccia"] = {
+                ["k"] = "tex",
+            },
+            ["Granchio__Crepa"] = {
+                ["c"] = {0.0999, 0.061, 0.0},
+                ["k"] = "solid",
+            },
+            ["Granchio__Fascio__Faro"] = {
+                ["c"] = {1.0, 0.9547, 0.7977},
+                ["k"] = "aura",
+                ["t"] = 0.85,
+            },
+            ["Granchio__Lampada_Faro"] = {
+                ["c"] = {1.0, 0.9777, 0.9063},
+                ["k"] = "neon",
+                ["p"] = {0.773, 1.0, 2.0, 0.0},
+            },
+            ["Granchio__Lanterna"] = {
+                ["c"] = {0.2717, 0.2478, 0.2209},
+                ["k"] = "solid",
+                ["metallo"] = true,
+            },
+            ["Granchio__Occhi"] = {
+                ["c"] = {0.0999, 0.0999, 0.0999},
+                ["k"] = "solid",
+            },
+            ["Granchio__Punte_Chele"] = {
+                ["c"] = {0.1897, 0.1718, 0.1718},
+                ["k"] = "solid",
+            },
+            ["Granchio__Zampe"] = {
+                ["k"] = "tex",
+            },
+        },
+        ["perni"] = {
+            ["Granchio__Perno_Faro"] = {
+                ["membri"] = {
+                    "Granchio__Luce_01",
+                    "Granchio__Luce_01_Dir",
+                    "Granchio__Luce_02",
+                    "Granchio__Luce_02_Dir",
+                    "Granchio__Fascio__Faro",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0,
+                        ["asse"] = "Z",
+                        ["cyc"] = 2,
+                        ["ph"] = 0.0,
+                        ["spin"] = true,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
     ["Gufo"] = {
         ["bob"] = {},
         ["luci"] = {
@@ -694,6 +1181,66 @@ local CONFIG = {
             },
             ["Gufo__Zampe"] = {
                 ["c"] = {0.6262, 0.5657, 0.3811},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {},
+        ["scala"] = {},
+    },
+    ["Leopardo"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Leopardo__Luce_01"] = {
+                ["b0"] = 1.191,
+                ["b1"] = 1.909,
+                ["c"] = {0.6652, 1.0, 0.9777},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 8.95,
+            },
+            ["Leopardo__Luce_02"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 1.006,
+                ["c"] = {0.3133, 0.964, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 6.85,
+            },
+        },
+        ["parti"] = {
+            ["Leopardo__Alone_Bulbo"] = {
+                ["c"] = {0.5838, 1.0, 0.9777},
+                ["k"] = "aura",
+                ["p"] = {0.333, 1.0, 1.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Leopardo__Anelli_Bulbo"] = {
+                ["c"] = {0.3133, 0.3492, 0.3492},
+                ["k"] = "solid",
+            },
+            ["Leopardo__Baffi"] = {
+                ["c"] = {0.8543, 0.9777, 1.0},
+                ["k"] = "neon",
+            },
+            ["Leopardo__Bulbo"] = {
+                ["c"] = {0.7014, 1.0, 0.9777},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 0.0},
+            },
+            ["Leopardo__Naso"] = {
+                ["c"] = {0.6262, 0.5064, 0.5271},
+                ["k"] = "solid",
+            },
+            ["Leopardo__Occhi"] = {
+                ["c"] = {0.5838, 0.9063, 0.8808},
+                ["k"] = "neon",
+            },
+            ["Leopardo__Pelliccia_Rosette"] = {
+                ["e"] = 12.8,
+                ["k"] = "tex",
+            },
+            ["Leopardo__Pupilla"] = {
+                ["c"] = {0.0, 0.0, 0.0},
                 ["k"] = "solid",
             },
         },
@@ -1513,6 +2060,408 @@ local CONFIG = {
         },
         ["scala"] = {},
     },
+    ["Manta"] = {
+        ["bob"] = {
+            ["Manta__Scaglie_Luminose__Scaglia_00"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 6.153,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_01"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 1.893,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_02"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 5.831,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_03"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 6.224,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_04"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 2.223,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_05"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 0.398,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_06"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 4.252,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_07"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 3.054,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_08"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 5.887,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_09"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 4.583,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_10"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 5.949,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_11"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 1.996,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_12"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 4.779,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_13"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 5.342,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_14"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 3.6,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_15"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 3.604,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_16"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 2.871,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_17"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 5.022,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_18"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 3.127,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_19"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 4.722,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_20"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 3.328,
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_21"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 0.148,
+            },
+        },
+        ["luci"] = {
+            ["Manta__Luce_01"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.559,
+                ["c"] = {0.3492, 0.5838, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 8.14,
+            },
+            ["Manta__Luce_02"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.423,
+                ["c"] = {0.7674, 0.4845, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 3.142,
+                ["r"] = 7.82,
+            },
+        },
+        ["parti"] = {
+            ["Manta__Ali_Falena_Luna__AlaAnt_L"] = {
+                ["ali"] = true,
+                ["e"] = 12.0,
+                ["k"] = "tex",
+            },
+            ["Manta__Ali_Falena_Luna__AlaAnt_R"] = {
+                ["ali"] = true,
+                ["e"] = 12.0,
+                ["k"] = "tex",
+            },
+            ["Manta__Ali_Falena_Luna__AlaPost_L"] = {
+                ["ali"] = true,
+                ["e"] = 12.0,
+                ["k"] = "tex",
+            },
+            ["Manta__Ali_Falena_Luna__AlaPost_R"] = {
+                ["ali"] = true,
+                ["e"] = 12.0,
+                ["k"] = "tex",
+            },
+            ["Manta__Occhi__Galleggiamento"] = {
+                ["c"] = {0.0999, 0.0999, 0.1517},
+                ["k"] = "solid",
+            },
+            ["Manta__Ocello_Cobalto__AlaAnt_L"] = {
+                ["c"] = {0.3492, 0.5838, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.167, 1.0, 1.0, 0.0},
+            },
+            ["Manta__Ocello_Cobalto__AlaAnt_R"] = {
+                ["c"] = {0.3492, 0.5838, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.167, 1.0, 1.0, 0.0},
+            },
+            ["Manta__Ocello_Cobalto__AlaPost_L"] = {
+                ["c"] = {0.3492, 0.5838, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.167, 1.0, 1.0, 0.0},
+            },
+            ["Manta__Ocello_Cobalto__AlaPost_R"] = {
+                ["c"] = {0.3492, 0.5838, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.167, 1.0, 1.0, 0.0},
+            },
+            ["Manta__Ocello_Viola__AlaAnt_L"] = {
+                ["c"] = {0.7674, 0.4845, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.167, 1.0, 1.0, 3.142},
+            },
+            ["Manta__Ocello_Viola__AlaAnt_R"] = {
+                ["c"] = {0.7674, 0.4845, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.167, 1.0, 1.0, 3.142},
+            },
+            ["Manta__Ocello_Viola__AlaPost_L"] = {
+                ["c"] = {0.7674, 0.4845, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.167, 1.0, 1.0, 3.142},
+            },
+            ["Manta__Ocello_Viola__AlaPost_R"] = {
+                ["c"] = {0.7674, 0.4845, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.167, 1.0, 1.0, 3.142},
+            },
+            ["Manta__Pelle__Galleggiamento"] = {
+                ["k"] = "tex",
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_00"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_01"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_02"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_03"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_04"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_05"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_06"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_07"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_08"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_09"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_10"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_11"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_12"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_13"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_14"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_15"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_16"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_17"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_18"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_19"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_20"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+            ["Manta__Scaglie_Luminose__Scaglia_21"] = {
+                ["c"] = {0.6652, 0.8808, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.286, 1.0, 2.0, 0.0},
+            },
+        },
+        ["perni"] = {
+            ["Manta__Perno_AlaAnt_L"] = {
+                ["membri"] = {
+                    "Manta__Ali_Falena_Luna__AlaAnt_L",
+                    "Manta__Ocello_Cobalto__AlaAnt_L",
+                    "Manta__Ocello_Viola__AlaAnt_L",
+                },
+                ["padre"] = "Manta__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.2793,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Manta__Perno_AlaAnt_R"] = {
+                ["membri"] = {
+                    "Manta__Ali_Falena_Luna__AlaAnt_R",
+                    "Manta__Ocello_Cobalto__AlaAnt_R",
+                    "Manta__Ocello_Viola__AlaAnt_R",
+                },
+                ["padre"] = "Manta__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.2793,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Manta__Perno_AlaPost_L"] = {
+                ["membri"] = {
+                    "Manta__Ali_Falena_Luna__AlaPost_L",
+                    "Manta__Ocello_Cobalto__AlaPost_L",
+                    "Manta__Ocello_Viola__AlaPost_L",
+                },
+                ["padre"] = "Manta__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.2793,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.25,
+                    },
+                },
+            },
+            ["Manta__Perno_AlaPost_R"] = {
+                ["membri"] = {
+                    "Manta__Ali_Falena_Luna__AlaPost_R",
+                    "Manta__Ocello_Cobalto__AlaPost_R",
+                    "Manta__Ocello_Viola__AlaPost_R",
+                },
+                ["padre"] = "Manta__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.2793,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.25,
+                    },
+                },
+            },
+            ["Manta__Perno_Galleggiamento"] = {
+                ["membri"] = {
+                    "Manta__Luce_01",
+                    "Manta__Luce_02",
+                    "Manta__Occhi__Galleggiamento",
+                    "Manta__Pelle__Galleggiamento",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0698,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 2.2,
+                    },
+                    {
+                        ["amp"] = 0.3,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["mov"] = true,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
     ["Mantide"] = {
         ["bob"] = {},
         ["luci"] = {
@@ -1630,6 +2579,1001 @@ local CONFIG = {
                         ["asse"] = "Y",
                         ["cyc"] = 1,
                         ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Medusa"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Medusa__Luce_01"] = {
+                ["b0"] = 1.423,
+                ["b1"] = 2.295,
+                ["c"] = {0.3492, 0.9547, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 9.85,
+            },
+            ["Medusa__Luce_02"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.273,
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 1.0,
+                ["r"] = 7.47,
+            },
+        },
+        ["parti"] = {
+            ["Medusa__Antenne__Antenna_0"] = {
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 1.0},
+            },
+            ["Medusa__Antenne__Antenna_1"] = {
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 1.0},
+            },
+            ["Medusa__Antenne__Antenna_2"] = {
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 1.0},
+            },
+            ["Medusa__Antenne__Antenna_3"] = {
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 1.0},
+            },
+            ["Medusa__Antenne__Antenna_4"] = {
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 1.0},
+            },
+            ["Medusa__Antenne__Antenna_5"] = {
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 1.0},
+            },
+            ["Medusa__Antenne__Antenna_6"] = {
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 1.0},
+            },
+            ["Medusa__Antenne__Antenna_7"] = {
+                ["c"] = {0.5838, 0.9777, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 1.0, 1.0},
+            },
+            ["Medusa__Gas_Luminoso__Galleggiamento__Gas"] = {
+                ["c"] = {0.3492, 0.9547, 1.0},
+                ["k"] = "aura",
+                ["p"] = {0.429, 1.0, 1.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Medusa__Lanterna__Galleggiamento"] = {
+                ["c"] = {0.7977, 1.0, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.5, 1.0, 1.0, 0.0},
+            },
+            ["Medusa__Ombrella_Gelatina__Galleggiamento__Ombrella"] = {
+                ["c"] = {0.3492, 0.9547, 1.0},
+                ["h"] = {0.3492, 0.9547, 1.0},
+                ["k"] = "ghost",
+            },
+            ["Medusa__Perline__Galleggiamento"] = {
+                ["c"] = {0.5838, 1.0, 0.9777},
+                ["k"] = "neon",
+                ["p"] = {0.333, 1.0, 2.0, 0.0},
+            },
+        },
+        ["perni"] = {
+            ["Medusa__Perno_Antenna_0"] = {
+                ["membri"] = {
+                    "Medusa__Antenne__Antenna_0",
+                },
+                ["padre"] = "Medusa__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.3,
+                    },
+                },
+            },
+            ["Medusa__Perno_Antenna_1"] = {
+                ["membri"] = {
+                    "Medusa__Antenne__Antenna_1",
+                },
+                ["padre"] = "Medusa__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.8,
+                    },
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 2.1,
+                    },
+                },
+            },
+            ["Medusa__Perno_Antenna_2"] = {
+                ["membri"] = {
+                    "Medusa__Antenne__Antenna_2",
+                },
+                ["padre"] = "Medusa__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.6,
+                    },
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 2.9,
+                    },
+                },
+            },
+            ["Medusa__Perno_Antenna_3"] = {
+                ["membri"] = {
+                    "Medusa__Antenne__Antenna_3",
+                },
+                ["padre"] = "Medusa__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 2.4,
+                    },
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 3.7,
+                    },
+                },
+            },
+            ["Medusa__Perno_Antenna_4"] = {
+                ["membri"] = {
+                    "Medusa__Antenne__Antenna_4",
+                },
+                ["padre"] = "Medusa__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 3.2,
+                    },
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 4.5,
+                    },
+                },
+            },
+            ["Medusa__Perno_Antenna_5"] = {
+                ["membri"] = {
+                    "Medusa__Antenne__Antenna_5",
+                },
+                ["padre"] = "Medusa__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 4.0,
+                    },
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 5.3,
+                    },
+                },
+            },
+            ["Medusa__Perno_Antenna_6"] = {
+                ["membri"] = {
+                    "Medusa__Antenne__Antenna_6",
+                },
+                ["padre"] = "Medusa__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 4.8,
+                    },
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 6.1,
+                    },
+                },
+            },
+            ["Medusa__Perno_Antenna_7"] = {
+                ["membri"] = {
+                    "Medusa__Antenne__Antenna_7",
+                },
+                ["padre"] = "Medusa__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 5.6,
+                    },
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 6.9,
+                    },
+                },
+            },
+            ["Medusa__Perno_Galleggiamento"] = {
+                ["membri"] = {
+                    "Medusa__Luce_01",
+                    "Medusa__Luce_02",
+                    "Medusa__Gas_Luminoso__Galleggiamento__Gas",
+                    "Medusa__Ombrella_Gelatina__Galleggiamento__Ombrella",
+                    "Medusa__Lanterna__Galleggiamento",
+                    "Medusa__Perline__Galleggiamento",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0524,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = -0.471,
+                    },
+                    {
+                        ["amp"] = 0.0524,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.629,
+                    },
+                    {
+                        ["amp"] = 0.24,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["mov"] = true,
+                        ["ph"] = -1.571,
+                    },
+                },
+            },
+        },
+        ["scala"] = {
+            ["Medusa__Gas_Luminoso__Galleggiamento__Gas"] = {
+                ["cyc"] = 1,
+                ["hi"] = 1.07,
+                ["lo"] = 0.93,
+                ["ph"] = 3.1416,
+            },
+            ["Medusa__Ombrella_Gelatina__Galleggiamento__Ombrella"] = {
+                ["cyc"] = 1,
+                ["hi"] = 1.07,
+                ["lo"] = 0.93,
+                ["ph"] = 3.1416,
+            },
+        },
+    },
+    ["Orso"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Orso__Luce_01"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 1.8,
+                ["c"] = {0.3133, 1.0, 0.68},
+                ["cyc"] = 1,
+                ["ph"] = -0.0,
+                ["r"] = 8.7,
+            },
+            ["Orso__Luce_02"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 1.8,
+                ["c"] = {0.1897, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = -2.094,
+                ["r"] = 8.7,
+            },
+            ["Orso__Luce_03"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 1.8,
+                ["c"] = {0.7354, 0.4845, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = -4.189,
+                ["r"] = 8.7,
+            },
+            ["Orso__Luce_04"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 1.102,
+                ["c"] = {0.4845, 0.9547, 1.0},
+                ["cyc"] = 2,
+                ["ph"] = 0.0,
+                ["r"] = 7.07,
+            },
+        },
+        ["parti"] = {
+            ["Orso__Ali_Aurora__AlaAnt_L"] = {
+                ["ali"] = true,
+                ["e"] = 12.8,
+                ["k"] = "tex",
+            },
+            ["Orso__Ali_Aurora__AlaAnt_R"] = {
+                ["ali"] = true,
+                ["e"] = 12.8,
+                ["k"] = "tex",
+            },
+            ["Orso__Ali_Aurora__AlaPost_L"] = {
+                ["ali"] = true,
+                ["e"] = 12.8,
+                ["k"] = "tex",
+            },
+            ["Orso__Ali_Aurora__AlaPost_R"] = {
+                ["ali"] = true,
+                ["e"] = 12.8,
+                ["k"] = "tex",
+            },
+            ["Orso__Artigli"] = {
+                ["c"] = {0.1897, 0.1897, 0.206},
+                ["k"] = "solid",
+            },
+            ["Orso__Naso"] = {
+                ["c"] = {0.0999, 0.0999, 0.1284},
+                ["k"] = "solid",
+            },
+            ["Orso__Occhi"] = {
+                ["c"] = {0.061, 0.061, 0.0999},
+                ["k"] = "solid",
+            },
+            ["Orso__Pelliccia_Aurora"] = {
+                ["cc"] = {
+                    ["cyc"] = 1.0,
+                    ["pal"] = {
+                        {0.3133, 1.0, 0.68},
+                        {0.1897, 0.9309, 1.0},
+                        {0.3492, 1.0, 0.865},
+                        {0.7354, 0.4845, 1.0},
+                    },
+                    ["ph"] = 0.0,
+                },
+                ["e"] = 9.6,
+                ["h"] = {0.1897, 0.9309, 1.0},
+                ["k"] = "tex",
+            },
+        },
+        ["perni"] = {
+            ["Orso__Perno_AlaAnt_L"] = {
+                ["membri"] = {
+                    "Orso__Ali_Aurora__AlaAnt_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1571,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Orso__Perno_AlaAnt_R"] = {
+                ["membri"] = {
+                    "Orso__Ali_Aurora__AlaAnt_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.1571,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Orso__Perno_AlaPost_L"] = {
+                ["membri"] = {
+                    "Orso__Ali_Aurora__AlaPost_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1571,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.35,
+                    },
+                },
+            },
+            ["Orso__Perno_AlaPost_R"] = {
+                ["membri"] = {
+                    "Orso__Ali_Aurora__AlaPost_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.1571,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.35,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Pescatrice"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Pescatrice__Luce_01"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.35,
+                ["c"] = {0.8808, 1.0, 0.5371},
+                ["cyc"] = 6,
+                ["ph"] = 0.0,
+                ["r"] = 7.65,
+            },
+            ["Pescatrice__Luce_02"] = {
+                ["b0"] = 0.551,
+                ["b1"] = 0.9,
+                ["c"] = {0.8808, 1.0, 0.5371},
+                ["cyc"] = 6,
+                ["ph"] = 0.0,
+                ["r"] = 6.6,
+            },
+            ["Pescatrice__Luce_03"] = {
+                ["b0"] = 1.273,
+                ["b1"] = 1.273,
+                ["c"] = {0.6652, 0.8543, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 7.47,
+            },
+        },
+        ["parti"] = {
+            ["Pescatrice__Alone_Esca__Esca"] = {
+                ["c"] = {0.8808, 1.0, 0.5371},
+                ["k"] = "aura",
+                ["p"] = {0.25, 1.0, 6.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Pescatrice__Bocca__Galleggiamento"] = {
+                ["c"] = {0.2717, 0.0999, 0.1284},
+                ["k"] = "solid",
+            },
+            ["Pescatrice__Denti__Galleggiamento"] = {
+                ["c"] = {0.9163, 0.9063, 0.8543},
+                ["k"] = "solid",
+            },
+            ["Pescatrice__Esca_Vetro_Organico__Esca"] = {
+                ["c"] = {0.8808, 1.0, 0.7977},
+                ["k"] = "glass",
+                ["t"] = 0.55,
+            },
+            ["Pescatrice__Lucciola_Ali__Lucciola_Ala_L"] = {
+                ["ali"] = true,
+                ["e"] = 2.4,
+                ["k"] = "tex",
+            },
+            ["Pescatrice__Lucciola_Ali__Lucciola_Ala_R"] = {
+                ["ali"] = true,
+                ["e"] = 2.4,
+                ["k"] = "tex",
+            },
+            ["Pescatrice__Lucciola_Corpo__Esca"] = {
+                ["c"] = {0.1897, 0.1718, 0.1517},
+                ["k"] = "solid",
+            },
+            ["Pescatrice__Lucciola_Lanterna__Esca"] = {
+                ["c"] = {0.8808, 1.0, 0.5371},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 6.0, 0.0},
+            },
+            ["Pescatrice__Lucciola_Pronoto__Esca"] = {
+                ["c"] = {0.9309, 0.5371, 0.3133},
+                ["k"] = "solid",
+            },
+            ["Pescatrice__Occhi__Galleggiamento"] = {
+                ["c"] = {0.3811, 0.4236, 0.4614},
+                ["k"] = "solid",
+            },
+            ["Pescatrice__Pelle_Abissale__Esca"] = {
+                ["k"] = "tex",
+            },
+            ["Pescatrice__Pelle_Abissale__Galleggiamento"] = {
+                ["k"] = "tex",
+            },
+            ["Pescatrice__Pelle_Abissale__Illicio"] = {
+                ["k"] = "tex",
+            },
+            ["Pescatrice__Pinne__Galleggiamento"] = {
+                ["c"] = {0.2209, 0.206, 0.206},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {
+            ["Pescatrice__Perno_Esca"] = {
+                ["membri"] = {
+                    "Pescatrice__Luce_01",
+                    "Pescatrice__Alone_Esca__Esca",
+                    "Pescatrice__Esca_Vetro_Organico__Esca",
+                    "Pescatrice__Lucciola_Corpo__Esca",
+                    "Pescatrice__Lucciola_Lanterna__Esca",
+                    "Pescatrice__Lucciola_Pronoto__Esca",
+                    "Pescatrice__Pelle_Abissale__Esca",
+                },
+                ["padre"] = "Pescatrice__Perno_Illicio",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1745,
+                        ["asse"] = "X",
+                        ["cyc"] = 2,
+                        ["ph"] = 0.0,
+                    },
+                    {
+                        ["amp"] = 0.1396,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.0,
+                    },
+                },
+            },
+            ["Pescatrice__Perno_Galleggiamento"] = {
+                ["membri"] = {
+                    "Pescatrice__Luce_02",
+                    "Pescatrice__Luce_03",
+                    "Pescatrice__Bocca__Galleggiamento",
+                    "Pescatrice__Denti__Galleggiamento",
+                    "Pescatrice__Occhi__Galleggiamento",
+                    "Pescatrice__Pelle_Abissale__Galleggiamento",
+                    "Pescatrice__Pinne__Galleggiamento",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0349,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.1,
+                    },
+                    {
+                        ["amp"] = 0.15,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["mov"] = true,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Pescatrice__Perno_Illicio"] = {
+                ["membri"] = {
+                    "Pescatrice__Pelle_Abissale__Illicio",
+                },
+                ["padre"] = "Pescatrice__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0698,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.5,
+                    },
+                },
+            },
+            ["Pescatrice__Perno_Lucciola_Ala_L"] = {
+                ["membri"] = {
+                    "Pescatrice__Lucciola_Ali__Lucciola_Ala_L",
+                },
+                ["padre"] = "Pescatrice__Perno_Esca",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.6981,
+                        ["asse"] = "Y",
+                        ["cyc"] = 60,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Pescatrice__Perno_Lucciola_Ala_R"] = {
+                ["membri"] = {
+                    "Pescatrice__Lucciola_Ali__Lucciola_Ala_R",
+                },
+                ["padre"] = "Pescatrice__Perno_Esca",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.6981,
+                        ["asse"] = "Y",
+                        ["cyc"] = 60,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Pinguino"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Pinguino__Luce_01"] = {
+                ["b0"] = 1.35,
+                ["b1"] = 1.8,
+                ["c"] = {0.5838, 0.865, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 8.7,
+            },
+            ["Pinguino__Luce_02"] = {
+                ["ang"] = 110.0,
+                ["b0"] = 2.25,
+                ["b1"] = 3.019,
+                ["c"] = {0.5838, 0.865, 1.0},
+                ["cyc"] = 1,
+                ["dir"] = "Pinguino__Luce_02_Dir",
+                ["ph"] = 0.0,
+                ["r"] = 11.54,
+            },
+        },
+        ["parti"] = {
+            ["Pinguino__Ali_Brinate__Aluccia2_L"] = {
+                ["ali"] = true,
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Pinguino__Ali_Brinate__Aluccia2_R"] = {
+                ["ali"] = true,
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Pinguino__Ali_Brinate__Aluccia_L"] = {
+                ["ali"] = true,
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Pinguino__Ali_Brinate__Aluccia_R"] = {
+                ["ali"] = true,
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Pinguino__Alone"] = {
+                ["c"] = {0.5838, 0.865, 1.0},
+                ["k"] = "aura",
+                ["p"] = {0.429, 1.0, 1.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Pinguino__Anello_Occhio"] = {
+                ["c"] = {0.9547, 0.9686, 0.9867},
+                ["k"] = "solid",
+            },
+            ["Pinguino__Arancio"] = {
+                ["c"] = {0.9777, 0.68, 0.2717},
+                ["k"] = "solid",
+            },
+            ["Pinguino__Becco"] = {
+                ["c"] = {0.1897, 0.1897, 0.206},
+                ["k"] = "solid",
+            },
+            ["Pinguino__Lastra_Ghiaccio"] = {
+                ["c"] = {0.7674, 0.8962, 0.9777},
+                ["k"] = "solid",
+                ["m"] = "Ice",
+            },
+            ["Pinguino__Nucleo_Luce"] = {
+                ["c"] = {0.7014, 0.9163, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.5, 1.0, 1.0, 0.0},
+            },
+            ["Pinguino__Occhi"] = {
+                ["c"] = {0.061, 0.061, 0.0999},
+                ["k"] = "solid",
+            },
+            ["Pinguino__Pancia_Vetro"] = {
+                ["c"] = {0.5838, 0.865, 1.0},
+                ["k"] = "glass",
+                ["t"] = 0.3,
+            },
+            ["Pinguino__Piumaggio"] = {
+                ["k"] = "tex",
+            },
+            ["Pinguino__Segmenti_Vetro"] = {
+                ["c"] = {0.7674, 0.9309, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.5, 1.0, 1.0, 0.0},
+            },
+        },
+        ["perni"] = {
+            ["Pinguino__Perno_Aluccia2_L"] = {
+                ["membri"] = {
+                    "Pinguino__Ali_Brinate__Aluccia2_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.4189,
+                        ["asse"] = "Y",
+                        ["cyc"] = 20,
+                        ["ph"] = 1.2,
+                    },
+                },
+            },
+            ["Pinguino__Perno_Aluccia2_R"] = {
+                ["membri"] = {
+                    "Pinguino__Ali_Brinate__Aluccia2_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.4189,
+                        ["asse"] = "Y",
+                        ["cyc"] = 20,
+                        ["ph"] = 1.2,
+                    },
+                },
+            },
+            ["Pinguino__Perno_Aluccia_L"] = {
+                ["membri"] = {
+                    "Pinguino__Ali_Brinate__Aluccia_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.4189,
+                        ["asse"] = "Y",
+                        ["cyc"] = 20,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Pinguino__Perno_Aluccia_R"] = {
+                ["membri"] = {
+                    "Pinguino__Ali_Brinate__Aluccia_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.4189,
+                        ["asse"] = "Y",
+                        ["cyc"] = 20,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Pupazzo"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Pupazzo__Luce_01"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.273,
+                ["c"] = {1.0, 0.0, 0.0},
+                ["cc"] = {
+                    ["cyc"] = 12.0,
+                    ["pal"] = {
+                        {1.0, 0.0, 0.0},
+                        {1.0, 1.0, 0.0},
+                        {0.0, 1.0, 0.0},
+                        {0.0, 1.0, 1.0},
+                        {0.0, 0.0, 1.0},
+                        {1.0, 0.0, 1.0},
+                    },
+                    ["ph"] = 0.8,
+                },
+                ["cyc"] = 6,
+                ["ph"] = 0.0,
+                ["r"] = 7.47,
+            },
+            ["Pupazzo__Luce_02"] = {
+                ["b0"] = 1.006,
+                ["b1"] = 1.006,
+                ["c"] = {1.0, 0.0, 0.0},
+                ["cc"] = {
+                    ["cyc"] = 12.0,
+                    ["pal"] = {
+                        {1.0, 0.0, 0.0},
+                        {1.0, 1.0, 0.0},
+                        {0.0, 1.0, 0.0},
+                        {0.0, 1.0, 1.0},
+                        {0.0, 0.0, 1.0},
+                        {1.0, 0.0, 1.0},
+                    },
+                    ["ph"] = 0.8,
+                },
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 6.85,
+            },
+        },
+        ["parti"] = {
+            ["Pupazzo__Alone_LED__Testa"] = {
+                ["c"] = {1.0, 0.0, 0.0},
+                ["cc"] = {
+                    ["cyc"] = 12.0,
+                    ["pal"] = {
+                        {1.0, 0.0, 0.0},
+                        {1.0, 1.0, 0.0},
+                        {0.0, 1.0, 0.0},
+                        {0.0, 1.0, 1.0},
+                        {0.0, 0.0, 1.0},
+                        {1.0, 0.0, 1.0},
+                    },
+                    ["ph"] = 0.8,
+                },
+                ["k"] = "aura",
+                ["t"] = 0.85,
+            },
+            ["Pupazzo__Alucce_Mosca__Aluccia_L"] = {
+                ["ali"] = true,
+                ["e"] = 2.0,
+                ["k"] = "tex",
+            },
+            ["Pupazzo__Alucce_Mosca__Aluccia_R"] = {
+                ["ali"] = true,
+                ["e"] = 2.0,
+                ["k"] = "tex",
+            },
+            ["Pupazzo__Bocca__Testa"] = {
+                ["c"] = {0.2478, 0.0999, 0.1517},
+                ["k"] = "solid",
+            },
+            ["Pupazzo__Carbone"] = {
+                ["c"] = {0.1517, 0.1517, 0.1601},
+                ["k"] = "solid",
+                ["m"] = "Slate",
+            },
+            ["Pupazzo__Carbone__Testa"] = {
+                ["c"] = {0.1517, 0.1517, 0.1601},
+                ["k"] = "solid",
+                ["m"] = "Slate",
+            },
+            ["Pupazzo__Gocce_Ghiaccio"] = {
+                ["c"] = {0.7977, 0.9309, 1.0},
+                ["k"] = "neon",
+                ["t"] = 0.2,
+            },
+            ["Pupazzo__LED_Piedini__Testa"] = {
+                ["c"] = {0.9063, 0.9063, 0.9163},
+                ["k"] = "solid",
+                ["metallo"] = true,
+            },
+            ["Pupazzo__LED_RGB__Testa"] = {
+                ["c"] = {1.0, 0.0, 0.0},
+                ["cc"] = {
+                    ["cyc"] = 12.0,
+                    ["pal"] = {
+                        {1.0, 0.0, 0.0},
+                        {1.0, 1.0, 0.0},
+                        {0.0, 1.0, 0.0},
+                        {0.0, 1.0, 1.0},
+                        {0.0, 0.0, 1.0},
+                        {1.0, 0.0, 1.0},
+                    },
+                    ["ph"] = 0.8,
+                },
+                ["k"] = "neon",
+            },
+            ["Pupazzo__Neve_Bagnata"] = {
+                ["c"] = {0.9357, 0.9547, 0.9867},
+                ["k"] = "solid",
+                ["m"] = "Snow",
+            },
+            ["Pupazzo__Neve_Bagnata__Collo"] = {
+                ["c"] = {0.9357, 0.9547, 0.9867},
+                ["k"] = "solid",
+                ["m"] = "Snow",
+            },
+            ["Pupazzo__Neve_Bagnata__Testa"] = {
+                ["c"] = {0.9357, 0.9547, 0.9867},
+                ["k"] = "solid",
+                ["m"] = "Snow",
+            },
+            ["Pupazzo__Pozzanghera"] = {
+                ["c"] = {0.1517, 0.1897, 0.2478},
+                ["k"] = "solid",
+                ["m"] = "Glass",
+                ["rifl"] = 0.5,
+            },
+            ["Pupazzo__Rametti__Testa"] = {
+                ["c"] = {0.4614, 0.3492, 0.2478},
+                ["k"] = "solid",
+            },
+            ["Pupazzo__Zampette"] = {
+                ["c"] = {0.2209, 0.2209, 0.2478},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {
+            ["Pupazzo__Perno_Aluccia_L"] = {
+                ["membri"] = {
+                    "Pupazzo__Alucce_Mosca__Aluccia_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.2443,
+                        ["asse"] = "Y",
+                        ["cyc"] = 16,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Pupazzo__Perno_Aluccia_R"] = {
+                ["membri"] = {
+                    "Pupazzo__Alucce_Mosca__Aluccia_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.2443,
+                        ["asse"] = "Y",
+                        ["cyc"] = 16,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Pupazzo__Perno_Collo"] = {
+                ["membri"] = {
+                    "Pupazzo__Neve_Bagnata__Collo",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "X",
+                        ["cyc"] = 2,
+                        ["ph"] = 0.0,
+                    },
+                    {
+                        ["amp"] = 0.1571,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.1,
+                    },
+                },
+            },
+            ["Pupazzo__Perno_Testa"] = {
+                ["membri"] = {
+                    "Pupazzo__Luce_01",
+                    "Pupazzo__Alone_LED__Testa",
+                    "Pupazzo__Bocca__Testa",
+                    "Pupazzo__Carbone__Testa",
+                    "Pupazzo__LED_Piedini__Testa",
+                    "Pupazzo__LED_RGB__Testa",
+                    "Pupazzo__Neve_Bagnata__Testa",
+                    "Pupazzo__Rametti__Testa",
+                },
+                ["padre"] = "Pupazzo__Perno_Collo",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1396,
+                        ["asse"] = "X",
+                        ["cyc"] = 2,
+                        ["ph"] = 2.0,
+                    },
+                    {
+                        ["amp"] = 0.2443,
+                        ["asse"] = "Y",
+                        ["cyc"] = 3,
+                        ["ph"] = 0.4,
                     },
                 },
             },
@@ -1823,6 +3767,336 @@ local CONFIG = {
                 ["ph"] = 0.0,
             },
         },
+    },
+    ["Renna"] = {
+        ["bob"] = {
+            ["Renna__Fiocchi__Fiocco_00"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 0.692,
+            },
+            ["Renna__Fiocchi__Fiocco_01"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 0.864,
+            },
+            ["Renna__Fiocchi__Fiocco_02"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 2.08,
+            },
+            ["Renna__Fiocchi__Fiocco_03"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 4.289,
+            },
+            ["Renna__Fiocchi__Fiocco_04"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 0.316,
+            },
+            ["Renna__Fiocchi__Fiocco_05"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 3.311,
+            },
+            ["Renna__Fiocchi__Fiocco_06"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 1.572,
+            },
+            ["Renna__Fiocchi__Fiocco_07"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 0.061,
+            },
+            ["Renna__Fiocchi__Fiocco_08"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 1.622,
+            },
+            ["Renna__Fiocchi__Fiocco_09"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 4.597,
+            },
+            ["Renna__Fiocchi__Fiocco_10"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 5.701,
+            },
+            ["Renna__Fiocchi__Fiocco_11"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 5.818,
+            },
+            ["Renna__Fiocchi__Fiocco_12"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 3.412,
+            },
+            ["Renna__Fiocchi__Fiocco_13"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 3.685,
+            },
+            ["Renna__Fiocchi__Fiocco_14"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 1.439,
+            },
+            ["Renna__Fiocchi__Fiocco_15"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 0.337,
+            },
+            ["Renna__Fiocchi__Fiocco_16"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 6.271,
+            },
+            ["Renna__Fiocchi__Fiocco_17"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 5.92,
+            },
+            ["Renna__Fiocchi__Fiocco_18"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 2.845,
+            },
+            ["Renna__Fiocchi__Fiocco_19"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 1.679,
+            },
+            ["Renna__Fiocchi__Fiocco_20"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 4.889,
+            },
+            ["Renna__Fiocchi__Fiocco_21"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 5.344,
+            },
+            ["Renna__Fiocchi__Fiocco_22"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 2.242,
+            },
+            ["Renna__Fiocchi__Fiocco_23"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 0.508,
+            },
+            ["Renna__Fiocchi__Fiocco_24"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 1,
+                ["ph"] = 3.383,
+            },
+            ["Renna__Fiocchi__Fiocco_25"] = {
+                ["amp"] = 0.15,
+                ["cyc"] = 2,
+                ["ph"] = 4.303,
+            },
+        },
+        ["luci"] = {
+            ["Renna__Luce_01"] = {
+                ["b0"] = 2.111,
+                ["b1"] = 2.624,
+                ["c"] = {0.8543, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 10.62,
+            },
+            ["Renna__Luce_02"] = {
+                ["b0"] = 1.102,
+                ["b1"] = 1.559,
+                ["c"] = {0.7977, 0.9063, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.5,
+                ["r"] = 8.14,
+            },
+            ["Renna__Luce_03"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 0.9,
+                ["c"] = {0.8543, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 6.6,
+            },
+        },
+        ["parti"] = {
+            ["Renna__Alone_Corna"] = {
+                ["c"] = {0.7977, 0.9163, 1.0},
+                ["k"] = "aura",
+                ["p"] = {0.556, 1.0, 1.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Renna__Coda_Cometa"] = {
+                ["c"] = {0.7354, 0.8808, 1.0},
+                ["k"] = "aura",
+                ["p"] = {0.5, 1.0, 1.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Renna__Corna_Antenne"] = {
+                ["c"] = {0.865, 0.9453, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.667, 1.0, 1.0, 0.0},
+            },
+            ["Renna__Criniera"] = {
+                ["c"] = {0.8808, 0.8756, 0.865},
+                ["k"] = "solid",
+            },
+            ["Renna__Fiocchi__Fiocco_00"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_01"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_02"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_03"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_04"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_05"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_06"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_07"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_08"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_09"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_10"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_11"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_12"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_13"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_14"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_15"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_16"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_17"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_18"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_19"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_20"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_21"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_22"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_23"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_24"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Fiocchi__Fiocco_25"] = {
+                ["c"] = {0.9063, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.375, 1.0, 2.0, 0.0},
+            },
+            ["Renna__Naso"] = {
+                ["c"] = {0.2478, 0.2348, 0.2478},
+                ["k"] = "solid",
+            },
+            ["Renna__Occhi"] = {
+                ["c"] = {0.0999, 0.0999, 0.1284},
+                ["k"] = "solid",
+            },
+            ["Renna__Pelo"] = {
+                ["k"] = "tex",
+            },
+            ["Renna__Zoccoli"] = {
+                ["c"] = {0.2209, 0.206, 0.1897},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {},
+        ["scala"] = {},
     },
     ["Scarabeo"] = {
         ["bob"] = {},
@@ -2022,6 +4296,169 @@ local CONFIG = {
         },
         ["scala"] = {},
     },
+    ["Squalo"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Squalo__Luce_01"] = {
+                ["b0"] = 0.9,
+                ["b1"] = 1.559,
+                ["c"] = {0.4236, 0.7014, 1.0},
+                ["cyc"] = 2,
+                ["ph"] = 0.0,
+                ["r"] = 8.14,
+            },
+            ["Squalo__Luce_02"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 1.191,
+                ["c"] = {0.7354, 0.8808, 1.0},
+                ["cyc"] = 4,
+                ["ph"] = 0.0,
+                ["r"] = 7.28,
+            },
+        },
+        ["parti"] = {
+            ["Squalo__Ali_Energia__Ala2_L"] = {
+                ["ali"] = true,
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Squalo__Ali_Energia__Ala2_R"] = {
+                ["ali"] = true,
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Squalo__Ali_Energia__Ala_L"] = {
+                ["ali"] = true,
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Squalo__Ali_Energia__Ala_R"] = {
+                ["ali"] = true,
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+            ["Squalo__Branchie__Galleggiamento"] = {
+                ["c"] = {0.5371, 0.7977, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.25, 1.0, 2.0, 0.0},
+            },
+            ["Squalo__Occhi__Galleggiamento"] = {
+                ["c"] = {0.061, 0.061, 0.0999},
+                ["k"] = "solid",
+            },
+            ["Squalo__Pelle_Vasi_Plasma__Galleggiamento"] = {
+                ["e"] = 10.4,
+                ["k"] = "tex",
+            },
+            ["Squalo__Pinne__Coda"] = {
+                ["c"] = {0.1897, 0.2209, 0.2601},
+                ["k"] = "solid",
+            },
+            ["Squalo__Pinne__Galleggiamento"] = {
+                ["c"] = {0.1897, 0.2209, 0.2601},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {
+            ["Squalo__Perno_Ala2_L"] = {
+                ["membri"] = {
+                    "Squalo__Ali_Energia__Ala2_L",
+                },
+                ["padre"] = "Squalo__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.3142,
+                        ["asse"] = "Y",
+                        ["cyc"] = 24,
+                        ["ph"] = 1.3,
+                    },
+                },
+            },
+            ["Squalo__Perno_Ala2_R"] = {
+                ["membri"] = {
+                    "Squalo__Ali_Energia__Ala2_R",
+                },
+                ["padre"] = "Squalo__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.3142,
+                        ["asse"] = "Y",
+                        ["cyc"] = 24,
+                        ["ph"] = 1.3,
+                    },
+                },
+            },
+            ["Squalo__Perno_Ala_L"] = {
+                ["membri"] = {
+                    "Squalo__Ali_Energia__Ala_L",
+                },
+                ["padre"] = "Squalo__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.3142,
+                        ["asse"] = "Y",
+                        ["cyc"] = 24,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Squalo__Perno_Ala_R"] = {
+                ["membri"] = {
+                    "Squalo__Ali_Energia__Ala_R",
+                },
+                ["padre"] = "Squalo__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.3142,
+                        ["asse"] = "Y",
+                        ["cyc"] = 24,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Squalo__Perno_Coda"] = {
+                ["membri"] = {
+                    "Squalo__Pinne__Coda",
+                },
+                ["padre"] = "Squalo__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.2793,
+                        ["asse"] = "Z",
+                        ["cyc"] = 2,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Squalo__Perno_Galleggiamento"] = {
+                ["membri"] = {
+                    "Squalo__Luce_01",
+                    "Squalo__Luce_02",
+                    "Squalo__Branchie__Galleggiamento",
+                    "Squalo__Occhi__Galleggiamento",
+                    "Squalo__Pelle_Vasi_Plasma__Galleggiamento",
+                    "Squalo__Pinne__Galleggiamento",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0873,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 2.2,
+                    },
+                    {
+                        ["amp"] = 0.18,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["mov"] = true,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
     ["Tarantola"] = {
         ["bob"] = {},
         ["luci"] = {
@@ -2070,6 +4507,229 @@ local CONFIG = {
             },
         },
         ["perni"] = {},
+        ["scala"] = {},
+    },
+    ["Tartaruga"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Tartaruga__Luce_01"] = {
+                ["b0"] = 0.45,
+                ["b1"] = 1.35,
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["cyc"] = 1,
+                ["ph"] = -0.785,
+                ["r"] = 7.65,
+            },
+            ["Tartaruga__Luce_02"] = {
+                ["b0"] = 0.45,
+                ["b1"] = 1.35,
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["cyc"] = 1,
+                ["ph"] = -3.142,
+                ["r"] = 7.65,
+            },
+            ["Tartaruga__Luce_03"] = {
+                ["b0"] = 0.45,
+                ["b1"] = 1.35,
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["cyc"] = 1,
+                ["ph"] = -5.498,
+                ["r"] = 7.65,
+            },
+        },
+        ["parti"] = {
+            ["Tartaruga__Becco__Galleggiamento"] = {
+                ["c"] = {0.3492, 0.3492, 0.2934},
+                ["k"] = "solid",
+            },
+            ["Tartaruga__Cella_0__Galleggiamento"] = {
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.114, 1.0, 1.0, -0.0},
+                ["t"] = 0.2,
+            },
+            ["Tartaruga__Cella_1__Galleggiamento"] = {
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.114, 1.0, 1.0, -0.785},
+                ["t"] = 0.2,
+            },
+            ["Tartaruga__Cella_2__Galleggiamento"] = {
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.114, 1.0, 1.0, -1.571},
+                ["t"] = 0.2,
+            },
+            ["Tartaruga__Cella_3__Galleggiamento"] = {
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.114, 1.0, 1.0, -2.356},
+                ["t"] = 0.2,
+            },
+            ["Tartaruga__Cella_4__Galleggiamento"] = {
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.114, 1.0, 1.0, -3.142},
+                ["t"] = 0.2,
+            },
+            ["Tartaruga__Cella_5__Galleggiamento"] = {
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.114, 1.0, 1.0, -3.927},
+                ["t"] = 0.2,
+            },
+            ["Tartaruga__Cella_6__Galleggiamento"] = {
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.114, 1.0, 1.0, -4.712},
+                ["t"] = 0.2,
+            },
+            ["Tartaruga__Cella_7__Galleggiamento"] = {
+                ["c"] = {0.3492, 1.0, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.114, 1.0, 1.0, -5.498},
+                ["t"] = 0.2,
+            },
+            ["Tartaruga__Guscio_Base__Galleggiamento"] = {
+                ["c"] = {0.1517, 0.206, 0.1897},
+                ["k"] = "solid",
+            },
+            ["Tartaruga__Occhi__Galleggiamento"] = {
+                ["c"] = {0.0999, 0.1284, 0.1121},
+                ["k"] = "solid",
+            },
+            ["Tartaruga__Pelle__Galleggiamento"] = {
+                ["k"] = "tex",
+            },
+            ["Tartaruga__Pelle__Pinna_Ant_L"] = {
+                ["k"] = "tex",
+            },
+            ["Tartaruga__Pelle__Pinna_Ant_R"] = {
+                ["k"] = "tex",
+            },
+            ["Tartaruga__Pelle__Pinna_Post_L"] = {
+                ["k"] = "tex",
+            },
+            ["Tartaruga__Pelle__Pinna_Post_R"] = {
+                ["k"] = "tex",
+            },
+            ["Tartaruga__Piastrone__Galleggiamento"] = {
+                ["c"] = {0.7354, 0.7084, 0.5838},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {
+            ["Tartaruga__Perno_Galleggiamento"] = {
+                ["membri"] = {
+                    "Tartaruga__Luce_01",
+                    "Tartaruga__Luce_02",
+                    "Tartaruga__Luce_03",
+                    "Tartaruga__Becco__Galleggiamento",
+                    "Tartaruga__Cella_0__Galleggiamento",
+                    "Tartaruga__Cella_1__Galleggiamento",
+                    "Tartaruga__Cella_2__Galleggiamento",
+                    "Tartaruga__Cella_3__Galleggiamento",
+                    "Tartaruga__Cella_4__Galleggiamento",
+                    "Tartaruga__Cella_5__Galleggiamento",
+                    "Tartaruga__Cella_6__Galleggiamento",
+                    "Tartaruga__Cella_7__Galleggiamento",
+                    "Tartaruga__Guscio_Base__Galleggiamento",
+                    "Tartaruga__Occhi__Galleggiamento",
+                    "Tartaruga__Pelle__Galleggiamento",
+                    "Tartaruga__Piastrone__Galleggiamento",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0524,
+                        ["asse"] = "X",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.1,
+                    },
+                    {
+                        ["amp"] = 0.0349,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 2.2,
+                    },
+                    {
+                        ["amp"] = 0.21,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["mov"] = true,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Tartaruga__Perno_Pinna_Ant_L"] = {
+                ["membri"] = {
+                    "Tartaruga__Pelle__Pinna_Ant_L",
+                },
+                ["padre"] = "Tartaruga__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.384,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                    {
+                        ["amp"] = -0.1745,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.571,
+                    },
+                },
+            },
+            ["Tartaruga__Perno_Pinna_Ant_R"] = {
+                ["membri"] = {
+                    "Tartaruga__Pelle__Pinna_Ant_R",
+                },
+                ["padre"] = "Tartaruga__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.384,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                    {
+                        ["amp"] = 0.1745,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.571,
+                    },
+                },
+            },
+            ["Tartaruga__Perno_Pinna_Post_L"] = {
+                ["membri"] = {
+                    "Tartaruga__Pelle__Pinna_Post_L",
+                },
+                ["padre"] = "Tartaruga__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.2094,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.0,
+                    },
+                },
+            },
+            ["Tartaruga__Perno_Pinna_Post_R"] = {
+                ["membri"] = {
+                    "Tartaruga__Pelle__Pinna_Post_R",
+                },
+                ["padre"] = "Tartaruga__Perno_Galleggiamento",
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.2094,
+                        ["asse"] = "Z",
+                        ["cyc"] = 1,
+                        ["ph"] = 1.0,
+                    },
+                },
+            },
+        },
         ["scala"] = {},
     },
     ["Vipera"] = {
@@ -2216,6 +4876,270 @@ local CONFIG = {
         },
         ["scala"] = {},
     },
+    ["Volpe"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Volpe__Luce_01"] = {
+                ["b0"] = 0.45,
+                ["b1"] = 1.273,
+                ["c"] = {0.7674, 0.9309, 1.0},
+                ["cyc"] = 2,
+                ["ph"] = 0.0,
+                ["r"] = 7.47,
+            },
+        },
+        ["parti"] = {
+            ["Volpe__Ali_Ghiacciate__Ala2_L"] = {
+                ["ali"] = true,
+                ["e"] = 9.6,
+                ["k"] = "tex",
+            },
+            ["Volpe__Ali_Ghiacciate__Ala2_R"] = {
+                ["ali"] = true,
+                ["e"] = 9.6,
+                ["k"] = "tex",
+            },
+            ["Volpe__Ali_Ghiacciate__Ala_L"] = {
+                ["ali"] = true,
+                ["e"] = 9.6,
+                ["k"] = "tex",
+            },
+            ["Volpe__Ali_Ghiacciate__Ala_R"] = {
+                ["ali"] = true,
+                ["e"] = 9.6,
+                ["k"] = "tex",
+            },
+            ["Volpe__Alone_Cuore"] = {
+                ["c"] = {0.7674, 0.9309, 1.0},
+                ["k"] = "aura",
+                ["p"] = {0.15, 1.0, 2.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Volpe__Corpo_Ghiaccio"] = {
+                ["c"] = {0.8962, 0.9686, 1.0},
+                ["k"] = "glass",
+                ["t"] = 0.45,
+            },
+            ["Volpe__Cuore_Luce"] = {
+                ["c"] = {0.7977, 0.9547, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.143, 1.0, 2.0, 0.0},
+            },
+            ["Volpe__Naso"] = {
+                ["c"] = {0.2478, 0.3492, 0.4366},
+                ["k"] = "solid",
+            },
+            ["Volpe__Occhi"] = {
+                ["c"] = {0.7354, 0.9309, 1.0},
+                ["k"] = "neon",
+            },
+            ["Volpe__Punte_Ghiaccio"] = {
+                ["c"] = {0.7674, 0.9309, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.333, 1.0, 2.0, 0.5},
+                ["t"] = 0.2,
+            },
+        },
+        ["perni"] = {
+            ["Volpe__Perno_Ala2_L"] = {
+                ["membri"] = {
+                    "Volpe__Ali_Ghiacciate__Ala2_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.3142,
+                        ["asse"] = "Y",
+                        ["cyc"] = 36,
+                        ["ph"] = 1.4,
+                    },
+                },
+            },
+            ["Volpe__Perno_Ala2_R"] = {
+                ["membri"] = {
+                    "Volpe__Ali_Ghiacciate__Ala2_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.3142,
+                        ["asse"] = "Y",
+                        ["cyc"] = 36,
+                        ["ph"] = 1.4,
+                    },
+                },
+            },
+            ["Volpe__Perno_Ala_L"] = {
+                ["membri"] = {
+                    "Volpe__Ali_Ghiacciate__Ala_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.3142,
+                        ["asse"] = "Y",
+                        ["cyc"] = 36,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Volpe__Perno_Ala_R"] = {
+                ["membri"] = {
+                    "Volpe__Ali_Ghiacciate__Ala_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.3142,
+                        ["asse"] = "Y",
+                        ["cyc"] = 36,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Yeti"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Yeti__Luce_01"] = {
+                ["b0"] = 0.551,
+                ["b1"] = 1.191,
+                ["c"] = {0.9309, 0.2478, 0.8808},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 7.28,
+            },
+            ["Yeti__Luce_02"] = {
+                ["b0"] = 2.25,
+                ["b1"] = 2.25,
+                ["c"] = {0.9063, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 9.75,
+            },
+            ["Yeti__Luce_03"] = {
+                ["b0"] = 0.318,
+                ["b1"] = 0.9,
+                ["c"] = {0.9063, 0.4236, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 6.6,
+            },
+            ["Yeti__Luce_04"] = {
+                ["b0"] = 0.318,
+                ["b1"] = 0.9,
+                ["c"] = {0.9063, 0.4236, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 6.6,
+            },
+        },
+        ["parti"] = {
+            ["Yeti__Ali_Carnose__AlaAnt_L"] = {
+                ["ali"] = true,
+                ["e"] = 10.4,
+                ["k"] = "tex",
+            },
+            ["Yeti__Ali_Carnose__AlaAnt_R"] = {
+                ["ali"] = true,
+                ["e"] = 10.4,
+                ["k"] = "tex",
+            },
+            ["Yeti__Ali_Carnose__AlaPost_L"] = {
+                ["ali"] = true,
+                ["e"] = 10.4,
+                ["k"] = "tex",
+            },
+            ["Yeti__Ali_Carnose__AlaPost_R"] = {
+                ["ali"] = true,
+                ["e"] = 10.4,
+                ["k"] = "tex",
+            },
+            ["Yeti__Antenne"] = {
+                ["c"] = {0.9063, 0.8962, 0.9309},
+                ["k"] = "solid",
+            },
+            ["Yeti__Bagliore_Nella_Pelliccia"] = {
+                ["c"] = {1.0, 0.9163, 0.9867},
+                ["h"] = {0.9309, 0.2478, 0.8808},
+                ["k"] = "ghost",
+            },
+            ["Yeti__Occhi"] = {
+                ["c"] = {0.1897, 0.0, 0.1897},
+                ["k"] = "solid",
+            },
+            ["Yeti__Pelliccia"] = {
+                ["c"] = {0.9309, 0.2478, 0.8808},
+                ["k"] = "neon",
+                ["p"] = {0.278, 1.0, 1.0, 0.0},
+            },
+            ["Yeti__Zampe"] = {
+                ["c"] = {0.9309, 0.9212, 0.9547},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {
+            ["Yeti__Perno_AlaAnt_L"] = {
+                ["membri"] = {
+                    "Yeti__Ali_Carnose__AlaAnt_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Yeti__Perno_AlaAnt_R"] = {
+                ["membri"] = {
+                    "Yeti__Ali_Carnose__AlaAnt_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Yeti__Perno_AlaPost_L"] = {
+                ["membri"] = {
+                    "Yeti__Ali_Carnose__AlaPost_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.3,
+                    },
+                },
+            },
+            ["Yeti__Perno_AlaPost_R"] = {
+                ["membri"] = {
+                    "Yeti__Ali_Carnose__AlaPost_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.1222,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.3,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
 }
 
 
@@ -2232,6 +5156,25 @@ end
 
 local function colore(c)
 	return Color3.new(c[1], c[2], c[3])
+end
+
+-- colore di un ciclo: la tavolozza scorre cc.cyc volte per CICLO
+local function ciclo(cc, t)
+	local pal = cc.pal
+	local n = #pal
+	local x = ((cc.cyc * t / CICLO + cc.ph) % 1) * n
+	local i = math.floor(x)
+	local f = x - i
+	local a = pal[(i % n) + 1]
+	local b = pal[((i + 1) % n) + 1]
+	return Color3.new(a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f, a[3] + (b[3] - a[3]) * f)
+end
+
+local function materiale(nome)
+	local ok, m = pcall(function()
+		return Enum.Material[nome]
+	end)
+	return ok and m or nil
 end
 
 local function trova(model, nome)
@@ -2368,6 +5311,11 @@ local function prepara(radice)
 					p.Color = colore(s.c)
 					p.Material = s.metallo and Enum.Material.Metal or Enum.Material.SmoothPlastic
 				end
+				-- materiale Roblox specifico (Ice, Snow, Slate...)
+				local m = s.m and materiale(s.m)
+				if m then
+					p.Material = m
+				end
 			elseif s.k == "tex" then
 				if s.ali then
 					p.CastShadow = false
@@ -2388,6 +5336,16 @@ local function prepara(radice)
 			end
 			if s.h then
 				contorno(p, s.h)
+			end
+			if s.cc then
+				local c0 = ciclo(s.cc, 0)
+				if s.k ~= "tex" then
+					p.Color = c0
+				end
+				local h = p:FindFirstChild("Contorno_Creatura")
+				if h then
+					h.OutlineColor = c0
+				end
 			end
 		end
 	end
@@ -2412,7 +5370,7 @@ local function prepara(radice)
 				luce.Angle = l.ang or 60
 			end
 			luce.Name = "Luce_Creatura"
-			luce.Color = colore(l.c)
+			luce.Color = l.cc and ciclo(l.cc, 0) or colore(l.c)
 			luce.Range = l.r
 			luce.Brightness = (l.b0 + l.b1) / 2
 			luce.Shadows = false
@@ -2433,7 +5391,7 @@ local function prepara(radice)
 		assi[a] = v.Magnitude > 0 and v.Unit or nil
 	end
 
-	local inst = { assi = assi, perni = {}, luci = {}, neon = {}, scala = {}, bob = {} }
+	local inst = { assi = assi, perni = {}, luci = {}, neon = {}, scala = {}, bob = {}, colori = {} }
 	for nome, pv in pairs(cfg.perni) do
 		local m = trova(model, nome)
 		if m then
@@ -2458,6 +5416,20 @@ local function prepara(radice)
 		local p = trova(model, nome)
 		if p and s.p then
 			table.insert(inst.neon, { parte = p, base = s.t or 0, lo = s.p[1], cyc = s.p[3], ph = s.p[4] })
+		end
+		if p and s.cc then
+			table.insert(inst.colori, {
+				parte = s.k ~= "tex" and p or nil,
+				contorno = p:FindFirstChild("Contorno_Creatura"),
+				cc = s.cc,
+			})
+		end
+	end
+	for nome, l in pairs(cfg.luci) do
+		local p = trova(model, nome)
+		local luce = p and p:FindFirstChild("Luce_Creatura")
+		if luce and l.cc then
+			table.insert(inst.colori, { luce = luce, cc = l.cc })
 		end
 	end
 	for nome, s in pairs(cfg.scala) do
@@ -2493,19 +5465,24 @@ local function trasforma(inst, nome, t, cache)
 		T = trasforma(inst, pv.padre, t, cache)
 	end
 	local R = CFrame.identity
+	local D = Vector3.zero
 	for _, r in ipairs(pv.rot) do
 		local asse = inst.assi[r.asse]
 		if asse then
-			local ang
-			if r.spin then
-				ang = DUE_PI * r.cyc * t / CICLO + r.ph -- rotazione continua (sfera che rotola)
+			if r.mov then
+				D += asse * (r.amp * seno(r.cyc, r.ph, t)) -- galleggiamento (spostamento)
 			else
-				ang = r.amp * seno(r.cyc, r.ph, t)
+				local ang
+				if r.spin then
+					ang = DUE_PI * r.cyc * t / CICLO + r.ph -- rotazione continua (sfera che rotola)
+				else
+					ang = r.amp * seno(r.cyc, r.ph, t)
+				end
+				R = CFrame.fromAxisAngle(asse, ang) * R
 			end
-			R = CFrame.fromAxisAngle(asse, ang) * R
 		end
 	end
-	local W = T * CFrame.new(pv.centro) * R * CFrame.new(-pv.centro)
+	local W = T * CFrame.new(D) * CFrame.new(pv.centro) * R * CFrame.new(-pv.centro)
 	cache[nome] = W
 	return W
 end
@@ -2534,6 +5511,18 @@ local function anima(t)
 			if su then
 				for _, b in ipairs(inst.bob) do
 					b.parte.CFrame = b.riposo + su * (b.amp * seno(b.cyc, b.ph, t))
+				end
+			end
+			for _, c in ipairs(inst.colori) do
+				local col = ciclo(c.cc, t)
+				if c.parte then
+					c.parte.Color = col
+				end
+				if c.contorno then
+					c.contorno.OutlineColor = col
+				end
+				if c.luce then
+					c.luce.Color = col
 				end
 			end
 		end
