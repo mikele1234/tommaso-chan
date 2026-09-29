@@ -256,10 +256,10 @@ def m_arlecchino(nome, colori, forza=40.0, scala=9.0):
     nb.set(mp, 'Scale', (1.0, 1.35, 1.0))
     vo = nb.voronoi(mp.outputs[0], scala, 'F1', randomness=0.0)
     vd = nb.voronoi(mp.outputs[0], scala, 'DISTANCE_TO_EDGE', randomness=0.0)
-    bw = nb.node('ShaderNodeRGBToBW')
-    nb.link(vo.outputs['Color'], bw.inputs[0])
+    sep = nb.node('ShaderNodeSeparateXYZ')          # canale R del colore della cella: uniforme 0..1
+    nb.link(vo.outputs['Color'], sep.inputs[0])
     n = len(colori)
-    col = nb.ramp(bw.outputs[0], [(i / n, c) for i, c in enumerate(colori)], interp='CONSTANT')
+    col = nb.ramp(sep.outputs['X'], [(i / n, c) for i, c in enumerate(colori)], interp='CONSTANT')
     bordo = nb.maprange(vd.outputs['Distance'], 0.06, 0.03)
     pb = nb.principled(base=col, rough=0.3, coat=0.6, spec=0.5)
     nero = nb.principled(base=(0.01, 0.01, 0.01), rough=0.3, coat=0.6)
@@ -840,7 +840,7 @@ def build_persefone():
 def build_alichino():
     DS.texspace("Alichino")
     colori = [(1.0, 0.05, 0.04), (1.0, 0.8, 0.02), (0.05, 0.9, 0.12), (0.05, 0.25, 1.0)]
-    m_rombi = m_arlecchino("Alichino_Elitre_Rombi", colori, 6.0)
+    m_rombi = m_arlecchino("Alichino_Elitre_Rombi", colori, 2.5)
     m_pelle = chitina("Alichino_Pelle_Rossa", (0.4, 0.02, 0.015), rough=0.35, coat=0.5)
     m_nero = chitina("Alichino_Maschera_Nera", (0.01, 0.01, 0.012), rough=0.2, coat=0.8)
     m_bianco = ST.m_occhio_bianco("Alichino_Occhi")
