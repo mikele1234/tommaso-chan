@@ -186,7 +186,7 @@ def m_legno_barca(nome, base=(0.08, 0.045, 0.025)):
     return mat
 
 
-def m_mantello(nome, base=(0.012, 0.008, 0.02), luce=(0.5, 0.1, 1.0), forza=40.0):
+def m_mantello(nome, base=(0.012, 0.008, 0.02), luce=(0.5, 0.1, 1.0), forza=25.0):
     """Mantello di Ade: velluto scuro, la luce viola solo sul bordo (Layer
     Weight / Fresnel come fattore dell'emissione e l'orlo del mantello) e un
     mix con Transparent BSDF gia' pronto per l'invisibilita' (Visibilita' = 1)."""
@@ -196,8 +196,8 @@ def m_mantello(nome, base=(0.012, 0.008, 0.02), luce=(0.5, 0.1, 1.0), forza=40.0
     sep = nb.node('ShaderNodeSeparateXYZ')
     nb.link(tc.outputs['UV'], sep.inputs[0])
     u, v = sep.outputs['X'], sep.outputs['Y']
-    orlo = nb.math('MAXIMUM', nb.maprange(v, 0.9, 0.99),
-                   nb.maprange(nb.math('MINIMUM', u, nb.math('SUBTRACT', 1.0, u)), 0.05, 0.005))
+    orlo = nb.math('MAXIMUM', nb.maprange(v, 0.95, 0.99),
+                   nb.maprange(nb.math('MINIMUM', u, nb.math('SUBTRACT', 1.0, u)), 0.014, 0.003))
     fres = nb.maprange(nb.fresnel(0.35), 0.45, 1.0)
     fac = nb.math('MAXIMUM', orlo, nb.math('MULTIPLY', fres, 0.5))
     nz = nb.noise(tc.outputs['Object'], 4.0, 4.0, 0.6)
@@ -287,8 +287,8 @@ def m_tronco(nome, luce_c=1600, forza=90.0):
     nb.set(mp, 'Scale', (1.0, 1.0, 0.35))
     vo = nb.voronoi(mp.outputs[0], 5.5, 'DISTANCE_TO_EDGE')
     nz = nb.noise(tc.outputs['Object'], 3.0, 5.0, 0.6)
-    crepe = nb.math('MULTIPLY', nb.maprange(vo.outputs['Distance'], 0.045, 0.008),
-                    nb.maprange(nz.outputs['Fac'], 0.38, 0.55))
+    crepe = nb.math('MULTIPLY', nb.maprange(vo.outputs['Distance'], 0.02, 0.004),
+                    nb.maprange(nz.outputs['Fac'], 0.45, 0.6))
     wv = nb.node('ShaderNodeTexWave', wave_type='BANDS', bands_direction='Z')
     nb.set(wv, 'Scale', 2.0)
     nb.set(wv, 'Distortion', 10.0)
@@ -451,23 +451,23 @@ def build_cerbero():
     m_borchie = CL.m_body("Cerbero_Borchie", (0.6, 0.55, 0.5), rough=0.25, metal=1.0)
     m_lingua = CL.m_body("Cerbero_Lingua", (0.6, 0.08, 0.1), rough=0.3, sss=0.5, coat=0.6)
 
-    E = [el((0, 0.0, 0.5), 0.16, (1.1, 1.15, 0.9)), el((0, -0.2, 0.6), 0.12, (1.2, 0.9, 1.0)),
-         el((0, 0.3, 0.5), 0.17, (1.05, 1.25, 0.88))]
+    E = [el((0, 0.0, 0.38), 0.16, (1.1, 1.15, 0.9)), el((0, -0.2, 0.48), 0.12, (1.2, 0.9, 1.0)),
+         el((0, 0.3, 0.38), 0.17, (1.05, 1.25, 0.88))]
     CL.metaball_mesh("Cerbero_Torace", E, m_chit, res=0.016)
-    C, R = V((0, 0.32, 0.53)), (0.2, 0.3, 0.17)
+    C, R = V((0, 0.32, 0.41)), (0.2, 0.3, 0.17)
     for sx in (-1, 1):
         ST.guscio("Cerbero_Elitra_" + side_name(sx), C, R, m_chit,
-                  [((0.012 * sx, 0, 0), (sx, 0, 0)), ((0, 0, 0.5), (0, 0, 1))])
+                  [((0.012 * sx, 0, 0), (sx, 0, 0)), ((0, 0, 0.38), (0, 0, 1))])
     # tre colli e tre teste (la stessa testa istanziata tre volte)
     master = testa_cane(m_pelo, m_muso, m_naso, m_occhi, m_faro, m_serpe, m_serpe_occhi, m_collare, m_borchie,
                         m_lingua)
-    teste = [((-0.3, -0.52, 0.84), (-0.65, -1.0, -0.15)), ((0.0, -0.6, 0.97), (0.0, -1.0, 0.2)),
-             ((0.3, -0.52, 0.84), (0.65, -1.0, -0.1))]
+    teste = [((-0.3, -0.52, 0.72), (-0.65, -1.0, -0.15)), ((0.0, -0.6, 0.85), (0.0, -1.0, 0.2)),
+             ((0.3, -0.52, 0.72), (0.65, -1.0, -0.1))]
     mats = [ST.frame(p, d) for p, d in teste]
     gruppi = ST.istanze(master, mats, "Cerbero_Testa")
     for i, ((p, d), grp) in enumerate(zip(teste, gruppi)):
         p, d = V(p), V(d).normalized()
-        b = V((p.x * 0.35, -0.22, 0.62))
+        b = V((p.x * 0.35, -0.22, 0.5))
         tip = p - d * 0.06 + V((0, 0, -0.06))
         CL.tube("Cerbero_Collo_%d" % i, [b, b.lerp(tip, 0.5) + V((0, 0, 0.08)), tip], [0.075, 0.065, 0.06], m_pelo,
                 bevel_res=3)
@@ -477,20 +477,20 @@ def build_cerbero():
     rnd = random.Random(5)
     for i in range(7):
         a = pi * (0.1 + 0.8 * i / 6)
-        b = V((0.17 * cos(a), -0.12 + 0.05 * sin(a), 0.66 + 0.04 * sin(a)))
+        b = V((0.17 * cos(a), -0.12 + 0.05 * sin(a), 0.54 + 0.04 * sin(a)))
         d = V((cos(a) * 0.7, 0.4, 0.9)).normalized()
         c1 = b + d * 0.08
         c2 = c1 + V((rnd.uniform(-0.05, 0.05), 0.05, 0.08))
         c3 = c2 + V((cos(a) * 0.06, -0.05, 0.02))
         serpentello("Cerbero_Criniera_%d" % i, [b, c1, c2, c3], 0.016, m_serpe, m_serpe_occhi, m_lingua, n=10)
     # coda che finisce con una testina di serpente
-    serpentello("Cerbero_Coda", [V((0, 0.58, 0.5)), V((0, 0.78, 0.55)), V((0.1, 0.93, 0.7)), V((0.06, 1.0, 0.86)),
-                                 V((0.0, 0.96, 0.95))], 0.035, m_serpe, m_serpe_occhi, m_lingua, n=16)
+    serpentello("Cerbero_Coda", [V((0, 0.58, 0.38)), V((0, 0.78, 0.43)), V((0.1, 0.93, 0.58)), V((0.06, 1.0, 0.74)),
+                                 V((0.0, 0.96, 0.83))], 0.035, m_serpe, m_serpe_occhi, m_lingua, n=16)
     # zampe tozze da cagnone
     for i, y in enumerate((-0.14, 0.08, 0.3)):
         for sx in (-1, 1):
-            zampa_tozza("Cerbero_Zampa_%s%d" % (side_name(sx), i), (0.16 * sx, y, 0.45), (0.3 * sx, y - 0.02, 0.3),
-                        (0.32 * sx, y - 0.04, 0.05), 0.05, m_pelo, m_naso)
+            zampa_tozza("Cerbero_Zampa_%s%d" % (side_name(sx), i), (0.16 * sx, y, 0.33), (0.26 * sx, y - 0.02, 0.2),
+                        (0.27 * sx, y - 0.04, 0.05), 0.065, m_pelo, m_naso)
 
 
 # ============================================================================
@@ -512,7 +512,7 @@ def build_caronte():
     m_ferro = CL.m_body("Caronte_Ferro_Lanterna", (0.05, 0.05, 0.05), rough=0.4, metal=0.9)
     m_vetro = ST.m_vetro_sottile("Caronte_Vetro_Lanterna", (0.8, 1.0, 0.95), bordo=fantasma, forza_bordo=1.0)
     m_fiamma = ST.m_luce("Caronte_Fiamma_Fantasma", fantasma, 50.0)
-    m_alone = ST.m_volume("Caronte_Alone_Lanterna", (0.7, 1.0, 0.95), 6.0, luce_c=fantasma, forza=2.5,
+    m_alone = ST.m_volume("Caronte_Alone_Lanterna", (0.7, 1.0, 0.95), 3.0, luce_c=fantasma, forza=0.8,
                           roblox="aura")
     m_zampe = chitina("Caronte_Zampe", (0.02, 0.02, 0.022))
 
@@ -638,7 +638,7 @@ def build_caronte():
 # 03  ADE OMBRETTA
 # ============================================================================
 
-def mantello_mesh(nome, mat, y0=0.06, z0=0.74, apertura=112.0, cols=26, rows=12):
+def mantello_mesh(nome, mat, y0=0.06, z0=0.74, apertura=92.0, cols=26, rows=12):
     """Telo del mantello (elitre allargate): si apre dietro le spalle e scende
     fino a terra con le pieghe. UV: u attraverso, v dall'alto al fondo."""
     cols, rows = CL.det(cols, 10), CL.det(rows, 5)
@@ -766,7 +766,8 @@ def build_persefone():
     md.material_offset = 1
     md.material_offset_rim = 1
     # spaccatura sul fianco che mostra i sei semi
-    cut = OC.lumpy("Persefone_Spaccatura", fr @ V((-0.2, -0.06, 0.02)), (0.12, 0.1, 0.13), None, seed=4, amount=0.3)
+    vd = V((0.78, -0.6, 0.12)).normalized()          # la spaccatura guarda verso l'osservatore
+    cut = OC.lumpy("Persefone_Spaccatura", Pc + vd * 0.2, (0.12, 0.1, 0.13), None, seed=4, amount=0.3)
     bo = pom.modifiers.new("Spaccatura", 'BOOLEAN')
     bo.operation = 'DIFFERENCE'
     bo.solver = 'EXACT'
@@ -776,16 +777,17 @@ def build_persefone():
     ST.separa_materiali(pom)
     rnd = random.Random(6)
     semi = []
+    su = vd.cross(V((0, 0, 1))).normalized()
+    sw = su.cross(vd).normalized()
     for i in range(6):
-        a = -0.9 + 1.8 * (i % 3) / 2
-        zz = -0.05 + 0.1 * (i // 3)
-        p = fr @ V((-0.11 + 0.02 * abs(a), 0.06 * a, zz + rnd.uniform(-0.01, 0.01)))
+        a = (i % 3) - 1
+        b = (i // 3) - 0.5
+        p = Pc + vd * (0.1 - 0.015 * abs(a)) + su * 0.052 * a + sw * 0.06 * b + V((0, 0, rnd.uniform(-0.008, 0.008)))
         s = CL.sphere("Persefone_Seme_%d" % i, (0, 0, 0), 1.0, m_seme, seg=14, rings=7)
-        d = (p - Pc).normalized()
-        s.matrix_world = CL.frame_matrix(p, V((0, 0, 1)), d) @ Matrix.Diagonal((0.03, 0.028, 0.042, 1.0))
+        s.matrix_world = CL.frame_matrix(p, V((0, 0, 1)), vd) @ Matrix.Diagonal((0.03, 0.028, 0.042, 1.0))
         semi.append(s)
-    ST.proxy(semi[0], fr @ V((-0.25, 0.0, 0.0)), (1.0, 0.1, 0.12), 5.0, nome="Persefone_Luce_Semi")
-    ST.proxy(semi[3], fr @ V((-0.05, 0.0, 0.02)), (1.0, 0.1, 0.12), 3.0, nome="Persefone_Luce_Dentro")
+    ST.proxy(semi[0], Pc + vd * 0.32, (1.0, 0.1, 0.12), 5.0, nome="Persefone_Luce_Semi")
+    ST.proxy(semi[3], Pc + vd * 0.02, (1.0, 0.1, 0.12), 3.0, nome="Persefone_Luce_Dentro")
     # la corona a punta in cima
     tip = fr @ V((0, 0, R * 0.95))
     for i in range(6):
@@ -806,8 +808,8 @@ def build_persefone():
         spiga("Persefone_Antenna_Spiga_" + s, (0.02 * sx, -0.36, 0.77), (0.35 * sx, -0.6, 0.75), 0.36, m_spiga,
               m_spiga)
         for i, y in enumerate((-0.2, -0.1, 0.0)):
-            DS.leg("Persefone_Zampa_%s%d" % (s, i), [V((0.04 * sx, y, 0.58)), V((0.16 * sx, y - 0.02, 0.5)),
-                                                    V((0.22 * sx, y - 0.02 + 0.06 * i, 0.0))], [0.01, 0.008, 0.005],
+            DS.leg("Persefone_Zampa_%s%d" % (s, i), [V((0.04 * sx, y, 0.58)), V((0.2 * sx, y - 0.03, 0.66)),
+                                                    V((0.38 * sx, y - 0.08 + 0.08 * i, 0.0))], [0.011, 0.009, 0.005],
                    m_chit, joint_mat=m_oro)
     # ali sottili con i fiorellini alle punte
     fw = [(-12, 0.1), (0, 0.4), (10, 0.62), (20, 0.66), (30, 0.4), (42, 0.1)]
@@ -954,7 +956,7 @@ def build_ghiacciolo():
     m_mem = ST.m_chitina("Ghiacciolo_Membrana_Ali", (0.05, 0.06, 0.08), rough=0.5, coat=0.3, sss=0.3,
                          sss_radius=(0.4, 0.8, 1.0))
     m_mem["rbx_thick"] = 1
-    m_filo = ST.m_luce("Ghiacciolo_Brina_Ali", (0.6, 0.9, 1.0), 4.0)
+    m_filo = ST.m_luce("Ghiacciolo_Brina_Ali", (0.6, 0.9, 1.0), 2.0)
     # blocco di ghiaccio: la meta' inferiore del corpo resta dentro
     blocco_ghiaccio("Ghiacciolo_Blocco_Ghiaccio", (0, 0.05, 0.28), (0.95, 0.8, 0.58), m_ice)
     E = [el((0, 0.05, 0.3), 0.14, (1.0, 1.3, 0.9)), el((0, -0.05, 0.62), 0.14, (1.2, 0.9, 1.1)),
@@ -1019,12 +1021,12 @@ def build_flegetonte():
     DS.texspace("Flegetonte")
     m_roccia = DS.m_lava("Flegetonte_Chitina_Vulcanica", strength=6.0, scale=9.0, crack=0.05)
     m_vetro = ST.m_vetro_sottile("Flegetonte_Guscio_Vetro", (1.0, 0.85, 0.7), bordo=1700, forza_bordo=1.5)
-    m_fl = m_flusso("Flegetonte_Fuoco_Che_Scorre", 40.0)
-    m_blob = ST.m_luce("Flegetonte_Bolle_Lava", 3800, 60.0, bordo=1700, forza_bordo=40.0)
-    m_goccia = ST.m_luce("Flegetonte_Gocce_Lava", 1700, 50.0, bordo=3800, forza_bordo=70.0)
+    m_fl = m_flusso("Flegetonte_Fuoco_Che_Scorre", 14.0)
+    m_blob = ST.m_luce("Flegetonte_Bolle_Lava", 3800, 25.0, bordo=1700, forza_bordo=18.0)
+    m_goccia = ST.m_luce("Flegetonte_Gocce_Lava", 1700, 25.0, bordo=3800, forza_bordo=35.0)
     m_ala = ST.m_ala("Flegetonte_Ali_Fiamma", [(0.0, ST.kelvin(3800)), (0.45, ST.kelvin(1900)), (1.0, (1.0, 0.1, 0.0))],
-                     alpha=0.2, membrane_str=18.0, vein_ramp=[(0.0, ST.kelvin(4200)), (1.0, ST.kelvin(1700))],
-                     vein_str=30.0, radial=(7, 0.08), edge=0.03, distort=0.4, film=0.0)
+                     alpha=0.2, membrane_str=2.5, vein_ramp=[(0.0, ST.kelvin(4200)), (1.0, ST.kelvin(1700))],
+                     vein_str=6.0, radial=(7, 0.08), edge=0.03, distort=0.4, film=0.0)
     m_zampe = chitina("Flegetonte_Zampe", (0.03, 0.02, 0.018))
     E = [el((0, -0.12, 0.56), 0.09, (1.0, 1.2, 1.0)), el((0, -0.32, 0.62), 0.07),
          cap((0, -0.2, 0.58), (0, -0.28, 0.61), 0.055)]
@@ -1049,7 +1051,7 @@ def build_flegetonte():
         E.append(bl((rnd.uniform(-0.05, 0.05), rnd.uniform(-0.05, 0.05), z), rnd.uniform(0.03, 0.05)))
     blobs = CL.metaball_mesh("Flegetonte_Bolle", E, m_blob, res=0.01)
     blobs.matrix_world = fr
-    ST.proxy(inner, fr @ V((0, 0, 0.25)), 1700, 30.0, nome="Flegetonte_Luce_Addome")
+    ST.proxy(inner, fr @ V((0, 0, 0.25)), 1700, 10.0, nome="Flegetonte_Luce_Addome")
     ST.proxy(inner, fr @ V((0, 0, 0.1)) + V((0, 0, -0.3)), 1900, 10.0, nome="Flegetonte_Luce_Terra")
     # gocce di lava che cadono dal ventre
     for i, (x, y, z) in enumerate(((0.02, 0.1, 0.36), (-0.04, 0.22, 0.28), (0.05, 0.3, 0.18), (-0.02, 0.16, 0.08),
@@ -1083,7 +1085,7 @@ def build_flegetonte():
 def build_tungtung():
     DS.texspace("TungSahur")
     rosso = (1.0, 0.05, 0.0)
-    m_tr = m_tronco("TungSahur_Corteccia_Lava", 1600, 90.0)
+    m_tr = m_tronco("TungSahur_Corteccia_Lava", 1600, 40.0)
     m_bianco = ST.m_occhio_bianco("TungSahur_Occhi_Bianchi")
     m_iride = ST.m_luce("TungSahur_Iridi_Rosse", rosso, 60.0)
     m_pup = CL.m_body("TungSahur_Pupille", (0.004, 0.004, 0.004), rough=0.05, coat=1.0)
@@ -1199,11 +1201,23 @@ def m_roccia_scena(nome="Roccia_Infernale"):
 
 
 def scena_gruppo(which):
-    ST.mondo((0.012, 0.002, 0.001), (0.05, 0.01, 0.004), 1.0, nome="Cielo_Inferno")
-    ST.pavimento("Terreno_Inferno", (0.02, 0.01, 0.008), (0.06, 0.025, 0.015), scala=0.6, rough=(0.7, 0.95),
-                 lucido=(1500, 2.5, 1.2))
-    ST.nebbia("Foschia_Calore", (0, 3, 1.6), (30, 30, 3.2), (1.0, 0.45, 0.25), 0.02, luce_c=1500, forza=0.004)
-    ST.luci_studio(which, chiave=(1.0, 0.8, 0.7), contro=(1.0, 0.25, 0.08), riempimento=(0.6, 0.65, 1.0))
+    brace = which in ("tutte", "cerbero", "flegetonte", "tungtung")
+    if which == "ade":
+        ST.mondo((0.0, 0.0, 0.0), (0.004, 0.002, 0.008), 1.0, nome="Buio_Ade")
+        ST.pavimento("Terreno_Nero", (0.006, 0.005, 0.008), (0.015, 0.012, 0.02), scala=0.6, rough=(0.5, 0.8))
+    elif which == "ghiacciolo":
+        ST.mondo((0.002, 0.006, 0.015), (0.01, 0.03, 0.06), 1.0, nome="Cielo_Cocito")
+        ST.pavimento("Lago_Cocito", (0.25, 0.35, 0.45), (0.5, 0.65, 0.8), scala=0.5, rough=(0.08, 0.25), bump=0.15)
+    else:
+        ST.mondo((0.012, 0.002, 0.001), (0.05, 0.01, 0.004), 1.0, nome="Cielo_Inferno")
+        ST.pavimento("Terreno_Inferno", (0.012, 0.007, 0.006), (0.04, 0.018, 0.012), scala=0.6, rough=(0.7, 0.95),
+                     lucido=(1500, 0.7, 0.9) if brace else None)
+    if brace:
+        ST.nebbia("Foschia_Calore", (0, 3, 1.6), (30, 30, 3.2), (1.0, 0.5, 0.3), 0.012)
+    if which == "ghiacciolo":
+        ST.luci_studio(which, chiave=(0.8, 0.9, 1.0), contro=(0.4, 0.75, 1.0), riempimento=(0.6, 0.7, 1.0))
+    else:
+        ST.luci_studio(which, chiave=(1.0, 0.85, 0.78), contro=(1.0, 0.3, 0.1), riempimento=(0.6, 0.65, 1.0))
 
 
 def scena_cerbero():
@@ -1218,7 +1232,7 @@ def scena_cerbero():
 def scena_caronte():
     m = CL.new_material("Stige_Acqua")
     nb = CL.NodeBuilder(m)
-    pb = nb.principled(base=(0.004, 0.008, 0.008), rough=0.06, spec=0.7)
+    pb = nb.principled(base=(0.01, 0.025, 0.02), rough=0.16, spec=0.6, coat=0.6, coat_rough=0.03)
     nb.output(pb.outputs[0])
     bm = bmesh.new()
     bmesh.ops.create_grid(bm, x_segments=1, y_segments=1, size=1.0)
@@ -1231,7 +1245,7 @@ def scena_caronte():
         md.spatial_size = 12
         md.repeat_x = md.repeat_y = 2
         md.resolution = 10
-        md.wave_scale = 0.18
+        md.wave_scale = 0.35
         md.choppiness = 0.8
     except Exception as exc:
         print("[creature] Ocean modifier non disponibile:", exc)
@@ -1259,8 +1273,8 @@ def scena_alichino():
     st = nb.math('FRACT', nb.math('MULTIPLY', ang, 14.0 / pi))
     col = nb.ramp(st, [(0.0, (0.35, 0.01, 0.01)), (0.5, (0.02, 0.01, 0.01))], interp='CONSTANT')
     nb.output(nb.principled(base=col, rough=0.8, sheen=0.5).outputs[0])
-    tent = DS.lathe("Tendone", [(2.6, 0.0), (2.6, 2.6), (1.6, 3.4), (0.05, 3.8)], m, seg=64, cap_bottom=False)
-    tent.location = (0, 0.3, 0)
+    tent = DS.lathe("Tendone", [(5.0, 0.0), (5.0, 3.0), (3.0, 4.2), (0.05, 5.0)], m, seg=72, cap_bottom=False)
+    tent.location = (0, 1.0, 0)
     ST.luce("Luce_Rossa_Laterale", 'SPOT', (1.8, -0.8, 1.6), 400.0, (1.0, 0.1, 0.05), 0.2, rot=(60, 0, 60), spot=45)
 
 
@@ -1275,7 +1289,7 @@ def scena_flegetonte():
         a = pi * (0.1 + 0.8 * i / 11)
         DS.rock("Caverna_Roccia_%d" % i, (2.2 * cos(a), 1.2 + 1.2 * sin(a), 0.3 + 0.5 * (i % 3)),
                 (0.6, 0.5, 0.7 + 0.2 * (i % 2)), m, seed=i + 3)
-    ST.nebbia("Calore_Arancio", (0, 0.5, 1.0), (6, 6, 2), (1.0, 0.5, 0.2), 0.05, luce_c=1500, forza=0.02)
+    ST.nebbia("Calore_Arancio", (0, 0.5, 1.0), (6, 6, 2), (1.0, 0.5, 0.2), 0.03)
     ST.compositor(ST.SETUP["inferno"]["bloom"], 7, (4, 15.0, 0.2), ST.SETUP["inferno"]["vignetta"])
 
 
@@ -1292,12 +1306,12 @@ CREATURE_INFERNO = {
     #  chiave         (collezione,                      funzione,          camera: target, dist, elev, azim, lente)
     "cerbero":    ("I01_Cerbero-Piccino",             build_cerbero,     ((0, -0.15, 0.62), 3.4, 12, 30, 50)),
     "caronte":    ("I02_Caronte-Barchetta",           build_caronte,     ((0, -0.15, 0.55), 3.4, 12, 40, 50)),
-    "ade":        ("I03_Ade-Ombretta",                build_ade,         ((0, -0.05, 0.62), 3.0, 10, 30, 50)),
+    "ade":        ("I03_Ade-Ombretta",                build_ade,         ((0, 0.0, 0.72), 3.8, 12, 30, 50)),
     "persefone":  ("I04_Persefone-Melagrana",         build_persefone,   ((0, -0.05, 0.62), 2.8, 12, 45, 50)),
     "alichino":   ("I05_Alichino-Arlecchino",         build_alichino,    ((0, 0.05, 0.6), 2.9, 16, 35, 50)),
     "ghiacciolo": ("I06_Ghiacciolo-Re-di-Ghiaccio",   build_ghiacciolo,  ((0, 0.05, 0.75), 4.0, 12, 25, 50)),
     "flegetonte": ("I07_Flegetonte-Scintilla",        build_flegetonte,  ((0, 0.0, 0.5), 2.8, 14, 40, 50)),
-    "tungtung":   ("I08_Tung-Tung-Tung-Sahur",        build_tungtung,    ((0, -0.05, 0.78), 3.6, 8, 25, 50)),
+    "tungtung":   ("I08_Tung-Tung-Tung-Sahur",        build_tungtung,    ((0.08, -0.05, 0.95), 4.4, 8, 22, 50)),
 }
 
 DISPOSIZIONE_INFERNO = {
