@@ -1115,7 +1115,7 @@ SCENE_DRAGHI = {"tesorino": scena_tesorino, "long": scena_long, "ryujin": scena_
 
 def build(which=None, engine=None, clean=None):
     ST.build_serie(CREATURE_DRAGHI, DISPOSIZIONE_DRAGHI, which or CREATURA, scena_gruppo, SCENE_DRAGHI,
-                   ((0, 2.6, 1.0), 13.0, 12, 0, 32), ST.SETUP["draghi"], engine or MOTORE, clean)
+                   ((0, 2.7, 0.8), 10.8, 13, 0, 32), ST.SETUP["draghi"], engine or MOTORE, clean)
 
 
 def main():

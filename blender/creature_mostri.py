@@ -1415,7 +1415,7 @@ SCENE_MOSTRI = {"occhio": scena_occhio, "pipistrello": scena_pipistrello, "zucca
 
 def build(which=None, engine=None, clean=None):
     ST.build_serie(CREATURE_MOSTRI, DISPOSIZIONE_MOSTRI, which or CREATURA, scena_gruppo, SCENE_MOSTRI,
-                   ((0, 2.4, 1.0), 12.5, 12, 0, 32), ST.SETUP["mostri"], engine or MOTORE, clean)
+                   ((0, 2.5, 0.75), 10.2, 13, 0, 32), ST.SETUP["mostri"], engine or MOTORE, clean)
 
 
 def main():

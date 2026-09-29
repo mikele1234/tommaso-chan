@@ -916,7 +916,7 @@ SCENE_ANGELI = {"serafino": scena_serafino, "cherubino": scena_cherubino, "ofani
 
 def build(which=None, engine=None, clean=None):
     ST.build_serie(CREATURE_ANGELI, DISPOSIZIONE_ANGELI, which or CREATURA, scena_gruppo, SCENE_ANGELI,
-                   ((0, 2.4, 1.0), 12.5, 12, 0, 32), ST.SETUP["angeli"], engine or MOTORE, clean)
+                   ((0, 2.5, 0.75), 10.2, 13, 0, 32), ST.SETUP["angeli"], engine or MOTORE, clean)
 
 
 def main():
