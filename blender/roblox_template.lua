@@ -14,11 +14,13 @@
     restano salvate nel posto (le animazioni partono solo in Play).
 
     Cosa fa:
-      * trasforma in Neon le parti luminose (occhi, punti, bulbilli, filamenti...)
+      * trasforma in Neon le parti luminose (occhi, punti, bulbilli, cristalli...)
       * crea le luci (PointLight) nei punti giusti e le fa pulsare
       * aggiunge un contorno luminoso (Highlight) al gatto e al lupo
-      * rende il lupo spettrale (materiale ForceField)
-      * anima ali, antenna e lampadina, sacca vocale della rana, lucciole
+      * rende il lupo spettrale (materiale ForceField) e le ali dell'avvoltoio
+        di vetro "miraggio"; accende il faretto del cactus (SpotLight)
+      * anima ali, antenne, lampadina, sacca vocale, lucciole, coda dello
+        scorpione, lingua della vipera, sfera di magma dello scarabeo
       * aggiunge un BloomEffect in Lighting per far "accendere" il Neon
 ]]
 
@@ -164,6 +166,14 @@ local function prepara(radice)
 				p.Material = Enum.Material.ForceField
 				p.Color = colore(s.c)
 				p.CastShadow = false
+			elseif s.k == "glass" then
+				-- ali "miraggio": vetro che deforma lo sfondo come l'aria calda
+				togliTexture(p)
+				p.Material = Enum.Material.Glass
+				p.Color = colore(s.c)
+				p.Transparency = s.t or 0.6
+				p.CastShadow = false
+				p.CanCollide = false
 			elseif s.k == "solid" then
 				-- colore uniforme (se l'importer non l'ha gia' preso dal file)
 				if not p:FindFirstChildOfClass("SurfaceAppearance") then
@@ -185,6 +195,9 @@ local function prepara(radice)
 					end)
 				end
 			end
+			if s.rifl then
+				p.Reflectance = s.rifl
+			end
 			if s.h then
 				contorno(p, s.h)
 			end
@@ -194,7 +207,22 @@ local function prepara(radice)
 	for nome, l in pairs(cfg.luci) do
 		local p = trova(model, nome)
 		if p then
-			local luce = p:FindFirstChild("Luce_Creatura") or Instance.new("PointLight")
+			local classe = l.dir and "SpotLight" or "PointLight"
+			local luce = p:FindFirstChild("Luce_Creatura")
+			if luce and luce.ClassName ~= classe then
+				luce:Destroy()
+				luce = nil
+			end
+			luce = luce or Instance.new(classe)
+			if l.dir then
+				-- faretto: il marcatore guarda verso il suo marcatore "_Dir"
+				local bersaglio = trova(model, l.dir)
+				if bersaglio then
+					p.CFrame = CFrame.lookAt(p.Position, bersaglio.Position)
+				end
+				luce.Face = Enum.NormalId.Front
+				luce.Angle = l.ang or 60
+			end
 			luce.Name = "Luce_Creatura"
 			luce.Color = colore(l.c)
 			luce.Range = l.r
@@ -280,7 +308,13 @@ local function trasforma(inst, nome, t, cache)
 	for _, r in ipairs(pv.rot) do
 		local asse = inst.assi[r.asse]
 		if asse then
-			R = CFrame.fromAxisAngle(asse, r.amp * seno(r.cyc, r.ph, t)) * R
+			local ang
+			if r.spin then
+				ang = DUE_PI * r.cyc * t / CICLO + r.ph -- rotazione continua (sfera che rotola)
+			else
+				ang = r.amp * seno(r.cyc, r.ph, t)
+			end
+			R = CFrame.fromAxisAngle(asse, ang) * R
 		end
 	end
 	local W = T * CFrame.new(pv.centro) * R * CFrame.new(-pv.centro)

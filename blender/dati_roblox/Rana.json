@@ -1,0 +1,253 @@
+{
+ "bob": {},
+ "luci": {
+  "Rana__Luce_01": {
+   "b0": 0.45,
+   "b1": 1.559,
+   "c": [
+    1.0,
+    0.6652,
+    0.2478
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 8.14
+  },
+  "Rana__Luce_02": {
+   "b0": 0.45,
+   "b1": 0.779,
+   "c": [
+    1.0,
+    0.7014,
+    0.3133
+   ],
+   "cyc": 2,
+   "ph": 2.1,
+   "r": 6.32
+  }
+ },
+ "parti": {
+  "Rana__Ali_Insetto__AlaDorso2_L": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Rana__Ali_Insetto__AlaDorso2_R": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Rana__Ali_Insetto__AlaDorso_L": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Rana__Ali_Insetto__AlaDorso_R": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Rana__Ali_Insetto__AlaFianco_L": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Rana__Ali_Insetto__AlaFianco_R": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Rana__Bulbilli": {
+   "c": [
+    1.0,
+    0.7674,
+    0.3133
+   ],
+   "k": "neon",
+   "p": [
+    0.5,
+    1.0,
+    2.0,
+    1.0
+   ]
+  },
+  "Rana__Iride": {
+   "c": [
+    0.9547,
+    0.6262,
+    0.1517
+   ],
+   "k": "neon"
+  },
+  "Rana__Pelle_Bagnata": {
+   "k": "tex"
+  },
+  "Rana__Punto_Luce_0": {
+   "c": [
+    1.0,
+    0.5838,
+    0.0999
+   ],
+   "k": "neon",
+   "p": [
+    0.192,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Rana__Punto_Luce_1": {
+   "c": [
+    1.0,
+    0.5838,
+    0.0999
+   ],
+   "k": "neon",
+   "p": [
+    0.192,
+    1.0,
+    2.0,
+    2.1
+   ]
+  },
+  "Rana__Punto_Luce_2": {
+   "c": [
+    1.0,
+    0.5838,
+    0.0999
+   ],
+   "k": "neon",
+   "p": [
+    0.192,
+    1.0,
+    2.0,
+    4.2
+   ]
+  },
+  "Rana__Pupilla": {
+   "c": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "k": "solid"
+  },
+  "Rana__Sacca_Vocale__SaccaVocale": {
+   "c": [
+    1.0,
+    0.5657,
+    0.0999
+   ],
+   "k": "neon",
+   "p": [
+    0.156,
+    1.0,
+    2.0,
+    0.0
+   ],
+   "t": 0.1
+  },
+  "Rana__Ventre": {
+   "c": [
+    0.2717,
+    0.3133,
+    0.206
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Rana__Perno_AlaDorso2_L": {
+   "membri": [
+    "Rana__Ali_Insetto__AlaDorso2_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1745,
+     "asse": "Y",
+     "cyc": 4,
+     "ph": 0.8
+    }
+   ]
+  },
+  "Rana__Perno_AlaDorso2_R": {
+   "membri": [
+    "Rana__Ali_Insetto__AlaDorso2_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1745,
+     "asse": "Y",
+     "cyc": 4,
+     "ph": 0.8
+    }
+   ]
+  },
+  "Rana__Perno_AlaDorso_L": {
+   "membri": [
+    "Rana__Ali_Insetto__AlaDorso_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1745,
+     "asse": "Y",
+     "cyc": 4,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Rana__Perno_AlaDorso_R": {
+   "membri": [
+    "Rana__Ali_Insetto__AlaDorso_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1745,
+     "asse": "Y",
+     "cyc": 4,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Rana__Perno_AlaFianco_L": {
+   "membri": [
+    "Rana__Ali_Insetto__AlaFianco_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1396,
+     "asse": "Y",
+     "cyc": 4,
+     "ph": 1.6
+    }
+   ]
+  },
+  "Rana__Perno_AlaFianco_R": {
+   "membri": [
+    "Rana__Ali_Insetto__AlaFianco_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1396,
+     "asse": "Y",
+     "cyc": 4,
+     "ph": 1.6
+    }
+   ]
+  }
+ },
+ "scala": {
+  "Rana__Sacca_Vocale__SaccaVocale": {
+   "cyc": 2,
+   "hi": 1.12,
+   "lo": 0.82,
+   "ph": 0.0
+  }
+ }
+}

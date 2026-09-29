@@ -1,0 +1,75 @@
+{
+ "bob": {},
+ "luci": {
+  "Tarantola__Luce_01": {
+   "b0": 1.006,
+   "b1": 1.684,
+   "c": [
+    1.0,
+    0.6262,
+    0.2478
+   ],
+   "cyc": 1,
+   "ph": 0.9,
+   "r": 8.43
+  },
+  "Tarantola__Luce_02": {
+   "b0": 0.779,
+   "b1": 1.191,
+   "c": [
+    1.0,
+    0.7014,
+    0.3133
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.28
+  }
+ },
+ "parti": {
+  "Tarantola__Addome_Lava": {
+   "e": 20.0,
+   "k": "tex"
+  },
+  "Tarantola__Carapace_Sole": {
+   "e": 16.0,
+   "k": "tex"
+  },
+  "Tarantola__Giunture_Lava": {
+   "c": [
+    1.0,
+    0.6012,
+    0.1517
+   ],
+   "k": "neon",
+   "p": [
+    0.333,
+    1.0,
+    1.0,
+    0.4
+   ]
+  },
+  "Tarantola__Occhi": {
+   "c": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "k": "solid"
+  },
+  "Tarantola__Zampe": {
+   "e": 10.0,
+   "k": "tex"
+  },
+  "Tarantola__Zanne": {
+   "c": [
+    0.1517,
+    0.1284,
+    0.1121
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

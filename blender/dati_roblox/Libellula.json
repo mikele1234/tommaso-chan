@@ -1,0 +1,177 @@
+{
+ "bob": {},
+ "luci": {
+  "Libellula__Luce_01": {
+   "b0": 0.45,
+   "b1": 1.423,
+   "c": [
+    1.0,
+    0.8808,
+    0.5838
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 7.82
+  },
+  "Libellula__Luce_02": {
+   "b0": 0.551,
+   "b1": 0.9,
+   "c": [
+    0.5838,
+    0.7977,
+    1.0
+   ],
+   "cyc": 3,
+   "ph": 0.0,
+   "r": 6.6
+  }
+ },
+ "parti": {
+  "Libellula__Ala_Circuito__AlaAnt_L": {
+   "ali": true,
+   "e": 16.0,
+   "k": "tex"
+  },
+  "Libellula__Ala_Circuito__AlaAnt_R": {
+   "ali": true,
+   "e": 16.0,
+   "k": "tex"
+  },
+  "Libellula__Ala_Circuito__AlaPost_L": {
+   "ali": true,
+   "e": 16.0,
+   "k": "tex"
+  },
+  "Libellula__Ala_Circuito__AlaPost_R": {
+   "ali": true,
+   "e": 16.0,
+   "k": "tex"
+  },
+  "Libellula__Aura_Bulbo": {
+   "c": [
+    1.0,
+    0.8543,
+    0.4845
+   ],
+   "k": "aura",
+   "p": [
+    0.125,
+    1.0,
+    2.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Libellula__Azzurro": {
+   "c": [
+    0.2478,
+    0.7014,
+    0.9547
+   ],
+   "k": "solid"
+  },
+  "Libellula__Bulbo": {
+   "c": [
+    1.0,
+    0.9063,
+    0.6262
+   ],
+   "k": "neon",
+   "p": [
+    0.167,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Libellula__Occhi": {
+   "c": [
+    0.1517,
+    0.5838,
+    0.8543
+   ],
+   "k": "solid"
+  },
+  "Libellula__Oro": {
+   "c": [
+    1.0,
+    0.7977,
+    0.3492
+   ],
+   "k": "neon",
+   "p": [
+    0.3,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Libellula__Zampe": {
+   "c": [
+    0.1517,
+    0.1897,
+    0.2478
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Libellula__Perno_AlaAnt_L": {
+   "membri": [
+    "Libellula__Ala_Circuito__AlaAnt_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1745,
+     "asse": "Y",
+     "cyc": 6,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Libellula__Perno_AlaAnt_R": {
+   "membri": [
+    "Libellula__Ala_Circuito__AlaAnt_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1745,
+     "asse": "Y",
+     "cyc": 6,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Libellula__Perno_AlaPost_L": {
+   "membri": [
+    "Libellula__Ala_Circuito__AlaPost_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1745,
+     "asse": "Y",
+     "cyc": 6,
+     "ph": 1.2
+    }
+   ]
+  },
+  "Libellula__Perno_AlaPost_R": {
+   "membri": [
+    "Libellula__Ala_Circuito__AlaPost_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1745,
+     "asse": "Y",
+     "cyc": 6,
+     "ph": 1.2
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

@@ -1,0 +1,128 @@
+{
+ "bob": {},
+ "luci": {
+  "Lucertola__Luce_01": {
+   "b0": 0.779,
+   "b1": 1.191,
+   "c": [
+    1.0,
+    0.5838,
+    0.2478
+   ],
+   "cyc": 3,
+   "ph": 0.0,
+   "r": 7.28
+  },
+  "Lucertola__Luce_02": {
+   "b0": 0.636,
+   "b1": 0.9,
+   "c": [
+    1.0,
+    0.5838,
+    0.2478
+   ],
+   "cyc": 4,
+   "ph": 1.0,
+   "r": 6.6
+  }
+ },
+ "parti": {
+  "Lucertola__Alucce__Aluccia_L": {
+   "ali": true,
+   "e": 8.0,
+   "k": "tex"
+  },
+  "Lucertola__Alucce__Aluccia_R": {
+   "ali": true,
+   "e": 8.0,
+   "k": "tex"
+  },
+  "Lucertola__Cristallo_Arancio": {
+   "c": [
+    1.0,
+    0.5838,
+    0.0999
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    5.0,
+    3.1
+   ],
+   "t": 0.2
+  },
+  "Lucertola__Cristallo_Brace": {
+   "c": [
+    1.0,
+    0.41,
+    0.0
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    4.0,
+    1.7
+   ],
+   "t": 0.2
+  },
+  "Lucertola__Cristallo_Rosso": {
+   "c": [
+    1.0,
+    0.2209,
+    0.0
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ],
+   "t": 0.2
+  },
+  "Lucertola__Occhi": {
+   "c": [
+    0.1517,
+    0.0999,
+    0.0
+   ],
+   "k": "solid"
+  },
+  "Lucertola__Pelle": {
+   "k": "tex"
+  }
+ },
+ "perni": {
+  "Lucertola__Perno_Aluccia_L": {
+   "membri": [
+    "Lucertola__Alucce__Aluccia_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.4887,
+     "asse": "Y",
+     "cyc": 60,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Lucertola__Perno_Aluccia_R": {
+   "membri": [
+    "Lucertola__Alucce__Aluccia_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.4887,
+     "asse": "Y",
+     "cyc": 60,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

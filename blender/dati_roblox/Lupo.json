@@ -1,0 +1,683 @@
+{
+ "bob": {
+  "Lupo__Lucciole__Lucciola_00": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 6.219
+  },
+  "Lupo__Lucciole__Lucciola_01": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 0.089
+  },
+  "Lupo__Lucciole__Lucciola_02": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 4.36
+  },
+  "Lupo__Lucciole__Lucciola_03": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 0.214
+  },
+  "Lupo__Lucciole__Lucciola_04": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 0.146
+  },
+  "Lupo__Lucciole__Lucciola_05": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 3.468
+  },
+  "Lupo__Lucciole__Lucciola_06": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 0.469
+  },
+  "Lupo__Lucciole__Lucciola_07": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 0.77
+  },
+  "Lupo__Lucciole__Lucciola_08": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 1.835
+  },
+  "Lupo__Lucciole__Lucciola_09": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 0.169
+  },
+  "Lupo__Lucciole__Lucciola_10": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 0.441
+  },
+  "Lupo__Lucciole__Lucciola_11": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 1.135
+  },
+  "Lupo__Lucciole__Lucciola_12": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 1.544
+  },
+  "Lupo__Lucciole__Lucciola_13": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 4.294
+  },
+  "Lupo__Lucciole__Lucciola_14": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 6.041
+  },
+  "Lupo__Lucciole__Lucciola_15": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 5.883
+  },
+  "Lupo__Lucciole__Lucciola_16": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 0.361
+  },
+  "Lupo__Lucciole__Lucciola_17": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 1.072
+  },
+  "Lupo__Lucciole__Lucciola_18": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 0.31
+  },
+  "Lupo__Lucciole__Lucciola_19": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 5.651
+  },
+  "Lupo__Lucciole__Lucciola_20": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 3.651
+  },
+  "Lupo__Lucciole__Lucciola_21": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 2.402
+  },
+  "Lupo__Lucciole__Lucciola_22": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 5.351
+  },
+  "Lupo__Lucciole__Lucciola_23": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 0.839
+  },
+  "Lupo__Lucciole__Lucciola_24": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 0.452
+  },
+  "Lupo__Lucciole__Lucciola_25": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 3.103
+  },
+  "Lupo__Lucciole__Lucciola_26": {
+   "amp": 0.18,
+   "cyc": 1,
+   "ph": 3.794
+  },
+  "Lupo__Lucciole__Lucciola_27": {
+   "amp": 0.18,
+   "cyc": 2,
+   "ph": 2.915
+  }
+ },
+ "luci": {
+  "Lupo__Luce_01": {
+   "b0": 0.779,
+   "b1": 1.35,
+   "c": [
+    0.3492,
+    1.0,
+    0.9309
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.65
+  },
+  "Lupo__Luce_02": {
+   "b0": 0.636,
+   "b1": 1.102,
+   "c": [
+    0.3492,
+    1.0,
+    0.9309
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  }
+ },
+ "parti": {
+  "Lupo__Ali_Delicate__Ali2_L": {
+   "ali": true,
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Lupo__Ali_Delicate__Ali2_R": {
+   "ali": true,
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Lupo__Ali_Delicate__Ali_L": {
+   "ali": true,
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Lupo__Ali_Delicate__Ali_R": {
+   "ali": true,
+   "e": 12.0,
+   "k": "tex"
+  },
+  "Lupo__Corpo_Spettrale": {
+   "c": [
+    0.7977,
+    0.9777,
+    1.0
+   ],
+   "h": [
+    0.2478,
+    1.0,
+    0.9163
+   ],
+   "k": "ghost"
+  },
+  "Lupo__Lucciole__Lucciola_00": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_01": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_02": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_03": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_04": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_05": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_06": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_07": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_08": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_09": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_10": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_11": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_12": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_13": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_14": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_15": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_16": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_17": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_18": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_19": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_20": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_21": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_22": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_23": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_24": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_25": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_26": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Lucciole__Lucciola_27": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9309
+   ],
+   "k": "neon",
+   "p": [
+    0.25,
+    1.0,
+    3.0,
+    0.0
+   ]
+  },
+  "Lupo__Naso": {
+   "c": [
+    0.8808,
+    0.9547,
+    1.0
+   ],
+   "h": [
+    0.2478,
+    1.0,
+    0.9163
+   ],
+   "k": "ghost"
+  },
+  "Lupo__Occhi": {
+   "c": [
+    0.7354,
+    1.0,
+    0.9777
+   ],
+   "k": "neon",
+   "p": [
+    0.571,
+    1.0,
+    1.0,
+    0.0
+   ]
+  }
+ },
+ "perni": {
+  "Lupo__Perno_Ali2_L": {
+   "membri": [
+    "Lupo__Ali_Delicate__Ali2_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.2443,
+     "asse": "Y",
+     "cyc": 5,
+     "ph": 0.9
+    }
+   ]
+  },
+  "Lupo__Perno_Ali2_R": {
+   "membri": [
+    "Lupo__Ali_Delicate__Ali2_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.2443,
+     "asse": "Y",
+     "cyc": 5,
+     "ph": 0.9
+    }
+   ]
+  },
+  "Lupo__Perno_Ali_L": {
+   "membri": [
+    "Lupo__Ali_Delicate__Ali_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.2443,
+     "asse": "Y",
+     "cyc": 5,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Lupo__Perno_Ali_R": {
+   "membri": [
+    "Lupo__Ali_Delicate__Ali_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.2443,
+     "asse": "Y",
+     "cyc": 5,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

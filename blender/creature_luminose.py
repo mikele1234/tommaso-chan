@@ -57,6 +57,10 @@ MOTORE = "EEVEE"
 # effetto piu' soffuso.
 INTENSITA_LUCE = 1.0
 
+# Livello di dettaglio delle mesh (1 = pieno). L'esportatore per Roblox lo
+# abbassa automaticamente per restare sotto i 20.000 triangoli per creatura.
+DETTAGLIO = 1.0
+
 # Durata del ciclo di animazione (frame). Tutte le pulsazioni si ripetono
 # perfettamente ogni ANIM_FRAMES frame.
 ANIM_FRAMES = 120
@@ -67,7 +71,9 @@ ANIM_FRAMES = 120
 
 BL = bpy.app.version
 TAU = 2.0 * pi
-_STATE = {"coll": None}
+# coll: collezione corrente; texspace: oggetto (empty) le cui coordinate fanno
+# da "spazio texture" per i materiali dei pezzi fissi (vedi NodeBuilder.texcoord)
+_STATE = {"coll": None, "texspace": None}
 
 # Registro delle animazioni create (usato dall'esportatore per Roblox)
 ANIMAZIONI = []
@@ -78,6 +84,11 @@ _LAYOUT_RNG = random.Random(7)
 
 def vec(v):
     return Vector(v)
+
+
+def det(n, minimo):
+    """Numero di suddivisioni scalato dal livello di DETTAGLIO."""
+    return max(minimo, int(round(n * DETTAGLIO)))
 
 
 def set_collection(coll):
@@ -135,7 +146,7 @@ def no_shadow(ob):
 def sphere(name, loc, size, mat=None, rot=(0, 0, 0), seg=32, rings=16,
            subsurf=0):
     bm = bmesh.new()
-    bmesh.ops.create_uvsphere(bm, u_segments=seg, v_segments=rings,
+    bmesh.ops.create_uvsphere(bm, u_segments=det(seg, 8), v_segments=det(rings, 5),
                               radius=1.0)
     ob = mesh_object(name, bm, mat)
     if isinstance(size, (int, float)):
@@ -153,7 +164,7 @@ def cone_between(name, base, tip, r_base, r_tip=0.0, mat=None, seg=12):
     base, tip = vec(base), vec(tip)
     d = tip - base
     bm = bmesh.new()
-    bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=seg,
+    bmesh.ops.create_cone(bm, cap_ends=True, cap_tris=False, segments=det(seg, 5),
                           radius1=r_base, radius2=max(r_tip, 0.0),
                           depth=d.length)
     bmesh.ops.translate(bm, vec=(0, 0, d.length / 2), verts=bm.verts)
@@ -172,8 +183,8 @@ def tube(name, pts, radii, mat=None, res=12, bevel_res=4, caps=True,
     cu = bpy.data.curves.new(name, 'CURVE')
     cu.dimensions = '3D'
     cu.bevel_depth = 1.0
-    cu.bevel_resolution = bevel_res
-    cu.resolution_u = res
+    cu.bevel_resolution = det(bevel_res, 1) if bevel_res else 0
+    cu.resolution_u = det(res, 2)
     try:
         cu.use_fill_caps = caps
     except AttributeError:
@@ -261,6 +272,7 @@ def capsule(a, b, r, **kw):
 
 def metaball_mesh(name, elems, mat=None, res=0.03, threshold=0.6):
     mb = bpy.data.metaballs.new(name + "_MB")
+    res = res / max(DETTAGLIO, 0.1)
     mb.resolution = res
     mb.render_resolution = res
     mb.threshold = threshold
@@ -371,6 +383,7 @@ def _catmull(p0, p1, p2, p3, t):
 def wing_outline(ctrl, n=64, scallop=None):
     """ctrl = [(angolo_gradi, raggio), ...] dal bordo d'attacco a quello d'uscita.
     Angolo 0 = +X (verso l'esterno), 90 = +Y (verso la coda)."""
+    n = det(n, 16)
     angs = [radians(a) for a, _r in ctrl]
     rs = [r for _a, r in ctrl]
     k = len(ctrl)
@@ -395,6 +408,7 @@ def wing_outline(ctrl, n=64, scallop=None):
 
 def wing_mesh(name, outline, mat=None, rings=14, cup=0.0, droop=0.0,
               mirror=False, r0=0.03):
+    rings = det(rings, 3)
     bm = bmesh.new()
     uv_layer = bm.loops.layers.uv.new("UVMap")
     n = len(outline)
@@ -638,8 +652,15 @@ class NodeBuilder:
     def fresnel(self, blend=0.3):
         return self.node('ShaderNodeLayerWeight', {'Blend': blend}).outputs['Fresnel']
 
-    def texcoord(self):
-        return self.node('ShaderNodeTexCoord')
+    def texcoord(self, use_space=True):
+        """Coordinate texture. Se e' impostato uno spazio texture comune
+        (_STATE['texspace']), le coordinate 'Object' sono misurate rispetto a
+        quello: cosi' i pattern restano uguali anche dopo aver unito i pezzi
+        (utile per l'esportazione con texture cotte)."""
+        nd = self.node('ShaderNodeTexCoord')
+        if use_space and _STATE.get("texspace") is not None:
+            nd.object = _STATE["texspace"]
+        return nd
 
     def bump(self, height, strength=0.3, distance=0.02):
         nd = self.node('ShaderNodeBump', {'Strength': strength, 'Distance': distance})
@@ -815,7 +836,7 @@ def m_halo(name, color, strength, pulse=None, softness=2.0):
     Funziona su sfere (anche schiacciate): sfuma a zero sul bordo."""
     mat = new_material(name)
     nb = NodeBuilder(mat)
-    tc = nb.texcoord()
+    tc = nb.texcoord(use_space=False)
     vm = nb.node('ShaderNodeVectorMath', operation='LENGTH')
     nb.link(tc.outputs['Object'], vm.inputs[0])
     fall = nb.maprange(vm.outputs['Value'], 0.0, 1.0, 1.0, 0.0, smooth=False)
@@ -837,7 +858,7 @@ def m_radial_glow(name, stops, strength, axes=('X', 'Y'), pulse=None):
     stops: rampa colore dal centro (0) al bordo (1) in coordinate oggetto."""
     mat = new_material(name)
     nb = NodeBuilder(mat)
-    tc = nb.texcoord()
+    tc = nb.texcoord(use_space=False)
     sep = nb.node('ShaderNodeSeparateXYZ')
     nb.link(tc.outputs['Object'], sep.inputs[0])
     a = nb.math('MULTIPLY', sep.outputs[axes[0]], sep.outputs[axes[0]])
@@ -905,7 +926,7 @@ def m_wing(name, ramp, alpha=0.3, membrane_str=1.5, vein_ramp=None,
     pulse      : (min, max, cicli, fase) moltiplicatore dell'emissione."""
     mat = new_material(name)
     nb = NodeBuilder(mat)
-    tc = nb.texcoord()
+    tc = nb.texcoord(use_space=False)
     sep = nb.node('ShaderNodeSeparateXYZ')
     nb.link(tc.outputs['UV'], sep.inputs[0])
     u, v = sep.outputs['X'], sep.outputs['Y']
@@ -1032,7 +1053,7 @@ def m_feather(name, base, base_tip, glow, glow_str, edge_w=0.16,
     UV: u attraverso la piuma (0..1), v dalla radice (0) alla punta (1)."""
     mat = new_material(name)
     nb = NodeBuilder(mat)
-    tc = nb.texcoord()
+    tc = nb.texcoord(use_space=False)
     sep = nb.node('ShaderNodeSeparateXYZ')
     nb.link(tc.outputs['UV'], sep.inputs[0])
     u, v = sep.outputs['X'], sep.outputs['Y']
@@ -1582,6 +1603,7 @@ def build_cat():
 def feather_mesh(name, length, width, mat, rows=10, cols=6, curl=0.2, shape='round'):
     """Piuma (o foglia) piatta. UV: u attraverso, v dalla radice alla punta.
     shape='round' -> punta arrotondata (piuma), 'pointed' -> punta a lancia (foglia)."""
+    rows, cols = det(rows, 3), det(cols, 2)
     bm = bmesh.new()
     uvl = bm.loops.layers.uv.new("UVMap")
     grid, uvs = [], {}
@@ -2174,7 +2196,7 @@ def build_wolf():
 # 08  LA PICCOLA LUCINA FARFALLINA (The Brainrot Moth)
 # ============================================================================
 
-def add_fur(ob, mat_index, count=2600, length=0.1, children=14):
+def add_fur(ob, mat_index, count=2600, length=0.1, children=14, radius=0.012, clump=0.25):
     """Pelo soffice con sistema particellare (hair)."""
     try:
         md = ob.modifiers.new("Pelo_Soffice", 'PARTICLE_SYSTEM')
@@ -2186,9 +2208,9 @@ def add_fur(ob, mat_index, count=2600, length=0.1, children=14):
     for attr, val in (('count', count), ('hair_length', length), ('use_advanced_hair', True),
                       ('material', mat_index + 1), ('child_type', 'INTERPOLATED'),
                       ('child_percent', 4), ('child_nbr', 4), ('rendered_child_count', children),
-                      ('clump_factor', 0.25), ('roughness_1', 0.02), ('roughness_2', 0.03),
+                      ('clump_factor', clump), ('roughness_1', 0.02), ('roughness_2', 0.03),
                       ('roughness_endpoint', 0.02), ('display_step', 3), ('render_step', 4),
-                      ('root_radius', 1.0), ('tip_radius', 0.1), ('radius_scale', 0.012),
+                      ('root_radius', 1.0), ('tip_radius', 0.1), ('radius_scale', radius),
                       ('use_hair_bspline', True)):
         if hasattr(ps, attr):
             try:
@@ -2361,14 +2383,16 @@ DISPOSIZIONE = {
 }
 
 
-def build_one(key, offset=(0, 0, 0), parent_coll=None, rot_z=0.0):
-    title, fn, _cam = CREATURE[key]
+def build_one(key, offset=(0, 0, 0), parent_coll=None, rot_z=0.0, registry=None):
+    title, fn, _cam = (registry or CREATURE)[key]
     coll = new_collection(title, parent_coll)
     set_collection(coll)
     random.seed(sum(ord(c) for c in key))
     del ANIMAZIONI[:]
     del VALORI_RIPOSO[:]
+    _STATE["texspace"] = None
     fn()
+    _STATE["texspace"] = None
     root = empty(title.split("_", 1)[1] + "_Radice", (0, 0, 0), 0.5)
     for ob in list(coll.objects):
         if ob is not root and ob.parent is None:

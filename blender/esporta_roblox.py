@@ -2,31 +2,40 @@
 """
 ESPORTAZIONE DELLE CREATURE LUMINOSE PER ROBLOX STUDIO
 
-Costruisce ogni creatura con `creature_luminose.py` e la prepara per Roblox:
+Costruisce ogni creatura (serie "luminose" di creature_luminose.py e serie
+"deserto" di creature_deserto.py) e la prepara per Roblox:
 
+  * al massimo 20.000 triangoli PER CREATURA (in totale): la creatura viene
+    ricostruita a un livello di dettaglio piu' basso finche' rientra e, se
+    serve, le mesh vengono decimate;
   * curve, metaball e modificatori diventano mesh normali;
-  * ali, piume e foglie ricevono un minimo di spessore (su Roblox le mesh
-    piatte si vedono da un lato solo);
+  * le ali ricevono un minimo di spessore (su Roblox le mesh piatte si vedono
+    da un lato solo);
   * i materiali procedurali vengono "cotti" (bake) in texture: colore con
     trasparenza, mappa emissiva (Roblox la trasforma in Emissive Mask) e,
     dove serve, normal map;
-  * i pezzi con lo stesso materiale vengono uniti, restando sotto il limite
-    di 20.000 triangoli per mesh di Roblox;
+  * i pezzi con lo stesso materiale vengono uniti;
   * luci e perni delle animazioni diventano piccoli marcatori invisibili,
     usati dallo script Luau per ricreare luci, Neon e animazioni.
 
 Risultato (nella cartella di uscita):
-    modelli/<nn>_<nome>.glb        un file per creatura, texture incluse
-    CreatureLuminose.client.lua    LocalScript con luci, Neon e animazioni
+    modelli/<nn>_<nome>.glb           prima serie
+    modelli/deserto/<nn>_<nome>.glb   serie del deserto
+    CreatureLuminose.client.lua       un solo LocalScript per tutte le creature
 
 USO
     blender --background --python blender/esporta_roblox.py -- --uscita roblox
-    opzioni: --creatura gatto   (solo una)   --scala 3   (metri Blender -> stud)
+    opzioni:  --serie deserto        (solo una serie: luminose | deserto)
+              --creatura vipera      (solo una creatura)
+              --scala 3              (1 metro di Blender = 3 stud)
+              --max-triangoli 20000  (limite per creatura)
 """
 
 import bpy
 import bmesh
+import glob
 import importlib.util
+import json
 import math
 import os
 import sys
@@ -35,27 +44,58 @@ import numpy as np
 from mathutils import Matrix, Vector
 
 QUI = os.path.dirname(os.path.abspath(__file__))
-_spec = importlib.util.spec_from_file_location(
-    "creature_luminose", os.path.join(QUI, "creature_luminose.py"))
-CL = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(CL)
+
+
+def _carica(nome):
+    if nome in sys.modules:
+        return sys.modules[nome]
+    spec = importlib.util.spec_from_file_location(nome, os.path.join(QUI, nome + ".py"))
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[nome] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+CL = _carica("creature_luminose")
+DS = _carica("creature_deserto")
 
 # Fattore di scala: 1 metro in Blender -> SCALA stud su Roblox.
-# Con 3 le creature sono alte 3-7 stud (un avatar Roblox e' circa 5 stud).
 SCALA = 3.0
-MAX_TRIANGOLI = 19000          # Roblox: massimo 20.000 per mesh
-SPESSORE = 0.004               # spessore dato alle superfici piatte (metri)
+MAX_TRIANGOLI_CREATURA = 20000     # limite richiesto per ogni creatura
+MAX_TRIANGOLI_MESH = 19000         # Roblox: massimo 20.000 per singola mesh
+SPESSORE = 0.004                   # spessore dato alle ali (metri)
+DATI = os.path.join(QUI, "dati_roblox")   # configurazioni per lo script Luau
 
-CREATURE_RBX = {
-    #  chiave      file                    prefisso dei pezzi su Roblox
-    "mantide":   ("01_mante_luce",        "Mantide"),
-    "gatto":     ("02_gattoluna",         "Gatto"),
-    "gufo":      ("03_gufo_scintilla",    "Gufo"),
-    "rana":      ("04_ranabuio",          "Rana"),
-    "farfalla":  ("05_farfalla_glow",     "Farfalla"),
-    "libellula": ("06_libellula_fulmine", "Libellula"),
-    "lupo":      ("07_lupo_luce",         "Lupo"),
-    "falena":    ("08_lucina_farfallina", "Lucina"),
+SERIE = {
+    "luminose": {
+        "registro": CL.CREATURE,
+        "cartella": "modelli",
+        "creature": {
+            #  chiave      file                    prefisso dei pezzi su Roblox
+            "mantide":   ("01_mante_luce",        "Mantide"),
+            "gatto":     ("02_gattoluna",         "Gatto"),
+            "gufo":      ("03_gufo_scintilla",    "Gufo"),
+            "rana":      ("04_ranabuio",          "Rana"),
+            "farfalla":  ("05_farfalla_glow",     "Farfalla"),
+            "libellula": ("06_libellula_fulmine", "Libellula"),
+            "lupo":      ("07_lupo_luce",         "Lupo"),
+            "falena":    ("08_lucina_farfallina", "Lucina"),
+        },
+    },
+    "deserto": {
+        "registro": DS.CREATURE_DESERTO,
+        "cartella": os.path.join("modelli", "deserto"),
+        "creature": {
+            "scorpione": ("01_scorpione_lanterna",  "Scorpione"),
+            "fennec":    ("02_fennec_solare",       "Fennec"),
+            "scarabeo":  ("03_scarabeo_fornace",    "Scarabeo"),
+            "vipera":    ("04_vipera_sonaglio",     "Vipera"),
+            "lucertola": ("05_lucertola_cristallo", "Lucertola"),
+            "avvoltoio": ("06_avvoltoio_miraggio",  "Avvoltoio"),
+            "tarantola": ("07_tarantola_brace",     "Tarantola"),
+            "cactus":    ("08_cactus_chill_guy",    "Cactus"),
+        },
+    },
 }
 
 
@@ -122,12 +162,36 @@ def mat_of(ob):
     return None
 
 
+def needs_thickness(ob, m):
+    """Solo le ali vengono ispessite: le piume stanno appoggiate sul corpo."""
+    return bool(m.get("rbx_wing")) or (m.get("rbx_kind") == "glass")
+
+
+def evaluated_mesh(ob, dg):
+    me = bpy.data.meshes.new_from_object(ob.evaluated_get(dg))
+    me.transform(ob.matrix_world)
+    return me
+
+
+def with_modifier(me, kind, **props):
+    tmp = bpy.data.objects.new("tmp_mod", me)
+    bpy.context.scene.collection.objects.link(tmp)
+    md = tmp.modifiers.new("mod", kind)
+    for k, v in props.items():
+        setattr(md, k, v)
+    dg = bpy.context.evaluated_depsgraph_get()
+    out = bpy.data.meshes.new_from_object(tmp.evaluated_get(dg))
+    bpy.data.objects.remove(tmp)
+    return out
+
+
 # ============================================================================
 # Bake delle texture
 # ============================================================================
 
-def new_image(name, res, non_color=False):
-    img = bpy.data.images.new(name, res, res, alpha=False, float_buffer=False)
+def new_image(name, res, non_color=False, alpha=False):
+    w, h = (res, res) if isinstance(res, int) else (int(res[0]), int(res[1]))
+    img = bpy.data.images.new(name, w, h, alpha=alpha, float_buffer=False)
     if non_color:
         img.colorspace_settings.name = 'Non-Color'
     return img
@@ -177,7 +241,7 @@ def bake_textures(mat, ob, res, texdir, base):
     if old_vol is not None:
         nt.links.new(old_vol, out.inputs['Volume'])
 
-    # salva su disco: colore (+ trasparenza) PNG, emissione e normali JPEG
+    # salva su disco: colore (+ trasparenza) PNG, emissione JPEG, normali PNG
     os.makedirs(texdir, exist_ok=True)
     saved = {}
     if "color" in done:
@@ -185,7 +249,7 @@ def bake_textures(mat, ob, res, texdir, base):
         if "alpha" in done:
             px = pixels(img)
             px[:, 3] = pixels(done["alpha"])[:, 0]
-            rgba = bpy.data.images.new(base + "_colore", res, res, alpha=True)
+            rgba = new_image(base + "_colore", res, alpha=True)
             rgba.pixels.foreach_set(px.ravel())
             img = rgba
         saved["color"] = save_image(img, texdir, base + "_colore", 'PNG' if "alpha" in done else 'JPEG')
@@ -208,6 +272,13 @@ def save_image(img, texdir, name, fmt, non_color=False):
     if non_color:
         loaded.colorspace_settings.name = 'Non-Color'
     return loaded
+
+
+def bake_res(m, default):
+    r = m.get("rbx_res")
+    if r is None:
+        return default
+    return [int(x) for x in r] if hasattr(r, "__len__") else int(r)
 
 
 # ============================================================================
@@ -245,7 +316,7 @@ def export_material(name, src, tex=None):
         if kind in ("neon", "aura"):
             nb.set(bsdf, CL.PRINCIPLED_ALIASES['emit'], base)
             nb.set(bsdf, CL.PRINCIPLED_ALIASES['emit_str'], 1.0)
-        if kind in ("aura", "ghost"):
+        if kind in ("aura", "ghost", "glass"):
             nb.set(bsdf, 'Alpha', 0.4)
             CL.set_transparent(mat)
     nb.output(bsdf.outputs[0])
@@ -253,7 +324,7 @@ def export_material(name, src, tex=None):
 
 
 # ============================================================================
-# Unione dei pezzi (con suddivisione sotto il limite di triangoli)
+# Unione dei pezzi, UV, decimazione
 # ============================================================================
 
 def join_chunks(meshes):
@@ -261,7 +332,7 @@ def join_chunks(meshes):
     chunks, cur, cur_t = [], None, 0
     for me in meshes:
         t = tris(me)
-        if cur is None or cur_t + t > MAX_TRIANGOLI:
+        if cur is None or cur_t + t > MAX_TRIANGOLI_MESH:
             if cur is not None:
                 chunks.append(cur)
             cur, cur_t = bmesh.new(), 0
@@ -298,33 +369,71 @@ def marker_mesh(loc, size):
 
 
 # ============================================================================
+# Costruzione con il livello di dettaglio giusto
+# ============================================================================
+
+def build_creature(key, registry, detail):
+    CL.DETTAGLIO = detail
+    CL.clear_scene()
+    CL.setup_render("CYCLES")
+    CL.build_one(key, registry=registry)
+    CL.DETTAGLIO = 1.0
+    anims = list(CL.ANIMAZIONI)
+    rest_pose()
+    coll = bpy.data.collections[registry[key][0]]
+    return anims, list(coll.all_objects)
+
+
+def estimate_tris(objs):
+    dg = bpy.context.evaluated_depsgraph_get()
+    tot = 0
+    for ob in objs:
+        if ob.type not in ('MESH', 'CURVE'):
+            continue
+        m = mat_of(ob)
+        if m is None or m.get("rbx_kind") == "drop":
+            continue
+        me = bpy.data.meshes.new_from_object(ob.evaluated_get(dg))
+        t = tris(me)
+        if needs_thickness(ob, m) and is_open(me):
+            t = int(t * 2.15)
+        tot += t
+        bpy.data.meshes.remove(me)
+    return tot
+
+
+# ============================================================================
 # Esportazione di una creatura
 # ============================================================================
 
-def export_creature(key, outdir, texroot, scala):
-    fname, P = CREATURE_RBX[key]
-    title = CL.CREATURE[key][0]
-    CL.clear_scene()
-    CL.setup_render("CYCLES")
-    CL.build_one(key)
-    anims = list(CL.ANIMAZIONI)
-    rest_pose()
-    coll = bpy.data.collections[title]
-    objs = list(coll.all_objects)
-    texdir = os.path.join(texroot, fname)
+def export_creature(serie, key, outdir, texroot, scala, budget):
+    info = SERIE[serie]
+    fname, P = info["creature"][key]
+    registry = info["registro"]
     S = Matrix.Scale(scala, 4)
+
+    # 1) livello di dettaglio: si riduce finche' la stima sta nel budget
+    detail = 1.0
+    for _it in range(8):
+        anims, objs = build_creature(key, registry, detail)
+        est = estimate_tris(objs) + 400          # + marcatori
+        if est <= budget * 0.98 or detail <= 0.16:
+            break
+        detail = max(0.15, detail * max(0.45, min(0.92, math.sqrt(budget * 0.95 / est))))
+    texdir = os.path.join(texroot, fname)
 
     # --- chi si anima e come --------------------------------------------------
     def ptr(x):
         return x.as_pointer()
 
-    rot = {}          # pivot -> lista di (asse, amp, cyc, ph)
+    rot = {}          # pivot -> lista di (asse, amp, cyc, ph, spin)
     own = {}          # oggetto -> ('scala'|'bob', meta)
     light_pulse = {}  # dati luce -> meta
     for a in anims:
         o = a["owner"]
         if a["tipo"] == "rot":
-            rot.setdefault(ptr(o), (o, []))[1].append(("XYZ"[a["index"]], a["amp"], a["cyc"], a["ph"]))
+            rot.setdefault(ptr(o), (o, []))[1].append(
+                ("XYZ"[a["index"]], a["amp"], a["cyc"], a["ph"], bool(a.get("spin"))))
         elif a["tipo"] in ("scala", "bob"):
             own[ptr(o)] = (a["tipo"], a)
         elif a["tipo"] == "luce":
@@ -341,7 +450,7 @@ def export_creature(key, outdir, texroot, scala):
         return None
 
     marker_size = 0.03
-    finals = []       # (nome, mesh in coordinate mondo NON scalate, gruppo, materiale export)
+    finals = []       # (nome, mesh in coordinate mondo NON scalate, gruppo, (materiale, texture) | None)
     cfg = {"parti": {}, "luci": {}, "perni": {}, "scala": {}, "bob": {}}
 
     # --- marcatori: radice, assi, perni, luci ---------------------------------
@@ -359,10 +468,15 @@ def export_creature(key, outdir, texroot, scala):
         par = o.parent
         while par is not None and ptr(par) not in rot:
             par = par.parent
+        entry = []
+        for ax, amp, cyc, ph, spin in sorted(lst):
+            r = {"asse": ax, "amp": round(amp, 4), "cyc": cyc, "ph": round(ph, 3)}
+            if spin:
+                r["spin"] = True
+            entry.append(r)
         cfg["perni"][pivot_names[o.name]] = {
             "padre": pivot_names[par.name] if par is not None else None,
-            "rot": [{"asse": ax, "amp": round(amp, 4), "cyc": cyc, "ph": round(ph, 3)}
-                    for ax, amp, cyc, ph in sorted(lst)],
+            "rot": entry,
             "membri": [],
         }
     n_light = 0
@@ -371,20 +485,29 @@ def export_creature(key, outdir, texroot, scala):
             continue
         n_light += 1
         mname = "%s__Luce_%02d" % (P, n_light)
-        finals.append((mname, marker_mesh(ob.matrix_world.translation, marker_size), group_of(ob), None))
+        pos = ob.matrix_world.translation
+        finals.append((mname, marker_mesh(pos, marker_size), group_of(ob), None))
         e = ob.data.energy
         pulse = light_pulse.get(ptr(ob.data))
         lo, hi = (pulse["lo"], pulse["hi"]) if pulse else (e, e)
-        cfg["luci"][mname] = {
+        top = 10.0 if ob.data.type == 'SPOT' else 5.0
+        entry = {
             "c": srgb(ob.data.color),
-            "b0": round(min(5.0, max(0.15, 0.45 * math.sqrt(lo))), 3),
-            "b1": round(min(5.0, max(0.15, 0.45 * math.sqrt(hi))), 3),
+            "b0": round(min(top, max(0.15, 0.45 * math.sqrt(lo))), 3),
+            "b1": round(min(top, max(0.15, 0.45 * math.sqrt(hi))), 3),
             "cyc": pulse["cyc"] if pulse else 1,
             "ph": round(pulse["ph"], 3) if pulse else 0.0,
             "r": round(min(60.0, scala * (1.5 + 0.35 * math.sqrt(max(lo, hi)))), 2),
         }
+        if ob.data.type == 'SPOT':
+            fwd = (ob.matrix_world.to_3x3() @ Vector((0, 0, -1))).normalized()
+            dname = mname + "_Dir"
+            finals.append((dname, marker_mesh(pos + fwd * 0.5, marker_size), group_of(ob), None))
+            entry["dir"] = dname
+            entry["ang"] = round(min(180.0, math.degrees(ob.data.spot_size)), 1)
+        cfg["luci"][mname] = entry
 
-    # --- bake dei materiali che lo richiedono (sugli oggetti originali) -----------
+    # --- bake dei materiali con UV proprie (ali, piume, serpente, carapace) -----
     baked = {}
     for ob in objs:
         if ob.type != 'MESH':
@@ -395,10 +518,10 @@ def export_creature(key, outdir, texroot, scala):
         if m.get("rbx_wing") and not ob.name.endswith("_R"):
             continue                        # l'ala sinistra usa la stessa texture (specchiata)
         if (m.get("rbx_wing") or m.get("rbx_uv_only")) and ob.data.uv_layers:
-            res = 1024 if m.get("rbx_wing") else 512
+            res = bake_res(m, 1024 if m.get("rbx_wing") else 512)
             baked[m.name] = bake_textures(m, ob, res, texdir, short(m.name))
 
-    # --- mesh finali: curve -> mesh, modificatori applicati, spessore ----------
+    # --- mesh finali: curve -> mesh, modificatori applicati, spessore alle ali --
     dg = bpy.context.evaluated_depsgraph_get()
     pieces = {}       # (gruppo, materiale) -> lista di mesh
     for ob in objs:
@@ -407,24 +530,13 @@ def export_creature(key, outdir, texroot, scala):
         m = mat_of(ob)
         if m is None or m.get("rbx_kind") == "drop":
             continue
-        me = bpy.data.meshes.new_from_object(ob.evaluated_get(dg))
-        me.transform(ob.matrix_world)
-        if is_open(me):
-            tmp = bpy.data.objects.new("tmp_spessore", me)
-            bpy.context.scene.collection.objects.link(tmp)
-            sd = tmp.modifiers.new("Spessore", 'SOLIDIFY')
-            sd.thickness = SPESSORE
-            sd.offset = 0.0
-            dg2 = bpy.context.evaluated_depsgraph_get()
-            me2 = bpy.data.meshes.new_from_object(tmp.evaluated_get(dg2))
-            bpy.data.objects.remove(tmp)
-            me = me2
+        me = evaluated_mesh(ob, dg)
+        if needs_thickness(ob, m) and is_open(me):
+            me = with_modifier(me, 'SOLIDIFY', thickness=SPESSORE, offset=0.0)
         pieces.setdefault((group_of(ob), m.name), []).append(me)
 
-    # per i materiali uniti con UV nuove (pelle, corteccia) si fa il bake dopo l'unione
     for (grp, mname), mes in sorted(pieces.items(), key=lambda kv: (str(kv[0][0]), kv[0][1])):
         src = bpy.data.materials[mname]
-        kind = src.get("rbx_kind", "solid")
         label = short(mname) + ("__" + short(grp) if grp else "")
         chunks = join_chunks(mes)
         for ci, bm in enumerate(chunks):
@@ -436,15 +548,35 @@ def export_creature(key, outdir, texroot, scala):
                 poly.material_index = 0
             me.materials.clear()
             me.materials.append(src)
-            tex = baked.get(mname)
-            if kind == "bake" and tex is None:
-                ob = new_object(name + "_bake", me)
-                smart_uv(ob)
-                tex = bake_textures(src, ob, 1024, texdir, short(name))
-                bpy.data.objects.remove(ob)
-            finals.append((name, me, grp, (src, tex)))
+            finals.append((name, me, grp, [src, baked.get(mname)]))
 
-    # --- impostazioni per lo script Luau --------------------------------------------
+    # --- 2) se si e' ancora sopra il budget: decimazione proporzionale ---------------
+    def total():
+        return sum(tris(f[1]) for f in finals)
+
+    for _it in range(4):
+        tot = total()
+        if tot <= budget:
+            break
+        fixed = sum(tris(f[1]) for f in finals if f[3] is None or tris(f[1]) < 60)
+        ratio = max(0.05, (budget * 0.97 - fixed) / max(1, tot - fixed))
+        for i, (name, me, grp, info) in enumerate(finals):
+            if info is None or tris(me) < 60:
+                continue
+            finals[i] = (name, with_modifier(me, 'DECIMATE', decimate_type='COLLAPSE', ratio=ratio), grp, info)
+
+    # --- bake dei materiali che vanno cotti dopo l'unione (UV automatiche) ------------
+    for i, (name, me, grp, info) in enumerate(finals):
+        if info is None:
+            continue
+        src, tex = info
+        if src.get("rbx_kind") == "bake" and tex is None:
+            ob = new_object(name + "_bake", me)
+            smart_uv(ob)
+            info[1] = bake_textures(src, ob, bake_res(src, 1024), texdir, short(name))
+            bpy.data.objects.remove(ob)
+
+    # --- impostazioni per lo script Luau ----------------------------------------------
     for name, me, grp, info in finals:
         if grp is not None:
             if grp in pivot_names:
@@ -460,9 +592,8 @@ def export_creature(key, outdir, texroot, scala):
                                         "ph": round(meta["ph"], 3)}
         if info is None:
             continue
-        src, tex = info
+        src = info[0]
         kind = src.get("rbx_kind", "solid")
-        s = {}
         if kind in ("neon", "aura"):
             s = {"k": kind, "c": srgb(src["rbx_color"])}
             if kind == "aura":
@@ -473,6 +604,8 @@ def export_creature(key, outdir, texroot, scala):
                 s["p"] = [round(float(x), 3) for x in src["rbx_pulse"]]
         elif kind == "ghost":
             s = {"k": "ghost", "c": srgb(src["rbx_color"])}
+        elif kind == "glass":
+            s = {"k": "glass", "c": srgb(src["rbx_color"]), "t": float(src.get("rbx_transp", 0.6))}
         elif kind == "bake":
             s = {"k": "tex"}
             if src.get("rbx_emit_strength"):
@@ -483,6 +616,8 @@ def export_creature(key, outdir, texroot, scala):
             s = {"k": "solid", "c": srgb(src.get("rbx_color", (0.5, 0.5, 0.5)))}
             if float(src.get("rbx_metal", 0.0)) > 0.5:
                 s["metallo"] = True
+        if src.get("rbx_rifl"):
+            s["rifl"] = float(src["rbx_rifl"])
         if src.get("rbx_highlight"):
             s["h"] = srgb(src["rbx_highlight"])
         cfg["parti"][name] = s
@@ -508,8 +643,9 @@ def export_creature(key, outdir, texroot, scala):
             me.materials.append(mat_cache[key_m])
         export_obs.append(new_object(name, me))
 
-    os.makedirs(os.path.join(outdir, "modelli"), exist_ok=True)
-    path = os.path.join(outdir, "modelli", fname + ".glb")
+    folder = os.path.join(outdir, info_dir(serie))
+    os.makedirs(folder, exist_ok=True)
+    path = os.path.join(folder, fname + ".glb")
     select_only(export_obs)
     bpy.ops.export_scene.gltf(
         filepath=path, export_format='GLB', use_selection=True, export_apply=True,
@@ -518,9 +654,15 @@ def export_creature(key, outdir, texroot, scala):
         export_materials='EXPORT', export_texcoords=True, export_normals=True)
     tot = sum(tris(o.data) for o in export_obs)
     big = max(tris(o.data) for o in export_obs)
-    print("[roblox] %-22s %3d pezzi  %6d triangoli (max %5d per pezzo)  -> %s"
-          % (fname, len(export_obs), tot, big, path))
+    print("[roblox] %-24s dettaglio %.2f  %3d pezzi  %6d triangoli (max %5d per pezzo)  -> %s"
+          % (fname, detail, len(export_obs), tot, big, os.path.relpath(path)))
+    if tot > budget:
+        print("[roblox] ATTENZIONE: %s supera il limite (%d > %d)" % (fname, tot, budget))
     return P, cfg
+
+
+def info_dir(serie):
+    return SERIE[serie]["cartella"]
 
 
 # ============================================================================
@@ -551,7 +693,12 @@ def lua_value(v, ind=0):
     raise TypeError(type(v))
 
 
-def write_lua(outdir, configs):
+def write_lua(outdir):
+    """Unisce le configurazioni di tutte le creature esportate in un solo script."""
+    configs = {}
+    for path in sorted(glob.glob(os.path.join(DATI, "*.json"))):
+        with open(path, encoding="utf-8") as f:
+            configs[os.path.splitext(os.path.basename(path))[0]] = json.load(f)
     with open(os.path.join(QUI, "roblox_template.lua"), encoding="utf-8") as f:
         tpl = f.read()
     body = "local CONFIG = " + lua_value(configs) + "\n"
@@ -560,7 +707,7 @@ def write_lua(outdir, configs):
     path = os.path.join(outdir, "CreatureLuminose.client.lua")
     with open(path, "w", encoding="utf-8") as f:
         f.write(lua)
-    print("[roblox] script Luau ->", path)
+    print("[roblox] script Luau (%d creature) -> %s" % (len(configs), os.path.relpath(path)))
 
 
 # ============================================================================
@@ -574,12 +721,20 @@ def main():
     outdir = os.path.abspath(opts.get("uscita", os.path.join(QUI, "..", "roblox")))
     texroot = os.path.abspath(opts.get("texture", os.path.join(outdir, "_texture_temp")))
     scala = float(opts.get("scala", SCALA))
-    keys = [opts["creatura"]] if "creatura" in opts else list(CREATURE_RBX)
-    configs = {}
-    for k in keys:
-        prefix, cfg = export_creature(k, outdir, texroot, scala)
-        configs[prefix] = cfg
-    write_lua(outdir, configs)
+    budget = int(opts.get("max-triangoli", MAX_TRIANGOLI_CREATURA))
+    serie = [opts["serie"]] if "serie" in opts else list(SERIE)
+    os.makedirs(DATI, exist_ok=True)
+    for sname in serie:
+        keys = list(SERIE[sname]["creature"])
+        if "creatura" in opts:
+            if opts["creatura"] not in keys:
+                continue
+            keys = [opts["creatura"]]
+        for k in keys:
+            prefix, cfg = export_creature(sname, k, outdir, texroot, scala, budget)
+            with open(os.path.join(DATI, prefix + ".json"), "w", encoding="utf-8") as f:
+                json.dump(cfg, f, indent=1, sort_keys=True)
+    write_lua(outdir)
 
 
 if __name__ == "__main__":

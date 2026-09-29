@@ -1,0 +1,158 @@
+{
+ "bob": {},
+ "luci": {
+  "Farfalla__Luce_01": {
+   "b0": 0.636,
+   "b1": 1.684,
+   "c": [
+    0.4236,
+    0.7354,
+    1.0
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 8.43
+  }
+ },
+ "parti": {
+  "Farfalla__Ala_Anteriore__AlaAnt_L": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Farfalla__Ala_Anteriore__AlaAnt_R": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Farfalla__Ala_Posteriore__AlaPost_L": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Farfalla__Ala_Posteriore__AlaPost_R": {
+   "ali": true,
+   "e": 8.8,
+   "k": "tex"
+  },
+  "Farfalla__Aura_Antenna": {
+   "c": [
+    0.4845,
+    1.0,
+    0.8543
+   ],
+   "k": "aura",
+   "p": [
+    0.4,
+    1.0,
+    2.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Farfalla__Corpo_Scuro": {
+   "c": [
+    0.0861,
+    0.0999,
+    0.1428
+   ],
+   "k": "solid"
+  },
+  "Farfalla__Cuore_Luce": {
+   "c": [
+    0.3492,
+    0.7674,
+    1.0
+   ],
+   "k": "aura",
+   "p": [
+    0.2,
+    1.0,
+    2.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Farfalla__Occhi": {
+   "c": [
+    0.1517,
+    0.2478,
+    0.3492
+   ],
+   "k": "solid"
+  },
+  "Farfalla__Punte_Antenne": {
+   "c": [
+    0.5838,
+    1.0,
+    0.8543
+   ],
+   "k": "neon",
+   "p": [
+    0.5,
+    1.0,
+    2.0,
+    0.0
+   ]
+  }
+ },
+ "perni": {
+  "Farfalla__Perno_AlaAnt_L": {
+   "membri": [
+    "Farfalla__Ala_Anteriore__AlaAnt_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.2793,
+     "asse": "Y",
+     "cyc": 2,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Farfalla__Perno_AlaAnt_R": {
+   "membri": [
+    "Farfalla__Ala_Anteriore__AlaAnt_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.2793,
+     "asse": "Y",
+     "cyc": 2,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Farfalla__Perno_AlaPost_L": {
+   "membri": [
+    "Farfalla__Ala_Posteriore__AlaPost_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.2793,
+     "asse": "Y",
+     "cyc": 2,
+     "ph": 0.15
+    }
+   ]
+  },
+  "Farfalla__Perno_AlaPost_R": {
+   "membri": [
+    "Farfalla__Ala_Posteriore__AlaPost_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.2793,
+     "asse": "Y",
+     "cyc": 2,
+     "ph": 0.15
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

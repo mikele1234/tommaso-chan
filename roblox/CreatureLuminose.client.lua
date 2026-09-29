@@ -14,11 +14,13 @@
     restano salvate nel posto (le animazioni partono solo in Play).
 
     Cosa fa:
-      * trasforma in Neon le parti luminose (occhi, punti, bulbilli, filamenti...)
+      * trasforma in Neon le parti luminose (occhi, punti, bulbilli, cristalli...)
       * crea le luci (PointLight) nei punti giusti e le fa pulsare
       * aggiunge un contorno luminoso (Highlight) al gatto e al lupo
-      * rende il lupo spettrale (materiale ForceField)
-      * anima ali, antenna e lampadina, sacca vocale della rana, lucciole
+      * rende il lupo spettrale (materiale ForceField) e le ali dell'avvoltoio
+        di vetro "miraggio"; accende il faretto del cactus (SpotLight)
+      * anima ali, antenne, lampadina, sacca vocale, lucciole, coda dello
+        scorpione, lingua della vipera, sfera di magma dello scarabeo
       * aggiunge un BloomEffect in Lighting per far "accendere" il Neon
 ]]
 
@@ -28,6 +30,224 @@ local Lighting = game:GetService("Lighting")
 local CICLO = 5.000
 
 local CONFIG = {
+    ["Avvoltoio"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Avvoltoio__Luce_01"] = {
+                ["b0"] = 0.712,
+                ["b1"] = 1.273,
+                ["c"] = {0.5838, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 7.47,
+            },
+            ["Avvoltoio__Luce_02"] = {
+                ["b0"] = 0.9,
+                ["b1"] = 1.273,
+                ["c"] = {0.5838, 0.9309, 1.0},
+                ["cyc"] = 1,
+                ["ph"] = 0.8,
+                ["r"] = 7.47,
+            },
+        },
+        ["parti"] = {
+            ["Avvoltoio__Ali_Miraggio__Ala_L"] = {
+                ["c"] = {0.9063, 0.9731, 1.0},
+                ["k"] = "glass",
+                ["t"] = 0.55,
+            },
+            ["Avvoltoio__Ali_Miraggio__Ala_R"] = {
+                ["c"] = {0.9063, 0.9731, 1.0},
+                ["k"] = "glass",
+                ["t"] = 0.55,
+            },
+            ["Avvoltoio__Artigli"] = {
+                ["c"] = {0.3811, 0.3656, 0.3492},
+                ["k"] = "solid",
+            },
+            ["Avvoltoio__Becco"] = {
+                ["c"] = {0.8543, 0.7977, 0.68},
+                ["k"] = "solid",
+            },
+            ["Avvoltoio__Bordo_Ali__Ala_L"] = {
+                ["c"] = {0.7674, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.5, 1.0, 1.0, 0.8},
+            },
+            ["Avvoltoio__Bordo_Ali__Ala_R"] = {
+                ["c"] = {0.7674, 0.964, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.5, 1.0, 1.0, 0.8},
+            },
+            ["Avvoltoio__Collare_Luce"] = {
+                ["c"] = {0.5838, 0.9309, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.333, 1.0, 1.0, 0.0},
+            },
+            ["Avvoltoio__Occhi"] = {
+                ["c"] = {0.1517, 0.1284, 0.0999},
+                ["k"] = "solid",
+            },
+            ["Avvoltoio__Pelle_Nuda"] = {
+                ["c"] = {0.7354, 0.6097, 0.6012},
+                ["k"] = "solid",
+            },
+            ["Avvoltoio__Piumaggio"] = {
+                ["c"] = {0.2717, 0.2209, 0.1828},
+                ["k"] = "solid",
+            },
+            ["Avvoltoio__Roccia"] = {
+                ["k"] = "tex",
+            },
+        },
+        ["perni"] = {
+            ["Avvoltoio__Perno_Ala_L"] = {
+                ["membri"] = {
+                    "Avvoltoio__Ali_Miraggio__Ala_L",
+                    "Avvoltoio__Bordo_Ali__Ala_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0873,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Avvoltoio__Perno_Ala_R"] = {
+                ["membri"] = {
+                    "Avvoltoio__Ali_Miraggio__Ala_R",
+                    "Avvoltoio__Bordo_Ali__Ala_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.0873,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Cactus"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Cactus__Luce_01"] = {
+                ["ang"] = 75.0,
+                ["b0"] = 10.0,
+                ["b1"] = 10.0,
+                ["c"] = {0.964, 0.9822, 1.0},
+                ["cyc"] = 16,
+                ["dir"] = "Cactus__Luce_01_Dir",
+                ["ph"] = 0.0,
+                ["r"] = 36.0,
+            },
+            ["Cactus__Luce_02"] = {
+                ["b0"] = 2.624,
+                ["b1"] = 2.846,
+                ["c"] = {0.964, 0.9822, 1.0},
+                ["cyc"] = 16,
+                ["ph"] = 0.0,
+                ["r"] = 11.14,
+            },
+        },
+        ["parti"] = {
+            ["Cactus__Ali_Mosca__Ala_Mosca_L"] = {
+                ["ali"] = true,
+                ["e"] = 4.0,
+                ["k"] = "tex",
+            },
+            ["Cactus__Ali_Mosca__Ala_Mosca_R"] = {
+                ["ali"] = true,
+                ["e"] = 4.0,
+                ["k"] = "tex",
+            },
+            ["Cactus__Cromo"] = {
+                ["c"] = {0.9063, 0.9063, 0.9163},
+                ["k"] = "solid",
+                ["metallo"] = true,
+            },
+            ["Cactus__Faccia_Decal"] = {
+                ["c"] = {0.0861, 0.0861, 0.0861},
+                ["k"] = "solid",
+            },
+            ["Cactus__Faretto_Luce"] = {
+                ["c"] = {0.964, 0.9822, 1.0},
+                ["k"] = "neon",
+                ["p"] = {0.833, 1.0, 16.0, 0.0},
+            },
+            ["Cactus__Faretto_Metallo"] = {
+                ["c"] = {0.2934, 0.2934, 0.3133},
+                ["k"] = "solid",
+                ["metallo"] = true,
+            },
+            ["Cactus__Lanugine"] = {
+                ["c"] = {0.9547, 0.9309, 0.8543},
+                ["k"] = "solid",
+            },
+            ["Cactus__Occhiali_Specchio"] = {
+                ["c"] = {0.7674, 0.7977, 0.8808},
+                ["k"] = "solid",
+                ["metallo"] = true,
+                ["rifl"] = 0.8,
+            },
+            ["Cactus__Spine"] = {
+                ["c"] = {0.9309, 0.865, 0.68},
+                ["k"] = "solid",
+            },
+            ["Cactus__Stuzzicadenti"] = {
+                ["c"] = {0.8808, 0.7858, 0.6343},
+                ["k"] = "solid",
+            },
+            ["Cactus__Terra"] = {
+                ["c"] = {0.2717, 0.2209, 0.1718},
+                ["k"] = "solid",
+            },
+            ["Cactus__Vaso_Terracotta"] = {
+                ["k"] = "tex",
+            },
+            ["Cactus__Verde"] = {
+                ["c"] = {0.2717, 0.4845, 0.2478},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {
+            ["Cactus__Perno_Ala_Mosca_L"] = {
+                ["membri"] = {
+                    "Cactus__Ali_Mosca__Ala_Mosca_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.5934,
+                        ["asse"] = "Y",
+                        ["cyc"] = 48,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Cactus__Perno_Ala_Mosca_R"] = {
+                ["membri"] = {
+                    "Cactus__Ali_Mosca__Ala_Mosca_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.5934,
+                        ["asse"] = "Y",
+                        ["cyc"] = 48,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
     ["Farfalla"] = {
         ["bob"] = {},
         ["luci"] = {
@@ -141,6 +361,100 @@ local CONFIG = {
                         ["asse"] = "Y",
                         ["cyc"] = 2,
                         ["ph"] = 0.15,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Fennec"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Fennec__Luce_01"] = {
+                ["b0"] = 0.551,
+                ["b1"] = 1.006,
+                ["c"] = {1.0, 0.8267, 0.5371},
+                ["cyc"] = 1,
+                ["ph"] = 0.5,
+                ["r"] = 6.85,
+            },
+            ["Fennec__Luce_02"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 0.955,
+                ["c"] = {1.0, 0.8808, 0.5838},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 6.73,
+            },
+        },
+        ["parti"] = {
+            ["Fennec__Alone_Coda"] = {
+                ["c"] = {1.0, 0.7977, 0.4236},
+                ["k"] = "aura",
+                ["p"] = {0.333, 1.0, 1.0, 0.5},
+                ["t"] = 0.85,
+            },
+            ["Fennec__Luccichio"] = {
+                ["c"] = {1.0, 0.9777, 0.9063},
+                ["k"] = "neon",
+            },
+            ["Fennec__Naso"] = {
+                ["c"] = {0.0999, 0.0999, 0.0999},
+                ["k"] = "solid",
+            },
+            ["Fennec__Occhi"] = {
+                ["c"] = {0.1897, 0.1284, 0.061},
+                ["k"] = "solid",
+            },
+            ["Fennec__Orecchie_Solari__Orecchio_L"] = {
+                ["ali"] = true,
+                ["e"] = 14.0,
+                ["k"] = "tex",
+            },
+            ["Fennec__Orecchie_Solari__Orecchio_R"] = {
+                ["ali"] = true,
+                ["e"] = 14.0,
+                ["k"] = "tex",
+            },
+            ["Fennec__Pancia"] = {
+                ["c"] = {0.964, 0.9063, 0.8095},
+                ["k"] = "solid",
+            },
+            ["Fennec__Pelo"] = {
+                ["k"] = "tex",
+            },
+            ["Fennec__Punta_Coda"] = {
+                ["c"] = {1.0, 0.7977, 0.4236},
+                ["k"] = "neon",
+                ["p"] = {0.343, 1.0, 1.0, 0.5},
+            },
+        },
+        ["perni"] = {
+            ["Fennec__Perno_Orecchio_L"] = {
+                ["membri"] = {
+                    "Fennec__Orecchie_Solari__Orecchio_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0873,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Fennec__Perno_Orecchio_R"] = {
+                ["membri"] = {
+                    "Fennec__Orecchie_Solari__Orecchio_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.0873,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
                     },
                 },
             },
@@ -303,18 +617,22 @@ local CONFIG = {
                 ["r"] = 6.16,
             },
             ["Gufo__Luce_03"] = {
+                ["ang"] = 38.0,
                 ["b0"] = 1.559,
                 ["b1"] = 2.012,
                 ["c"] = {1.0, 0.9309, 0.6652},
                 ["cyc"] = 1,
+                ["dir"] = "Gufo__Luce_03_Dir",
                 ["ph"] = 0.0,
                 ["r"] = 9.2,
             },
             ["Gufo__Luce_04"] = {
+                ["ang"] = 38.0,
                 ["b0"] = 1.559,
                 ["b1"] = 2.012,
                 ["c"] = {1.0, 0.9309, 0.6652},
                 ["cyc"] = 1,
+                ["dir"] = "Gufo__Luce_04_Dir",
                 ["ph"] = 0.0,
                 ["r"] = 9.2,
             },
@@ -362,27 +680,11 @@ local CONFIG = {
                 ["k"] = "neon",
                 ["p"] = {0.632, 1.0, 1.0, 0.0},
             },
-            ["Gufo__Piuma_Chiara_1"] = {
+            ["Gufo__Piuma_Chiara"] = {
                 ["e"] = 8.0,
                 ["k"] = "tex",
             },
-            ["Gufo__Piuma_Chiara_2"] = {
-                ["e"] = 8.0,
-                ["k"] = "tex",
-            },
-            ["Gufo__Piuma_Neon_1"] = {
-                ["e"] = 10.4,
-                ["k"] = "tex",
-            },
-            ["Gufo__Piuma_Neon_2"] = {
-                ["e"] = 10.4,
-                ["k"] = "tex",
-            },
-            ["Gufo__Piuma_Neon_3"] = {
-                ["e"] = 10.4,
-                ["k"] = "tex",
-            },
-            ["Gufo__Piuma_Neon_4"] = {
+            ["Gufo__Piuma_Neon"] = {
                 ["e"] = 10.4,
                 ["k"] = "tex",
             },
@@ -522,6 +824,95 @@ local CONFIG = {
                         ["asse"] = "Y",
                         ["cyc"] = 6,
                         ["ph"] = 1.2,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Lucertola"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Lucertola__Luce_01"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.191,
+                ["c"] = {1.0, 0.5838, 0.2478},
+                ["cyc"] = 3,
+                ["ph"] = 0.0,
+                ["r"] = 7.28,
+            },
+            ["Lucertola__Luce_02"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 0.9,
+                ["c"] = {1.0, 0.5838, 0.2478},
+                ["cyc"] = 4,
+                ["ph"] = 1.0,
+                ["r"] = 6.6,
+            },
+        },
+        ["parti"] = {
+            ["Lucertola__Alucce__Aluccia_L"] = {
+                ["ali"] = true,
+                ["e"] = 8.0,
+                ["k"] = "tex",
+            },
+            ["Lucertola__Alucce__Aluccia_R"] = {
+                ["ali"] = true,
+                ["e"] = 8.0,
+                ["k"] = "tex",
+            },
+            ["Lucertola__Cristallo_Arancio"] = {
+                ["c"] = {1.0, 0.5838, 0.0999},
+                ["k"] = "neon",
+                ["p"] = {0.25, 1.0, 5.0, 3.1},
+                ["t"] = 0.2,
+            },
+            ["Lucertola__Cristallo_Brace"] = {
+                ["c"] = {1.0, 0.41, 0.0},
+                ["k"] = "neon",
+                ["p"] = {0.25, 1.0, 4.0, 1.7},
+                ["t"] = 0.2,
+            },
+            ["Lucertola__Cristallo_Rosso"] = {
+                ["c"] = {1.0, 0.2209, 0.0},
+                ["k"] = "neon",
+                ["p"] = {0.25, 1.0, 3.0, 0.0},
+                ["t"] = 0.2,
+            },
+            ["Lucertola__Occhi"] = {
+                ["c"] = {0.1517, 0.0999, 0.0},
+                ["k"] = "solid",
+            },
+            ["Lucertola__Pelle"] = {
+                ["k"] = "tex",
+            },
+        },
+        ["perni"] = {
+            ["Lucertola__Perno_Aluccia_L"] = {
+                ["membri"] = {
+                    "Lucertola__Alucce__Aluccia_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.4887,
+                        ["asse"] = "Y",
+                        ["cyc"] = 60,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Lucertola__Perno_Aluccia_R"] = {
+                ["membri"] = {
+                    "Lucertola__Alucce__Aluccia_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.4887,
+                        ["asse"] = "Y",
+                        ["cyc"] = 60,
+                        ["ph"] = 0.0,
                     },
                 },
             },
@@ -1176,11 +1567,7 @@ local CONFIG = {
                 ["c"] = {1.0, 0.8808, 0.5838},
                 ["k"] = "neon",
             },
-            ["Mantide__Smeraldo_1"] = {
-                ["c"] = {0.061, 0.5657, 0.2934},
-                ["k"] = "solid",
-            },
-            ["Mantide__Smeraldo_2"] = {
+            ["Mantide__Smeraldo"] = {
                 ["c"] = {0.061, 0.5657, 0.2934},
                 ["k"] = "solid",
             },
@@ -1309,10 +1696,7 @@ local CONFIG = {
                 ["c"] = {0.9547, 0.6262, 0.1517},
                 ["k"] = "neon",
             },
-            ["Rana__Pelle_Bagnata_1"] = {
-                ["k"] = "tex",
-            },
-            ["Rana__Pelle_Bagnata_2"] = {
+            ["Rana__Pelle_Bagnata"] = {
                 ["k"] = "tex",
             },
             ["Rana__Punto_Luce_0"] = {
@@ -1439,6 +1823,398 @@ local CONFIG = {
                 ["ph"] = 0.0,
             },
         },
+    },
+    ["Scarabeo"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Scarabeo__Luce_01"] = {
+                ["b0"] = 2.662,
+                ["b1"] = 3.337,
+                ["c"] = {1.0, 0.68, 0.3133},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 12.29,
+            },
+            ["Scarabeo__Luce_02"] = {
+                ["b0"] = 1.102,
+                ["b1"] = 1.684,
+                ["c"] = {1.0, 0.6652, 0.2717},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 8.43,
+            },
+            ["Scarabeo__Luce_03"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.273,
+                ["c"] = {1.0, 0.6262, 0.2478},
+                ["cyc"] = 2,
+                ["ph"] = 0.0,
+                ["r"] = 7.47,
+            },
+        },
+        ["parti"] = {
+            ["Scarabeo__Addome_Brace"] = {
+                ["e"] = 20.0,
+                ["k"] = "tex",
+            },
+            ["Scarabeo__Ali_Membrana__Ala_L"] = {
+                ["ali"] = true,
+                ["e"] = 7.2,
+                ["k"] = "tex",
+            },
+            ["Scarabeo__Ali_Membrana__Ala_R"] = {
+                ["ali"] = true,
+                ["e"] = 7.2,
+                ["k"] = "tex",
+            },
+            ["Scarabeo__Alone_Sfera"] = {
+                ["c"] = {1.0, 0.5838, 0.1517},
+                ["k"] = "aura",
+                ["p"] = {0.375, 1.0, 1.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Scarabeo__Guscio"] = {
+                ["k"] = "tex",
+            },
+            ["Scarabeo__Sfera_Magma__Sfera"] = {
+                ["e"] = 8.8,
+                ["k"] = "tex",
+            },
+        },
+        ["perni"] = {
+            ["Scarabeo__Perno_Ala_L"] = {
+                ["membri"] = {
+                    "Scarabeo__Ali_Membrana__Ala_L",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.1047,
+                        ["asse"] = "Y",
+                        ["cyc"] = 3,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Scarabeo__Perno_Ala_R"] = {
+                ["membri"] = {
+                    "Scarabeo__Ali_Membrana__Ala_R",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = -0.1047,
+                        ["asse"] = "Y",
+                        ["cyc"] = 3,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+            ["Scarabeo__Perno_Sfera"] = {
+                ["membri"] = {
+                    "Scarabeo__Sfera_Magma__Sfera",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0,
+                        ["asse"] = "X",
+                        ["cyc"] = -1,
+                        ["ph"] = 0.0,
+                        ["spin"] = true,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Scorpione"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Scorpione__Luce_01"] = {
+                ["b0"] = 1.559,
+                ["b1"] = 2.846,
+                ["c"] = {1.0, 0.7354, 0.4236},
+                ["cyc"] = 2,
+                ["ph"] = 0.0,
+                ["r"] = 11.14,
+            },
+            ["Scorpione__Luce_02"] = {
+                ["b0"] = 1.006,
+                ["b1"] = 1.559,
+                ["c"] = {1.0, 0.7674, 0.4845},
+                ["cyc"] = 2,
+                ["ph"] = 0.0,
+                ["r"] = 8.14,
+            },
+        },
+        ["parti"] = {
+            ["Scorpione__Alone__Coda"] = {
+                ["c"] = {1.0, 0.68, 0.2717},
+                ["k"] = "aura",
+                ["p"] = {0.278, 1.0, 2.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Scorpione__Anelli_Oro__Coda"] = {
+                ["c"] = {1.0, 0.8543, 0.5371},
+                ["k"] = "solid",
+                ["metallo"] = true,
+            },
+            ["Scorpione__Bulbo_Smerigliato__Coda"] = {
+                ["c"] = {1.0, 0.6652, 0.2478},
+                ["k"] = "neon",
+                ["p"] = {0.273, 1.0, 2.0, 0.0},
+                ["t"] = 0.2,
+            },
+            ["Scorpione__Corazza"] = {
+                ["e"] = 3.6,
+                ["k"] = "tex",
+            },
+            ["Scorpione__Corazza__Coda"] = {
+                ["e"] = 3.6,
+                ["k"] = "tex",
+            },
+            ["Scorpione__Elitre"] = {
+                ["c"] = {0.5838, 0.4492, 0.2478},
+                ["k"] = "solid",
+                ["metallo"] = true,
+            },
+            ["Scorpione__Fiamma_Interna__Coda"] = {
+                ["c"] = {1.0, 0.7014, 0.2717},
+                ["k"] = "neon",
+                ["p"] = {0.333, 1.0, 2.0, 0.0},
+            },
+            ["Scorpione__Occhi"] = {
+                ["c"] = {0.0, 0.0, 0.0},
+                ["k"] = "solid",
+            },
+            ["Scorpione__Zampe"] = {
+                ["e"] = 2.0,
+                ["k"] = "tex",
+            },
+        },
+        ["perni"] = {
+            ["Scorpione__Perno_Coda"] = {
+                ["membri"] = {
+                    "Scorpione__Luce_01",
+                    "Scorpione__Alone__Coda",
+                    "Scorpione__Anelli_Oro__Coda",
+                    "Scorpione__Bulbo_Smerigliato__Coda",
+                    "Scorpione__Corazza__Coda",
+                    "Scorpione__Fiamma_Interna__Coda",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.0524,
+                        ["asse"] = "X",
+                        ["cyc"] = 2,
+                        ["ph"] = 0.8,
+                    },
+                    {
+                        ["amp"] = 0.0873,
+                        ["asse"] = "Y",
+                        ["cyc"] = 1,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
+    },
+    ["Tarantola"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Tarantola__Luce_01"] = {
+                ["b0"] = 1.006,
+                ["b1"] = 1.684,
+                ["c"] = {1.0, 0.6262, 0.2478},
+                ["cyc"] = 1,
+                ["ph"] = 0.9,
+                ["r"] = 8.43,
+            },
+            ["Tarantola__Luce_02"] = {
+                ["b0"] = 0.779,
+                ["b1"] = 1.191,
+                ["c"] = {1.0, 0.7014, 0.3133},
+                ["cyc"] = 1,
+                ["ph"] = 0.0,
+                ["r"] = 7.28,
+            },
+        },
+        ["parti"] = {
+            ["Tarantola__Addome_Lava"] = {
+                ["e"] = 20.0,
+                ["k"] = "tex",
+            },
+            ["Tarantola__Carapace_Sole"] = {
+                ["e"] = 16.0,
+                ["k"] = "tex",
+            },
+            ["Tarantola__Giunture_Lava"] = {
+                ["c"] = {1.0, 0.6012, 0.1517},
+                ["k"] = "neon",
+                ["p"] = {0.333, 1.0, 1.0, 0.4},
+            },
+            ["Tarantola__Occhi"] = {
+                ["c"] = {0.0, 0.0, 0.0},
+                ["k"] = "solid",
+            },
+            ["Tarantola__Zampe"] = {
+                ["e"] = 10.0,
+                ["k"] = "tex",
+            },
+            ["Tarantola__Zanne"] = {
+                ["c"] = {0.1517, 0.1284, 0.1121},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {},
+        ["scala"] = {},
+    },
+    ["Vipera"] = {
+        ["bob"] = {},
+        ["luci"] = {
+            ["Vipera__Luce_01"] = {
+                ["b0"] = 0.636,
+                ["b1"] = 1.35,
+                ["c"] = {0.7977, 1.0, 0.4236},
+                ["cyc"] = 3,
+                ["ph"] = 0.0,
+                ["r"] = 7.65,
+            },
+            ["Vipera__Luce_02"] = {
+                ["b0"] = 0.551,
+                ["b1"] = 0.9,
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["cyc"] = 2,
+                ["ph"] = 0.0,
+                ["r"] = 6.6,
+            },
+        },
+        ["parti"] = {
+            ["Vipera__Alone_Sonaglio"] = {
+                ["c"] = {0.7977, 1.0, 0.3492},
+                ["k"] = "aura",
+                ["p"] = {0.3, 1.0, 3.0, 0.0},
+                ["t"] = 0.85,
+            },
+            ["Vipera__Anelli_Scuri"] = {
+                ["c"] = {0.2478, 0.2209, 0.1517},
+                ["k"] = "solid",
+            },
+            ["Vipera__Lingua__Lingua"] = {
+                ["c"] = {0.7354, 0.1517, 0.2478},
+                ["k"] = "solid",
+            },
+            ["Vipera__Occhi"] = {
+                ["c"] = {0.9547, 0.7674, 0.2478},
+                ["k"] = "neon",
+            },
+            ["Vipera__Pupilla"] = {
+                ["c"] = {0.0, 0.0, 0.0},
+                ["k"] = "solid",
+            },
+            ["Vipera__Sonaglio_0"] = {
+                ["c"] = {0.8808, 1.0, 0.3811},
+                ["k"] = "neon",
+                ["p"] = {0.075, 1.0, 3.0, -0.0},
+            },
+            ["Vipera__Sonaglio_1"] = {
+                ["c"] = {0.8808, 1.0, 0.3811},
+                ["k"] = "neon",
+                ["p"] = {0.075, 1.0, 3.0, -0.898},
+            },
+            ["Vipera__Sonaglio_2"] = {
+                ["c"] = {0.8808, 1.0, 0.3811},
+                ["k"] = "neon",
+                ["p"] = {0.075, 1.0, 3.0, -1.795},
+            },
+            ["Vipera__Sonaglio_3"] = {
+                ["c"] = {0.8808, 1.0, 0.3811},
+                ["k"] = "neon",
+                ["p"] = {0.075, 1.0, 3.0, -2.693},
+            },
+            ["Vipera__Sonaglio_4"] = {
+                ["c"] = {0.8808, 1.0, 0.3811},
+                ["k"] = "neon",
+                ["p"] = {0.075, 1.0, 3.0, -3.59},
+            },
+            ["Vipera__Sonaglio_5"] = {
+                ["c"] = {0.8808, 1.0, 0.3811},
+                ["k"] = "neon",
+                ["p"] = {0.075, 1.0, 3.0, -4.488},
+            },
+            ["Vipera__Sonaglio_6"] = {
+                ["c"] = {0.8808, 1.0, 0.3811},
+                ["k"] = "neon",
+                ["p"] = {0.075, 1.0, 3.0, -5.386},
+            },
+            ["Vipera__Squame_Terracotta"] = {
+                ["k"] = "tex",
+            },
+            ["Vipera__Striscia_0"] = {
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["k"] = "neon",
+                ["p"] = {0.017, 1.0, 2.0, -0.0},
+            },
+            ["Vipera__Striscia_1"] = {
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["k"] = "neon",
+                ["p"] = {0.017, 1.0, 2.0, -0.785},
+            },
+            ["Vipera__Striscia_2"] = {
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["k"] = "neon",
+                ["p"] = {0.017, 1.0, 2.0, -1.571},
+            },
+            ["Vipera__Striscia_3"] = {
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["k"] = "neon",
+                ["p"] = {0.017, 1.0, 2.0, -2.356},
+            },
+            ["Vipera__Striscia_4"] = {
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["k"] = "neon",
+                ["p"] = {0.017, 1.0, 2.0, -3.142},
+            },
+            ["Vipera__Striscia_5"] = {
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["k"] = "neon",
+                ["p"] = {0.017, 1.0, 2.0, -3.927},
+            },
+            ["Vipera__Striscia_6"] = {
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["k"] = "neon",
+                ["p"] = {0.017, 1.0, 2.0, -4.712},
+            },
+            ["Vipera__Striscia_7"] = {
+                ["c"] = {0.7977, 1.0, 0.3133},
+                ["k"] = "neon",
+                ["p"] = {0.017, 1.0, 2.0, -5.498},
+            },
+            ["Vipera__Testa"] = {
+                ["c"] = {0.6097, 0.3811, 0.2478},
+                ["k"] = "solid",
+            },
+        },
+        ["perni"] = {
+            ["Vipera__Perno_Lingua"] = {
+                ["membri"] = {
+                    "Vipera__Lingua__Lingua",
+                },
+                ["padre"] = nil,
+                ["rot"] = {
+                    {
+                        ["amp"] = 0.2443,
+                        ["asse"] = "X",
+                        ["cyc"] = 6,
+                        ["ph"] = 0.0,
+                    },
+                },
+            },
+        },
+        ["scala"] = {},
     },
 }
 
@@ -1578,6 +2354,14 @@ local function prepara(radice)
 				p.Material = Enum.Material.ForceField
 				p.Color = colore(s.c)
 				p.CastShadow = false
+			elseif s.k == "glass" then
+				-- ali "miraggio": vetro che deforma lo sfondo come l'aria calda
+				togliTexture(p)
+				p.Material = Enum.Material.Glass
+				p.Color = colore(s.c)
+				p.Transparency = s.t or 0.6
+				p.CastShadow = false
+				p.CanCollide = false
 			elseif s.k == "solid" then
 				-- colore uniforme (se l'importer non l'ha gia' preso dal file)
 				if not p:FindFirstChildOfClass("SurfaceAppearance") then
@@ -1599,6 +2383,9 @@ local function prepara(radice)
 					end)
 				end
 			end
+			if s.rifl then
+				p.Reflectance = s.rifl
+			end
 			if s.h then
 				contorno(p, s.h)
 			end
@@ -1608,7 +2395,22 @@ local function prepara(radice)
 	for nome, l in pairs(cfg.luci) do
 		local p = trova(model, nome)
 		if p then
-			local luce = p:FindFirstChild("Luce_Creatura") or Instance.new("PointLight")
+			local classe = l.dir and "SpotLight" or "PointLight"
+			local luce = p:FindFirstChild("Luce_Creatura")
+			if luce and luce.ClassName ~= classe then
+				luce:Destroy()
+				luce = nil
+			end
+			luce = luce or Instance.new(classe)
+			if l.dir then
+				-- faretto: il marcatore guarda verso il suo marcatore "_Dir"
+				local bersaglio = trova(model, l.dir)
+				if bersaglio then
+					p.CFrame = CFrame.lookAt(p.Position, bersaglio.Position)
+				end
+				luce.Face = Enum.NormalId.Front
+				luce.Angle = l.ang or 60
+			end
 			luce.Name = "Luce_Creatura"
 			luce.Color = colore(l.c)
 			luce.Range = l.r
@@ -1694,7 +2496,13 @@ local function trasforma(inst, nome, t, cache)
 	for _, r in ipairs(pv.rot) do
 		local asse = inst.assi[r.asse]
 		if asse then
-			R = CFrame.fromAxisAngle(asse, r.amp * seno(r.cyc, r.ph, t)) * R
+			local ang
+			if r.spin then
+				ang = DUE_PI * r.cyc * t / CICLO + r.ph -- rotazione continua (sfera che rotola)
+			else
+				ang = r.amp * seno(r.cyc, r.ph, t)
+			end
+			R = CFrame.fromAxisAngle(asse, ang) * R
 		end
 	end
 	local W = T * CFrame.new(pv.centro) * R * CFrame.new(-pv.centro)

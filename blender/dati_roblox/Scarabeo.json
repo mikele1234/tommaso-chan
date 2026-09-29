@@ -1,0 +1,125 @@
+{
+ "bob": {},
+ "luci": {
+  "Scarabeo__Luce_01": {
+   "b0": 2.662,
+   "b1": 3.337,
+   "c": [
+    1.0,
+    0.68,
+    0.3133
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 12.29
+  },
+  "Scarabeo__Luce_02": {
+   "b0": 1.102,
+   "b1": 1.684,
+   "c": [
+    1.0,
+    0.6652,
+    0.2717
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 8.43
+  },
+  "Scarabeo__Luce_03": {
+   "b0": 0.779,
+   "b1": 1.273,
+   "c": [
+    1.0,
+    0.6262,
+    0.2478
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 7.47
+  }
+ },
+ "parti": {
+  "Scarabeo__Addome_Brace": {
+   "e": 20.0,
+   "k": "tex"
+  },
+  "Scarabeo__Ali_Membrana__Ala_L": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Scarabeo__Ali_Membrana__Ala_R": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Scarabeo__Alone_Sfera": {
+   "c": [
+    1.0,
+    0.5838,
+    0.1517
+   ],
+   "k": "aura",
+   "p": [
+    0.375,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Scarabeo__Guscio": {
+   "k": "tex"
+  },
+  "Scarabeo__Sfera_Magma__Sfera": {
+   "e": 8.8,
+   "k": "tex"
+  }
+ },
+ "perni": {
+  "Scarabeo__Perno_Ala_L": {
+   "membri": [
+    "Scarabeo__Ali_Membrana__Ala_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1047,
+     "asse": "Y",
+     "cyc": 3,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Scarabeo__Perno_Ala_R": {
+   "membri": [
+    "Scarabeo__Ali_Membrana__Ala_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1047,
+     "asse": "Y",
+     "cyc": 3,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Scarabeo__Perno_Sfera": {
+   "membri": [
+    "Scarabeo__Sfera_Magma__Sfera"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0,
+     "asse": "X",
+     "cyc": -1,
+     "ph": 0.0,
+     "spin": true
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

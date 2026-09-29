@@ -1,0 +1,200 @@
+{
+ "bob": {},
+ "luci": {
+  "Gatto__Luce_01": {
+   "b0": 0.712,
+   "b1": 1.006,
+   "c": [
+    0.6652,
+    0.5838,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.85
+  }
+ },
+ "parti": {
+  "Gatto__Ala_Luce_Post__AlaPost_L": {
+   "ali": true,
+   "e": 5.2,
+   "k": "tex"
+  },
+  "Gatto__Ala_Luce_Post__AlaPost_R": {
+   "ali": true,
+   "e": 5.2,
+   "k": "tex"
+  },
+  "Gatto__Ala_Luce__AlaAnt_L": {
+   "ali": true,
+   "e": 5.6,
+   "k": "tex"
+  },
+  "Gatto__Ala_Luce__AlaAnt_R": {
+   "ali": true,
+   "e": 5.6,
+   "k": "tex"
+  },
+  "Gatto__Aura_Coda": {
+   "c": [
+    0.6652,
+    0.5838,
+    1.0
+   ],
+   "k": "aura",
+   "p": [
+    0.444,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Gatto__Baffi_Luce": {
+   "c": [
+    0.7674,
+    0.8267,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.5,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Gatto__Coda_Luce": {
+   "c": [
+    0.7014,
+    0.6262,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.437,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Gatto__Iride": {
+   "c": [
+    1.0,
+    0.865,
+    0.3811
+   ],
+   "k": "neon"
+  },
+  "Gatto__Luna_Fronte": {
+   "c": [
+    0.8808,
+    0.9063,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Gatto__Naso": {
+   "c": [
+    0.2478,
+    0.1517,
+    0.2717
+   ],
+   "k": "solid"
+  },
+  "Gatto__Orecchio_Interno": {
+   "c": [
+    0.7014,
+    0.5371,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.417,
+    1.0,
+    1.0,
+    0.5
+   ]
+  },
+  "Gatto__Pelo_Notte": {
+   "c": [
+    0.0702,
+    0.061,
+    0.1061
+   ],
+   "h": [
+    0.6012,
+    0.5064,
+    1.0
+   ],
+   "k": "solid"
+  },
+  "Gatto__Pupilla": {
+   "c": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {
+  "Gatto__Perno_AlaAnt_L": {
+   "membri": [
+    "Gatto__Ala_Luce__AlaAnt_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Gatto__Perno_AlaAnt_R": {
+   "membri": [
+    "Gatto__Ala_Luce__AlaAnt_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Gatto__Perno_AlaPost_L": {
+   "membri": [
+    "Gatto__Ala_Luce_Post__AlaPost_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.25
+    }
+   ]
+  },
+  "Gatto__Perno_AlaPost_R": {
+   "membri": [
+    "Gatto__Ala_Luce_Post__AlaPost_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.1222,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.25
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

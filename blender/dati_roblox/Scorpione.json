@@ -1,0 +1,141 @@
+{
+ "bob": {},
+ "luci": {
+  "Scorpione__Luce_01": {
+   "b0": 1.559,
+   "b1": 2.846,
+   "c": [
+    1.0,
+    0.7354,
+    0.4236
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 11.14
+  },
+  "Scorpione__Luce_02": {
+   "b0": 1.006,
+   "b1": 1.559,
+   "c": [
+    1.0,
+    0.7674,
+    0.4845
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 8.14
+  }
+ },
+ "parti": {
+  "Scorpione__Alone__Coda": {
+   "c": [
+    1.0,
+    0.68,
+    0.2717
+   ],
+   "k": "aura",
+   "p": [
+    0.278,
+    1.0,
+    2.0,
+    0.0
+   ],
+   "t": 0.85
+  },
+  "Scorpione__Anelli_Oro__Coda": {
+   "c": [
+    1.0,
+    0.8543,
+    0.5371
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Scorpione__Bulbo_Smerigliato__Coda": {
+   "c": [
+    1.0,
+    0.6652,
+    0.2478
+   ],
+   "k": "neon",
+   "p": [
+    0.273,
+    1.0,
+    2.0,
+    0.0
+   ],
+   "t": 0.2
+  },
+  "Scorpione__Corazza": {
+   "e": 3.6,
+   "k": "tex"
+  },
+  "Scorpione__Corazza__Coda": {
+   "e": 3.6,
+   "k": "tex"
+  },
+  "Scorpione__Elitre": {
+   "c": [
+    0.5838,
+    0.4492,
+    0.2478
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Scorpione__Fiamma_Interna__Coda": {
+   "c": [
+    1.0,
+    0.7014,
+    0.2717
+   ],
+   "k": "neon",
+   "p": [
+    0.333,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Scorpione__Occhi": {
+   "c": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "k": "solid"
+  },
+  "Scorpione__Zampe": {
+   "e": 2.0,
+   "k": "tex"
+  }
+ },
+ "perni": {
+  "Scorpione__Perno_Coda": {
+   "membri": [
+    "Scorpione__Luce_01",
+    "Scorpione__Alone__Coda",
+    "Scorpione__Anelli_Oro__Coda",
+    "Scorpione__Bulbo_Smerigliato__Coda",
+    "Scorpione__Corazza__Coda",
+    "Scorpione__Fiamma_Interna__Coda"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0524,
+     "asse": "X",
+     "cyc": 2,
+     "ph": 0.8
+    },
+    {
+     "amp": 0.0873,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

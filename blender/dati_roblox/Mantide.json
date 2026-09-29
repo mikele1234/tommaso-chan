@@ -1,0 +1,156 @@
+{
+ "bob": {},
+ "luci": {
+  "Mantide__Luce_01": {
+   "b0": 0.779,
+   "b1": 1.743,
+   "c": [
+    1.0,
+    0.7354,
+    0.3811
+   ],
+   "cyc": 2,
+   "ph": 0.0,
+   "r": 8.57
+  },
+  "Mantide__Luce_02": {
+   "b0": 0.636,
+   "b1": 0.9,
+   "c": [
+    1.0,
+    0.7674,
+    0.4845
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.6
+  }
+ },
+ "parti": {
+  "Mantide__Addome_Pulsante": {
+   "c": [
+    1.0,
+    0.5838,
+    0.1517
+   ],
+   "k": "neon",
+   "p": [
+    0.154,
+    1.0,
+    2.0,
+    0.0
+   ]
+  },
+  "Mantide__Ala_Anteriore__AlaAnteriore_L": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Mantide__Ala_Anteriore__AlaAnteriore_R": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Mantide__Ala_Vetrata__AlaPosteriore_L": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Mantide__Ala_Vetrata__AlaPosteriore_R": {
+   "ali": true,
+   "e": 7.2,
+   "k": "tex"
+  },
+  "Mantide__Occhi": {
+   "c": [
+    0.5371,
+    0.7977,
+    0.2478
+   ],
+   "k": "solid"
+  },
+  "Mantide__Punte": {
+   "c": [
+    1.0,
+    0.8808,
+    0.5838
+   ],
+   "k": "neon"
+  },
+  "Mantide__Smeraldo": {
+   "c": [
+    0.061,
+    0.5657,
+    0.2934
+   ],
+   "k": "solid"
+  },
+  "Mantide__Spine": {
+   "c": [
+    1.0,
+    0.8543,
+    0.4845
+   ],
+   "k": "neon"
+  }
+ },
+ "perni": {
+  "Mantide__Perno_AlaAnteriore_L": {
+   "membri": [
+    "Mantide__Ala_Anteriore__AlaAnteriore_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0524,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.4
+    }
+   ]
+  },
+  "Mantide__Perno_AlaAnteriore_R": {
+   "membri": [
+    "Mantide__Ala_Anteriore__AlaAnteriore_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.0524,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.4
+    }
+   ]
+  },
+  "Mantide__Perno_AlaPosteriore_L": {
+   "membri": [
+    "Mantide__Ala_Vetrata__AlaPosteriore_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0524,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Mantide__Perno_AlaPosteriore_R": {
+   "membri": [
+    "Mantide__Ala_Vetrata__AlaPosteriore_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.0524,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

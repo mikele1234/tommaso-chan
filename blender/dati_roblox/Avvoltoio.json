@@ -1,0 +1,167 @@
+{
+ "bob": {},
+ "luci": {
+  "Avvoltoio__Luce_01": {
+   "b0": 0.712,
+   "b1": 1.273,
+   "c": [
+    0.5838,
+    0.9309,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.47
+  },
+  "Avvoltoio__Luce_02": {
+   "b0": 0.9,
+   "b1": 1.273,
+   "c": [
+    0.5838,
+    0.9309,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.8,
+   "r": 7.47
+  }
+ },
+ "parti": {
+  "Avvoltoio__Ali_Miraggio__Ala_L": {
+   "c": [
+    0.9063,
+    0.9731,
+    1.0
+   ],
+   "k": "glass",
+   "t": 0.55
+  },
+  "Avvoltoio__Ali_Miraggio__Ala_R": {
+   "c": [
+    0.9063,
+    0.9731,
+    1.0
+   ],
+   "k": "glass",
+   "t": 0.55
+  },
+  "Avvoltoio__Artigli": {
+   "c": [
+    0.3811,
+    0.3656,
+    0.3492
+   ],
+   "k": "solid"
+  },
+  "Avvoltoio__Becco": {
+   "c": [
+    0.8543,
+    0.7977,
+    0.68
+   ],
+   "k": "solid"
+  },
+  "Avvoltoio__Bordo_Ali__Ala_L": {
+   "c": [
+    0.7674,
+    0.964,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.5,
+    1.0,
+    1.0,
+    0.8
+   ]
+  },
+  "Avvoltoio__Bordo_Ali__Ala_R": {
+   "c": [
+    0.7674,
+    0.964,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.5,
+    1.0,
+    1.0,
+    0.8
+   ]
+  },
+  "Avvoltoio__Collare_Luce": {
+   "c": [
+    0.5838,
+    0.9309,
+    1.0
+   ],
+   "k": "neon",
+   "p": [
+    0.333,
+    1.0,
+    1.0,
+    0.0
+   ]
+  },
+  "Avvoltoio__Occhi": {
+   "c": [
+    0.1517,
+    0.1284,
+    0.0999
+   ],
+   "k": "solid"
+  },
+  "Avvoltoio__Pelle_Nuda": {
+   "c": [
+    0.7354,
+    0.6097,
+    0.6012
+   ],
+   "k": "solid"
+  },
+  "Avvoltoio__Piumaggio": {
+   "c": [
+    0.2717,
+    0.2209,
+    0.1828
+   ],
+   "k": "solid"
+  },
+  "Avvoltoio__Roccia": {
+   "k": "tex"
+  }
+ },
+ "perni": {
+  "Avvoltoio__Perno_Ala_L": {
+   "membri": [
+    "Avvoltoio__Ali_Miraggio__Ala_L",
+    "Avvoltoio__Bordo_Ali__Ala_L"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": 0.0873,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  },
+  "Avvoltoio__Perno_Ala_R": {
+   "membri": [
+    "Avvoltoio__Ali_Miraggio__Ala_R",
+    "Avvoltoio__Bordo_Ali__Ala_R"
+   ],
+   "padre": null,
+   "rot": [
+    {
+     "amp": -0.0873,
+     "asse": "Y",
+     "cyc": 1,
+     "ph": 0.0
+    }
+   ]
+  }
+ },
+ "scala": {}
+}

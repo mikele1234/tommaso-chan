@@ -1,24 +1,34 @@
 # Creature Luminose
 
-Otto creature bioluminescenti modellate proceduralmente in Blender con uno
-script Python: ogni forma, materiale, luce e animazione nasce dal codice in
-[`blender/creature_luminose.py`](blender/creature_luminose.py).
+Sedici creature bioluminescenti in due serie, modellate proceduralmente in
+Blender con script Python: ogni forma, materiale, luce e animazione nasce dal
+codice.
+
+- **Serie 1 – Creature luminose** → [`blender/creature_luminose.py`](blender/creature_luminose.py)
+- **Serie 2 – Creature del deserto** → [`blender/creature_deserto.py`](blender/creature_deserto.py)
+  (vedi [più sotto](#serie-2--creature-luminose-del-deserto))
+
+Tutte sono disponibili anche **per Roblox Studio**, con al massimo 20.000
+triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 
 ![Tutte le creature](anteprime/00_tutte_le_creature.png)
+![Le creature del deserto](anteprime/deserto/00_tutte_le_creature.png)
 
 ## Cosa c'è nel repository
 
 | Cartella | Contenuto |
 |---|---|
-| `blender/creature_luminose.py` | Lo script che genera le creature (da eseguire dentro Blender o da riga di comando) |
-| `modelli/*.blend` | File Blender pronti da aprire: una scena per creatura + `00_tutte_le_creature.blend` |
-| `anteprime/*.png` | Render di anteprima (Cycles) |
-| `roblox/` | Versione pronta per **Roblox Studio**: file `.glb` + script Luau (vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md)) |
+| `blender/creature_luminose.py` | Generatore della serie 1 (e infrastruttura comune: materiali, ali, luci, scena) |
+| `blender/creature_deserto.py` | Generatore della serie del deserto (usa `creature_luminose.py`, che deve stare nella stessa cartella) |
+| `blender/esporta_roblox.py` | Converte tutte le creature per Roblox (`.glb` + script Luau) |
+| `modelli/*.blend`, `modelli/deserto/*.blend` | File Blender pronti da aprire: una scena per creatura + `00_tutte_le_creature.blend` |
+| `anteprime/`, `anteprime/deserto/` | Render di anteprima (Cycles) |
+| `roblox/` | Versione per **Roblox Studio**: file `.glb` + script Luau (vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md)) |
 
 ## Come aprirle
 
-**Modo più semplice:** apri uno dei file in `modelli/` con Blender (4.2 o più
-recente). Il viewport parte in *Material Preview* con le luci della scena.
+**Modo più semplice:** apri uno dei file in `modelli/` o `modelli/deserto/`
+con Blender (4.2 o più recente). Il viewport parte in *Material Preview* con le luci della scena.
 Per l'effetto completo premi `Z` e scegli **Rendered**, oppure `F12` per il
 render finale. Premi `Spazio` per vedere le animazioni (pulsazioni, battito
 d'ali, lampadina che dondola).
@@ -34,6 +44,11 @@ d'ali, lampadina che dondola).
    ```
 4. Premi **Run Script** (`Alt+P`).
 
+Per la serie del deserto apri invece `blender/creature_deserto.py`, lasciando
+`creature_luminose.py` nella stessa cartella, e scegli tra `"scorpione"`,
+`"fennec"`, `"scarabeo"`, `"vipera"`, `"lucertola"`, `"avvoltoio"`,
+`"tarantola"`, `"cactus"` oppure `"tutte"`.
+
 > ⚠️ Con `PULISCI_SCENA = True` lo script **cancella la scena corrente** prima
 > di costruire: usalo in un file nuovo.
 
@@ -47,12 +62,14 @@ blender --background --python blender/creature_luminose.py -- \
 
 ## Su Roblox Studio
 
-Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono le creature convertite
-per Roblox: un file `.glb` per creatura, da importare con *Import 3D* (con
-**Anchored** attivo), e lo script `CreatureLuminose.client.lua`, da incollare
-in un LocalScript in *StarterPlayerScripts*. Lo script accende Neon e luci e
-anima ali, lampadina, sacca vocale e lucciole. Le istruzioni complete sono in
-[`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
+Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 16 creature
+convertite per Roblox, **ognuna con al massimo 20.000 triangoli in totale**:
+un file `.glb` per creatura (`roblox/modelli/` e `roblox/modelli/deserto/`), da
+importare con *Import 3D* (con **Anchored** attivo), e un unico script
+`CreatureLuminose.client.lua`, da incollare in un LocalScript in
+*StarterPlayerScripts*. Lo script accende Neon, luci e faretti e anima ali,
+code, lampadina, sfera di magma, sacca vocale e lucciole. Le istruzioni
+complete sono in [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 
 ## Parametri regolabili (in cima allo script)
 
@@ -145,6 +162,82 @@ Alette minuscole luminosissime che sbattono all'impazzata. Sopra la testa
 un'antenna flessibile che ondeggia e da cui **penzola una vera lampadina accesa**
 (attacco a vite, vetro, filamento incandescente, luce calda) che dondola.
 
+## Serie 2 · Creature luminose del deserto
+
+Generate da [`blender/creature_deserto.py`](blender/creature_deserto.py), su
+una sabbia notturna con le increspature del vento.
+
+### 01 · Scorpione-Lanterna
+![Scorpione-Lanterna](anteprime/deserto/01_scorpione_lanterna.png)
+
+Scorpione tozzo con corazza color sabbia attraversata da **venature d'oro**
+metalliche e leggermente luminose. La coda si arcua sopra il dorso e finisce in
+un enorme **bulbo-lanterna** di materiale organico traslucido (subsurface
+scattering, superficie smerigliata) con una fiamma emissiva potentissima
+all'interno: pulsa di luce ambrata come una lanterna a olio e fa ondeggiare la
+coda. Chele massicce e piccole elitre da coleottero ripiegate sul dorso.
+
+### 02 · Fennec-Solare
+![Fennec-Solare](anteprime/deserto/02_fennec_solare.png)
+
+Piccola volpe del deserto con **vero pelo** (sistema particellare, anche sulla
+coda). Le orecchie gigantesche sono **ali spesse di luce solare**:
+semitrasparenti, con venature di un giallo accecante, e si muovono appena. La
+punta della coda vaporosa ha un bagliore caldo.
+
+### 03 · Scarabeo-Fornace
+![Scarabeo-Fornace](anteprime/deserto/03_scarabeo_fornace.png)
+
+Scarabeo sacro **nero opaco con graffi d'oro** (guscio ruvido e un po'
+metallico). Le elitre aperte rivelano un addome che brucia come carboni ardenti
+(crepe di lava). Spinge una **sfera perfetta di magma luminoso** che rotola e lo
+illumina dal basso.
+
+### 04 · Vipera-Sonaglio Luminoso
+![Vipera-Sonaglio Luminoso](anteprime/deserto/04_vipera_sonaglio.png)
+
+Serpente avvolto a spirale con **squame in rilievo** color terracotta, rombi
+dorsali e ventre chiaro (diventano una normal map per Roblox). Il sonaglio è una
+fila di **anelli di lucciola verde-giallo** che si accendono uno dopo l'altro, e
+lungo i fianchi corrono strisce sottili che si illuminano **in sequenza verso la
+coda**, come una barra di caricamento. La lingua biforcuta guizza.
+
+### 05 · Lucertola-Cristallo
+![Lucertola-Cristallo](anteprime/deserto/05_lucertola_cristallo.png)
+
+Diavolo spinoso dalla pelle mimetica e verrucosa. Le spine sono **cristalli di
+quarzo grezzo** trasparenti (Transmission) con la brace accesa dentro: rossi,
+rosso-arancio e arancioni, ognuno pulsa con un ritmo diverso. Due minuscole
+alucce trasparenti sulle spalle battono velocissime.
+
+### 06 · Avvoltoio-Miraggio
+![Avvoltoio-Miraggio](anteprime/deserto/06_avvoltoio_miraggio.png)
+
+Piccolo avvoltoio appollaiato su una roccia, testa e collo nudi e becco
+uncinato. Il collare è fatto di **piume di luce bianca e azzurro-oasi** che
+pulsano. Le ali sono immense, ondulate e quasi invisibili: un vetro deformato da
+un **rumore animato che imita il tremolio dell'aria calda**, incorniciato da
+bordi luminosi.
+
+### 07 · Tarantola-Brace
+![Tarantola-Brace](anteprime/deserto/07_tarantola_brace.png)
+
+Tarantola massiccia con una crosta scura spaccata da **crepe di lava** (maschera
+Voronoi) che rivelano l'arancione incandescente sotto. Le articolazioni delle
+otto zampe sono giunture di lava e sulla schiena c'è un **sole stilizzato**
+luminoso.
+
+### 08 · Il Cactus "Chill Guy" (The Brainrot Desert Moth)
+![Il Cactus Chill Guy](anteprime/deserto/08_cactus_chill_guy.png)
+
+Cactus a palla con costole e spine, piantato in un vasetto di terracotta
+**sbeccato**. Ha una faccia piatta da decalcomania con **occhiali da sole a
+specchio** e un sorrisetto rilassato, braccine-stuzzicadenti conserte e due
+**ali da mosca sovradimensionate** attaccate al vaso che sbattono all'impazzata.
+Al posto del fiore, in testa, un **faretto alogeno da stadio** con griglia e
+alette di raffreddamento: emissione al massimo e un vero faretto (spot) che
+"brucia" l'immagine.
+
 ## Dettagli tecnici
 
 - **Emissione e trasparenza**: le ali usano un unico shader procedurale
@@ -160,6 +253,11 @@ un'antenna flessibile che ondeggia e da cui **penzola una vera lampadina accesa*
   cambiano tra le versioni (nomi del Principled BSDF, EEVEE Next, compositor
   5.x) sono gestite. I file in `modelli/` sono salvati con la 4.2 e si aprono
   anche nella 5.0. Sulle versioni 3.x non è stato provato.
-- **Prestazioni**: la scena `tutte` ha 19 luci, ~300 piume e il pelo
-  della Lucina; in EEVEE resta fluida su una GPU recente. Se il viewport
-  rallenta, nascondi le collezioni che non ti servono.
+- **Prestazioni**: la scena `tutte` della prima serie ha 19 luci, ~300 piume e
+  il pelo della Lucina; quella del deserto ha il pelo del fennec e le ali in
+  vetro dell'avvoltoio. In EEVEE restano fluide su una GPU recente. Se il
+  viewport rallenta, nascondi le collezioni che non ti servono.
+- **Versione Roblox**: `esporta_roblox.py` ricostruisce ogni creatura con un
+  livello di dettaglio più basso (`DETTAGLIO`) finché sta sotto i 20.000
+  triangoli, cuoce i materiali in texture e genera lo script Luau. Le versioni
+  Blender restano a dettaglio pieno.
