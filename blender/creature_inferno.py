@@ -1029,13 +1029,14 @@ def _copia_bm(ob):
 def build_flegetonte():
     DS.texspace("Flegetonte")
     m_roccia = DS.m_lava("Flegetonte_Chitina_Vulcanica", strength=6.0, scale=9.0, crack=0.05)
-    m_vetro = ST.m_vetro_sottile("Flegetonte_Guscio_Vetro", (1.0, 0.85, 0.7), bordo=1700, forza_bordo=1.5)
-    m_fl = m_flusso("Flegetonte_Fuoco_Che_Scorre", 14.0)
-    m_blob = ST.m_luce("Flegetonte_Bolle_Lava", 3800, 25.0, bordo=1700, forza_bordo=18.0)
+    m_vetro = ST.m_vetro_sottile("Flegetonte_Guscio_Vetro", (1.0, 0.85, 0.7), bordo=1700, forza_bordo=0.5)
+    m_fl = m_flusso("Flegetonte_Fuoco_Che_Scorre", 5.0)
+    m_blob = ST.m_luce("Flegetonte_Bolle_Lava", 3800, 9.0, bordo=1700, forza_bordo=6.0)
     m_goccia = ST.m_luce("Flegetonte_Gocce_Lava", 1700, 25.0, bordo=3800, forza_bordo=35.0)
-    m_ala = ST.m_ala("Flegetonte_Ali_Fiamma", [(0.0, ST.kelvin(3800)), (0.45, ST.kelvin(1900)), (1.0, (1.0, 0.1, 0.0))],
-                     alpha=0.2, membrane_str=2.5, vein_ramp=[(0.0, ST.kelvin(4200)), (1.0, ST.kelvin(1700))],
-                     vein_str=6.0, radial=(7, 0.08), edge=0.03, distort=0.4, film=0.0)
+    m_ala = ST.m_ala("Flegetonte_Ali_Fiamma", [(0.0, (1.0, 0.72, 0.25)), (0.45, (1.0, 0.35, 0.03)),
+                                               (1.0, (0.85, 0.06, 0.0))],
+                     alpha=0.2, membrane_str=1.4, vein_ramp=[(0.0, (1.0, 0.8, 0.35)), (1.0, (1.0, 0.25, 0.02))],
+                     vein_str=4.0, radial=(7, 0.08), edge=0.03, distort=0.4, film=0.0)
     m_zampe = chitina("Flegetonte_Zampe", (0.03, 0.02, 0.018))
     E = [el((0, -0.12, 0.56), 0.09, (1.0, 1.2, 1.0)), el((0, -0.32, 0.62), 0.07),
          cap((0, -0.2, 0.58), (0, -0.28, 0.61), 0.055)]
@@ -1081,10 +1082,15 @@ def build_flegetonte():
         a = V((0.02 * sx, -0.38, 0.67))
         CL.tube("Flegetonte_Antenna_" + s, [a, a + V((0.06 * sx, -0.1, 0.12)), a + V((0.14 * sx, -0.12, 0.2))],
                 [0.006, 0.004, 0.002], m_zampe, bevel_res=1)
+    # tutto il corpo scende di 18 cm, poi le zampe
+    for ob in list(CL._STATE["coll"].objects):
+        if ob.parent is None and not any(c.type == 'CHILD_OF' for c in ob.constraints):
+            ob.location.z -= 0.18
+    for sx in (-1, 1):
         for i, y in enumerate((-0.2, -0.12, -0.04)):
-            DS.leg("Flegetonte_Zampa_%s%d" % (s, i), [V((0.04 * sx, y, 0.52)), V((0.17 * sx, y - 0.02, 0.44)),
-                                                     V((0.22 * sx, y + 0.02 * i, 0.0))], [0.011, 0.009, 0.005], m_zampe,
-                   joint_mat=m_goccia, joint_r=0.012)
+            DS.leg("Flegetonte_Zampa_%s%d" % (side_name(sx), i), [V((0.04 * sx, y, 0.34)), V((0.19 * sx, y - 0.02, 0.4)),
+                                                                 V((0.3 * sx, y - 0.04 + 0.05 * i, 0.0))],
+                   [0.011, 0.009, 0.005], m_zampe, joint_mat=m_goccia, joint_r=0.012)
 
 
 # ============================================================================
@@ -1319,7 +1325,7 @@ CREATURE_INFERNO = {
     "persefone":  ("I04_Persefone-Melagrana",         build_persefone,   ((0, -0.05, 0.45), 2.8, 12, 45, 50)),
     "alichino":   ("I05_Alichino-Arlecchino",         build_alichino,    ((0, 0.05, 0.45), 2.9, 18, 35, 50)),
     "ghiacciolo": ("I06_Ghiacciolo-Re-di-Ghiaccio",   build_ghiacciolo,  ((0, 0.05, 0.75), 4.0, 12, 25, 50)),
-    "flegetonte": ("I07_Flegetonte-Scintilla",        build_flegetonte,  ((0, 0.0, 0.5), 2.8, 14, 40, 50)),
+    "flegetonte": ("I07_Flegetonte-Scintilla",        build_flegetonte,  ((0, 0.0, 0.38), 2.8, 14, 40, 50)),
     "tungtung":   ("I08_Tung-Tung-Tung-Sahur",        build_tungtung,    ((0.08, -0.05, 0.95), 4.4, 8, 22, 50)),
 }
 
