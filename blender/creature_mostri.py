@@ -450,8 +450,8 @@ def build_pipistrello():
     DS.texspace("Pipistrello")
     Z = 1.05
     cremisi = (0.75, 0.0, 0.035)
-    m_pelo = CL.m_body("Pipistrello_Pelo_Nero", (0.013, 0.011, 0.013), rough=0.8, sheen=1.0,
-                       sheen_tint=(0.55, 0.35, 0.45), bump=(140.0, 0.3, 'noise'), rim=(0.9, 0.05, 0.1), rim_str=0.25)
+    m_pelo = CL.m_body("Pipistrello_Pelo_Nero", (0.008, 0.007, 0.008), rough=0.8, sheen=0.3,
+                       sheen_tint=(0.25, 0.15, 0.2), bump=(140.0, 0.3, 'noise'), rim=(0.9, 0.05, 0.1), rim_str=0.25)
     m_pelle = ST.m_chitina("Pipistrello_Pelle_Muso", (0.05, 0.02, 0.025), rough=0.5, coat=0.3, sss=0.3,
                            sss_radius=(1.0, 0.2, 0.15))
     m_mem = m_membrana("Pipistrello_Membrana_Cuoio")
@@ -1389,7 +1389,7 @@ def scena_zucca():
 
 CREATURE_MOSTRI = {
     #  chiave         (collezione,                       funzione,                camera: target, dist, elev, azim, lente)
-    "pipistrello": ("M01_Pipistrello-Sanguisuga",      build_pipistrello,       ((0, 0.05, 1.08), 3.3, 12, 20, 50)),
+    "pipistrello": ("M01_Pipistrello-Sanguisuga",      build_pipistrello,       ((0, 0.05, 1.02), 3.3, 4, 38, 50)),
     "scarabeo":    ("M02_Franken-Scarabeo",            build_franken_scarabeo,  ((0, -0.1, 0.42), 3.6, 28, 35, 50)),
     "gargoyle":    ("M03_Gargoyle-Ossidiana",          build_gargoyle,          ((0, 0.05, 1.2), 3.8, 8, 28, 50)),
     "zucca":       ("M04_Zucca-Infestata",             build_zucca,             ((0, 0.0, 0.95), 4.0, 12, 22, 50)),
