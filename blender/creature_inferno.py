@@ -840,7 +840,7 @@ def build_persefone():
 def build_alichino():
     DS.texspace("Alichino")
     colori = [(1.0, 0.05, 0.04), (1.0, 0.8, 0.02), (0.05, 0.9, 0.12), (0.05, 0.25, 1.0)]
-    m_rombi = m_arlecchino("Alichino_Elitre_Rombi", colori, 40.0)
+    m_rombi = m_arlecchino("Alichino_Elitre_Rombi", colori, 6.0)
     m_pelle = chitina("Alichino_Pelle_Rossa", (0.4, 0.02, 0.015), rough=0.35, coat=0.5)
     m_nero = chitina("Alichino_Maschera_Nera", (0.01, 0.01, 0.012), rough=0.2, coat=0.8)
     m_bianco = ST.m_occhio_bianco("Alichino_Occhi")
@@ -907,12 +907,16 @@ def build_alichino():
         ST.proxy(o, V(p) + V((0, 0, 0.05)), m_esca[i]["rbx_color"], 3.0)
     for k in range(3):
         ST.proxy(arrow, (0.0, 0.1 + 0.15 * k, 0.8), colori[k], 2.5, nome="Alichino_Luce_Rombi_%d" % k)
-    # zampe con le calze a righe e le scarpette a punta
+    # tutto il corpo scende di 15 cm, poi le zampe con le calze a righe e le
+    # scarpette a punta
+    for ob in list(CL._STATE["coll"].objects):
+        if ob.parent is None and not any(c.type == 'CHILD_OF' for c in ob.constraints):
+            ob.location.z -= 0.15
     for i, y in enumerate((-0.08, 0.06, 0.2)):
         for sx in (-1, 1):
-            a = V((0.06 * sx, y, 0.46))
-            k = V((0.2 * sx, y - 0.02, 0.36))
-            f = V((0.26 * sx, y - 0.04, 0.02))
+            a = V((0.06 * sx, y, 0.31))
+            k = V((0.22 * sx, y - 0.02, 0.3))
+            f = V((0.28 * sx, y - 0.04, 0.02))
             for j, (p, q) in enumerate(((a, a.lerp(k, 0.5)), (a.lerp(k, 0.5), k), (k, k.lerp(f, 0.5)),
                                         (k.lerp(f, 0.5), f))):
                 CL.tube("Alichino_Calza_%s%d_%d" % (side_name(sx), i, j), [p, q], [0.012 - 0.001 * j, 0.011 - 0.001 * j],
@@ -1313,7 +1317,7 @@ CREATURE_INFERNO = {
     "caronte":    ("I02_Caronte-Barchetta",           build_caronte,     ((0, -0.15, 0.55), 3.4, 12, 40, 50)),
     "ade":        ("I03_Ade-Ombretta",                build_ade,         ((0, 0.0, 0.72), 3.8, 12, 30, 50)),
     "persefone":  ("I04_Persefone-Melagrana",         build_persefone,   ((0, -0.05, 0.45), 2.8, 12, 45, 50)),
-    "alichino":   ("I05_Alichino-Arlecchino",         build_alichino,    ((0, 0.05, 0.6), 2.9, 16, 35, 50)),
+    "alichino":   ("I05_Alichino-Arlecchino",         build_alichino,    ((0, 0.05, 0.45), 2.9, 18, 35, 50)),
     "ghiacciolo": ("I06_Ghiacciolo-Re-di-Ghiaccio",   build_ghiacciolo,  ((0, 0.05, 0.75), 4.0, 12, 25, 50)),
     "flegetonte": ("I07_Flegetonte-Scintilla",        build_flegetonte,  ((0, 0.0, 0.5), 2.8, 14, 40, 50)),
     "tungtung":   ("I08_Tung-Tung-Tung-Sahur",        build_tungtung,    ((0.08, -0.05, 0.95), 4.4, 8, 22, 50)),
