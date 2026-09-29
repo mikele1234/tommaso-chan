@@ -1326,7 +1326,7 @@ CREATURE_INFERNO = {
     "alichino":   ("I05_Alichino-Arlecchino",         build_alichino,    ((0, 0.05, 0.45), 2.9, 18, 35, 50)),
     "ghiacciolo": ("I06_Ghiacciolo-Re-di-Ghiaccio",   build_ghiacciolo,  ((0, 0.05, 0.75), 4.0, 12, 25, 50)),
     "flegetonte": ("I07_Flegetonte-Scintilla",        build_flegetonte,  ((0, 0.0, 0.38), 2.8, 14, 40, 50)),
-    "tungtung":   ("I08_Tung-Tung-Tung-Sahur",        build_tungtung,    ((0.08, -0.05, 0.95), 4.4, 8, 22, 50)),
+    "tungtung":   ("I08_Tung-Tung-Tung-Sahur",        build_tungtung,    ((0.12, -0.05, 1.1), 5.2, 8, 22, 50)),
 }
 
 DISPOSIZIONE_INFERNO = {
