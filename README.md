@@ -1,8 +1,9 @@
 # Creature Luminose
 
-Trentadue creature bioluminescenti in quattro serie, modellate
+Quaranta creature bioluminescenti in cinque serie, modellate
 proceduralmente in Blender con script Python: ogni forma, materiale, luce e
-animazione nasce dal codice.
+animazione nasce dal codice. Le serie dalla 5 in poi sono modelli statici
+(senza animazioni) con il setup EEVEE Next richiesto.
 
 - **Serie 1 – Creature luminose** → [`blender/creature_luminose.py`](blender/creature_luminose.py)
 - **Serie 2 – Creature del deserto** → [`blender/creature_deserto.py`](blender/creature_deserto.py)
@@ -11,6 +12,8 @@ animazione nasce dal codice.
   (vedi [più sotto](#serie-3--creature-luminose-della-neve))
 - **Serie 4 – Creature dell'oceano** → [`blender/creature_oceano.py`](blender/creature_oceano.py)
   (vedi [più sotto](#serie-4--creature-luminose-delloceano))
+- **Serie 6 – Creature dell'inferno** → [`blender/creature_inferno.py`](blender/creature_inferno.py)
+  (vedi [più sotto](#serie-6--creature-luminose-dellinferno))
 
 Tutte sono disponibili anche **per Roblox Studio**, con al massimo 20.000
 triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
@@ -19,6 +22,7 @@ triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 ![Le creature del deserto](anteprime/deserto/00_tutte_le_creature.png)
 ![Le creature della neve](anteprime/neve/00_tutte_le_creature.png)
 ![Le creature dell'oceano](anteprime/oceano/00_tutte_le_creature.png)
+![Le creature dell'inferno](anteprime/inferno/00_tutte_le_creature.png)
 
 ## Cosa c'è nel repository
 
@@ -28,9 +32,11 @@ triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 | `blender/creature_deserto.py` | Generatore della serie del deserto (usa `creature_luminose.py`, che deve stare nella stessa cartella) |
 | `blender/creature_neve.py` | Generatore della serie della neve (usa i due file precedenti) |
 | `blender/creature_oceano.py` | Generatore della serie dell'oceano (usa i tre file precedenti) |
+| `blender/creature_strumenti.py` | Strumenti comuni alle serie 5-8: setup EEVEE Next, Blackbody, luci proxy Child Of, ali con Thin Film, occhi da cartone, sneakers, ali membranose |
+| `blender/creature_inferno.py` | Generatore della serie 6 (usa `creature_strumenti.py` e i file precedenti) |
 | `blender/esporta_roblox.py` | Converte tutte le creature per Roblox (`.glb` + script Luau) |
-| `modelli/…/*.blend` | File Blender pronti da aprire (`modelli/`, `modelli/deserto/`, `modelli/neve/`, `modelli/oceano/`): una scena per creatura + `00_tutte_le_creature.blend` |
-| `anteprime/…` | Render di anteprima (Cycles), con le stesse sottocartelle |
+| `modelli/…/*.blend` | File Blender pronti da aprire (`modelli/`, `modelli/deserto/`, `modelli/neve/`, `modelli/oceano/`, `modelli/inferno/`): una scena per creatura + `00_tutte_le_creature.blend` |
+| `anteprime/…` | Render di anteprima (Cycles per le serie 1-4, EEVEE Next per le serie 5-8), con le stesse sottocartelle |
 | `roblox/` | Versione per **Roblox Studio**: file `.glb` + script Luau (vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md)) |
 
 ## Come aprirle
@@ -60,6 +66,7 @@ cartella (ognuno usa quelli delle serie precedenti), e scegli la creatura:
 | `creature_deserto.py` | `"scorpione"`, `"fennec"`, `"scarabeo"`, `"vipera"`, `"lucertola"`, `"avvoltoio"`, `"tarantola"`, `"cactus"` |
 | `creature_neve.py` | `"orso"`, `"pinguino"`, `"renna"`, `"volpe"`, `"leopardo"`, `"yeti"`, `"civetta"`, `"pupazzo"` |
 | `creature_oceano.py` | `"medusa"`, `"cavalluccio"`, `"granchio"`, `"manta"`, `"squalo"`, `"tartaruga"`, `"pescatrice"`, `"blobfish"` |
+| `creature_inferno.py` | `"cerbero"`, `"caronte"`, `"ade"`, `"persefone"`, `"alichino"`, `"ghiacciolo"`, `"flegetonte"`, `"tungtung"` |
 
 (oppure `"tutte"` per la scena con le otto creature della serie).
 
@@ -76,7 +83,7 @@ blender --background --python blender/creature_luminose.py -- \
 
 ## Su Roblox Studio
 
-Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 32 creature
+Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 40 creature
 convertite per Roblox, **ognuna con al massimo 20.000 triangoli in totale**:
 un file `.glb` per creatura (`roblox/modelli/` e le sottocartelle `deserto/`,
 `neve/`, `oceano/`), da importare con *Import 3D* (con **Anchored** attivo), e
@@ -398,6 +405,123 @@ che pende e gli occhietti apatici… e una **mascella squadrata iper-definita**
 da "gigachad" (spigoli vivi, fossetta sul mento). Una zampetta da insetto è
 premuta sulle labbra per fare **"shhh"**, e sulla schiena due alucce
 microscopiche emettono un bagliore rosa **debole e patetico**.
+
+## Serie 6 · Creature luminose dell'inferno
+
+Generate da [`blender/creature_inferno.py`](blender/creature_inferno.py).
+Setup dell'inferno: AgX **High Contrast**, esposizione −0.7, Bloom 0.5 e
+vignettatura. Chitina con Roughness 0.4 e Coat 0.4, ali con Alpha 0.2.
+
+### 01 · Cerbero Piccino, il Guardiano a Tre Teste
+![Cerbero Piccino](anteprime/inferno/01_cerbero_piccino.png)
+
+Un solo torace da coleottero con **tre testine di cagnolone** su tre colli: è
+la stessa testa **istanziata tre volte**, con collare borchiato e lingua. Su
+ogni fronte c'è un **faro ambra 2400 K**, gli occhi hanno il bordo che brilla
+con il Fresnel. Le **antenne sono serpentelli**, così come la criniera attorno
+ai colli e la testina in fondo alla coda. Le sei zampe sono tozze, da
+cagnone. Nella sua scena c'è un **portale di roccia** con la luce arancio dal
+basso.
+
+### 02 · Caronte Barchetta, il Traghettatore
+![Caronte Barchetta](anteprime/inferno/02_caronte_barchetta.png)
+
+L'addome è una **barchetta di legno** con la prua a punta (sezioni a U più
+Solidify). Il corpo è coperto da un **cappuccio-mantello** (le elitre) da cui
+spuntano la barba e i capelli bianchi. Nel buio del cappuccio brillano due
+**occhi di brace** (1800 K). Le antenne si fondono in un **remo lungo**, e
+sul petto c'è l'**obolo d'oro**. Sulla prua c'è una **lanterna fantasma**
+azzurro-verde (9500 K) con un alone di Volume Scatter. Nella sua scena
+galleggia sul fiume (**Ocean Modifier**) nella nebbia.
+
+### 03 · Ade Ombretta, il Signore dell'Ombra
+![Ade Ombretta](anteprime/inferno/03_ade_ombretta.png)
+
+Insetto nero con l'**elmo dell'oscurità** (cresta, paraguance, fessura degli
+occhi viola) e le **antenne a bidente** con le punte uncinate luminose. Le
+elitre si allargano in un grande **mantello** che scende fino a terra.
+L'emissione viola (0.5, 0.1, 1.0) sta **solo sul bordo**, con il Layer Weight
+come fattore. Nel materiale c'è già il mix con il Transparent BSDF per
+l'invisibilità: basta il valore *Visibilità*. Sul fermaglio c'è una gemma.
+
+### 04 · Persefone Melagrana, la Regina d'Autunno
+![Persefone Melagrana](anteprime/inferno/04_persefone_melagrana.png)
+
+Insetto snello color prugna con un diadema d'oro. L'addome è una
+**melagrana** con la corona a punta, spaccata su un fianco: dentro si vedono
+l'albedo bianco e **sei semi rubino** con Subsurface ed emissione. Il loro
+colore passa da un Color Ramp con il valore *Stagione* (0 = rubino 2000 K
+sottoterra, 1 = verde 5500 K di primavera). Le antenne sono **spighe di
+grano**, le ali sottili hanno dei **fiorellini alle punte**. Nella sua scena la
+luce è rossa da sotto e verde da sopra.
+
+### 05 · Alichino Arlecchino, il Diavoletto Burlone
+![Alichino Arlecchino](anteprime/inferno/05_alichino_arlecchino.png)
+
+Diavoletto rosso con la mascherina nera, gli occhioni furbi, il sorriso a
+denti in fuori e la **gorgiera pieghettata**. Le elitre hanno i **rombi da
+Arlecchino** accesi (Voronoi regolare ruotato di 45°, un colore a caso per
+rombo: rosso, giallo, verde, blu), i cornetti portano **pompon e campanellini
+d'oro**, e la coda finisce a **punta di freccia** luminosa. Ha le calze a righe
+e, accanto, **due false luci-esca**. Nella sua scena c'è il tendone da circo.
+
+### 06 · Ghiacciolo, il Re di Ghiaccio (Cocito)
+![Ghiacciolo](anteprime/inferno/06_ghiacciolo_re_di_ghiaccio.png)
+
+Il Lucifero di Dante in versione insetto, **prigioniero fino al petto in un
+blocco di ghiaccio** (Bevel e Displace, Transmission 1, IOR 1.31, Volume
+Absorption ciano). La testa ha **tre facce**, rossa, giallo-bianca e nera,
+ognuna con il suo puntino luminoso (2200 K, 4500 K e viola). Sotto le facce
+ci sono **sei ali da pipistrello** con una rete di brina (Wireframe). Il
+**cuore ciano (12000 K)** brilla dentro il ghiaccio.
+
+### 07 · Flegetonte Scintilla, il Fiume di Fuoco
+![Flegetonte Scintilla](anteprime/inferno/07_flegetonte_scintilla.png)
+
+L'addome è una **lampada lava** a goccia: guscio di vetro leggero, fuoco che
+scorre dentro (Noise + Wave lungo l'asse, rampa da 1700 K a un nucleo di
+3800 K) e bolle di lava. Le ali sono **lingue di fiamma** e dal ventre cadono
+**gocce di lava**. Torace e testa sono di roccia vulcanica con le crepe.
+
+### 08 · Tung Tung Tung Sahur Infernale, il Tronco Arrabbiato
+![Tung Tung Tung Sahur](anteprime/inferno/08_tung_tung_tung_sahur.png)
+
+**Tronco carbonizzato** con la corteccia nera e le **crepe di lava** (Voronoi
+come maschera dell'emissione, Blackbody 1600 K). Ha gli **occhioni da cartone
+rossi**, le sopracciglia inclinate e rabbiose, la **vena della rabbia** sulla
+fronte, i cornetti e la bocca coi denti. Alza una **mazza rovente** (rampa
+nero → rosso → giallo sui bordi), porta le **sneakers rosse** e ha due alucce
+da lucciola quasi nascoste. Nella sua scena c'è la nebbia rossa con le braci.
+
+## Setup EEVEE Next (serie 5-8)
+
+Le quattro serie nuove sono **modelli statici**: nessun driver, nessuna
+animazione. Il setup di render è quello richiesto ed è in
+[`blender/creature_strumenti.py`](blender/creature_strumenti.py), comune alle
+quattro serie:
+
+- **EEVEE Next** con Raytracing (Screen-Trace), Virtual Shadows e Light
+  Threshold 0.001.
+- **Volumetrie**: risoluzione 1:2, 96 step, distribuzione 0.8, ombre
+  volumetriche attive.
+- **Compositor**: Glare → Bloom (Threshold 1.0, Size 7), Glare → Streaks
+  solo dove richiesto, e per l'inferno e i mostri una vignettatura leggera
+  (Ellipse Mask + Blur).
+- **Colore**: AgX con Look *High Contrast* ed esposizione −0.7 per l'inferno,
+  *Medium High Contrast* ed esposizione −0.5 per angeli e draghi (i mostri
+  usano −0.6).
+- **Kelvin**: dove è indicata una temperatura il colore viene dal nodo
+  **Blackbody**; le luci usano lo stesso colore, convertito in RGB.
+- **Luci proxy**: ogni organo luminoso ha la sua emissione sulla mesh più una
+  **Point Light (raggio 0.005 m) agganciata con un vincolo Child Of**, che lo
+  segue se lo sposti. Su Roblox diventa Neon più una `PointLight`.
+- **Istanze**: teste di Cerbero e dell'Idra, facce del Cherubino e di
+  Ghiacciolo, sneakers, occhi dell'Ofanim, monete e scaglie di Tesorino e piume
+  del Quetzal sono duplicati collegati della stessa mesh.
+
+Nei titoli della richiesta "TEMA DRAGHI" e "TEMA ANGELI" erano invertiti
+rispetto al contenuto: qui gli angeli sono Serafino…Halolo e i draghi
+Tesorino…Ourobò.
 
 ## Dettagli tecnici
 

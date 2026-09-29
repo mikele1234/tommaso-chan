@@ -1,6 +1,6 @@
 # Creature Luminose su Roblox Studio
 
-Questa cartella contiene tutte le 32 creature già pronte per Roblox:
+Questa cartella contiene tutte le 40 creature già pronte per Roblox:
 
 | File | Cosa contiene |
 |---|---|
@@ -8,7 +8,12 @@ Questa cartella contiene tutte le 32 creature già pronte per Roblox:
 | `modelli/deserto/*.glb` | Serie del deserto: scorpione, fennec, scarabeo, vipera, lucertola, avvoltoio, tarantola, cactus |
 | `modelli/neve/*.glb` | Serie della neve: orso, pinguino, renna, volpe, leopardo, falena-yeti, civetta, pupazzo "Skibidi" |
 | `modelli/oceano/*.glb` | Serie dell'oceano: medusa, cavalluccio, granchio, manta, squalo, tartaruga, rana pescatrice, blobfish |
-| `CreatureLuminose.client.lua` | **Un solo script** per tutte le 32 creature: Neon, luci, faretti, colori e animazioni |
+| `modelli/inferno/*.glb` | Serie dell'inferno: Cerbero, Caronte, Ade, Persefone, Alichino, Ghiacciolo, Flegetonte, Tung Tung Tung Sahur |
+| `CreatureLuminose.client.lua` | **Un solo script** per tutte le 40 creature: Neon, luci, faretti, colori e animazioni |
+
+Le serie dalla 5 in poi (mostri, inferno, angeli, draghi) sono **modelli
+statici**: lo script accende Neon, luci, faretti, vetro e contorni, ma non
+le anima.
 
 Ogni file contiene forme, texture (colore, trasparenza, emissione) e marcatori
 invisibili per luci e animazioni.
@@ -47,7 +52,7 @@ base del Model: appoggiando il Model sul fondale, galleggiano sopra di esso.
 2. Aggiungi un **LocalScript**, cancella il testo di esempio e incolla tutto il
    contenuto di `CreatureLuminose.client.lua`.
    Se avevi già uno script delle serie precedenti, **sostituiscilo** con
-   questo: vale per tutte le 32 creature.
+   questo: vale per tutte le 40 creature.
 3. Premi **Play**.
 
 Lo script lavora su tutte le creature presenti nel gioco, anche se ne importi
@@ -136,7 +141,8 @@ generatori delle creature Blender:
 
 ```bash
 blender --background --python blender/esporta_roblox.py -- --uscita roblox
-# opzioni:  --serie neve             (solo una serie: luminose | deserto | neve | oceano)
+# opzioni:  --serie neve             (solo una serie: luminose | deserto | neve | oceano |
+#                                     mostri | inferno | angeli | draghi)
 #           --creatura vipera        (una sola creatura)
 #           --scala 4                (1 metro di Blender = 4 stud; default 3)
 #           --max-triangoli 20000    (limite per creatura; default 20000;

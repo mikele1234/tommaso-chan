@@ -48,6 +48,7 @@ import importlib.util
 import json
 import math
 import os
+import re
 import sys
 
 import numpy as np
@@ -799,26 +800,46 @@ def info_dir(serie):
 # Script Luau
 # ============================================================================
 
+def _semplice(v):
+    """Valore che sta bene su una riga sola (numero, testo, lista di numeri)."""
+    return not isinstance(v, (dict, list, tuple)) or (
+        isinstance(v, (list, tuple)) and all(isinstance(x, (int, float)) for x in v))
+
+
+def _chiave(k):
+    return k if re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", k) else '["%s"]' % k
+
+
 def lua_value(v, ind=0):
-    pad = "    " * ind
+    """Tabella Luau compatta: le tabelle con soli valori semplici stanno su una
+    riga, le chiavi-identificatore sono scritte come `nome = ...`, indentazione
+    con i tab (lo script resta leggero anche con tante creature)."""
+    pad = "\t" * ind
     if v is None:
         return "nil"
     if isinstance(v, bool):
         return "true" if v else "false"
     if isinstance(v, (int, float)):
-        return repr(round(v, 4)) if isinstance(v, float) else str(v)
+        if isinstance(v, float):
+            r = round(v, 4)
+            return str(int(r)) if r == int(r) else repr(r)
+        return str(v)
     if isinstance(v, str):
         return '"%s"' % v.replace('"', '\\"')
     if isinstance(v, (list, tuple)):
         if all(isinstance(x, (int, float)) for x in v):
             return "{" + ", ".join(lua_value(x) for x in v) + "}"
-        return "{\n" + "".join("%s    %s,\n" % (pad, lua_value(x, ind + 1)) for x in v) + pad + "}"
+        if all(_semplice(x) for x in v):
+            return "{" + ", ".join(lua_value(x) for x in v) + "}"
+        return "{\n" + "".join("%s\t%s,\n" % (pad, lua_value(x, ind + 1)) for x in v) + pad + "}"
     if isinstance(v, dict):
         if not v:
             return "{}"
+        if all(_semplice(x) for x in v.values()):
+            return "{" + ", ".join("%s = %s" % (_chiave(k), lua_value(v[k])) for k in sorted(v)) + "}"
         items = []
         for k in sorted(v):
-            items.append('%s    ["%s"] = %s,\n' % (pad, k, lua_value(v[k], ind + 1)))
+            items.append('%s\t%s = %s,\n' % (pad, _chiave(k), lua_value(v[k], ind + 1)))
         return "{\n" + "".join(items) + pad + "}"
     raise TypeError(type(v))
 
