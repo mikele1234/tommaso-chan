@@ -1,18 +1,20 @@
 # Creature Luminose su Roblox Studio
 
-Questa cartella contiene tutte le 16 creature già pronte per Roblox:
+Questa cartella contiene tutte le 32 creature già pronte per Roblox:
 
 | File | Cosa contiene |
 |---|---|
 | `modelli/*.glb` | Serie 1: mantide, gatto, gufo, rana, farfalla, libellula, lupo, Lucina |
 | `modelli/deserto/*.glb` | Serie del deserto: scorpione, fennec, scarabeo, vipera, lucertola, avvoltoio, tarantola, cactus |
-| `CreatureLuminose.client.lua` | **Un solo script** per tutte le 16 creature: Neon, luci, faretti e animazioni |
+| `modelli/neve/*.glb` | Serie della neve: orso, pinguino, renna, volpe, leopardo, falena-yeti, civetta, pupazzo "Skibidi" |
+| `modelli/oceano/*.glb` | Serie dell'oceano: medusa, cavalluccio, granchio, manta, squalo, tartaruga, rana pescatrice, blobfish |
+| `CreatureLuminose.client.lua` | **Un solo script** per tutte le 32 creature: Neon, luci, faretti, colori e animazioni |
 
 Ogni file contiene forme, texture (colore, trasparenza, emissione) e marcatori
 invisibili per luci e animazioni.
 
 **Limiti rispettati:**
-- **ogni creatura ha al massimo 20.000 triangoli in totale**, tra 15.500 e 19.600 a seconda della creatura;
+- **ogni creatura ha al massimo 20.000 triangoli in totale** (tra circa 15.000 e 19.900 a seconda della creatura);
 - nessun pezzo supera il limite di Roblox per singola mesh;
 - sono già in scala, alte o larghe tra 3 e 9 stud (un avatar è circa 5 stud).
 
@@ -20,7 +22,8 @@ invisibili per luci e animazioni.
 
 1. Apri il tuo gioco in Roblox Studio.
 2. Apri **Import 3D** (menu *File*, oppure il pulsante nella barra in alto) e
-   scegli uno o più file `.glb` da `modelli/` o `modelli/deserto/`.
+   scegli uno o più file `.glb` da `modelli/` o dalle sottocartelle `deserto/`,
+   `neve/`, `oceano/`.
 3. Nella finestra di anteprima, prima di premere *Import*:
    - attiva **Anchored**, altrimenti i pezzi cadono a terra appena premi Play;
    - lascia attivo **Import Only As Model**, così ogni creatura resta un unico Model;
@@ -37,28 +40,33 @@ invisibili per luci e animazioni.
 1. In **Explorer** apri *StarterPlayer › StarterPlayerScripts*.
 2. Aggiungi un **LocalScript**, cancella il testo di esempio e incolla tutto il
    contenuto di `CreatureLuminose.client.lua`.
-   Se avevi già lo script della prima serie, **sostituiscilo** con questo: vale
-   per tutte le 16 creature.
+   Se avevi già uno script delle serie precedenti, **sostituiscilo** con
+   questo: vale per tutte le 32 creature.
 3. Premi **Play**.
 
 Lo script lavora su tutte le creature presenti nel gioco, anche se ne importi
 più copie. In particolare:
-- rende **Neon** le parti che brillano: occhi, cristalli della lucertola,
-  strisce e sonaglio della vipera, collare dell'avvoltoio, bulbo dello
-  scorpione, faretto del cactus…;
+- rende **Neon** le parti che brillano: occhi, cristalli, bulbi, corna della
+  renna, antenne della medusa, celle del guscio della tartaruga, faretto del
+  cactus…;
 - crea le **luci** (PointLight) nei punti giusti e le fa pulsare;
 - accende dei **faretti** (SpotLight) orientati: il faretto da stadio del
-  cactus e gli occhi-faro del gufo;
-- aggiunge un **contorno luminoso** (Highlight) al Gattoluna e al Lupo-Luce;
-- rende il Lupo-Luce spettrale (materiale **ForceField**) e le ali
-  dell'avvoltoio di **vetro** (Glass), che deforma lo sfondo come un miraggio;
+  cactus, gli occhi-faro del gufo e della civetta, i fasci del granchio-faro;
+- aggiunge **contorni luminosi** (Highlight): gatto, lupo, medusa,
+  falena-yeti e l'orso, il cui contorno cambia colore come un'aurora;
+- usa i materiali di Roblox dove servono: **ForceField** (lupo spettrale,
+  medusa gelatinosa, pelliccia della falena-yeti), **Glass** (ali
+  dell'avvoltoio, pancia del pinguino, volpe di ghiaccio, esca della rana
+  pescatrice), **Ice** e **Snow** (lastra del pinguino, pupazzo di neve);
+- fa **scorrere i colori**: il naso LED del pupazzo e la sua luce passano per
+  tutto l'arcobaleno;
 - anima:
   - il battito d'ali di tutte le creature alate;
-  - la coda dello scorpione;
-  - la sfera di magma dello scarabeo, che rotola;
-  - le strisce della vipera, che si accendono in sequenza, e la sua lingua;
-  - l'antenna e la lampadina della Lucina;
-  - la sacca vocale della rana e le lucciole del lupo;
+  - code, colli e antenne (scorpione, vipera, pupazzo, medusa, rana pescatrice);
+  - le cose che girano: la sfera di magma dello scarabeo e il faro del granchio;
+  - le sequenze di luce: strisce della vipera, onde sul guscio della tartaruga;
+  - il **galleggiamento** delle creature marine e il respiro della medusa;
+  - l'antenna della Lucina, la sacca vocale della rana, lucciole e scie;
 - aggiunge un **BloomEffect** in *Lighting* per far risplendere il Neon.
 
 **Facoltativo: vedere Neon e luci senza premere Play.** Apri *View › Command
@@ -71,8 +79,12 @@ posto (luci, Neon, parti ancorate). Le animazioni però partono solo in Play.
   `Brightness`.
 - Imposta `Lighting.Technology` su **Future**: luci, faretti e vetro rendono
   molto meglio.
-- Se ali, piume, crepe di lava o venature brillano poco, seleziona la loro
-  `SurfaceAppearance` e alza **EmissiveStrength** (per esempio a 10–20).
+- Se ali, piume, crepe di lava, rosette o vasi sanguigni brillano poco,
+  seleziona la loro `SurfaceAppearance` e alza **EmissiveStrength** (per
+  esempio a 10–20).
+- Per le creature marine, un'atmosfera subacquea: in *Lighting* aggiungi un
+  `Atmosphere` con `Density` alta e colore azzurro scuro, oppure metti le
+  creature dentro un volume di `Terrain` d'acqua.
 
 ## Differenze rispetto alla versione Blender
 
@@ -85,11 +97,16 @@ modo:
 | Mesh a dettaglio pieno | Mesh semplificate per stare sotto i 20.000 triangoli (le versioni Blender restano dettagliate) |
 | Venature, pannelli, crepe di lava, squame, graffi d'oro | Texture cotte: colore, Emissive Mask e (squame, pelle, corteccia) normal map |
 | Emissione pulsante | Neon + luci che pulsano; le texture emissive restano fisse perché Roblox non permette di cambiarle durante il gioco |
-| Aure volumetriche (bulbi, punte delle ali, sfera di magma) | Sfere Neon semitrasparenti + luce |
+| Aure volumetriche (bulbi, punte delle ali, sfera di magma, fasci del faro) | Sfere e coni Neon semitrasparenti + luce |
 | Cristalli di quarzo con la brace dentro | Neon rosso/arancio semitrasparente |
 | Ali-miraggio con distorsione animata | Materiale Glass (deforma lo sfondo) con i bordi Neon |
 | Riflessi luminosi sui contorni (gatto, lupo) | Highlight (contorno) |
-| Pelo (Lucina, fennec) | Superficie liscia (Roblox non ha il pelo) |
+| Pelo (Lucina, fennec, orso, renna, leopardo, falena-yeti) | Superficie liscia con i colori cotti in texture (Roblox non ha il pelo) |
+| Pelliccia della falena-yeti con la luce che filtra (Volume Scatter) | Corpo Neon magenta dentro un guscio ForceField |
+| Onde dell'aurora che scorrono sulla pelliccia dell'orso | Aurora fissa in texture + contorno che cambia colore + tre luci che si accendono in sequenza |
+| Ghiaccio e vetro con rifrazione vera | Materiale Glass di Roblox |
+| Particelle (scia della renna, plancton) | Qualche fiocco o scaglia Neon che fluttua |
+| Caustiche, foschia e aurora nel cielo | Non incluse (fanno parte della scena, non delle creature) |
 | Cornee lucide degli occhi | Non incluse |
 
 ## Se qualcosa non va
@@ -113,10 +130,11 @@ generatori delle creature Blender:
 
 ```bash
 blender --background --python blender/esporta_roblox.py -- --uscita roblox
-# opzioni:  --serie deserto          (solo una serie: luminose | deserto)
+# opzioni:  --serie neve             (solo una serie: luminose | deserto | neve | oceano)
 #           --creatura vipera        (una sola creatura)
 #           --scala 4                (1 metro di Blender = 4 stud; default 3)
-#           --max-triangoli 20000    (limite per creatura; default 20000)
+#           --max-triangoli 20000    (limite per creatura; default 20000;
+#                                     0 = nessun limite, dettaglio pieno)
 ```
 
 Le impostazioni di ogni creatura per lo script vengono salvate in

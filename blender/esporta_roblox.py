@@ -203,7 +203,7 @@ def mat_of(ob):
 
 def needs_thickness(ob, m):
     """Solo le ali vengono ispessite: le piume stanno appoggiate sul corpo."""
-    return bool(m.get("rbx_wing")) or (m.get("rbx_kind") == "glass")
+    return bool(m.get("rbx_wing") or m.get("rbx_thick")) or (m.get("rbx_kind") == "glass")
 
 
 def evaluated_mesh(ob, dg):
@@ -486,12 +486,13 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
             light_color[ptr(o)] = a
 
     def group_of(ob):
+        """Perno che muove l'oggetto (o l'oggetto stesso se sale e scende da solo)."""
         o = ob
         while o is not None:
             if ptr(o) in rot:
                 return o.name
             o = o.parent
-        if ptr(ob) in own:
+        if ptr(ob) in own and own[ptr(ob)][0] == "bob":
             return ob.name
         return None
 
@@ -574,7 +575,7 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
 
     # --- mesh finali: curve -> mesh, modificatori applicati, spessore alle ali --
     dg = bpy.context.evaluated_depsgraph_get()
-    pieces = {}       # (gruppo, materiale) -> lista di mesh
+    pieces = {}       # (gruppo, oggetto che pulsa di scala, materiale) -> lista di mesh
     for ob in objs:
         if ob.type not in ('MESH', 'CURVE') or skip(ob):
             continue
@@ -584,11 +585,13 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
         me = evaluated_mesh(ob, dg)
         if needs_thickness(ob, m) and is_open(me):
             me = with_modifier(me, 'SOLIDIFY', thickness=SPESSORE, offset=0.0)
-        pieces.setdefault((group_of(ob), m.name), []).append(me)
+        pulsing = ob.name if ptr(ob) in own and own[ptr(ob)][0] == "scala" else None
+        pieces.setdefault((group_of(ob), pulsing, m.name), []).append(me)
 
-    for (grp, mname), mes in sorted(pieces.items(), key=lambda kv: (str(kv[0][0]), kv[0][1])):
+    scaled = {}       # nome del pezzo finale -> oggetto che pulsa di scala
+    for (grp, pulsing, mname), mes in sorted(pieces.items(), key=lambda kv: tuple(str(x) for x in kv[0])):
         src = bpy.data.materials[mname]
-        label = short(mname) + ("__" + short(grp) if grp else "")
+        label = short(mname) + ("__" + short(grp) if grp else "") + ("__" + short(pulsing) if pulsing else "")
         chunks = join_chunks(mes)
         for ci, bm in enumerate(chunks):
             name = "%s__%s%s" % (P, label, "_%d" % (ci + 1) if len(chunks) > 1 else "")
@@ -600,6 +603,8 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
             me.materials.clear()
             me.materials.append(src)
             finals.append((name, me, grp, [src, baked.get(mname)]))
+            if pulsing:
+                scaled[name] = pulsing
 
     # --- 2) se si e' ancora sopra il budget: decimazione proporzionale ---------------
     def total():
@@ -633,14 +638,12 @@ def export_creature(serie, key, outdir, texroot, scala, budget):
             if grp in pivot_names:
                 cfg["perni"][pivot_names[grp]]["membri"].append(name)
             else:
-                src_ob = bpy.data.objects[grp]
-                tipo, meta = own[ptr(src_ob)]
-                if tipo == "scala":
-                    cfg["scala"][name] = {"lo": meta["lo"], "hi": meta["hi"], "cyc": meta["cyc"],
-                                          "ph": meta["ph"]}
-                else:
-                    cfg["bob"][name] = {"amp": round(meta["amp"] * scala, 3), "cyc": meta["cyc"],
-                                        "ph": round(meta["ph"], 3)}
+                meta = own[ptr(bpy.data.objects[grp])][1]
+                cfg["bob"][name] = {"amp": round(meta["amp"] * scala, 3), "cyc": meta["cyc"],
+                                    "ph": round(meta["ph"], 3)}
+        if name in scaled:            # la dimensione pulsa (anche se il pezzo si muove con un perno)
+            meta = own[ptr(bpy.data.objects[scaled[name]])][1]
+            cfg["scala"][name] = {"lo": meta["lo"], "hi": meta["hi"], "cyc": meta["cyc"], "ph": meta["ph"]}
         if info is None:
             continue
         src = info[0]
