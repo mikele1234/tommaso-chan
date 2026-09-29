@@ -203,7 +203,7 @@ def m_mantello(nome, base=(0.012, 0.008, 0.02), luce=(0.5, 0.1, 1.0), forza=25.0
     nz = nb.noise(tc.outputs['Object'], 4.0, 4.0, 0.6)
     pb = nb.principled(base=base, rough=0.75, sheen=1.0, sheen_tint=luce, spec=0.3)
     nb.set(pb, 'Normal', nb.bump(nz.outputs['Fac'], 0.15, 0.01))
-    sh = nb.add_shader(pb.outputs[0], nb.emission(luce, nb.math('MULTIPLY', fac, forza * CL.INTENSITA_LUCE)))
+    sh = nb.add_shader(pb.outputs[0], nb.emission(luce, nb.math('MULTIPLY', fac, ST.lum(forza))))
     vis = nb.value(1.0)
     vis.node.label = "Visibilita (1 = visibile, 0 = invisibile)"
     nb.output(nb.mix_shader(vis, nb.transparent(), sh))
@@ -237,7 +237,7 @@ def m_semi(nome):
     col = NV.rgb_mix(nb, stag, rosso.outputs[2], verde.outputs[2])
     pb = nb.principled(base=(0.6, 0.02, 0.05), rough=0.08, sss=1.0, sss_radius=(1.0, 0.1, 0.1), coat=1.0, spec=0.7)
     nb.set(pb, 'Subsurface Scale', 0.05)
-    nb.output(nb.add_shader(pb.outputs[0], nb.emission(col, 45.0 * CL.INTENSITA_LUCE)))
+    nb.output(nb.add_shader(pb.outputs[0], nb.emission(col, ST.lum(45.0))))
     CL.diffuse_display(mat, (0.8, 0.02, 0.06))
     mat["rbx_kind"] = "neon"
     mat["rbx_color"] = [1.0, 0.05, 0.1]
@@ -263,7 +263,7 @@ def m_arlecchino(nome, colori, forza=40.0, scala=9.0):
     bordo = nb.maprange(vd.outputs['Distance'], 0.06, 0.03)
     pb = nb.principled(base=col, rough=0.3, coat=0.6, spec=0.5)
     nero = nb.principled(base=(0.01, 0.01, 0.01), rough=0.3, coat=0.6)
-    sh = nb.add_shader(pb.outputs[0], nb.emission(col, forza * CL.INTENSITA_LUCE))
+    sh = nb.add_shader(pb.outputs[0], nb.emission(col, ST.lum(forza)))
     nb.output(nb.mix_shader(bordo, sh, nero.outputs[0]))
     nb.bake_output("RBX_COLOR", nb.mix_shader(bordo, nb.emission(col, 1.0), nb.emission((0.01, 0.01, 0.01), 1.0)))
     nb.bake_output("RBX_EMIT", nb.mix_shader(bordo, nb.emission(col, 1.0), nb.emission((0, 0, 0), 1.0)))
@@ -298,7 +298,7 @@ def m_tronco(nome, luce_c=1600, forza=90.0):
     pb = nb.principled(base=col, rough=0.9, spec=0.3)
     nb.set(pb, 'Normal', nb.bump(nb.math('ADD', wv.outputs['Fac'], nb.math('MULTIPLY', crepe, -1.0)), 0.6, 0.02))
     gcol = ST.colore(nb, luce_c)
-    nb.output(nb.mix_shader(crepe, pb.outputs[0], nb.emission(gcol, forza * CL.INTENSITA_LUCE)))
+    nb.output(nb.mix_shader(crepe, pb.outputs[0], nb.emission(gcol, ST.lum(forza))))
     nb.bake_output("RBX_COLOR", nb.mix_shader(crepe, nb.emission(col, 1.0), nb.emission(gcol, 1.0)))
     nb.bake_output("RBX_EMIT", nb.mix_shader(crepe, nb.emission((0, 0, 0), 1.0), nb.emission(gcol, 1.0)))
     mat["rbx_kind"] = "bake"
@@ -318,7 +318,7 @@ def m_mazza(nome, forza=50.0):
     t = nb.math('ADD', f, nb.math('MULTIPLY', nb.math('SUBTRACT', nz.outputs['Fac'], 0.5), 0.3))
     col = nb.ramp(t, [(0.15, (0.02, 0.005, 0.0)), (0.45, (1.0, 0.04, 0.0)), (0.85, (1.0, 0.75, 0.05))])
     s = nb.maprange(t, 0.1, 0.9, 0.15, 1.0)
-    nb.output(nb.emission(col, nb.math('MULTIPLY', s, forza * CL.INTENSITA_LUCE)))
+    nb.output(nb.emission(col, nb.math('MULTIPLY', s, ST.lum(forza))))
     CL.diffuse_display(mat, (1.0, 0.2, 0.0))
     mat["rbx_kind"] = "neon"
     mat["rbx_color"] = [1.0, 0.18, 0.0]
@@ -345,7 +345,7 @@ def m_flusso(nome, forza=40.0):
     nucleo = ST.colore(nb, 3800)
     col = NV.rgb_mix(nb, nb.maprange(t, 0.55, 0.85), lava, nucleo)
     col = NV.rgb_mix(nb, nb.maprange(t, 0.35, 0.15), col, (0.5, 0.02, 0.0))
-    s = nb.math('MULTIPLY', nb.maprange(t, 0.1, 0.9, 0.3, 1.3), forza * CL.INTENSITA_LUCE)
+    s = nb.math('MULTIPLY', nb.maprange(t, 0.1, 0.9, 0.3, 1.3), ST.lum(forza))
     nb.output(nb.emission(col, s))
     nb.bake_output("RBX_COLOR", nb.emission(col, 1.0))
     nb.bake_output("RBX_EMIT", nb.emission(col, 1.0))

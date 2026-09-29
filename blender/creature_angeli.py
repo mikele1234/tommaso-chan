@@ -130,7 +130,7 @@ def m_anello_ofanim(nome, base=(0.3, 0.45, 0.75), luce=9000, forza=40.0):
     col = ST.colore(nb, luce)
     pb = nb.principled(base=base, rough=0.12, coat=0.8, trans=0.3, ior=1.5, spec=0.6)
     nb.set(pb, 'Thin Film Thickness', 450.0)
-    s = nb.math('MULTIPLY', nb.math('MULTIPLY', mask, onda), forza * CL.INTENSITA_LUCE)
+    s = nb.math('MULTIPLY', nb.math('MULTIPLY', mask, onda), ST.lum(forza))
     glow = nb.math('MULTIPLY', onda, 2.5)
     sh = nb.add_shader(pb.outputs[0], nb.emission(col, nb.math('ADD', s, glow)))
     nb.output(sh)
@@ -157,7 +157,7 @@ def m_aureola_arcobaleno(nome, forza=60.0, colori=((1.0, 0.55, 0.78), (1.0, 0.9,
     col = nb.ramp(u, stops)
     core = nb.maprange(nb.facing(0.5), 0.35, 0.9)
     col = NV.rgb_mix(nb, core, col, (1.0, 1.0, 1.0))
-    nb.output(nb.emission(col, forza * CL.INTENSITA_LUCE))
+    nb.output(nb.emission(col, ST.lum(forza)))
     nb.bake_output("RBX_COLOR", nb.emission(nb.ramp(u, stops), 1.0))
     nb.bake_output("RBX_EMIT", nb.emission(nb.ramp(u, stops), 1.0))
     mat["rbx_kind"] = "bake"
@@ -173,7 +173,7 @@ def m_candela(nome, K=1900, forza=25.0):
     mat = CL.new_material(nome)
     nb = CL.NodeBuilder(mat)
     nz = nb.noise(nb.texcoord(use_space=False).outputs['Object'], 3.0, 3.0, 0.5)
-    s = nb.math('MULTIPLY', nb.maprange(nz.outputs['Fac'], 0.3, 0.7, 0.85, 1.15), forza * CL.INTENSITA_LUCE)
+    s = nb.math('MULTIPLY', nb.maprange(nz.outputs['Fac'], 0.3, 0.7, 0.85, 1.15), ST.lum(forza))
     nb.output(nb.emission(ST.colore(nb, K), s))
     CL.diffuse_display(mat, ST.kelvin(K))
     mat["rbx_kind"] = "neon"
@@ -232,7 +232,7 @@ def build_serafino():
                        rim=ST.kelvin(bordo), rim_str=1.2)
     m_elitre["rbx_thick"] = 1
     m_ala = ala("Serafino_Ali_Nervature", [(0.0, ST.kelvin(oro)), (1.0, ST.kelvin(3500))], membrane_str=0.6,
-                vein_ramp=[(0.0, ST.kelvin(oro)), (1.0, ST.kelvin(bordo))], vein_str=25.0, radial=(7, 0.05),
+                vein_ramp=[(0.0, ST.kelvin(oro)), (1.0, ST.kelvin(bordo))], vein_str=ST.lum(25.0), radial=(7, 0.05),
                 cells=(22.0, 0.035, 1.0), edge=0.05)
     m_nimbo = ST.m_luce("Serafino_Nimbo", oro, 40.0, bordo=bordo, forza_bordo=50.0)
     m_alone = ST.m_volume("Serafino_Alone_Dorato", (1.0, 0.85, 0.55), 2.0, luce_c=oro, forza=1.2, roblox="aura")
@@ -618,12 +618,12 @@ def build_raffaele():
     DS.texspace("Raffaele")
     sme = (0.2, 1.0, 0.5)
     m_torace = CL.m_body("Raffaele_Torace_Smeraldo", (0.03, 0.25, 0.1), rough=0.3, sss=0.3,
-                         sss_radius=(0.2, 1.0, 0.5), coat=0.6, emit=sme, emit_str=50.0, emit_center=True)
+                         sss_radius=(0.2, 1.0, 0.5), coat=0.6, emit=sme, emit_str=ST.lum(50.0), emit_center=True)
     m_chit = chitina("Raffaele_Chitina", (0.03, 0.12, 0.07), film=500.0)
     m_bastone = CL.m_body("Raffaele_Bastone", (0.3, 0.22, 0.1), rough=0.5, coat=0.3, bump=(40.0, 0.3, 'noise'))
     m_serpe = CL.m_body("Raffaele_Serpentello", (0.08, 0.45, 0.2), rough=0.3, coat=0.6, bump=(90.0, 0.35, 'scales'))
     m_pesce = CL.m_body("Raffaele_Sacca_Pesce", (0.1, 0.6, 0.35), rough=0.15, sss=0.8, sss_radius=(0.2, 1.0, 0.5),
-                        coat=1.0, alpha=0.8, emit=sme, emit_str=50.0, emit_center=True)
+                        coat=1.0, alpha=0.8, emit=sme, emit_str=ST.lum(50.0), emit_center=True)
     m_occhi = ST.m_luce("Raffaele_Occhi", sme, 30.0)
     m_conchiglia = CL.m_body("Raffaele_Conchiglia", (0.95, 0.8, 0.55), rough=0.35, sss=0.3, coat=0.4)
     m_bisaccia = CL.m_body("Raffaele_Bisaccia", (0.25, 0.14, 0.07), rough=0.75, bump=(60.0, 0.3, 'noise'))

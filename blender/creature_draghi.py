@@ -114,7 +114,7 @@ def m_squame(nome, dorso, ventre, film=400.0, lung=14.0, giro=5.0, luce_ventre=N
     if luce_ventre is not None and forza:
         ecol = ST.colore(nb, luce_ventre)
         emit_mask = nb.math('MULTIPLY', pancia, nb.maprange(placche, 1.0, 0.0, 0.4, 1.0))
-        sh = nb.add_shader(sh, nb.emission(ecol, nb.math('MULTIPLY', emit_mask, forza * CL.INTENSITA_LUCE)))
+        sh = nb.add_shader(sh, nb.emission(ecol, nb.math('MULTIPLY', emit_mask, ST.lum(forza))))
     if triangoli is not None:
         tcol, tforza, u0, u1, n = triangoli
         s = nb.math('FRACT', nb.math('MULTIPLY', nb.maprange(u, u0, u1, 0.0, 1.0, smooth=False), float(n)))
@@ -126,7 +126,7 @@ def m_squame(nome, dorso, ventre, film=400.0, lung=14.0, giro=5.0, luce_ventre=N
         dentro = nb.math('MULTIPLY', nb.maprange(u, u0, u0 + 0.005), nb.maprange(u, u1, u1 - 0.005))
         tri = nb.math('MULTIPLY', tri, dentro)
         tc2 = nb.ramp(dent, [(0.0, ST.rgb(tcol[0])), (1.0, ST.rgb(tcol[1]))])
-        sh = nb.mix_shader(tri, sh, nb.emission(tc2, tforza * CL.INTENSITA_LUCE))
+        sh = nb.mix_shader(tri, sh, nb.emission(tc2, ST.lum(tforza)))
         emit_mask = tri
         ecol = tc2
     nb.output(sh)
@@ -151,8 +151,8 @@ def m_perla(nome, nucleo, forza=90.0, bordo=(1.0, 1.0, 1.0)):
     nb = CL.NodeBuilder(mat)
     f = nb.maprange(nb.fresnel(0.35), 0.1, 0.8)
     col = NV.rgb_mix(nb, f, ST.colore(nb, nucleo), bordo)
-    s = nb.maprange(f, 0.0, 1.0, forza, forza * 1.4)
-    nb.output(nb.emission(col, nb.math('MULTIPLY', s, CL.INTENSITA_LUCE)))
+    s = nb.maprange(f, 0.0, 1.0, ST.lum(forza), ST.lum(forza) * 1.3)
+    nb.output(nb.emission(col, s))
     CL.diffuse_display(mat, ST.rgb(nucleo))
     mat["rbx_kind"] = "neon"
     mat["rbx_color"] = list(ST.mescola(nucleo, bordo, 0.35))
@@ -172,7 +172,7 @@ def m_smalti(nome, forza=100.0, smalto=0.0):
     col = nb.ramp(sm, stops, interp='CONSTANT')
     f = nb.maprange(nb.fresnel(0.3), 0.2, 0.9)
     col = NV.rgb_mix(nb, nb.math('MULTIPLY', f, 0.5), col, (1.0, 1.0, 1.0))
-    nb.output(nb.emission(col, forza * CL.INTENSITA_LUCE))
+    nb.output(nb.emission(col, ST.lum(forza)))
     CL.diffuse_display(mat, ST.kelvin(3000))
     mat["rbx_kind"] = "neon"
     mat["rbx_color"] = list(ST.kelvin(3000))
@@ -198,7 +198,7 @@ def m_anello_cromatico(nome, centro, forza=50.0):
     col = nb.ramp(gr.outputs['Fac'], stops)
     pb = nb.principled(base=col, rough=0.3, coat=0.6, sss=0.2, sss_radius=(1, 1, 1))
     nb.set(pb, 'Thin Film Thickness', 350.0)
-    sh = nb.add_shader(pb.outputs[0], nb.emission(col, forza * CL.INTENSITA_LUCE))
+    sh = nb.add_shader(pb.outputs[0], nb.emission(col, ST.lum(forza)))
     nb.output(sh)
     nb.bake_output("RBX_COLOR", nb.emission(col, 1.0))
     nb.bake_output("RBX_EMIT", nb.emission(col, 1.0))
@@ -633,11 +633,11 @@ def build_quetzal():
     sm, tu = (0.05, 0.9, 0.35), (0.1, 0.85, 0.85)
     m_sq = m_squame("Quetzal_Squame", (0.02, 0.28, 0.12), (0.85, 0.7, 0.3), film=520.0, lung=18.0,
                     triangoli=((sm, tu), 40.0, 0.22, 0.78, 7))
-    m_piuma = CL.m_feather("Quetzal_Piume_Smeraldo", (0.02, 0.3, 0.12), (0.03, 0.45, 0.4), (0.15, 1.0, 0.7), 40.0,
+    m_piuma = CL.m_feather("Quetzal_Piume_Smeraldo", (0.02, 0.3, 0.12), (0.03, 0.45, 0.4), (0.15, 1.0, 0.7), ST.lum(40.0),
                            edge_w=0.1, rachis_w=0.04)
     ST._principled_extra(m_piuma, film=520.0)
     m_piuma["rbx_thick"] = 1
-    m_coda = CL.m_feather("Quetzal_Piume_Coda", (0.02, 0.35, 0.2), (0.05, 0.55, 0.55), (0.2, 1.0, 0.9), 40.0,
+    m_coda = CL.m_feather("Quetzal_Piume_Coda", (0.02, 0.35, 0.2), (0.05, 0.55, 0.55), (0.2, 1.0, 0.9), ST.lum(40.0),
                           edge_w=0.08, rachis_w=0.04)
     ST._principled_extra(m_coda, film=600.0)
     m_coda["rbx_thick"] = 1

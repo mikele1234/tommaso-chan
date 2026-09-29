@@ -96,6 +96,22 @@ def kelvin(K):
     return out
 
 
+# Tetto alle emissioni: fino a 10 restano uguali, sopra vengono compresse
+# (un quarto dell'eccesso) e non superano mai EMISSIONE_MAX. Cosi' gli organi
+# con Emission 60-120 brillano ancora piu' degli altri, ma senza accecare.
+EMISSIONE_MAX = 20.0
+# Moltiplicatore delle luci proxy (Point Light 0.005 m sugli organi)
+LUCI_PROXY = 0.6
+
+
+def lum(forza):
+    """Intensita' di emissione effettiva (con il tetto e INTENSITA_LUCE)."""
+    f = float(forza)
+    if f > 10.0:
+        f = 10.0 + (f - 10.0) * 0.25
+    return min(f, EMISSIONE_MAX) * CL.INTENSITA_LUCE
+
+
 def rgb(c):
     """Kelvin (numero) oppure colore RGB -> tupla RGB."""
     if isinstance(c, (int, float)):
@@ -125,7 +141,8 @@ def mescola(a, b, t):
 def proxy(organo, loc, c, energia, nome=None, raggio=0.005):
     """Point Light proxy dello stesso colore dell'organo luminoso, agganciata
     all'organo con un vincolo Child Of (lo segue ovunque venga spostato)."""
-    ob = CL.add_light(nome or (organo.name + "_Luce_Proxy"), 'POINT', loc, energia, rgb(c), raggio)
+    ob = CL.add_light(nome or (organo.name + "_Luce_Proxy"), 'POINT', loc, energia * LUCI_PROXY, rgb(c),
+                      raggio)
     bpy.context.view_layer.update()
     con = ob.constraints.new('CHILD_OF')
     con.name = "Aggancio_Organo"
@@ -149,11 +166,11 @@ def m_luce(nome, c, forza, bordo=None, forza_bordo=None, alpha=None):
     chiaro sui contorni con Fresnel (Layer Weight)."""
     mat = CL.new_material(nome)
     nb = CL.NodeBuilder(mat)
-    s = nb.value(forza * CL.INTENSITA_LUCE)
+    s = nb.value(lum(forza))
     em = nb.emission(colore(nb, c), s)
     if bordo is not None:
         f = nb.maprange(nb.fresnel(0.3), 0.25, 0.9)
-        em = nb.mix_shader(f, em, nb.emission(colore(nb, bordo), (forza_bordo or forza) * CL.INTENSITA_LUCE))
+        em = nb.mix_shader(f, em, nb.emission(colore(nb, bordo), lum(forza_bordo or forza)))
     if alpha is not None:
         em = nb.mix_shader(alpha, nb.transparent(), em)
         CL.set_transparent(mat)
@@ -325,7 +342,7 @@ def m_crepe(nome, pietra=(0.02, 0.018, 0.022), pietra2=(0.05, 0.045, 0.05), luce
     if lucido is not None:          # nucleo piu' chiaro al centro della crepa
         core = nb.maprange(vo.outputs['Distance'], crepa * 0.35, 0.0)
         gcol = rgb_mix_socket(nb, core, gcol, colore(nb, lucido))
-    s = nb.value(forza * CL.INTENSITA_LUCE)
+    s = nb.value(lum(forza))
     nb.output(nb.mix_shader(cr, sb.outputs[0], nb.emission(gcol, s)))
     # le fratture sono scavate davvero (Displacement), non solo dipinte
     dn = nb.node('ShaderNodeDisplacement', {'Scale': profondita, 'Midlevel': 1.0})

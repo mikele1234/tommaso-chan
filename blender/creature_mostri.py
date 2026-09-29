@@ -241,7 +241,7 @@ def m_pozione(nome, base=(0.4, 0.04, 0.7), luce_c=(0.55, 0.08, 1.0), forza=14.0)
     col = nb.ramp(nz.outputs['Fac'], [(0.3, luce_c), (0.55, (1.0, 0.15, 0.75)), (0.8, (0.8, 0.5, 1.0))])
     pb = nb.principled(base=base, rough=0.12, sss=1.0, sss_radius=(0.8, 0.2, 1.0), coat=0.7, spec=0.6)
     nb.set(pb, 'Subsurface Scale', 0.4)
-    s = nb.math('MULTIPLY', nb.maprange(nz.outputs['Fac'], 0.3, 0.8, 0.5, 1.4), forza * CL.INTENSITA_LUCE)
+    s = nb.math('MULTIPLY', nb.maprange(nz.outputs['Fac'], 0.3, 0.8, 0.5, 1.4), ST.lum(forza))
     nb.output(nb.add_shader(pb.outputs[0], nb.emission(col, s)))
     CL.diffuse_display(mat, luce_c)
     mat["rbx_kind"] = "neon"
@@ -254,7 +254,7 @@ def m_bolla(nome, c, forza=8.0, alpha=0.45):
     mat = CL.new_material(nome)
     nb = CL.NodeBuilder(mat)
     f = nb.maprange(nb.fresnel(0.25), 0.0, 1.0, 0.35, 1.6)
-    em = nb.emission(c, nb.math('MULTIPLY', f, forza * CL.INTENSITA_LUCE))
+    em = nb.emission(c, nb.math('MULTIPLY', f, ST.lum(forza)))
     nb.output(nb.mix_shader(alpha, nb.transparent(), em))
     CL.set_transparent(mat, blended=True)
     CL.diffuse_display(mat, c)
@@ -317,7 +317,7 @@ def m_iride(nome, c=(0.85, 1.0, 0.08), forza=150.0):
     f = nb.maprange(fib.outputs['Fac'], 0.3, 0.7, 0.55, 1.2)
     col = nb.ramp(d, [(0.0, (1.0, 1.0, 0.75)), (0.06, (1.0, 1.0, 0.35)), (0.16, c), (0.235, (0.45, 0.5, 0.02)),
                       (0.25, (0.15, 0.12, 0.0))])
-    s = nb.math('MULTIPLY', f, nb.maprange(d, 0.0, 0.25, forza, forza * 0.35) if forza else 1.0)
+    s = nb.math('MULTIPLY', f, nb.maprange(d, 0.0, 0.25, ST.lum(forza), ST.lum(forza) * 0.35))
     nb.output(nb.emission(col, s))
     CL.diffuse_display(mat, c)
     mat["rbx_kind"] = "neon"
