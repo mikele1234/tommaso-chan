@@ -1,6 +1,6 @@
 # Creature Luminose
 
-Quaranta creature bioluminescenti in cinque serie, modellate
+Quarantotto creature bioluminescenti in sei serie, modellate
 proceduralmente in Blender con script Python: ogni forma, materiale, luce e
 animazione nasce dal codice. Le serie dalla 5 in poi sono modelli statici
 (senza animazioni) con il setup EEVEE Next richiesto.
@@ -12,6 +12,8 @@ animazione nasce dal codice. Le serie dalla 5 in poi sono modelli statici
   (vedi [più sotto](#serie-3--creature-luminose-della-neve))
 - **Serie 4 – Creature dell'oceano** → [`blender/creature_oceano.py`](blender/creature_oceano.py)
   (vedi [più sotto](#serie-4--creature-luminose-delloceano))
+- **Serie 5 – I mostri** → [`blender/creature_mostri.py`](blender/creature_mostri.py)
+  (vedi [più sotto](#serie-5--i-mostri))
 - **Serie 6 – Creature dell'inferno** → [`blender/creature_inferno.py`](blender/creature_inferno.py)
   (vedi [più sotto](#serie-6--creature-luminose-dellinferno))
 
@@ -22,6 +24,7 @@ triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 ![Le creature del deserto](anteprime/deserto/00_tutte_le_creature.png)
 ![Le creature della neve](anteprime/neve/00_tutte_le_creature.png)
 ![Le creature dell'oceano](anteprime/oceano/00_tutte_le_creature.png)
+![I mostri](anteprime/mostri/00_tutte_le_creature.png)
 ![Le creature dell'inferno](anteprime/inferno/00_tutte_le_creature.png)
 
 ## Cosa c'è nel repository
@@ -33,9 +36,10 @@ triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 | `blender/creature_neve.py` | Generatore della serie della neve (usa i due file precedenti) |
 | `blender/creature_oceano.py` | Generatore della serie dell'oceano (usa i tre file precedenti) |
 | `blender/creature_strumenti.py` | Strumenti comuni alle serie 5-8: setup EEVEE Next, Blackbody, luci proxy Child Of, ali con Thin Film, occhi da cartone, sneakers, ali membranose |
+| `blender/creature_mostri.py` | Generatore della serie 5 (usa `creature_strumenti.py` e i file precedenti) |
 | `blender/creature_inferno.py` | Generatore della serie 6 (usa `creature_strumenti.py` e i file precedenti) |
 | `blender/esporta_roblox.py` | Converte tutte le creature per Roblox (`.glb` + script Luau) |
-| `modelli/…/*.blend` | File Blender pronti da aprire (`modelli/`, `modelli/deserto/`, `modelli/neve/`, `modelli/oceano/`, `modelli/inferno/`): una scena per creatura + `00_tutte_le_creature.blend` |
+| `modelli/…/*.blend` | File Blender pronti da aprire (`modelli/`, `modelli/deserto/`, `modelli/neve/`, `modelli/oceano/`, `modelli/mostri/`, `modelli/inferno/`): una scena per creatura + `00_tutte_le_creature.blend` |
 | `anteprime/…` | Render di anteprima (Cycles per le serie 1-4, EEVEE Next per le serie 5-8), con le stesse sottocartelle |
 | `roblox/` | Versione per **Roblox Studio**: file `.glb` + script Luau (vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md)) |
 
@@ -66,6 +70,7 @@ cartella (ognuno usa quelli delle serie precedenti), e scegli la creatura:
 | `creature_deserto.py` | `"scorpione"`, `"fennec"`, `"scarabeo"`, `"vipera"`, `"lucertola"`, `"avvoltoio"`, `"tarantola"`, `"cactus"` |
 | `creature_neve.py` | `"orso"`, `"pinguino"`, `"renna"`, `"volpe"`, `"leopardo"`, `"yeti"`, `"civetta"`, `"pupazzo"` |
 | `creature_oceano.py` | `"medusa"`, `"cavalluccio"`, `"granchio"`, `"manta"`, `"squalo"`, `"tartaruga"`, `"pescatrice"`, `"blobfish"` |
+| `creature_mostri.py` | `"pipistrello"`, `"scarabeo"`, `"gargoyle"`, `"zucca"`, `"corvo"`, `"occhio"`, `"calderone"`, `"verme"` |
 | `creature_inferno.py` | `"cerbero"`, `"caronte"`, `"ade"`, `"persefone"`, `"alichino"`, `"ghiacciolo"`, `"flegetonte"`, `"tungtung"` |
 
 (oppure `"tutte"` per la scena con le otto creature della serie).
@@ -83,7 +88,7 @@ blender --background --python blender/creature_luminose.py -- \
 
 ## Su Roblox Studio
 
-Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 40 creature
+Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 48 creature
 convertite per Roblox, **ognuna con al massimo 20.000 triangoli in totale**:
 un file `.glb` per creatura (`roblox/modelli/` e le sottocartelle `deserto/`,
 `neve/`, `oceano/`), da importare con *Import 3D* (con **Anchored** attivo), e
@@ -405,6 +410,91 @@ che pende e gli occhietti apatici… e una **mascella squadrata iper-definita**
 da "gigachad" (spigoli vivi, fossetta sul mento). Una zampetta da insetto è
 premuta sulle labbra per fare **"shhh"**, e sulla schiena due alucce
 microscopiche emettono un bagliore rosa **debole e patetico**.
+
+## Serie 5 · I mostri
+
+Generati da [`blender/creature_mostri.py`](blender/creature_mostri.py).
+Come le tre serie che seguono sono **solo modelli 3D, senza animazioni**, con
+il setup EEVEE Next descritto più sotto ([Setup EEVEE](#setup-eevee-next-serie-5-8)).
+Scena: terreno scuro da cimitero, foschia viola e luna.
+
+### 01 · Pipistrello-Sanguisuga
+![Pipistrello-Sanguisuga](anteprime/mostri/01_pipistrello_sanguisuga.png)
+
+Pipistrello nero dal pelo folto, con grandi orecchie a punta, zanne e occhi
+cremisi. Le ali sono membrane coriacee tese tra le dita, con le venature e
+la luce che le attraversa. Al posto dell'addome ha una **fiala medica di
+vetro** con la ghiera di metallo, piena di **sangue luminoso**: la superficie è
+un Glass BSDF e dentro ci sono un denso **Volume Absorption rosso** e
+un'emissione di volume cremisi.
+
+### 02 · Franken-Scarabeo
+![Franken-Scarabeo](anteprime/mostri/02_franken_scarabeo.png)
+
+Coleottero fatto di **pezzi di insetti diversi cuciti insieme**: un'elitra
+smeraldo metallica e una viola, l'altra da coccinella, il pronoto nero di un
+cervo volante, sei zampe diverse (talpa, mantide, cavalletta…), una mandibola
+enorme e una piccola, un occhio di mosca e uno nero. Le **cicatrici** hanno il
+rilievo (bump) e i punti di sutura a X. La luce verde-ciano **esce solo dalle
+fessure** tra i pezzi, con qualche scarica elettrica. Alla base della testa ci
+sono **due bulloni di metallo** che fanno scintille.
+
+### 03 · Gargoyle-Ossidiana
+![Gargoyle-Ossidiana](anteprime/mostri/03_gargoyle_ossidiana.png)
+
+Demonietto di **pietra lavica** accovacciato in volo, con corna da ariete,
+artigli, coda a picca e pesanti **ali di pietra**. La pietra è scura, molto
+ruvida e metallica. Le **fratture** sono scavate con il nodo **Displacement** e
+riempite di **magma incandescente** (Blackbody). Gli occhi sono di **pura
+fiamma**.
+
+### 04 · Zucca-Infestata (Jack-o'-Lantern Moth)
+![Zucca-Infestata](anteprime/mostri/04_zucca_infestata.png)
+
+Falena pelosa con l'addome sostituito da una **zucca di Halloween deforme**,
+appesa al torace per il gambo. Il **volto spaventoso è intagliato davvero**
+(buchi booleani nel guscio della zucca), con una candela dentro che spara
+luce arancione fuori da occhi e bocca, più un **fumo luminoso volumetrico**
+che ne esce. Le ali sono **foglie autunnali morte** (bucate, con nervature e
+un rametto), le zampe e le antenne sono **rametti secchi**.
+
+### 05 · Corvo-Peste
+![Corvo-Peste](anteprime/mostri/05_corvo_peste.png)
+
+Corvo scheletrico e spennato (resta solo un collare di piume nere
+arruffate), con le costole scoperte, che indossa una
+**maschera da medico della peste** in cuoio logoro (becco lungo cucito,
+borchie, cinghia). Dietro le **lenti di vetro** con la montatura d'ottone
+brucia una luce **verde acida**, e anche dal petto scarno. Le ali sono di
+**piume nere strappate** con i bordi tossici, e intorno galleggia una
+**polvere luminosa**.
+
+### 06 · Occhio-Fluttuante (Watcher's Eye)
+![Occhio-Fluttuante](anteprime/mostri/06_occhio_fluttuante.png)
+
+Un gigantesco **bulbo oculare bagnato e iniettato di sangue** (sclera lucida
+con i capillari) che levita a mezz'aria, con il **nervo ottico** che pende come
+una coda e i muscoli recisi. L'**iride è concava** e fa da lampadina: proietta
+un **cono di luce volumetrica giallo-malattia** con un faretto, come un faro da
+prigione.
+
+### 07 · Calderone-Animato
+![Calderone-Animato](anteprime/mostri/07_calderone_animato.png)
+
+Piccolo **calderone di ghisa arrugginita** (fascia, rivetti, maniglie) che corre
+su due tozze **zampe di rana**. Dentro ribolle una **pozione viola** con
+Subsurface estremo ed emissione, che trabocca e cola. In aria salgono **bolle
+luminose fucsia e viola** trasparenti (Alpha Blend), in parte mesh e in parte
+particelle.
+
+### 08 · Il Verme dell'Ohio "Nextbot" (The Brainrot Monster Moth)
+![Il Verme dell'Ohio](anteprime/mostri/08_verme_ohio_nextbot.png)
+
+Bruco-lucciola cicciotto a segmenti che **brillano in RGB**, con la coda a
+lanterna. Al posto della faccia ha un **piano 2D completamente piatto** con una
+faccia meme inquietante, **compressa in JPEG e sgranata**. La faccia è
+disegnata dallo script (non è una foto) ed è impacchettata nel `.blend`. Un
+vincolo **Track To** la fa guardare **sempre verso la camera**.
 
 ## Serie 6 · Creature luminose dell'inferno
 
