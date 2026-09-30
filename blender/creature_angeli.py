@@ -889,7 +889,7 @@ CREATURE_ANGELI = {
     #  chiave        (collezione,                    funzione,          camera: target, dist, elev, azim, lente)
     "serafino":  ("A01_Fiammella-Serafino",        build_serafino,    ((0, 0.05, 0.92), 3.6, 10, 35, 50)),
     "cherubino": ("A02_Quattro-Musetti-Cherubino", build_cherubino,   ((0, -0.05, 0.6), 3.2, 16, 40, 50)),
-    "ofanim":    ("A03_Ruotina-Ofanim",            build_ofanim,      ((0, 0.0, 0.7), 3.6, 8, 20, 50)),
+    "ofanim":    ("A03_Ruotina-Ofanim",            build_ofanim,      ((0, 0.0, 0.76), 4.3, 8, 20, 50)),
     "michele":   ("A04_Scudo-Stellato-Michele",    build_michele,     ((0, 0.1, 0.5), 3.4, 28, 35, 50)),
     "gabriele":  ("A05_Trombettina-Gabriele",      build_gabriele,    ((0, 0.2, 0.8), 4.0, 8, 60, 50)),
     "raffaele":  ("A06_Dottor-Smeraldo-Raffaele",  build_raffaele,    ((0, -0.05, 0.8), 4.6, 10, 35, 50)),
