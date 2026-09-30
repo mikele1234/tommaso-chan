@@ -1,0 +1,106 @@
+{
+ "bob": {},
+ "luci": {
+  "Gabriele__Luce_01": {
+   "ang": 42.0,
+   "b0": 8.419,
+   "b1": 8.419,
+   "c": [
+    0.9403,
+    0.9503,
+    1.0
+   ],
+   "cyc": 1,
+   "dir": "Gabriele__Luce_01_Dir",
+   "ph": 0.0,
+   "r": 24.14
+  },
+  "Gabriele__Luce_02": {
+   "b0": 0.697,
+   "b1": 0.697,
+   "c": [
+    0.9403,
+    0.9503,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.13
+  }
+ },
+ "parti": {
+  "Gabriele__Ali_Bianche": {
+   "ali": true,
+   "e": 20.0,
+   "k": "tex"
+  },
+  "Gabriele__Campana_Luce": {
+   "c": [
+    0.9403,
+    0.9503,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Gabriele__Chitina_Perla": {
+   "c": [
+    0.9357,
+    0.9453,
+    0.964
+   ],
+   "k": "solid"
+  },
+  "Gabriele__Fascio_Lunare": {
+   "c": [
+    0.9403,
+    0.9503,
+    1.0
+   ],
+   "k": "aura",
+   "t": 0.85
+  },
+  "Gabriele__Petali_Giglio": {
+   "c": [
+    0.9403,
+    0.9503,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Gabriele__Polline": {
+   "c": [
+    1.0,
+    0.7674,
+    0.2478
+   ],
+   "k": "solid"
+  },
+  "Gabriele__Stami": {
+   "c": [
+    0.7977,
+    0.8543,
+    0.5838
+   ],
+   "k": "solid"
+  },
+  "Gabriele__Steli_Giglio": {
+   "c": [
+    0.6262,
+    0.7674,
+    0.5371
+   ],
+   "k": "solid"
+  },
+  "Gabriele__Tromba_Argento": {
+   "c": [
+    0.9063,
+    0.9163,
+    0.9453
+   ],
+   "k": "solid",
+   "metallo": true
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

@@ -1,0 +1,100 @@
+{
+ "bob": {},
+ "luci": {
+  "Serafino__Luce_01": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    1.0,
+    0.9317,
+    0.8833
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  },
+  "Serafino__Luce_02": {
+   "b0": 0.697,
+   "b1": 0.697,
+   "c": [
+    1.0,
+    0.6666,
+    0.3193
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.13
+  },
+  "Serafino__Luce_03": {
+   "b0": 0.604,
+   "b1": 0.604,
+   "c": [
+    1.0,
+    0.9317,
+    0.8833
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.91
+  }
+ },
+ "parti": {
+  "Serafino__Addome_Ardente": {
+   "c": [
+    1.0,
+    0.8317,
+    0.649
+   ],
+   "k": "neon"
+  },
+  "Serafino__Ali_Nervature": {
+   "ali": true,
+   "e": 24.0,
+   "k": "tex"
+  },
+  "Serafino__Alone_Dorato": {
+   "c": [
+    1.0,
+    0.9317,
+    0.8833
+   ],
+   "k": "aura",
+   "t": 0.85
+  },
+  "Serafino__Chitina_Perla": {
+   "c": [
+    0.7354,
+    0.6343,
+    0.4236
+   ],
+   "k": "solid"
+  },
+  "Serafino__Elitre_Aperte": {
+   "c": [
+    0.7674,
+    0.65,
+    0.3811
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Serafino__Nimbo": {
+   "c": [
+    1.0,
+    0.9317,
+    0.8833
+   ],
+   "k": "neon"
+  },
+  "Serafino__Occhi_Composti": {
+   "c": [
+    0.6262,
+    0.3811,
+    0.1517
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

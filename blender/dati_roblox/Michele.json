@@ -1,0 +1,97 @@
+{
+ "bob": {},
+ "luci": {
+  "Michele__Luce_01": {
+   "b0": 0.986,
+   "b1": 0.986,
+   "c": [
+    0.8628,
+    0.8904,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.8
+  },
+  "Michele__Luce_02": {
+   "b0": 0.27,
+   "b1": 0.27,
+   "c": [
+    0.8628,
+    0.8904,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.13
+  },
+  "Michele__Luce_03": {
+   "b0": 0.27,
+   "b1": 0.27,
+   "c": [
+    0.8628,
+    0.8904,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.13
+  }
+ },
+ "parti": {
+  "Michele__Catene": {
+   "c": [
+    0.8543,
+    0.865,
+    0.8962
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Michele__Corpo_Acciaio": {
+   "c": [
+    0.3811,
+    0.3959,
+    0.4366
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Michele__Occhi": {
+   "c": [
+    0.8628,
+    0.8904,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Michele__Piatti_Bilancia": {
+   "c": [
+    0.8808,
+    0.865,
+    0.7977
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Michele__Placche_Armatura": {
+   "c": [
+    0.8095,
+    0.8323,
+    0.8756
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Michele__Scudo_Stella": {
+   "c": [
+    0.8628,
+    0.8904,
+    1.0
+   ],
+   "k": "neon"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}
