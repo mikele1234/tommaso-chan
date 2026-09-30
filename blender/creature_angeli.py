@@ -225,10 +225,10 @@ def elica(base, asse, lung, raggio, giri, n=60, fase=0.0, stringi=0.3):
 def build_serafino():
     DS.texspace("Serafino")
     oro, bordo = 5500, 2600
-    m_addome = ST.m_luce("Serafino_Addome_Ardente", oro, 2.0, bordo=bordo, forza_bordo=4.0)
-    m_chit = chitina("Serafino_Chitina_Perla", (0.85, 0.72, 0.45), metal=0.35, film=380.0)
+    m_addome = ST.m_luce("Serafino_Addome_Ardente", 4000, 1.3, bordo=bordo, forza_bordo=3.0)
+    m_chit = chitina("Serafino_Chitina_Perla", (0.5, 0.36, 0.15), metal=0.35, film=380.0)
     m_occhi = CL.m_body("Serafino_Occhi_Composti", (0.35, 0.12, 0.02), rough=0.2, coat=1.0, bump=(120.0, 0.4, 'scales'))
-    m_elitre = chitina("Serafino_Elitre_Aperte", (0.9, 0.75, 0.42), metal=0.45, film=420.0,
+    m_elitre = chitina("Serafino_Elitre_Aperte", (0.55, 0.38, 0.12), metal=0.6, film=420.0,
                        rim=ST.kelvin(bordo), rim_str=0.35)
     m_elitre["rbx_thick"] = 1
     m_ala = ala("Serafino_Ali_Nervature", [(0.0, ST.kelvin(oro)), (1.0, ST.kelvin(3500))], membrane_str=0.25,
