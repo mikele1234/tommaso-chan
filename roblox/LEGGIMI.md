@@ -19,7 +19,8 @@ Ogni file contiene forme, texture (colore, trasparenza, emissione) e marcatori
 invisibili per luci e animazioni.
 
 **Limiti rispettati:**
-- **ogni creatura ha al massimo 20.000 triangoli in totale** (tra circa 15.000 e 19.900 a seconda della creatura);
+- **ogni creatura ha al massimo 20.000 triangoli in totale** (quasi tutte tra 15.000 e 19.900; le più semplici,
+  come il Verme dell'Ohio, ne hanno molti meno);
 - nessun pezzo supera il limite di Roblox per singola mesh;
 - sono già in scala: quasi tutte sono alte o larghe tra 2 e 8 stud (un avatar
   è circa 5 stud); con scie, fasci di luce e ali aperte alcune arrivano a
@@ -119,6 +120,13 @@ modo:
 | Particelle (scia della renna, plancton) | Qualche fiocco o scaglia Neon che fluttua |
 | Caustiche, foschia e aurora nel cielo | Non incluse (fanno parte della scena, non delle creature) |
 | Cornee lucide degli occhi | Non incluse |
+| Serie 5-8: emissione con il nodo Blackbody e luci proxy (Point Light con Child Of) | Neon con lo stesso colore + una `PointLight` nel punto della luce proxy |
+| Liquidi dentro al vetro (fiala di sangue, pozione, lanterne) | Guscio Glass + interno Neon |
+| Volumi luminosi (alone del Serafino e della lanterna di Caronte, fasci dell'Occhio e della tromba di Gabriele) | Forme Neon semitrasparenti |
+| Fumo della zucca e volumi di scena (foschie, nebbia) | Non inclusi |
+| Crepe di magma scavate con il Displacement (Gargoyle, Tung Tung) | Crepe cotte in texture con Emissive Mask e normal map |
+| Faccia meme compressa del Verme dell'Ohio | La stessa immagine, cotta nella texture del pannello |
+| Wireframe delle nervature (ali di Ddraig) | Non incluso: resta la membrana con i puntini Neon |
 
 ## Se qualcosa non va
 
