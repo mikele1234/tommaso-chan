@@ -758,7 +758,7 @@ def build_custode():
 
 def build_halolo():
     DS.texspace("Halolo")
-    m_corpo = chitina("Halolo_Corpo_Pastello", (0.72, 0.58, 0.95), rough=0.3, sss=0.35, sss_radius=(1.0, 0.7, 1.0),
+    m_corpo = chitina("Halolo_Corpo_Pastello", (0.42, 0.25, 0.62), rough=0.3, sss=0.2, sss_radius=(1.0, 0.7, 1.0),
                       film=300.0)
     m_bianco = ST.m_occhio_bianco("Halolo_Occhi_Bianchi")
     m_pup = CL.m_body("Halolo_Pupille", (0.01, 0.01, 0.02), rough=0.05, coat=1.0)
@@ -877,12 +877,12 @@ def scena_custode():
 
 
 def scena_halolo():
-    ST.mondo((0.6, 0.45, 0.65), (0.45, 0.6, 0.85), 0.5, nome="Sfondo_Pastello")
+    ST.mondo((0.6, 0.45, 0.65), (0.45, 0.6, 0.85), 0.25, nome="Sfondo_Pastello")
     colori = [(1.0, 0.3, 0.6), (1.0, 0.85, 0.2), (0.3, 0.7, 1.0), (0.5, 1.0, 0.5), (0.8, 0.4, 1.0), (1.0, 0.5, 0.2)]
     for i, c in enumerate(colori):
         a = TAU * i / len(colori)
-        ST.luce("Disco_%d" % i, 'POINT', (1.4 * cos(a), 1.4 * sin(a), 0.4 + 0.8 * (i % 2)), 40.0, c, 0.1)
-    ST.compositor(0.6, 8, None, 0.0)
+        ST.luce("Disco_%d" % i, 'POINT', (1.4 * cos(a), 1.4 * sin(a), 0.4 + 0.8 * (i % 2)), 20.0, c, 0.1)
+    ST.compositor(0.4, 7, None, 0.0)
 
 
 CREATURE_ANGELI = {
