@@ -1,6 +1,6 @@
 # Creature Luminose
 
-Cinquantasei creature bioluminescenti in sette serie, modellate
+Sessantaquattro creature bioluminescenti in otto serie, modellate
 proceduralmente in Blender con script Python: ogni forma, materiale, luce e
 animazione nasce dal codice. Le serie dalla 5 in poi sono modelli statici
 (senza animazioni) con il setup EEVEE Next richiesto.
@@ -18,6 +18,8 @@ animazione nasce dal codice. Le serie dalla 5 in poi sono modelli statici
   (vedi [più sotto](#serie-6--creature-luminose-dellinferno))
 - **Serie 7 – Gli angeli** → [`blender/creature_angeli.py`](blender/creature_angeli.py)
   (vedi [più sotto](#serie-7--gli-angeli))
+- **Serie 8 – I draghi** → [`blender/creature_draghi.py`](blender/creature_draghi.py)
+  (vedi [più sotto](#serie-8--i-draghi))
 
 Tutte sono disponibili anche **per Roblox Studio**, con al massimo 20.000
 triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
@@ -29,6 +31,7 @@ triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 ![I mostri](anteprime/mostri/00_tutte_le_creature.png)
 ![Le creature dell'inferno](anteprime/inferno/00_tutte_le_creature.png)
 ![Gli angeli](anteprime/angeli/00_tutte_le_creature.png)
+![I draghi](anteprime/draghi/00_tutte_le_creature.png)
 
 ## Cosa c'è nel repository
 
@@ -42,8 +45,9 @@ triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 | `blender/creature_mostri.py` | Generatore della serie 5 (usa `creature_strumenti.py` e i file precedenti) |
 | `blender/creature_inferno.py` | Generatore della serie 6 (usa `creature_strumenti.py` e i file precedenti) |
 | `blender/creature_angeli.py` | Generatore della serie 7 (usa `creature_strumenti.py` e i file precedenti) |
+| `blender/creature_draghi.py` | Generatore della serie 8 (usa `creature_strumenti.py` e i file precedenti) |
 | `blender/esporta_roblox.py` | Converte tutte le creature per Roblox (`.glb` + script Luau) |
-| `modelli/…/*.blend` | File Blender pronti da aprire (`modelli/`, `modelli/deserto/`, `modelli/neve/`, `modelli/oceano/`, `modelli/mostri/`, `modelli/inferno/`, `modelli/angeli/`): una scena per creatura + `00_tutte_le_creature.blend` |
+| `modelli/…/*.blend` | File Blender pronti da aprire (`modelli/`, `modelli/deserto/`, `modelli/neve/`, `modelli/oceano/`, `modelli/mostri/`, `modelli/inferno/`, `modelli/angeli/`, `modelli/draghi/`): una scena per creatura + `00_tutte_le_creature.blend` |
 | `anteprime/…` | Render di anteprima (Cycles per le serie 1-4, EEVEE Next per le serie 5-8), con le stesse sottocartelle |
 | `roblox/` | Versione per **Roblox Studio**: file `.glb` + script Luau (vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md)) |
 
@@ -77,6 +81,7 @@ cartella (ognuno usa quelli delle serie precedenti), e scegli la creatura:
 | `creature_mostri.py` | `"pipistrello"`, `"scarabeo"`, `"gargoyle"`, `"zucca"`, `"corvo"`, `"occhio"`, `"calderone"`, `"verme"` |
 | `creature_inferno.py` | `"cerbero"`, `"caronte"`, `"ade"`, `"persefone"`, `"alichino"`, `"ghiacciolo"`, `"flegetonte"`, `"tungtung"` |
 | `creature_angeli.py` | `"serafino"`, `"cherubino"`, `"ofanim"`, `"michele"`, `"gabriele"`, `"raffaele"`, `"custode"`, `"halolo"` |
+| `creature_draghi.py` | `"tesorino"`, `"long"`, `"ryujin"`, `"quetzal"`, `"ddraig"`, `"idra"`, `"wyvern"`, `"ourobo"` |
 
 (oppure `"tutte"` per la scena con le otto creature della serie).
 
@@ -93,7 +98,7 @@ blender --background --python blender/creature_luminose.py -- \
 
 ## Su Roblox Studio
 
-Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 56 creature
+Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 64 creature
 convertite per Roblox, **ognuna con al massimo 20.000 triangoli in totale**:
 un file `.glb` per creatura (`roblox/modelli/` e le sottocartelle `deserto/`,
 `neve/`, `oceano/`), da importare con *Import 3D* (con **Anchored** attivo), e
@@ -670,6 +675,91 @@ scarpa istanziata). Attorno all'addome gira come un hula-hoop un'**aureola
 gigante** (toro Major 0.6, Minor 0.03) con la rampa rosa → giallo → azzurro e il
 nucleo bianco. In fondo all'addome c'è un puntino bianco (Emission 120). Ha
 due alette inutili. Sfondo pastello e luci da discoteca.
+
+## Serie 8 · I draghi
+
+Generati da [`blender/creature_draghi.py`](blender/creature_draghi.py), con
+lo stesso setup degli angeli (scaglie con Thin Film). I corpi lunghi sono tubi
+lungo una curva con le UV, e le squame sono procedurali: squame sovrapposte,
+ventre a placche e, dove serve, luce.
+
+### 01 · Tesorino, il Drago Custode (Fafnir)
+![Tesorino](anteprime/draghi/01_tesorino_drago_custode.png)
+
+Drago tozzo **arrotolato come un gattone che dorme**, con gli occhi chiusi. Il
+dorso è coperto di **scaglie a forma di monetina** (istanze di un cilindro
+schiacciato). Il ventre a placche brilla d'oro 3000 K. La coda abbraccia una
+**pila di monete** (Metallic 1) con un calice e due gemme, e sotto la coda
+c'è un piccolo lanternino.
+
+### 02 · Perla, il Drago Cinese Lóng
+![Perla](anteprime/draghi/02_perla_drago_cinese.png)
+
+Corpo lungo e **sinuoso** color giada (Thin Film), con la cresta dorsale e il
+ciuffo in coda. La testa è da cammello, con le **corna da cervo** ramificate, i
+baffi lunghi, gli occhi rossi da coniglio e la criniera. Ha quattro zampe con
+**cinque artigli tondi**. Sotto il mento galleggia la **perla fiammeggiante**
+(nucleo acqua 9500 K, bordo bianco con il Fresnel, lingue di luce), e lungo i
+baffi scendono **goccioline di luce**.
+
+### 03 · Marea, il Re Drago Ryūjin
+![Marea](anteprime/draghi/03_marea_re_drago.png)
+
+Drago del mare **avvolto a spirale** che si alza verso l'alto, con le squame
+verde mare e una **criniera fatta di onde** che si arricciano (spuma e blu).
+Ha tre artigli per zampa, e le zampe anteriori stringono i **due gioielli
+delle maree**: Kanjū blu profondo 12000 K e Manjū bianco-schiuma 7000 K, con
+un guscio di vetro IOR 1.3. Nella sua scena ci sono il Volume Scatter
+azzurro e le caustiche sul fondale.
+
+### 04 · Quetzal, il Serpente Piumato
+![Quetzal](anteprime/draghi/04_quetzal_serpente_piumato.png)
+
+Serpente arrotolato che solleva il capo, **coperto di piume smeraldo**:
+centinaia di istanze allineate al corpo, con iridescenza ed emissione sulle
+punte. Ha una **coda a ventaglio** di lunghe penne, due **ali di piume**
+aperte come un mantello, il collare e la cresta. Lungo i fianchi scendono
+i **sette triangoli di luce** di Chichén Itzá. Nella sua scena c'è un'alba con
+luce radente.
+
+### 05 · Ddraig, il Drago Rosso Gallese
+![Ddraig](anteprime/draghi/05_ddraig_drago_rosso.png)
+
+Il drago della bandiera del Galles in **posa araldica**, con una zampa
+alzata, la lingua biforcuta e gli artigli tondi. Ha le **ali membranose**
+alzate con la rete delle nervature (Wireframe) e i **puntini bianchi del
+"fratello bianco"**. Petto e **punta della coda** brillano di rosso 2200 K, e
+sul dorso porta la **torre di Vortigern** in pietra, con merli, porta e
+finestra. Nella sua scena ci sono le colline al tramonto.
+
+### 06 · Idra, la Piccola Idra di Lerna
+![Idra](anteprime/draghi/06_idra_di_lerna.png)
+
+Corpo basso da palude con **nove testine su nove colli a ventaglio** (la
+stessa testa istanziata). Quella centrale è più grande e **dorata**, con la
+luce oro 3500 K, le altre hanno la luce verde-palude sulla fronte. Le **code
+finiscono con foglie di ninfea** (una con il fiore) e le zampe sono palmate.
+Nella sua scena ci sono l'acqua della palude, le canne e la nebbia verde.
+
+### 07 · Blasone, il Wyvern Araldico
+![Blasone](anteprime/draghi/07_blasone_wyvern.png)
+
+Wyvern ritto sulle **due zampe posteriori**, con le **ali al posto delle
+braccia**, la cresta e uno **scudetto sul petto** partito d'oro e d'azzurro. La
+coda finisce con una **punta di freccia** luminosa. Il suo colore viene da un
+Color Ramp a 4 stop con gli smalti araldici (oro 3000 K, argento 8000 K,
+rosso 2200 K, azzurro 12000 K) e si sceglie con il valore *Smalto*. Nella sua
+scena c'è un muro di castello con una torcia.
+
+### 08 · Ourobò Ourobò, il Ciambellino Draconico (brainrot)
+![Ourobò Ourobò](anteprime/draghi/08_ourobo_ourobo.png)
+
+Drago a **ciambella perfetta** che si morde la coda: il corpo gira a cerchio e
+si assottiglia fino a entrare nella bocca. Ha la testa da cartone con gli
+occhioni e le sopracciglia, due alucce decorative e **quattro zampette con le
+sneakers**, due a terra e due in aria, come una ruota. Tutto l'anello brilla
+con il gradiente ciclico **rosa → giallo → azzurro → verde → rosa**, guidato
+dall'angolo attorno al centro.
 
 ## Setup EEVEE Next (serie 5-8)
 
