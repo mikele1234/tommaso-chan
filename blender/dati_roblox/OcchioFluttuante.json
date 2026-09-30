@@ -1,0 +1,83 @@
+{
+ "bob": {},
+ "luci": {
+  "OcchioFluttuante__Luce_01": {
+   "ang": 34.0,
+   "b0": 8.419,
+   "b1": 8.419,
+   "c": [
+    0.9309,
+    1.0,
+    0.2717
+   ],
+   "cyc": 1,
+   "dir": "OcchioFluttuante__Luce_01_Dir",
+   "ph": 0.0,
+   "r": 24.14
+  },
+  "OcchioFluttuante__Luce_02": {
+   "b0": 0.854,
+   "b1": 0.854,
+   "c": [
+    0.9309,
+    1.0,
+    0.2717
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.49
+  }
+ },
+ "parti": {
+  "OcchioFluttuante__Cornea": {
+   "c": [
+    0.9777,
+    1.0,
+    0.9547
+   ],
+   "k": "glass",
+   "t": 0.7
+  },
+  "OcchioFluttuante__Fascio_Volumetrico": {
+   "c": [
+    0.9309,
+    1.0,
+    0.2717
+   ],
+   "k": "aura",
+   "t": 0.85
+  },
+  "OcchioFluttuante__Iride_Lampadina": {
+   "c": [
+    0.9309,
+    1.0,
+    0.2717
+   ],
+   "k": "neon"
+  },
+  "OcchioFluttuante__Muscoli": {
+   "c": [
+    0.7014,
+    0.2717,
+    0.2717
+   ],
+   "k": "solid"
+  },
+  "OcchioFluttuante__Nervo_Ottico": {
+   "k": "tex"
+  },
+  "OcchioFluttuante__Sclera_Bagnata": {
+   "k": "tex"
+  },
+  "OcchioFluttuante__Vasi": {
+   "c": [
+    0.6262,
+    0.0999,
+    0.1517
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

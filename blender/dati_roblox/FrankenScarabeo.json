@@ -1,0 +1,238 @@
+{
+ "bob": {},
+ "luci": {
+  "FrankenScarabeo__Luce_01": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    0.3811,
+    1.0,
+    0.865
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  },
+  "FrankenScarabeo__Luce_02": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    0.3811,
+    1.0,
+    0.865
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  },
+  "FrankenScarabeo__Luce_03": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    0.3811,
+    1.0,
+    0.865
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  },
+  "FrankenScarabeo__Luce_04": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    0.3811,
+    1.0,
+    0.865
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  },
+  "FrankenScarabeo__Luce_05": {
+   "b0": 0.604,
+   "b1": 0.604,
+   "c": [
+    0.7674,
+    1.0,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.91
+  },
+  "FrankenScarabeo__Luce_06": {
+   "b0": 0.604,
+   "b1": 0.604,
+   "c": [
+    0.7674,
+    1.0,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.91
+  }
+ },
+ "parti": {
+  "FrankenScarabeo__Bulloni": {
+   "c": [
+    0.68,
+    0.68,
+    0.6944
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "FrankenScarabeo__Cicatrici": {
+   "c": [
+    0.4366,
+    0.3133,
+    0.3318
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Elitra_Coccinella": {
+   "k": "tex"
+  },
+  "FrankenScarabeo__Elitra_Smeraldo": {
+   "c": [
+    0.1517,
+    0.5064,
+    0.2934
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "FrankenScarabeo__Elitra_Viola": {
+   "c": [
+    0.3959,
+    0.1517,
+    0.4614
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Energia_Fessure": {
+   "c": [
+    0.3811,
+    1.0,
+    0.865
+   ],
+   "k": "neon"
+  },
+  "FrankenScarabeo__Energia_Intrappolata": {
+   "c": [
+    0.3811,
+    1.0,
+    0.865
+   ],
+   "k": "neon"
+  },
+  "FrankenScarabeo__Filo_Sutura": {
+   "c": [
+    0.1517,
+    0.1517,
+    0.1428
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Occhio_Mosca": {
+   "c": [
+    0.7354,
+    0.1897,
+    0.1517
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Occhio_Nero": {
+   "c": [
+    0.0999,
+    0.0999,
+    0.0999
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Pronoto_Cervo": {
+   "c": [
+    0.1121,
+    0.0999,
+    0.1121
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Scariche": {
+   "c": [
+    0.7674,
+    1.0,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "FrankenScarabeo__Testa": {
+   "c": [
+    0.4492,
+    0.2209,
+    0.1517
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Ventre_Larva": {
+   "c": [
+    0.7674,
+    0.7014,
+    0.5838
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Zampa_Cavalletta": {
+   "c": [
+    0.4845,
+    0.68,
+    0.3492
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Zampa_Mantide": {
+   "c": [
+    0.3811,
+    0.6262,
+    0.2717
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Zampa_Nera": {
+   "c": [
+    0.1284,
+    0.1177,
+    0.1284
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Zampa_Pelosa": {
+   "c": [
+    0.3811,
+    0.2934,
+    0.2209
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Zampa_Saltatrice": {
+   "c": [
+    0.5838,
+    0.5838,
+    0.3133
+   ],
+   "k": "solid"
+  },
+  "FrankenScarabeo__Zampa_Talpa": {
+   "c": [
+    0.5657,
+    0.41,
+    0.2478
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

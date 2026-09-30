@@ -1,0 +1,122 @@
+{
+ "bob": {},
+ "luci": {
+  "CorvoPeste__Luce_01": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    0.68,
+    1.0,
+    0.2717
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  },
+  "CorvoPeste__Luce_02": {
+   "b0": 0.427,
+   "b1": 0.427,
+   "c": [
+    0.68,
+    1.0,
+    0.2717
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.5
+  },
+  "CorvoPeste__Luce_03": {
+   "b0": 0.427,
+   "b1": 0.427,
+   "c": [
+    0.68,
+    1.0,
+    0.2717
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.5
+  }
+ },
+ "parti": {
+  "CorvoPeste__Alone_Tossico": {
+   "c": [
+    0.68,
+    1.0,
+    0.2717
+   ],
+   "k": "aura",
+   "t": 0.85
+  },
+  "CorvoPeste__Bagliore_Acido": {
+   "c": [
+    0.68,
+    1.0,
+    0.2717
+   ],
+   "k": "neon"
+  },
+  "CorvoPeste__Costole": {
+   "c": [
+    0.865,
+    0.8434,
+    0.7858
+   ],
+   "k": "solid"
+  },
+  "CorvoPeste__Lenti_Vetro": {
+   "c": [
+    0.9309,
+    1.0,
+    0.9063
+   ],
+   "k": "glass",
+   "t": 0.7
+  },
+  "CorvoPeste__Maschera_Cuoio": {
+   "k": "tex"
+  },
+  "CorvoPeste__Ottone": {
+   "c": [
+    0.7674,
+    0.6343,
+    0.3811
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "CorvoPeste__Pelle_Spennata": {
+   "k": "tex"
+  },
+  "CorvoPeste__Petto_Radioattivo": {
+   "c": [
+    0.68,
+    1.0,
+    0.2717
+   ],
+   "k": "neon"
+  },
+  "CorvoPeste__Piume_Strappate": {
+   "e": 12.0,
+   "k": "tex"
+  },
+  "CorvoPeste__Polvere_Tossica": {
+   "c": [
+    0.68,
+    1.0,
+    0.2717
+   ],
+   "k": "neon"
+  },
+  "CorvoPeste__Zampe": {
+   "c": [
+    0.2478,
+    0.2348,
+    0.2348
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

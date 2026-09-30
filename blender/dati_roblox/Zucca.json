@@ -1,0 +1,82 @@
+{
+ "bob": {},
+ "luci": {
+  "Zucca__Luce_01": {
+   "b0": 2.7,
+   "b1": 2.7,
+   "c": [
+    1.0,
+    0.5174,
+    0.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 10.8
+  },
+  "Zucca__Luce_02": {
+   "b0": 0.986,
+   "b1": 0.986,
+   "c": [
+    1.0,
+    0.5174,
+    0.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.8
+  }
+ },
+ "parti": {
+  "Zucca__Ali_Foglie_Morte": {
+   "ali": true,
+   "k": "tex"
+  },
+  "Zucca__Ali_Foglie_Rosse": {
+   "ali": true,
+   "k": "tex"
+  },
+  "Zucca__Buccia": {
+   "k": "tex"
+  },
+  "Zucca__Falena_Pelo": {
+   "c": [
+    0.3318,
+    0.2601,
+    0.1897
+   ],
+   "k": "solid"
+  },
+  "Zucca__Gambo": {
+   "k": "tex"
+  },
+  "Zucca__Luce_Interna": {
+   "c": [
+    1.0,
+    0.5174,
+    0.0
+   ],
+   "k": "neon"
+  },
+  "Zucca__Occhi_Falena": {
+   "c": [
+    0.1517,
+    0.1121,
+    0.0999
+   ],
+   "k": "solid"
+  },
+  "Zucca__Polpa_Accesa": {
+   "c": [
+    1.0,
+    0.5174,
+    0.0
+   ],
+   "k": "neon"
+  },
+  "Zucca__Rametti": {
+   "k": "tex"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

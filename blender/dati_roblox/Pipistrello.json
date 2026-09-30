@@ -1,0 +1,144 @@
+{
+ "bob": {},
+ "luci": {
+  "Pipistrello__Luce_01": {
+   "b0": 0.22,
+   "b1": 0.22,
+   "c": [
+    1.0,
+    0.2209,
+    0.1897
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.01
+  },
+  "Pipistrello__Luce_02": {
+   "b0": 0.22,
+   "b1": 0.22,
+   "c": [
+    1.0,
+    0.2209,
+    0.1897
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.01
+  },
+  "Pipistrello__Luce_03": {
+   "b0": 1.304,
+   "b1": 1.304,
+   "c": [
+    0.8808,
+    0.0,
+    0.206
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.54
+  },
+  "Pipistrello__Luce_04": {
+   "b0": 0.697,
+   "b1": 0.697,
+   "c": [
+    0.8808,
+    0.0,
+    0.206
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.13
+  }
+ },
+ "parti": {
+  "Pipistrello__Alone_Cremisi": {
+   "c": [
+    0.8808,
+    0.0,
+    0.206
+   ],
+   "k": "aura",
+   "t": 0.85
+  },
+  "Pipistrello__Fiala_Vetro": {
+   "c": [
+    0.9777,
+    0.9547,
+    0.964
+   ],
+   "k": "glass",
+   "t": 0.7
+  },
+  "Pipistrello__Ghiera_Metallo": {
+   "c": [
+    0.8095,
+    0.7977,
+    0.8095
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Pipistrello__Membrana_Cuoio": {
+   "k": "tex"
+  },
+  "Pipistrello__Occhi_Cremisi": {
+   "c": [
+    1.0,
+    0.2209,
+    0.1897
+   ],
+   "k": "neon"
+  },
+  "Pipistrello__Orecchio_Interno": {
+   "c": [
+    0.4845,
+    0.2348,
+    0.2601
+   ],
+   "k": "solid"
+  },
+  "Pipistrello__Ossa_Ali": {
+   "c": [
+    0.1517,
+    0.1177,
+    0.1232
+   ],
+   "k": "solid"
+  },
+  "Pipistrello__Pelle_Muso": {
+   "c": [
+    0.2478,
+    0.1517,
+    0.1718
+   ],
+   "k": "solid"
+  },
+  "Pipistrello__Pelo_Nero": {
+   "c": [
+    0.0861,
+    0.0785,
+    0.0861
+   ],
+   "k": "solid"
+  },
+  "Pipistrello__Sangue_Luminoso": {
+   "c": [
+    0.8808,
+    0.0,
+    0.206
+   ],
+   "k": "neon",
+   "t": 0.2
+  },
+  "Pipistrello__Zanne": {
+   "c": [
+    0.9547,
+    0.9405,
+    0.8962
+   ],
+   "k": "solid"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

@@ -1,0 +1,73 @@
+{
+ "bob": {},
+ "luci": {
+  "Calderone__Luce_01": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    0.7674,
+    0.3133,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  },
+  "Calderone__Luce_02": {
+   "b0": 0.697,
+   "b1": 0.697,
+   "c": [
+    1.0,
+    0.3133,
+    0.8543
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.13
+  }
+ },
+ "parti": {
+  "Calderone__Bolle_Fucsia": {
+   "c": [
+    1.0,
+    0.3133,
+    0.8543
+   ],
+   "k": "neon",
+   "t": 0.55
+  },
+  "Calderone__Bolle_Viola": {
+   "c": [
+    0.7674,
+    0.3133,
+    1.0
+   ],
+   "k": "neon",
+   "t": 0.55
+  },
+  "Calderone__Ghisa_Arrugginita": {
+   "k": "tex"
+  },
+  "Calderone__Pozione": {
+   "c": [
+    0.7674,
+    0.3133,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Calderone__Ventre_Rana": {
+   "c": [
+    0.7674,
+    0.7484,
+    0.5838
+   ],
+   "k": "solid"
+  },
+  "Calderone__Zampe_Rana": {
+   "k": "tex"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}
