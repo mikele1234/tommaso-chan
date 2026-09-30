@@ -287,8 +287,7 @@ def m_sclera(nome, C, gaze, R):
     arross = nb.math('MULTIPLY', nb.maprange(along, 0.3, -1.0), 0.6)
     col = NV.rgb_mix(nb, arross, (0.86, 0.8, 0.62), (0.7, 0.28, 0.25))
     col = NV.rgb_mix(nb, capill, col, (0.55, 0.02, 0.03))
-    pb = nb.principled(base=col, rough=0.07, spec=0.9, coat=1.0, coat_rough=0.02, sss=0.35,
-                       sss_radius=(1.0, 0.3, 0.25))
+    pb = nb.principled(base=col, rough=0.12, spec=0.8, coat=1.0, coat_rough=0.03)
     nb.set(pb, 'Normal', nb.bump(capill, 0.3, 0.003))
     nb.output(pb.outputs[0])
     nb.bake_output("RBX_COLOR", nb.emission(col, 1.0))
@@ -1068,7 +1067,7 @@ def build_occhio():
     giallo = (0.85, 1.0, 0.06)
     lim = radians(36)
     m_scl = m_sclera("OcchioFluttuante_Sclera_Bagnata", C, gaze, R)
-    m_ir = m_iride("OcchioFluttuante_Iride_Lampadina", giallo, 70.0)
+    m_ir = m_iride("OcchioFluttuante_Iride_Lampadina", giallo, 5.0)
     m_cornea = ST.m_vetro_sottile("OcchioFluttuante_Cornea", (0.95, 1.0, 0.9), bordo=giallo, forza_bordo=0.8)
     m_nervo = CL.m_body("OcchioFluttuante_Nervo_Ottico", (0.75, 0.45, 0.4), rough=0.18, sss=0.6,
                         sss_radius=(1.0, 0.3, 0.25), coat=0.9, coat_rough=0.05, spec=0.8,
@@ -1076,7 +1075,7 @@ def build_occhio():
     m_muscolo = CL.m_body("OcchioFluttuante_Muscoli", (0.45, 0.06, 0.06), rough=0.3, sss=0.5,
                           sss_radius=(1.0, 0.2, 0.2), coat=0.7, bump=(80.0, 0.5, 'noise'))
     m_vaso = CL.m_body("OcchioFluttuante_Vasi", (0.35, 0.01, 0.02), rough=0.2, coat=0.8, sss=0.4)
-    m_fascio = OC.m_beam("OcchioFluttuante_Fascio_Volumetrico", giallo, 0.35, length=4.2)
+    m_fascio = OC.m_beam("OcchioFluttuante_Fascio_Volumetrico", giallo, 0.18, length=4.2)
     fr = CL.frame_matrix(C, V((0, 0, 1)), gaze)
     # bulbo con il buco per l'iride concava
     bm = bmesh.new()
@@ -1101,7 +1100,7 @@ def build_occhio():
     src = C + gaze * (zl - 0.04)
     beam = CL.cone_between("OcchioFluttuante_Fascio", src, src + gaze * 4.2, rl * 0.9, 1.35, m_fascio, 32)
     CL.no_shadow(beam)
-    sp = CL.add_light("OcchioFluttuante_Faro", 'SPOT', src + gaze * 0.02, 900.0, giallo, 0.1, spot_size=34)
+    sp = CL.add_light("OcchioFluttuante_Faro", 'SPOT', src + gaze * 0.02, 350.0, giallo, 0.1, spot_size=34)
     CL.aim(sp, src + gaze * 3.0)
     sp.data.spot_blend = 0.35
     ST.proxy(iris, src + gaze * 0.06, giallo, 6.0, nome="OcchioFluttuante_Luce_Iride")
@@ -1406,7 +1405,7 @@ CREATURE_MOSTRI = {
     "gargoyle":    ("M03_Gargoyle-Ossidiana",          build_gargoyle,          ((0, 0.05, 1.2), 3.8, 8, 28, 50)),
     "zucca":       ("M04_Zucca-Infestata",             build_zucca,             ((0, 0.0, 0.95), 4.0, 12, 22, 50)),
     "corvo":       ("M05_Corvo-Peste",                 build_corvo,             ((0, -0.1, 0.6), 3.0, 10, 35, 50)),
-    "occhio":      ("M06_Occhio-Fluttuante",           build_occhio,            ((0, -0.25, 1.25), 4.0, 8, 38, 50)),
+    "occhio":      ("M06_Occhio-Fluttuante",           build_occhio,            ((0, -0.2, 1.08), 5.0, 8, 38, 50)),
     "calderone":   ("M07_Calderone-Animato",           build_calderone,         ((0, -0.05, 0.55), 3.2, 18, 30, 50)),
     "verme":       ("M08_Verme-Ohio-Nextbot",          build_verme,             ((0, 0.1, 0.35), 3.4, 14, 35, 50)),
 }

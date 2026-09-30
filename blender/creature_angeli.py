@@ -106,7 +106,7 @@ def goccia(nome, base, punta, r, mat, seed=1, rumore=0.018, seg=40, rows=18, sub
     return ob
 
 
-def m_anello_ofanim(nome, base=(0.3, 0.45, 0.75), luce=9000, forza=40.0):
+def m_anello_ofanim(nome, base=(0.3, 0.45, 0.75), luce=9000, forza=3.0):
     """Anello di chitina cristallina: due scanalature luminose lungo l'anello
     e un'onda di luce piu' intensa (maschera a gradiente sferico)."""
     mat = CL.new_material(nome)
@@ -131,7 +131,7 @@ def m_anello_ofanim(nome, base=(0.3, 0.45, 0.75), luce=9000, forza=40.0):
     pb = nb.principled(base=base, rough=0.12, coat=0.8, trans=0.3, ior=1.5, spec=0.6)
     nb.set(pb, 'Thin Film Thickness', 450.0)
     s = nb.math('MULTIPLY', nb.math('MULTIPLY', mask, onda), ST.lum(forza))
-    glow = nb.math('MULTIPLY', onda, 2.5)
+    glow = nb.math('MULTIPLY', onda, 0.25)
     sh = nb.add_shader(pb.outputs[0], nb.emission(col, nb.math('ADD', s, glow)))
     nb.output(sh)
     nb.bake_output("RBX_COLOR", nb.mix_shader(mask, nb.emission(base, 1.0), nb.emission(col, 1.0)))
@@ -144,7 +144,7 @@ def m_anello_ofanim(nome, base=(0.3, 0.45, 0.75), luce=9000, forza=40.0):
     return mat
 
 
-def m_aureola_arcobaleno(nome, forza=60.0, colori=((1.0, 0.55, 0.78), (1.0, 0.9, 0.45), (0.5, 0.8, 1.0))):
+def m_aureola_arcobaleno(nome, forza=3.0, colori=((1.0, 0.18, 0.55), (1.0, 0.75, 0.05), (0.1, 0.55, 1.0))):
     """Aureola-hula-hoop: Color Ramp rosa -> giallo -> azzurro lungo l'anello
     (ciclico) con il nucleo bianco."""
     mat = CL.new_material(nome)
@@ -156,7 +156,7 @@ def m_aureola_arcobaleno(nome, forza=60.0, colori=((1.0, 0.55, 0.78), (1.0, 0.9,
     stops = [(i / len(colori), c) for i, c in enumerate(colori)] + [(1.0, colori[0])]
     col = nb.ramp(u, stops)
     core = nb.maprange(nb.facing(0.5), 0.35, 0.9)
-    col = NV.rgb_mix(nb, core, col, (1.0, 1.0, 1.0))
+    col = NV.rgb_mix(nb, nb.math('MULTIPLY', core, 0.15), col, (1.0, 1.0, 1.0))
     nb.output(nb.emission(col, ST.lum(forza)))
     nb.bake_output("RBX_COLOR", nb.emission(nb.ramp(u, stops), 1.0))
     nb.bake_output("RBX_EMIT", nb.emission(nb.ramp(u, stops), 1.0))
@@ -225,17 +225,17 @@ def elica(base, asse, lung, raggio, giri, n=60, fase=0.0, stringi=0.3):
 def build_serafino():
     DS.texspace("Serafino")
     oro, bordo = 5500, 2600
-    m_addome = ST.m_luce("Serafino_Addome_Ardente", oro, 100.0, bordo=bordo, forza_bordo=60.0)
+    m_addome = ST.m_luce("Serafino_Addome_Ardente", oro, 2.0, bordo=bordo, forza_bordo=4.0)
     m_chit = chitina("Serafino_Chitina_Perla", (0.85, 0.72, 0.45), metal=0.35, film=380.0)
     m_occhi = CL.m_body("Serafino_Occhi_Composti", (0.35, 0.12, 0.02), rough=0.2, coat=1.0, bump=(120.0, 0.4, 'scales'))
     m_elitre = chitina("Serafino_Elitre_Aperte", (0.9, 0.75, 0.42), metal=0.45, film=420.0,
-                       rim=ST.kelvin(bordo), rim_str=1.2)
+                       rim=ST.kelvin(bordo), rim_str=0.35)
     m_elitre["rbx_thick"] = 1
-    m_ala = ala("Serafino_Ali_Nervature", [(0.0, ST.kelvin(oro)), (1.0, ST.kelvin(3500))], membrane_str=0.6,
-                vein_ramp=[(0.0, ST.kelvin(oro)), (1.0, ST.kelvin(bordo))], vein_str=ST.lum(25.0), radial=(7, 0.05),
+    m_ala = ala("Serafino_Ali_Nervature", [(0.0, ST.kelvin(oro)), (1.0, ST.kelvin(3500))], membrane_str=0.25,
+                vein_ramp=[(0.0, ST.kelvin(oro)), (1.0, ST.kelvin(bordo))], vein_str=ST.lum(6.0), radial=(7, 0.05),
                 cells=(22.0, 0.035, 1.0), edge=0.05)
-    m_nimbo = ST.m_luce("Serafino_Nimbo", oro, 40.0, bordo=bordo, forza_bordo=50.0)
-    m_alone = ST.m_volume("Serafino_Alone_Dorato", (1.0, 0.85, 0.55), 2.0, luce_c=oro, forza=1.2, roblox="aura")
+    m_nimbo = ST.m_luce("Serafino_Nimbo", oro, 8.0, bordo=bordo, forza_bordo=10.0)
+    m_alone = ST.m_volume("Serafino_Alone_Dorato", (1.0, 0.85, 0.55), 0.5, luce_c=oro, forza=0.25, roblox="aura")
     Z = 0.95
     E = [el((0, -0.1, Z), 0.085, (1.0, 1.25, 1.0)), el((0, -0.27, Z + 0.04), 0.07),
          cap((0, -0.16, Z + 0.01), (0, -0.24, Z + 0.03), 0.055)]
@@ -244,8 +244,8 @@ def build_serafino():
     CL.no_shadow(ab)
     h = CL.sphere("Serafino_Alone", (0, 0.24, Z - 0.07), (0.3, 0.42, 0.28), m_alone, seg=16, rings=8)
     CL.no_shadow(h)
-    ST.proxy(ab, (0, 0.2, Z - 0.1), oro, 40.0, nome="Serafino_Luce_Addome")
-    ST.proxy(ab, (0, 0.25, Z - 0.35), bordo, 12.0, nome="Serafino_Luce_Sotto")
+    ST.proxy(ab, (0, 0.2, Z - 0.1), oro, 10.0, nome="Serafino_Luce_Addome")
+    ST.proxy(ab, (0, 0.25, Z - 0.35), bordo, 4.0, nome="Serafino_Luce_Sotto")
     for sx in (-1, 1):
         s = side_name(sx)
         CL.sphere("Serafino_Occhio_" + s, (0.05 * sx, -0.31, Z + 0.06), (0.04, 0.035, 0.045), m_occhi, seg=16, rings=8)
@@ -346,12 +346,12 @@ def build_cherubino():
     ambra = 3200
     m_elettro = chitina("Cherubino_Armatura_Elettro", (0.85, 0.6, 0.25), metal=0.8, rough=0.3, aniso=0.5)
     m_scuro = CL.m_body("Cherubino_Dettagli_Scuri", (0.05, 0.03, 0.015), rough=0.3, metal=0.5)
-    m_organi = ST.m_luce("Cherubino_Organi_Luce", ambra, 60.0, bordo=4500, forza_bordo=80.0)
-    m_lanterna = ST.m_luce("Cherubino_Lanternino", ambra, 60.0)
-    m_scintille = ST.m_luce("Cherubino_Scintille", (1.0, 1.0, 1.0), 80.0)
+    m_organi = ST.m_luce("Cherubino_Organi_Luce", ambra, 8.0, bordo=4500, forza_bordo=10.0)
+    m_lanterna = ST.m_luce("Cherubino_Lanternino", ambra, 10.0)
+    m_scintille = ST.m_luce("Cherubino_Scintille", (1.0, 1.0, 1.0), 15.0)
     m_zoccoli = CL.m_body("Cherubino_Zoccoli", (0.03, 0.02, 0.015), rough=0.15, coat=1.0)
     m_ala = ala("Cherubino_Ali_Ambra", [(0.0, (1.0, 0.8, 0.5)), (1.0, (1.0, 0.65, 0.3))], membrane_str=0.4,
-                vein_ramp=[(0.0, ST.kelvin(ambra)), (1.0, ST.kelvin(4500))], vein_str=10.0, radial=(8, 0.05),
+                vein_ramp=[(0.0, ST.kelvin(ambra)), (1.0, ST.kelvin(4500))], vein_str=4.0, radial=(8, 0.05),
                 cross=(5, 0.04), edge=0.05)
     E = [el((0, -0.05, 0.48), 0.13, (1.1, 1.2, 0.9)), el((0, 0.25, 0.46), 0.15, (1.0, 1.35, 0.8))]
     CL.metaball_mesh("Cherubino_Corpo", E, m_elettro, res=0.014)
@@ -378,7 +378,7 @@ def build_cherubino():
     for k in range(3):
         o = CL.sphere("Cherubino_Lanternino_%d" % k, (0, 0.44 + 0.07 * k, 0.4 - 0.02 * k),
                       (0.1 - 0.02 * k, 0.05, 0.07 - 0.01 * k), m_lanterna, seg=16, rings=8)
-    ST.proxy(o, (0, 0.55, 0.25), ambra, 12.0, nome="Cherubino_Luce_Lanternino")
+    ST.proxy(o, (0, 0.55, 0.25), ambra, 6.0, nome="Cherubino_Luce_Lanternino")
     rnd = random.Random(12)
     for i in range(14):
         p = V((rnd.uniform(-0.25, 0.25), 0.5 + rnd.uniform(-0.1, 0.25), 0.3 + rnd.uniform(-0.1, 0.3)))
@@ -418,9 +418,9 @@ def build_ofanim():
     DS.texspace("Ofanim")
     blu = 9000
     m_ring = m_anello_ofanim("Ofanim_Anello_Cristallo", luce=blu)
-    m_ring2 = m_anello_ofanim("Ofanim_Anello_Interno", base=(0.5, 0.55, 0.85), luce=blu, forza=40.0)
+    m_ring2 = m_anello_ofanim("Ofanim_Anello_Interno", base=(0.5, 0.55, 0.85), luce=blu, forza=2.5)
     m_bianco = CL.m_body("Ofanim_Occhi_Bianco", (0.9, 0.88, 0.8), rough=0.1, coat=1.0)
-    m_iride = ST.m_luce("Ofanim_Iridi_Oro", 4500, 120.0, bordo=(1.0, 0.8, 0.4), forza_bordo=80.0)
+    m_iride = ST.m_luce("Ofanim_Iridi_Oro", 4500, 10.0, bordo=(1.0, 0.8, 0.4), forza_bordo=8.0)
     m_pup = CL.m_body("Ofanim_Pupille", (0.01, 0.01, 0.02), rough=0.05, coat=1.0)
     m_chit = chitina("Ofanim_Chitina", (0.25, 0.32, 0.55), metal=0.5, film=450.0)
     m_ala = ala("Ofanim_Alucce", [(0.0, (0.7, 0.85, 1.0)), (1.0, (0.85, 0.9, 1.0))], membrane_str=0.5,
@@ -448,8 +448,8 @@ def build_ofanim():
     ST.istanze(occhio_ofanim(m_bianco, m_iride, m_pup), mats, "Ofanim_Ocello")
     for i in range(4):
         a = TAU * i / 4 + pi / 4
-        ST.proxy(outer, C + V((cos(a), -0.25, sin(a))) * 0.7, blu, 8.0, nome="Ofanim_Luce_Anello_%d" % i)
-    ST.proxy(outer, C + V((0, -0.5, 0)), 4500, 6.0, nome="Ofanim_Luce_Occhi")
+        ST.proxy(outer, C + V((cos(a), -0.25, sin(a))) * 0.7, blu, 3.0, nome="Ofanim_Luce_Anello_%d" % i)
+    ST.proxy(outer, C + V((0, -0.5, 0)), 4500, 3.0, nome="Ofanim_Luce_Occhi")
     # piccolo torace con la testa in cima alla ruota e ali quasi vestigiali
     top = C + V((0, 0, Rm + rm + 0.04))
     CL.metaball_mesh("Ofanim_Torace", [el(top, 0.05, (1.0, 1.2, 0.9)), el(top + V((0, -0.08, 0.03)), 0.045)], m_chit,
@@ -471,11 +471,11 @@ def build_ofanim():
 def build_michele():
     DS.texspace("Michele")
     acciaio = 8500
-    m_placca = chitina("Michele_Placche_Armatura", (0.62, 0.66, 0.74), metal=0.9, rough=0.2,
-                       rim=ST.kelvin(acciaio), rim_str=1.2, rim_power=0.55)
+    m_placca = chitina("Michele_Placche_Armatura", (0.62, 0.66, 0.74), metal=0.9, rough=0.32,
+                       rim=ST.kelvin(acciaio), rim_str=0.35, rim_power=0.55)
     m_corpo = chitina("Michele_Corpo_Acciaio", (0.12, 0.13, 0.16), metal=0.85, rough=0.3)
-    m_scudo = ST.m_luce("Michele_Scudo_Stella", acciaio, 120.0, bordo=(1.0, 1.0, 1.0), forza_bordo=180.0)
-    m_occhi = ST.m_luce("Michele_Occhi", acciaio, 40.0)
+    m_scudo = ST.m_luce("Michele_Scudo_Stella", acciaio, 1.2, bordo=(1.0, 1.0, 1.0), forza_bordo=3.0)
+    m_occhi = ST.m_luce("Michele_Occhi", acciaio, 12.0)
     m_catena = CL.m_body("Michele_Catene", (0.7, 0.72, 0.78), rough=0.25, metal=1.0)
     m_piatti = chitina("Michele_Piatti_Bilancia", (0.75, 0.72, 0.6), metal=0.9, rough=0.25, film=300.0)
     E = [el((0, -0.1, 0.45), 0.13, (1.1, 1.0, 0.85)), el((0, 0.2, 0.45), 0.17, (1.05, 1.4, 0.8)),
@@ -504,7 +504,7 @@ def build_michele():
     # lo scudo a stella sul dorso
     star = ST.stella_mesh("Michele_Scudo", 8, 0.19, 0.085, 0.03, m_scudo)
     star.matrix_world = CL.frame_matrix(V((0, 0.14, 0.74)), V((0, 1, 0)), V((0, 0.3, 1.0)))
-    ST.proxy(star, (0, 0.1, 0.95), acciaio, 30.0, nome="Michele_Luce_Scudo")
+    ST.proxy(star, (0, 0.1, 0.95), acciaio, 8.0, nome="Michele_Luce_Scudo")
     ring = [V((0.21 * cos(a), 0.14 + 0.21 * sin(a) * 0.95, 0.735 - 0.06 * sin(a))) for a in
             [TAU * i / 32 for i in range(33)]]
     CL.tube("Michele_Scudo_Bordo", ring, 0.012, m_placca, bevel_res=2)
@@ -553,7 +553,7 @@ def build_gabriele():
     latte = ST.mescola(luna, (0.92, 0.95, 1.0), 0.45)
     m_chit = chitina("Gabriele_Chitina_Perla", (0.86, 0.88, 0.92), metal=0.25, film=420.0)
     m_campana = chitina("Gabriele_Tromba_Argento", (0.8, 0.82, 0.88), metal=0.9, rough=0.18)
-    m_interno = ST.m_luce("Gabriele_Campana_Luce", latte, 80.0, bordo=(1.0, 1.0, 1.0), forza_bordo=100.0)
+    m_interno = ST.m_luce("Gabriele_Campana_Luce", latte, 8.0, bordo=(1.0, 1.0, 1.0), forza_bordo=10.0)
     m_fascio = OC.m_beam("Gabriele_Fascio_Lunare", latte, 1.0, length=2.4)
     m_stelo = CL.m_body("Gabriele_Steli_Giglio", (0.35, 0.55, 0.25), rough=0.4, sss=0.3)
     m_petalo = CL.m_body("Gabriele_Petali_Giglio", (0.95, 0.95, 0.92), rough=0.35, sss=0.6, sss_radius=(1, 1, 0.9),
@@ -584,7 +584,7 @@ def build_gabriele():
     CL.no_shadow(beam)
     sp = CL.add_light("Gabriele_Luce_Tromba", 'SPOT', M + ax * 0.02, 350.0, latte, 0.08, spot_size=42)
     CL.aim(sp, M + ax * 2.0)
-    ST.proxy(luce, M - ax * 0.05, latte, 8.0, nome="Gabriele_Luce_Campana")
+    ST.proxy(luce, M - ax * 0.05, latte, 4.0, nome="Gabriele_Luce_Campana")
     # antenne a stelo di giglio con i fiori
     for sx in (-1, 1):
         s = side_name(sx)
@@ -618,13 +618,13 @@ def build_raffaele():
     DS.texspace("Raffaele")
     sme = (0.2, 1.0, 0.5)
     m_torace = CL.m_body("Raffaele_Torace_Smeraldo", (0.03, 0.25, 0.1), rough=0.3, sss=0.3,
-                         sss_radius=(0.2, 1.0, 0.5), coat=0.6, emit=sme, emit_str=ST.lum(50.0), emit_center=True)
+                         sss_radius=(0.2, 1.0, 0.5), coat=0.6, emit=sme, emit_str=ST.lum(3.0), emit_center=True)
     m_chit = chitina("Raffaele_Chitina", (0.03, 0.12, 0.07), film=500.0)
     m_bastone = CL.m_body("Raffaele_Bastone", (0.3, 0.22, 0.1), rough=0.5, coat=0.3, bump=(40.0, 0.3, 'noise'))
     m_serpe = CL.m_body("Raffaele_Serpentello", (0.08, 0.45, 0.2), rough=0.3, coat=0.6, bump=(90.0, 0.35, 'scales'))
     m_pesce = CL.m_body("Raffaele_Sacca_Pesce", (0.1, 0.6, 0.35), rough=0.15, sss=0.8, sss_radius=(0.2, 1.0, 0.5),
-                        coat=1.0, alpha=0.8, emit=sme, emit_str=ST.lum(50.0), emit_center=True)
-    m_occhi = ST.m_luce("Raffaele_Occhi", sme, 30.0)
+                        coat=1.0, alpha=0.8, emit=sme, emit_str=ST.lum(2.5), emit_center=True)
+    m_occhi = ST.m_luce("Raffaele_Occhi", sme, 10.0)
     m_conchiglia = CL.m_body("Raffaele_Conchiglia", (0.95, 0.8, 0.55), rough=0.35, sss=0.3, coat=0.4)
     m_bisaccia = CL.m_body("Raffaele_Bisaccia", (0.25, 0.14, 0.07), rough=0.75, bump=(60.0, 0.3, 'noise'))
     m_ala = ala("Raffaele_Ali_Verdi", [(0.0, (0.6, 1.0, 0.8)), (1.0, (0.8, 1.0, 0.9))], membrane_str=0.4,
@@ -633,7 +633,7 @@ def build_raffaele():
     ch = CL.metaball_mesh("Raffaele_Torace", [el((0, -0.05, Z), 0.1, (1.0, 1.25, 1.0))], m_torace, res=0.011)
     CL.metaball_mesh("Raffaele_Corpo", [el((0, -0.22, Z + 0.06), 0.065), el((0, 0.26, Z - 0.05), 0.11, (0.9, 1.5, 0.8)),
                                         cap((0, -0.14, Z + 0.02), (0, -0.2, Z + 0.05), 0.05)], m_chit, res=0.011)
-    ST.proxy(ch, (0, -0.2, Z - 0.1), sme, 18.0, nome="Raffaele_Luce_Torace")
+    ST.proxy(ch, (0, -0.2, Z - 0.1), sme, 5.0, nome="Raffaele_Luce_Torace")
     # sacca a forma di pesce sul dorso
     fish = CL.metaball_mesh("Raffaele_Pesce", [el((0, 0.14, Z + 0.14), 0.07, (0.65, 1.6, 0.9)),
                                                el((0, 0.05, Z + 0.15), 0.05, (0.7, 1.0, 0.9))], m_pesce, res=0.009)
@@ -642,7 +642,7 @@ def build_raffaele():
                 Matrix.Rotation(pi / 2, 4, 'Z'))
     for sx in (-1, 1):
         CL.sphere("Raffaele_Pesce_Occhio_" + side_name(sx), (0.028 * sx, 0.02, Z + 0.17), 0.01, m_occhi, seg=8, rings=4)
-    ST.proxy(fish, (0, 0.14, Z + 0.3), sme, 10.0, nome="Raffaele_Luce_Pesce")
+    ST.proxy(fish, (0, 0.14, Z + 0.3), sme, 3.0, nome="Raffaele_Luce_Pesce")
     CL.no_shadow(fish)
     # antenne a spirale: il bastone del pellegrino con il serpentello avvolto
     base = V((0.0, -0.25, Z + 0.12))
@@ -767,8 +767,8 @@ def build_halolo():
     m_bocca = CL.m_body("Halolo_Bocca", (0.12, 0.01, 0.03), rough=0.5)
     m_lingua = CL.m_body("Halolo_Lingua", (0.9, 0.3, 0.4), rough=0.35, sss=0.4)
     m_guance = CL.m_body("Halolo_Guance", (1.0, 0.45, 0.6), rough=0.6, sss=0.5)
-    m_aureola = m_aureola_arcobaleno("Halolo_Aureola_Hula_Hoop", 60.0)
-    m_punto = ST.m_luce("Halolo_Puntino_Addome", (1.0, 1.0, 1.0), 120.0)
+    m_aureola = m_aureola_arcobaleno("Halolo_Aureola_Hula_Hoop", 2.5)
+    m_punto = ST.m_luce("Halolo_Puntino_Addome", (1.0, 1.0, 1.0), 12.0)
     m_suola = CL.m_body("Halolo_Suole", (0.97, 0.96, 0.94), rough=0.5)
     m_lacci = CL.m_body("Halolo_Lacci", (1.0, 1.0, 1.0), rough=0.6)
     scarpe = [CL.m_body("Halolo_Sneakers_Rosa", (1.0, 0.45, 0.65), rough=0.35, coat=0.3),
@@ -803,9 +803,9 @@ def build_halolo():
     hoop_m = Matrix.Translation((0, 0.0, 0.42)) @ Matrix.Rotation(radians(12), 4, 'X') @ \
         Matrix.Rotation(radians(-8), 4, 'Y')
     hoop = ST.toro("Halolo_Aureola", 0.6, 0.03, m_aureola, seg=96, sez=10, matrice=hoop_m)
-    for i, c in enumerate(((1.0, 0.55, 0.78), (1.0, 0.9, 0.45), (0.5, 0.8, 1.0))):
+    for i, c in enumerate(((1.0, 0.18, 0.55), (1.0, 0.75, 0.05), (0.1, 0.55, 1.0))):
         a = TAU * i / 3 + 0.4
-        ST.proxy(hoop, hoop_m @ V((0.6 * cos(a), 0.6 * sin(a), 0.05)), c, 5.0, nome="Halolo_Luce_Aureola_%d" % i)
+        ST.proxy(hoop, hoop_m @ V((0.6 * cos(a), 0.6 * sin(a), 0.05)), c, 2.0, nome="Halolo_Luce_Aureola_%d" % i)
     dot = CL.sphere("Halolo_Puntino", (0, 0.3, 0.22), 0.022, m_punto, seg=12, rings=6)
     ST.proxy(dot, (0, 0.38, 0.2), (1, 1, 1), 2.0)
     # tre paia di sneakers (Mirror + Array: istanze della stessa scarpa)
@@ -830,25 +830,24 @@ def build_halolo():
 
 def scena_gruppo(which):
     ST.mondo((0.004, 0.006, 0.02), (0.03, 0.04, 0.09), 1.0, nome="Cielo_Angeli")
-    ST.pavimento("Terreno_Nuvole", (0.05, 0.055, 0.075), (0.12, 0.12, 0.15), scala=0.35, rough=(0.5, 0.8),
-                 lucido=(5500, 0.8, 1.5))
-    ST.nebbia("Foschia_Dorata", (0, 3, 1.6), (30, 30, 3.2), (1.0, 0.9, 0.7), 0.012)
+    ST.pavimento("Terreno_Nuvole", (0.05, 0.055, 0.075), (0.12, 0.12, 0.15), scala=0.35, rough=(0.5, 0.8))
+    ST.nebbia("Foschia_Dorata", (0, 3, 1.6), (30, 30, 3.2), (1.0, 0.9, 0.7), 0.006)
     ST.luci_studio(which, chiave=6500, contro=4000, riempimento=(0.6, 0.7, 1.0))
 
 
 def scena_serafino():
-    m = ST.m_volume("Volume_Dorato", (1.0, 0.85, 0.55), 0.6, luce_c=5500, forza=0.3, roblox="drop")
+    m = ST.m_volume("Volume_Dorato", (1.0, 0.85, 0.55), 0.1, luce_c=5500, forza=0.03, roblox="drop")
     v = CL.sphere("Volume_Dorato_Scena", (0, 0.1, 0.9), (1.4, 1.4, 1.1), m, seg=16, rings=8)
     v["rbx_drop"] = 1
-    ST.compositor(0.4, 7, (6, 20.0, 0.25), 0.0)
+    ST.compositor(0.4, 7, (6, 20.0, 0.12), 0.0)
 
 
 def scena_cherubino():
-    ST.luce("Luce_Di_Taglio", 'SPOT', (0.6, -0.3, 2.6), 500.0, 5000, 0.2, rot=(10, 10, 0), spot=40)
+    ST.luce("Luce_Di_Taglio", 'SPOT', (0.6, -0.3, 2.6), 250.0, 5000, 0.2, rot=(10, 10, 0), spot=40)
 
 
 def scena_ofanim():
-    ST.nebbia("Volume_Blu", (0, 0.5, 1.0), (6, 6, 2), (0.5, 0.7, 1.0), 0.03)
+    ST.nebbia("Volume_Blu", (0, 0.5, 1.0), (6, 6, 2), (0.5, 0.7, 1.0), 0.012)
     cam = bpy.context.scene.camera
     cam.data.dof.use_dof = True
     cam.data.dof.aperture_fstop = 2.8
@@ -893,7 +892,7 @@ CREATURE_ANGELI = {
     "ofanim":    ("A03_Ruotina-Ofanim",            build_ofanim,      ((0, 0.0, 0.7), 3.6, 8, 20, 50)),
     "michele":   ("A04_Scudo-Stellato-Michele",    build_michele,     ((0, 0.1, 0.5), 3.4, 28, 35, 50)),
     "gabriele":  ("A05_Trombettina-Gabriele",      build_gabriele,    ((0, 0.2, 0.8), 4.0, 8, 60, 50)),
-    "raffaele":  ("A06_Dottor-Smeraldo-Raffaele",  build_raffaele,    ((0, -0.05, 0.85), 3.6, 10, 35, 50)),
+    "raffaele":  ("A06_Dottor-Smeraldo-Raffaele",  build_raffaele,    ((0, -0.05, 0.8), 4.6, 10, 35, 50)),
     "custode":   ("A07_Lanternina-Custode",        build_custode,     ((0, 0.0, 0.55), 2.4, 10, 35, 50)),
     "halolo":    ("A08_Halolo-Halola",             build_halolo,      ((0, 0.0, 0.52), 3.0, 10, 20, 50)),
 }
