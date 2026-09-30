@@ -920,8 +920,8 @@ def build_zucca():
 def build_corvo():
     DS.texspace("CorvoPeste")
     acido = (0.42, 1.0, 0.06)
-    m_pelle = CL.m_body("CorvoPeste_Pelle_Spennata", (0.2, 0.15, 0.17), rough=0.6, sss=0.2,
-                        sss_radius=(1.0, 0.4, 0.4), bump=(70.0, 0.5, 'warts'), mottle=((0.12, 0.08, 0.1), 5.0))
+    m_pelle = CL.m_body("CorvoPeste_Pelle_Spennata", (0.055, 0.04, 0.048), rough=0.6, sss=0.15,
+                        sss_radius=(1.0, 0.4, 0.4), bump=(70.0, 0.5, 'warts'), mottle=((0.02, 0.014, 0.018), 5.0))
     m_ossa = CL.m_body("CorvoPeste_Costole", (0.72, 0.68, 0.58), rough=0.45, sss=0.1)
     m_mask = m_cuoio("CorvoPeste_Maschera_Cuoio")
     m_ottone = CL.m_body("CorvoPeste_Ottone", (0.55, 0.36, 0.12), rough=0.35, metal=1.0, bump=(50.0, 0.2, 'noise'))
@@ -930,9 +930,9 @@ def build_corvo():
     m_nucleo = ST.m_luce("CorvoPeste_Petto_Radioattivo", acido, 15.0)
     m_alone = CL.m_halo("CorvoPeste_Alone_Tossico", acido, 0.15)
     m_zampe = CL.m_body("CorvoPeste_Zampe", (0.05, 0.045, 0.045), rough=0.5, bump=(60.0, 0.5, 'scales'))
-    m_piuma = CL.m_feather("CorvoPeste_Piume_Strappate", (0.01, 0.01, 0.014), (0.02, 0.02, 0.025), acido, 3.0,
-                           edge_w=0.07, rachis_w=0.035)
-    ST._principled_extra(m_piuma, film=300.0)
+    m_piuma = CL.m_feather("CorvoPeste_Piume_Strappate", (0.006, 0.006, 0.009), (0.012, 0.012, 0.016), acido, 3.0,
+                           edge_w=0.07, rachis_w=0.035, barb_str=0.0, sheen=0.1)
+    ST._principled_extra(m_piuma, film=380.0)
     m_piuma["rbx_thick"] = 1
     m_polvere = ST.m_luce("CorvoPeste_Polvere_Tossica", acido, 30.0)
 
@@ -1033,6 +1033,18 @@ def build_corvo():
         CL.link(ob)
         m = CL.frame_matrix(V((0, 0.22, 0.42)), V(((k - 1.5) * 0.12, 1.0, -0.55)), V((0, -0.2, 1)))
         ob.matrix_world = m @ Matrix.Diagonal((1.0, 1.1, 1.0, 1.0))
+    # collare di piume nere arruffate intorno al collo (il davanti resta
+    # scoperto per far vedere la gabbia toracica)
+    for k in range(11):
+        a = radians(-35 + 250 * k / 10)
+        r = V((cos(a), sin(a), 0))
+        base = V((0, -0.055, 0.765)) + r * 0.06
+        d = (r * 0.75 + V((0, 0, -1.0))).normalized()
+        m = CL.frame_matrix(base, d, r + V((0, 0, 0.3)))
+        ob = bpy.data.objects.new("CorvoPeste_Collare_%02d" % k, meshes[k % 4])
+        CL.link(ob)
+        sc = 0.42 + 0.08 * (k % 3)
+        ob.matrix_world = m @ Matrix.Diagonal((sc, sc, sc, 1.0))
     # polvere tossica che si stacca dalle ali
     em = CL.sphere("CorvoPeste_Polvere_Emettitore", (0, 0.1, 0.45), (0.55, 0.3, 0.3), None, seg=12, rings=6)
     grain = CL.sphere("CorvoPeste_Granello", (0, 0, -3), 0.005, m_polvere, seg=6, rings=3)

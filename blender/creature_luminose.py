@@ -1053,7 +1053,7 @@ def m_wing(name, ramp, alpha=0.3, membrane_str=1.5, vein_ramp=None,
 
 
 def m_feather(name, base, base_tip, glow, glow_str, edge_w=0.16,
-              rachis_w=0.07, barbs=14, pulse=None):
+              rachis_w=0.07, barbs=14, pulse=None, barb_str=0.45, sheen=0.5):
     """Piuma: marrone ricco con bordi e rachide al neon.
     UV: u attraverso la piuma (0..1), v dalla radice (0) alla punta (1)."""
     mat = new_material(name)
@@ -1069,11 +1069,11 @@ def m_feather(name, base, base_tip, glow, glow_str, edge_w=0.16,
                      nb.maprange(v, 0.95, 0.55))
     b = nb.math('FRACT', nb.math('MULTIPLY', nb.math('ADD', v, nb.math('MULTIPLY', au, 0.35)), barbs))
     b = nb.math('MULTIPLY', nb.math('ABSOLUTE', nb.math('SUBTRACT', b, 0.5)), 2.0)
-    barb = nb.math('MULTIPLY', nb.maprange(b, 0.8, 1.0), 0.45)
+    barb = nb.math('MULTIPLY', nb.maprange(b, 0.8, 1.0), barb_str)
     barb = nb.math('MULTIPLY', barb, nb.maprange(v, 0.2, 0.5))
     mask = nb.math('MAXIMUM', nb.math('MAXIMUM', edge, rachis), barb)
     col = nb.ramp(v, [(0.0, base), (1.0, base_tip)])
-    bsdf = nb.principled(base=col, rough=0.55, sheen=0.5, spec=0.3)
+    bsdf = nb.principled(base=col, rough=0.55, sheen=sheen, spec=0.3)
     s = nb.glow(glow_str, pulse)
     em = nb.emission(glow, s)
     nb.output(nb.mix_shader(mask, bsdf.outputs[0], em))
