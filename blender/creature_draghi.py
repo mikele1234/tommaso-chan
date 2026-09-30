@@ -192,9 +192,9 @@ def m_anello_cromatico(nome, centro, forza=50.0):
     nb.link(nb.math('SUBTRACT', sep.outputs['Z'], centro[2]), cmb.inputs[1])
     gr = nb.node('ShaderNodeTexGradient', gradient_type='RADIAL')
     nb.link(cmb.outputs[0], gr.inputs['Vector'])
-    stops = [(0.0, ST.mescola(3500, (1.0, 0.45, 0.75), 0.6)), (0.25, (1.0, 0.9, 0.35)),
-             (0.5, ST.mescola(9000, (0.35, 0.75, 1.0), 0.5)), (0.75, (0.45, 1.0, 0.5)),
-             (1.0, ST.mescola(3500, (1.0, 0.45, 0.75), 0.6))]
+    stops = [(0.0, ST.mescola(3500, (1.0, 0.2, 0.6), 0.85)), (0.25, (1.0, 0.8, 0.12)),
+             (0.5, ST.mescola(9000, (0.12, 0.5, 1.0), 0.85)), (0.75, (0.2, 0.95, 0.3)),
+             (1.0, ST.mescola(3500, (1.0, 0.2, 0.6), 0.85))]
     col = nb.ramp(gr.outputs['Fac'], stops)
     pb = nb.principled(base=col, rough=0.3, coat=0.6, sss=0.2, sss_radius=(1, 1, 1))
     nb.set(pb, 'Thin Film Thickness', 350.0)
@@ -936,7 +936,7 @@ def build_ourobo():
     DS.texspace("Ourobo")
     C = V((0, 0, 0.72))
     R, r = 0.5, 0.15
-    m_anello = m_anello_cromatico("Ourobo_Anello_Cromatico", C, 0.6)
+    m_anello = m_anello_cromatico("Ourobo_Anello_Cromatico", C, 0.3)
     m_bianco = ST.m_occhio_bianco("Ourobo_Occhi_Bianchi")
     m_pup = CL.m_body("Ourobo_Pupille", (0.01, 0.01, 0.02), rough=0.05, coat=1.0)
     m_rifl = ST.m_luce("Ourobo_Riflessi", (1, 1, 1), 8.0)
@@ -1099,7 +1099,7 @@ CREATURE_DRAGHI = {
     "ddraig":   ("D05_Ddraig-Drago-Rosso",              build_ddraig,    ((0, 0.0, 0.85), 4.6, 8, 40, 50)),
     "idra":     ("D06_Idra-di-Lerna",                   build_idra,      ((0, -0.1, 0.45), 3.4, 18, 20, 50)),
     "wyvern":   ("D07_Blasone-Wyvern",                  build_wyvern,    ((0, 0.0, 0.85), 5.2, 6, 25, 50)),
-    "ourobo":   ("D08_Ourobo-Ourobo",                   build_ourobo,    ((0, 0.0, 0.78), 3.6, 6, 10, 50)),
+    "ourobo":   ("D08_Ourobo-Ourobo",                   build_ourobo,    ((0, 0.0, 0.8), 4.5, 6, 10, 50)),
 }
 
 DISPOSIZIONE_DRAGHI = {

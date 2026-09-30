@@ -678,6 +678,7 @@ def ala_membrana(prefisso, spalla, gomito, polso, punte, corpo, mat, m_ossa, sac
 
 def specchia_x(obs, suffisso=("_R", "_L")):
     """Copia speculare (asse X) di oggetti costruiti sul lato destro."""
+    bpy.context.view_layer.update()         # matrix_world aggiornata anche per gli oggetti appena creati
     out = []
     for o in obs:
         if o.type == 'MESH':
