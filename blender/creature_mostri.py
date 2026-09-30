@@ -1146,9 +1146,9 @@ def build_calderone():
     viola = (0.55, 0.08, 1.0)
     fucsia = (1.0, 0.08, 0.7)
     m_ghisa = m_ruggine("Calderone_Ghisa_Arrugginita")
-    m_poz = m_pozione("Calderone_Pozione", luce_c=viola)
-    m_b1 = m_bolla("Calderone_Bolle_Fucsia", fucsia, 12.0)
-    m_b2 = m_bolla("Calderone_Bolle_Viola", viola, 12.0)
+    m_poz = m_pozione("Calderone_Pozione", luce_c=viola, forza=3.5)
+    m_b1 = m_bolla("Calderone_Bolle_Fucsia", fucsia, 7.0)
+    m_b2 = m_bolla("Calderone_Bolle_Viola", viola, 7.0)
     m_rana = CL.m_body("Calderone_Zampe_Rana", (0.12, 0.33, 0.05), rough=0.25, coat=0.6, sss=0.4,
                        sss_radius=(0.4, 1.0, 0.3), mottle=((0.05, 0.15, 0.02), 9.0), bump=(40.0, 0.3, 'warts'))
     m_ventre = CL.m_body("Calderone_Ventre_Rana", (0.55, 0.52, 0.3), rough=0.35, sss=0.3)
@@ -1188,7 +1188,7 @@ def build_calderone():
     parts.append(poz)
     tilt = DS.pivot("Calderone_Inclinazione", (0, 0, Z), parts)
     tilt.rotation_euler = (radians(-7), 0, 0)
-    ST.proxy(poz, (0, -0.02, Zp + 0.12), viola, 25.0, nome="Calderone_Luce_Pozione")
+    ST.proxy(poz, (0, -0.02, Zp + 0.12), viola, 10.0, nome="Calderone_Luce_Pozione")
     # bolle luminose che schizzano fuori e scoppiettano nell'aria
     for i in range(18):
         t = i / 17
@@ -1200,7 +1200,7 @@ def build_calderone():
     em = CL.sphere("Calderone_Bolle_Emettitore", (0, -0.05, Zp + 0.5), (0.35, 0.35, 0.45), None, seg=12, rings=6)
     grain = CL.sphere("Calderone_Bollicina", (0, 0, -3), 0.012, m_b1, seg=10, rings=5)
     CL.particle_scatter(em, grain, 160, size=1.0, size_random=0.7, seed=6)
-    ST.proxy(poz, (0.1, -0.1, Zp + 0.45), fucsia, 8.0, nome="Calderone_Luce_Bolle")
+    ST.proxy(poz, (0.1, -0.1, Zp + 0.45), fucsia, 4.0, nome="Calderone_Luce_Bolle")
     # due tozze zampe di rana che corrono
     for sx, (knee, ankle, foot) in ((1, ((0.2, -0.13, 0.16), (0.17, -0.2, 0.05), (0.17, -0.31, 0.012))),
                                     (-1, ((-0.21, 0.1, 0.1), (-0.17, 0.22, 0.07), (-0.17, 0.33, 0.02)))):
@@ -1406,7 +1406,7 @@ CREATURE_MOSTRI = {
     "zucca":       ("M04_Zucca-Infestata",             build_zucca,             ((0, 0.0, 0.95), 4.0, 12, 22, 50)),
     "corvo":       ("M05_Corvo-Peste",                 build_corvo,             ((0, -0.1, 0.6), 3.0, 10, 35, 50)),
     "occhio":      ("M06_Occhio-Fluttuante",           build_occhio,            ((0, -0.2, 1.08), 5.0, 8, 38, 50)),
-    "calderone":   ("M07_Calderone-Animato",           build_calderone,         ((0, -0.05, 0.55), 3.2, 18, 30, 50)),
+    "calderone":   ("M07_Calderone-Animato",           build_calderone,         ((0, -0.08, 0.6), 4.4, 15, 30, 50)),
     "verme":       ("M08_Verme-Ohio-Nextbot",          build_verme,             ((0, 0.1, 0.35), 3.4, 14, 35, 50)),
 }
 
