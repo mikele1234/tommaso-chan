@@ -1346,7 +1346,7 @@ def build_verme():
         c = colorsys.hsv_to_rgb(h, 0.9, 1.0)
         c = tuple(x ** 2.2 for x in c)
         m = CL.m_body("VermeOhio_Segmento_RGB_%d" % i, tuple(0.45 * x for x in c), rough=0.2, coat=0.8, sss=0.3,
-                      sss_radius=tuple(0.08 * x + 0.01 for x in c), emit=c, emit_str=2.5, rim=c, rim_str=1.2)
+                      sss_radius=tuple(0.08 * x + 0.01 for x in c), emit=c, emit_str=1.5, rim=c, rim_str=0.8)
         z = r + 0.01 + 0.06 * sin(pi * min(1.0, i / (n - 1)))
         segs.append(CL.sphere("VermeOhio_Segmento_%d" % i, (0, y, z), (r * 1.02, r * 0.9, r * 0.95), m,
                               seg=28, rings=14))
@@ -1355,7 +1355,7 @@ def build_verme():
                 CL.cone_between("VermeOhio_Zampetta_%s%d" % (side_name(sx), i), (0.55 * r * sx, y, z - 0.6 * r),
                                 (0.6 * r * sx, y - 0.01, 0.0), 0.04, 0.022, m, 10)
         ST.proxy(segs[-1], (0.3 * (1 if i % 2 else -1), y, 0.08), c, 4.0)
-    lanterna = ST.m_luce("VermeOhio_Coda_Lucciola", (1.0, 0.95, 0.7), 25.0)
+    lanterna = ST.m_luce("VermeOhio_Coda_Lucciola", (1.0, 0.95, 0.7), 7.0)
     CL.sphere("VermeOhio_Lanterna", (0, ys[-1] + 0.12, rads[-1] + 0.02), (0.09, 0.08, 0.085), lanterna, seg=20,
               rings=10)
     # la faccia: un piano 2D completamente piatto con il meme compresso

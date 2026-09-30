@@ -381,10 +381,10 @@ def piume_lungo(prefisso, pts, rad, frames, meshes, t0, t1, passi, angoli, scala
 def build_tesorino():
     DS.texspace("Tesorino")
     oro = 3000
-    m_sq = m_squame("Tesorino_Squame", (0.12, 0.09, 0.04), (0.9, 0.62, 0.22), film=420.0, luce_ventre=oro, forza=40.0)
+    m_sq = m_squame("Tesorino_Squame", (0.12, 0.09, 0.04), (0.9, 0.62, 0.22), film=420.0, luce_ventre=oro, forza=5.0)
     m_moneta = CL.m_body("Tesorino_Monete_Oro", (1.0, 0.72, 0.28), rough=0.2, metal=1.0, bump=(80.0, 0.2, 'noise'))
     m_corna = chitina("Tesorino_Corna", (0.3, 0.22, 0.12), rough=0.3, metal=0.4)
-    m_lanterna = ST.m_luce("Tesorino_Lanternino_Coda", oro, 40.0, bordo=(1.0, 0.95, 0.8), forza_bordo=60.0)
+    m_lanterna = ST.m_luce("Tesorino_Lanternino_Coda", oro, 8.0, bordo=(1.0, 0.95, 0.8), forza_bordo=10.0)
     m_mem = chitina("Tesorino_Ali_Ripiegate", (0.18, 0.12, 0.05), rough=0.5, sss=0.3, sss_radius=(1.0, 0.6, 0.2))
     m_mem["rbx_thick"] = 1
     m_gemme = [ST.m_vetro("Tesorino_Rubino", (1.0, 0.1, 0.15), ior=1.7, bordo=(1.0, 0.2, 0.2), forza_bordo=2.0),
@@ -451,8 +451,8 @@ def build_tesorino():
     # lanternino sotto la coda
     lp, _d, _t = punto(pts, rad, frames, 0.58, 180, 0.9)
     lan = CL.sphere("Tesorino_Lanternino", lp + V((0, 0, 0.01)), (0.05, 0.05, 0.03), m_lanterna, seg=16, rings=8)
-    ST.proxy(lan, lp + V((0, 0, 0.06)), oro, 8.0, nome="Tesorino_Luce_Lanternino")
-    ST.proxy(body, (0, 0.05, 0.35), oro, 25.0, nome="Tesorino_Luce_Tesoro")
+    ST.proxy(lan, lp + V((0, 0, 0.06)), oro, 4.0, nome="Tesorino_Luce_Lanternino")
+    ST.proxy(body, (0, 0.05, 0.35), oro, 10.0, nome="Tesorino_Luce_Tesoro")
     # zampe rannicchiate e ali ripiegate sul dorso
     for t, sx in ((0.1, 1), (0.1, -1), (0.46, 1), (0.46, -1)):
         p, d, tg = punto(pts, rad, frames, t, 90 * sx, 0.8)
@@ -481,9 +481,9 @@ def build_long():
     m_corna = chitina("Long_Corna_Oro", (0.8, 0.55, 0.2), metal=0.6, rough=0.3)
     m_occhi = CL.m_body("Long_Occhi_Coniglio", (0.5, 0.03, 0.05), rough=0.08, coat=1.0)
     m_criniera = CL.m_body("Long_Criniera", (0.9, 0.3, 0.08), rough=0.6, sheen=1.0, sss=0.2)
-    m_pearl = m_perla("Long_Perla_Fiammeggiante", acqua, 90.0)
-    m_fiamme = ST.m_luce("Long_Fiamme_Perla", ST.mescola(acqua, (0.6, 0.9, 1.0), 0.5), 40.0, alpha=0.7)
-    m_gocce = ST.m_luce("Long_Gocce_Pioggia", ST.mescola(acqua, (0.7, 0.95, 1.0), 0.5), 30.0)
+    m_pearl = m_perla("Long_Perla_Fiammeggiante", acqua, 4.0)
+    m_fiamme = ST.m_luce("Long_Fiamme_Perla", ST.mescola(acqua, (0.6, 0.9, 1.0), 0.5), 5.0, alpha=0.7)
+    m_gocce = ST.m_luce("Long_Gocce_Pioggia", ST.mescola(acqua, (0.7, 0.95, 1.0), 0.5), 6.0)
     m_denti = CL.m_body("Long_Denti", (0.95, 0.92, 0.85), rough=0.2)
     m_bocca = CL.m_body("Long_Bocca", (0.3, 0.02, 0.03), rough=0.4)
 
@@ -533,7 +533,7 @@ def build_long():
     # la perla fiammeggiante che galleggia sotto il mento
     pc = hp + fwd * 0.2 + V((0, 0, -0.22))
     pearl = CL.sphere("Long_Perla", pc, 0.075, m_pearl, seg=28, rings=14)
-    ST.proxy(pearl, pc + V((0, -0.1, 0.05)), acqua, 15.0, nome="Long_Luce_Perla")
+    ST.proxy(pearl, pc + V((0, -0.1, 0.05)), acqua, 6.0, nome="Long_Luce_Perla")
     for k in range(6):
         a = TAU * k / 6
         b = pc + V((0.07 * cos(a), 0.07 * sin(a), 0.02))
@@ -562,7 +562,7 @@ def build_ryujin():
                           coat=0.6)
     m_onda = CL.m_body("Ryujin_Criniera_Blu", (0.05, 0.3, 0.6), rough=0.3, sss=0.4, coat=0.6)
     m_corna = chitina("Ryujin_Corna", (0.8, 0.75, 0.6), rough=0.3)
-    m_occhi = ST.m_luce("Ryujin_Occhi", (1.0, 0.8, 0.2), 30.0)
+    m_occhi = ST.m_luce("Ryujin_Occhi", (1.0, 0.8, 0.2), 12.0)
     m_denti = CL.m_body("Ryujin_Denti", (0.95, 0.92, 0.85), rough=0.2)
     m_bocca = CL.m_body("Ryujin_Bocca", (0.25, 0.02, 0.05), rough=0.4)
     gioielli = [(12000, ST.mescola(12000, (0.05, 0.2, 1.0), 0.6), "Kanju"), (7000, (0.95, 0.98, 1.0), "Manju")]
@@ -614,14 +614,14 @@ def build_ryujin():
         if k is not None:
             K, col, nome = gioielli[k]
             gp = foot + fwd * 0.05 + V((0, 0, -0.01))
-            core = CL.sphere("Ryujin_Gioiello_%s" % nome, gp, 0.04, ST.m_luce("Ryujin_%s_Luce" % nome, col, 70.0,
-                                                                              bordo=(1, 1, 1), forza_bordo=90.0),
+            core = CL.sphere("Ryujin_Gioiello_%s" % nome, gp, 0.04, ST.m_luce("Ryujin_%s_Luce" % nome, col, 4.0,
+                                                                              bordo=(1, 1, 1), forza_bordo=6.0),
                              seg=20, rings=10)
             shell = CL.sphere("Ryujin_Gioiello_%s_Guscio" % nome, gp, 0.05,
                               ST.m_vetro("Ryujin_%s_Vetro" % nome, ST.mescola(col, (1, 1, 1), 0.6), ior=1.3), seg=24,
                               rings=12)
             CL.no_shadow(shell)
-            ST.proxy(core, gp + V((0, -0.08, 0.05)), col, 10.0, nome="Ryujin_Luce_%s" % nome)
+            ST.proxy(core, gp + V((0, -0.08, 0.05)), col, 4.0, nome="Ryujin_Luce_%s" % nome)
 
 
 # ============================================================================
@@ -632,17 +632,17 @@ def build_quetzal():
     DS.texspace("Quetzal")
     sm, tu = (0.05, 0.9, 0.35), (0.1, 0.85, 0.85)
     m_sq = m_squame("Quetzal_Squame", (0.02, 0.28, 0.12), (0.85, 0.7, 0.3), film=520.0, lung=18.0,
-                    triangoli=((sm, tu), 40.0, 0.22, 0.78, 7))
-    m_piuma = CL.m_feather("Quetzal_Piume_Smeraldo", (0.02, 0.3, 0.12), (0.03, 0.45, 0.4), (0.15, 1.0, 0.7), ST.lum(40.0),
+                    triangoli=((sm, tu), 5.0, 0.22, 0.78, 7))
+    m_piuma = CL.m_feather("Quetzal_Piume_Smeraldo", (0.02, 0.3, 0.12), (0.03, 0.45, 0.4), (0.15, 1.0, 0.7), ST.lum(3.0),
                            edge_w=0.1, rachis_w=0.04)
     ST._principled_extra(m_piuma, film=520.0)
     m_piuma["rbx_thick"] = 1
-    m_coda = CL.m_feather("Quetzal_Piume_Coda", (0.02, 0.35, 0.2), (0.05, 0.55, 0.55), (0.2, 1.0, 0.9), ST.lum(40.0),
+    m_coda = CL.m_feather("Quetzal_Piume_Coda", (0.02, 0.35, 0.2), (0.05, 0.55, 0.55), (0.2, 1.0, 0.9), ST.lum(3.0),
                           edge_w=0.08, rachis_w=0.04)
     ST._principled_extra(m_coda, film=600.0)
     m_coda["rbx_thick"] = 1
     m_pelle = chitina("Quetzal_Testa", (0.03, 0.3, 0.14), film=520.0)
-    m_occhi = ST.m_luce("Quetzal_Occhi", (1.0, 0.75, 0.1), 30.0)
+    m_occhi = ST.m_luce("Quetzal_Occhi", (1.0, 0.75, 0.1), 12.0)
     m_denti = CL.m_body("Quetzal_Zanne", (0.95, 0.92, 0.85), rough=0.2)
     m_bocca = CL.m_body("Quetzal_Bocca", (0.4, 0.03, 0.05), rough=0.4)
     m_rossa = CL.m_body("Quetzal_Petto_Rosso", (0.7, 0.05, 0.05), rough=0.5, sheen=0.8)
@@ -674,7 +674,7 @@ def build_quetzal():
         ob = bpy.data.objects.new("Quetzal_Coda_%d" % k, lunghe[k % 3])
         CL.link(ob)
         ob.matrix_world = CL.frame_matrix(tail, d, t0.cross(V((0, 0, 1))).normalized())
-    ST.proxy(body, tail + t0 * 0.3 + V((0, 0, 0.3)), 6500, 10.0, nome="Quetzal_Luce_Coda")
+    ST.proxy(body, tail + t0 * 0.3 + V((0, 0, 0.3)), 6500, 4.0, nome="Quetzal_Luce_Coda")
     # due grandi ali di piume, come un mantello, e il collare
     for sx in (-1, 1):
         p, d, tg = punto(pts, rad, frames, 0.78, 80 * sx, 0.9)
@@ -712,16 +712,16 @@ def build_ddraig():
     DS.texspace("Ddraig")
     rosso = 2200
     m_pelle = chitina("Ddraig_Scaglie_Rosse", (0.5, 0.03, 0.02), film=300.0, bump=(60.0, 0.4, 'scales'))
-    m_petto = ST.m_luce("Ddraig_Petto_Rosso", ST.mescola(rosso, (1.0, 0.1, 0.03), 0.5), 70.0, bordo=rosso,
-                        forza_bordo=90.0)
+    m_petto = ST.m_luce("Ddraig_Petto_Rosso", ST.mescola(rosso, (1.0, 0.1, 0.03), 0.5), 2.5, bordo=rosso,
+                        forza_bordo=4.0)
     m_mem = CL.m_body("Ddraig_Membrana_Ali", (0.3, 0.02, 0.02), rough=0.5, sss=0.5, sss_radius=(1.0, 0.2, 0.1),
                       coat=0.2)
     m_mem["rbx_thick"] = 1
     m_ossa = chitina("Ddraig_Ossa_Ali", (0.35, 0.02, 0.01))
-    m_bianco = ST.m_luce("Ddraig_Fratello_Bianco", (1.0, 1.0, 1.0), 20.0)
-    m_coda = ST.m_luce("Ddraig_Coda_Brace", rosso, 70.0, bordo=(1.0, 0.8, 0.4), forza_bordo=90.0)
+    m_bianco = ST.m_luce("Ddraig_Fratello_Bianco", (1.0, 1.0, 1.0), 6.0)
+    m_coda = ST.m_luce("Ddraig_Coda_Brace", rosso, 4.0, bordo=(1.0, 0.8, 0.4), forza_bordo=6.0)
     m_corna = chitina("Ddraig_Corna", (0.85, 0.8, 0.7), rough=0.3)
-    m_occhi = ST.m_luce("Ddraig_Occhi", (1.0, 0.7, 0.1), 40.0)
+    m_occhi = ST.m_luce("Ddraig_Occhi", (1.0, 0.7, 0.1), 12.0)
     m_bocca = CL.m_body("Ddraig_Bocca", (0.3, 0.01, 0.02), rough=0.4)
     m_lingua = CL.m_body("Ddraig_Lingua", (0.8, 0.1, 0.15), rough=0.3, sss=0.4)
     m_denti = CL.m_body("Ddraig_Denti", (0.95, 0.92, 0.85), rough=0.2)
@@ -732,7 +732,7 @@ def build_ddraig():
          cap((0, -0.52, 0.95), (0, -0.58, 1.08), 0.075)]
     CL.metaball_mesh("Ddraig_Corpo", E, m_pelle, res=0.016)
     chest = CL.sphere("Ddraig_Petto", (0, -0.36, 0.56), (0.13, 0.08, 0.16), m_petto, rot=(-25, 0, 0), seg=24, rings=12)
-    ST.proxy(chest, (0, -0.6, 0.55), rosso, 25.0, nome="Ddraig_Luce_Petto")
+    ST.proxy(chest, (0, -0.6, 0.55), rosso, 6.0, nome="Ddraig_Luce_Petto")
     fwd = V((0, -1, -0.1)).normalized()
     hp = V((0, -0.66, 1.12))
     master = testa_drago(m_pelle, m_occhi, m_corna, m_bocca, m_denti, muso=0.2, largo=0.08, corna='dritte', bocca=26.0)
@@ -770,7 +770,7 @@ def build_ddraig():
     for o in lat:
         if o.name.startswith("Ddraig_Rete"):
             o["rbx_drop"] = 1
-    ST.proxy(punti[0], (0.8, 0.2, 1.4), (1, 1, 1), 3.0, nome="Ddraig_Luce_Fratello_Bianco")
+    ST.proxy(punti[0], (0.8, 0.2, 1.4), (1, 1, 1), 1.5, nome="Ddraig_Luce_Fratello_Bianco")
     # coda a ricciolo con la punta a picca incandescente
     tail = DS.spline([V((0, 0.4, 0.5)), V((0, 0.75, 0.35)), V((0.15, 1.0, 0.3)), V((0.3, 0.95, 0.55)),
                       V((0.15, 0.8, 0.65)), V((0.05, 0.9, 0.78))], 30)
@@ -779,7 +779,7 @@ def build_ddraig():
     punta = OC.fin_mesh("Ddraig_Punta_Coda", [(0.0, -0.02), (0.02, -0.07), (0.13, 0.0), (0.02, 0.07), (0.0, 0.02)],
                         0.02, m_coda, CL.frame_matrix(tail[-1], d.cross(V((1, 0, 0))), V((1, 0, 0))) @
                         Matrix.Rotation(-pi / 2, 4, 'Z'))
-    ST.proxy(punta, tail[-1] + d * 0.12, rosso, 6.0, nome="Ddraig_Luce_Coda")
+    ST.proxy(punta, tail[-1] + d * 0.12, rosso, 3.0, nome="Ddraig_Luce_Coda")
     # la torre di Vortigern sul dorso
     T = V((0, 0.08, 0.74))
     tower = DS.lathe("Ddraig_Torre", [(0.1, 0.0), (0.095, 0.2), (0.105, 0.21), (0.105, 0.24), (0.07, 0.24)], m_torre,
@@ -811,8 +811,8 @@ def build_idra():
                         sss_radius=(0.3, 1.0, 0.3), mottle=((0.02, 0.07, 0.03), 7.0), bump=(50.0, 0.35, 'warts'))
     m_testa = chitina("Idra_Testine", (0.06, 0.2, 0.08), film=420.0)
     m_oro = chitina("Idra_Testa_Centrale_Oro", (0.75, 0.55, 0.15), metal=0.6, film=380.0)
-    m_luce = ST.m_luce("Idra_Luci_Fronte", verde, 40.0)
-    m_luce_oro = ST.m_luce("Idra_Luce_Oro", oro, 60.0)
+    m_luce = ST.m_luce("Idra_Luci_Fronte", verde, 8.0)
+    m_luce_oro = ST.m_luce("Idra_Luce_Oro", oro, 10.0)
     m_occhi = CL.m_body("Idra_Occhi", (0.8, 0.6, 0.05), rough=0.1, coat=1.0)
     m_ninfea = CL.m_body("Idra_Code_Ninfea", (0.08, 0.35, 0.08), rough=0.4, coat=0.5, bump=(20.0, 0.3, 'noise'))
     m_ninfea["rbx_thick"] = 1
@@ -885,10 +885,10 @@ def build_wyvern():
     m_mem = CL.m_body("Wyvern_Membrana", (0.2, 0.12, 0.3), rough=0.5, sss=0.4, sss_radius=(0.6, 0.3, 1.0))
     m_mem["rbx_thick"] = 1
     m_corna = chitina("Wyvern_Corna_Artigli", (0.85, 0.75, 0.5), metal=0.5, rough=0.3)
-    m_occhi = ST.m_luce("Wyvern_Occhi", (1.0, 0.8, 0.2), 40.0)
+    m_occhi = ST.m_luce("Wyvern_Occhi", (1.0, 0.8, 0.2), 12.0)
     m_bocca = CL.m_body("Wyvern_Bocca", (0.3, 0.02, 0.04), rough=0.4)
     m_denti = CL.m_body("Wyvern_Denti", (0.95, 0.92, 0.85), rough=0.2)
-    m_freccia = m_smalti("Wyvern_Punta_Freccia_Smalti", 100.0, 0.0)
+    m_freccia = m_smalti("Wyvern_Punta_Freccia_Smalti", 5.0, 0.0)
     m_or = CL.m_body("Wyvern_Scudo_Oro", (1.0, 0.72, 0.25), rough=0.25, metal=1.0)
     m_az = CL.m_body("Wyvern_Scudo_Azzurro", (0.05, 0.15, 0.7), rough=0.3, coat=0.8)
     E = [el((0, 0.08, 0.55), 0.15, (1.0, 1.1, 1.0)), el((0, 0.0, 0.8), 0.14, (1.05, 0.9, 1.2)),
@@ -919,7 +919,7 @@ def build_wyvern():
     CL.tube("Wyvern_Coda", tail, [0.06 - 0.002 * i for i in range(26)], m_pelle, bevel_res=2)
     d = (tail[-1] - tail[-2]).normalized()
     punta = CL.cone_between("Wyvern_Freccia", tail[-1] - d * 0.02, tail[-1] + d * 0.16, 0.07, 0.0, m_freccia, 4)
-    ST.proxy(punta, tail[-1] + d * 0.25, 3000, 8.0, nome="Wyvern_Luce_Freccia")
+    ST.proxy(punta, tail[-1] + d * 0.25, 3000, 3.0, nome="Wyvern_Luce_Freccia")
     # scudetto sul petto (partito d'oro e d'azzurro)
     out = [(-0.08, 0.1), (0.08, 0.1), (0.08, 0.0), (0.05, -0.07), (0.0, -0.11), (-0.05, -0.07), (-0.08, 0.0)]
     for i, (poly, m) in enumerate(((out[:1] + [(0.0, 0.1), (0.0, -0.11)] + out[4:], m_or),
@@ -936,7 +936,7 @@ def build_ourobo():
     DS.texspace("Ourobo")
     C = V((0, 0, 0.72))
     R, r = 0.5, 0.15
-    m_anello = m_anello_cromatico("Ourobo_Anello_Cromatico", C, 50.0)
+    m_anello = m_anello_cromatico("Ourobo_Anello_Cromatico", C, 0.6)
     m_bianco = ST.m_occhio_bianco("Ourobo_Occhi_Bianchi")
     m_pup = CL.m_body("Ourobo_Pupille", (0.01, 0.01, 0.02), rough=0.05, coat=1.0)
     m_rifl = ST.m_luce("Ourobo_Riflessi", (1, 1, 1), 8.0)
@@ -965,7 +965,7 @@ def build_ourobo():
     ST.istanze(master, [ST.frame(top + V((0.08, 0, 0.05)), (-1.0, 0.0, -0.15))], "Ourobo_Testa")
     for i, a in enumerate((20, 140, 200, 260, 320)):
         p = C + V((0.5 * cos(radians(a)), -0.22, 0.5 * sin(radians(a))))
-        ST.proxy(bpy.data.objects["Ourobo_Corpo"], p, (1.0, 0.7, 0.8) if i % 2 else (0.6, 0.85, 1.0), 4.0,
+        ST.proxy(bpy.data.objects["Ourobo_Corpo"], p, (1.0, 0.7, 0.8) if i % 2 else (0.6, 0.85, 1.0), 1.5,
                  nome="Ourobo_Luce_Anello_%d" % i)
     # quattro zampette con le sneakers: ci rotola sopra come una ruota
     master = ST.sneaker("Ourobo_Scarpa", 0.2, m_tomaia, m_suola, m_lacci, m_acc)
@@ -1004,20 +1004,24 @@ def scena_tesorino():
 
 def scena_long():
     ST.nebbia("Nuvole_Blu", (0, 0.5, 1.0), (7, 6, 2), (0.6, 0.75, 1.0), 0.03)
-    ST.compositor(0.4, 7, (4, 45.0, 0.2), 0.0)
+    ST.compositor(0.4, 7, (4, 45.0, 0.1), 0.0)
 
 
 def scena_ryujin():
-    ST.nebbia("Volume_Azzurro", (0, 0, 1.0), (6, 6, 2), (0.4, 0.75, 1.0), 0.04)
+    ST.nebbia("Volume_Azzurro", (0, 0, 1.0), (6, 6, 2), (0.4, 0.75, 1.0), 0.02)
     m = CL.new_material("Caustiche_Finte")
     nb = CL.NodeBuilder(m)
     tc = nb.texcoord(use_space=False)
     vo = nb.node('ShaderNodeTexVoronoi', feature='DISTANCE_TO_EDGE')
     nb.set(vo, 'Scale', 5.0)
-    nb.link(tc.outputs['Object'], vo.inputs['Vector'])
-    c = nb.maprange(vo.outputs['Distance'], 0.04, 0.0)
+    wv = nb.node('ShaderNodeVectorMath', operation='ADD')
+    nb.link(tc.outputs['Object'], wv.inputs[0])
+    nb.link(nb.noise(tc.outputs['Object'], 2.0, 3.0, 0.5).outputs['Color'], wv.inputs[1])
+    nb.link(wv.outputs[0], vo.inputs['Vector'])
+    c = nb.maprange(vo.outputs['Distance'], 0.03, 0.0)
+    c = nb.math('MULTIPLY', c, nb.maprange(nb.noise(tc.outputs['Object'], 1.2, 2.0, 0.5).outputs['Fac'], 0.4, 0.7))
     nb.output(nb.add_shader(nb.principled(base=(0.04, 0.06, 0.07), rough=0.8).outputs[0],
-                            nb.emission((0.4, 0.8, 1.0), nb.math('MULTIPLY', c, 0.4))))
+                            nb.emission((0.4, 0.8, 1.0), nb.math('MULTIPLY', c, 0.08))))
     bm = bmesh.new()
     bmesh.ops.create_grid(bm, x_segments=1, y_segments=1, size=3.0)
     g = CL.mesh_object("Fondale_Caustiche", bm, m, smooth=False)
@@ -1041,7 +1045,7 @@ def scena_ddraig():
 
 def scena_idra():
     ST.nebbia("Palude_Verde", (0, 0, 1.0), (6, 6, 2), (0.5, 0.8, 0.5), 0.05)
-    m = CL.m_body("Acqua_Palude", (0.01, 0.025, 0.015), rough=0.05, spec=0.8)
+    m = CL.m_body("Acqua_Palude", (0.01, 0.025, 0.015), rough=0.35, spec=0.4)
     bm = bmesh.new()
     bmesh.ops.create_grid(bm, x_segments=1, y_segments=1, size=3.0)
     w = CL.mesh_object("Acqua_Palude", bm, m, smooth=False)
@@ -1073,7 +1077,7 @@ def scena_wyvern():
     nb.set(pb, 'Normal', nb.bump(br.outputs['Fac'], 0.6, 0.02))
     nb.output(pb.outputs[0])
     DS.box("Muro_Castello", (0, 1.2, 1.5), (6, 0.3, 3), m)
-    mf = ST.m_luce("Fiamma_Torcia", 1800, 60.0)
+    mf = ST.m_luce("Fiamma_Torcia", 1800, 10.0)
     mt = CL.m_body("Torcia_Legno", (0.1, 0.06, 0.03), rough=0.8)
     CL.tube("Torcia", [V((-1.1, 1.02, 1.1)), V((-1.1, 0.95, 1.45))], 0.025, mt, bevel_res=1)
     ST.cono_piatto("Torcia_Fiamma", (-1.1, 0.95, 1.45), (-1.1, 0.95, 1.65), 0.05, mf, 0.8)
@@ -1082,19 +1086,19 @@ def scena_wyvern():
 
 
 def scena_ourobo():
-    ST.mondo((0.55, 0.5, 0.7), (0.45, 0.65, 0.8), 0.5, nome="Sfondo_Pastello")
-    ST.compositor(0.6, 8, None, 0.0)
+    ST.mondo((0.55, 0.5, 0.7), (0.45, 0.65, 0.8), 0.3, nome="Sfondo_Pastello")
+    ST.compositor(0.4, 7, None, 0.0)
 
 
 CREATURE_DRAGHI = {
     #  chiave       (collezione,                        funzione,        camera: target, dist, elev, azim, lente)
     "tesorino": ("D01_Tesorino-Drago-Custode",          build_tesorino,  ((0, 0.05, 0.2), 3.0, 30, 25, 50)),
     "long":     ("D02_Perla-Drago-Cinese",              build_long,      ((0.05, 0.0, 0.85), 4.6, 8, 10, 50)),
-    "ryujin":   ("D03_Marea-Re-Drago",                  build_ryujin,    ((0, -0.05, 0.7), 3.8, 10, 25, 50)),
-    "quetzal":  ("D04_Quetzal-Serpente-Piumato",        build_quetzal,   ((0, 0.0, 0.5), 3.6, 14, 30, 50)),
+    "ryujin":   ("D03_Marea-Re-Drago",                  build_ryujin,    ((0, -0.05, 0.85), 5.0, 10, 25, 50)),
+    "quetzal":  ("D04_Quetzal-Serpente-Piumato",        build_quetzal,   ((0, 0.0, 0.58), 4.4, 12, 30, 50)),
     "ddraig":   ("D05_Ddraig-Drago-Rosso",              build_ddraig,    ((0, 0.0, 0.85), 4.6, 8, 40, 50)),
     "idra":     ("D06_Idra-di-Lerna",                   build_idra,      ((0, -0.1, 0.45), 3.4, 18, 20, 50)),
-    "wyvern":   ("D07_Blasone-Wyvern",                  build_wyvern,    ((0, 0.0, 0.9), 4.2, 6, 25, 50)),
+    "wyvern":   ("D07_Blasone-Wyvern",                  build_wyvern,    ((0, 0.0, 0.85), 5.2, 6, 25, 50)),
     "ourobo":   ("D08_Ourobo-Ourobo",                   build_ourobo,    ((0, 0.0, 0.78), 3.6, 6, 10, 50)),
 }
 
