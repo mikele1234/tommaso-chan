@@ -515,6 +515,10 @@ quattro serie:
 - **Luci proxy**: ogni organo luminoso ha la sua emissione sulla mesh più una
   **Point Light (raggio 0.005 m) agganciata con un vincolo Child Of**, che lo
   segue se lo sposti. Su Roblox diventa Neon più una `PointLight`.
+- **Luci limitate** (per non abbagliare): le emissioni sopra 10 vengono
+  compresse (10 + un quarto dell'eccesso) e non superano mai 20, le luci proxy
+  sono al 60% e le superfici grandi (addomi, anelli, scudi, aureole) hanno
+  un'emissione bassa: brillano i bordi e gli organi piccoli, non tutto il corpo.
 - **Istanze**: teste di Cerbero e dell'Idra, facce del Cherubino e di
   Ghiacciolo, sneakers, occhi dell'Ofanim, monete e scaglie di Tesorino e piume
   del Quetzal sono duplicati collegati della stessa mesh.
