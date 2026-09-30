@@ -196,8 +196,9 @@ def m_anello_cromatico(nome, centro, forza=50.0):
              (0.5, ST.mescola(9000, (0.12, 0.5, 1.0), 0.85)), (0.75, (0.2, 0.95, 0.3)),
              (1.0, ST.mescola(3500, (1.0, 0.2, 0.6), 0.85))]
     col = nb.ramp(gr.outputs['Fac'], stops)
-    pb = nb.principled(base=col, rough=0.3, coat=0.6, sss=0.2, sss_radius=(1, 1, 1))
-    nb.set(pb, 'Thin Film Thickness', 350.0)
+    # colore di base piu' scuro: con AgX le tinte chiare e molto illuminate
+    # diventano pastello quasi bianco
+    pb = nb.principled(base=NV.rgb_mix(nb, 0.6, col, (0.0, 0.0, 0.0)), rough=0.45, coat=0.25, spec=0.35)
     sh = nb.add_shader(pb.outputs[0], nb.emission(col, ST.lum(forza)))
     nb.output(sh)
     nb.bake_output("RBX_COLOR", nb.emission(col, 1.0))
@@ -381,7 +382,7 @@ def piume_lungo(prefisso, pts, rad, frames, meshes, t0, t1, passi, angoli, scala
 def build_tesorino():
     DS.texspace("Tesorino")
     oro = 3000
-    m_sq = m_squame("Tesorino_Squame", (0.12, 0.09, 0.04), (0.9, 0.62, 0.22), film=420.0, luce_ventre=oro, forza=5.0)
+    m_sq = m_squame("Tesorino_Squame", (0.12, 0.09, 0.04), (0.9, 0.62, 0.22), film=420.0, luce_ventre=oro, forza=2.5)
     m_moneta = CL.m_body("Tesorino_Monete_Oro", (1.0, 0.72, 0.28), rough=0.2, metal=1.0, bump=(80.0, 0.2, 'noise'))
     m_corna = chitina("Tesorino_Corna", (0.3, 0.22, 0.12), rough=0.3, metal=0.4)
     m_lanterna = ST.m_luce("Tesorino_Lanternino_Coda", oro, 8.0, bordo=(1.0, 0.95, 0.8), forza_bordo=10.0)
