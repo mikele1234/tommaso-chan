@@ -772,7 +772,7 @@ local CONFIG = {
 			Halolo__Alucce = {ali = true, e = 24, k = "tex"},
 			Halolo__Aureola_Hula_Hoop = {e = 40, k = "tex"},
 			Halolo__Bocca = {c = {0.3811, 0.0999, 0.1897}, k = "solid"},
-			Halolo__Corpo_Pastello = {c = {0.865, 0.7858, 0.9777}, k = "solid"},
+			Halolo__Corpo_Pastello = {c = {0.68, 0.5371, 0.8095}, k = "solid"},
 			Halolo__Guance = {c = {1, 0.7014, 0.7977}, k = "solid"},
 			Halolo__Labbra = {c = {0.9777, 0.6652, 0.7674}, k = "solid"},
 			Halolo__Lacci = {c = {1, 1, 1}, k = "solid"},
