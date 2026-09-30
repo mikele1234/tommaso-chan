@@ -1,6 +1,6 @@
 # Creature Luminose su Roblox Studio
 
-Questa cartella contiene tutte le 48 creature già pronte per Roblox:
+Questa cartella contiene tutte le 56 creature già pronte per Roblox:
 
 | File | Cosa contiene |
 |---|---|
@@ -10,7 +10,8 @@ Questa cartella contiene tutte le 48 creature già pronte per Roblox:
 | `modelli/oceano/*.glb` | Serie dell'oceano: medusa, cavalluccio, granchio, manta, squalo, tartaruga, rana pescatrice, blobfish |
 | `modelli/mostri/*.glb` | Serie dei mostri: pipistrello-sanguisuga, franken-scarabeo, gargoyle, zucca-infestata, corvo-peste, occhio fluttuante, calderone, verme "Nextbot" |
 | `modelli/inferno/*.glb` | Serie dell'inferno: Cerbero, Caronte, Ade, Persefone, Alichino, Ghiacciolo, Flegetonte, Tung Tung Tung Sahur |
-| `CreatureLuminose.client.lua` | **Un solo script** per tutte le 48 creature: Neon, luci, faretti, colori e animazioni |
+| `modelli/angeli/*.glb` | Serie degli angeli: Serafino, Cherubino, Ofanim, Michele, Gabriele, Raffaele, Angelo Custode, Halolo Halolà |
+| `CreatureLuminose.client.lua` | **Un solo script** per tutte le 56 creature: Neon, luci, faretti, colori e animazioni |
 
 Le serie dalla 5 in poi (mostri, inferno, angeli, draghi) sono **modelli
 statici**: lo script accende Neon, luci, faretti, vetro e contorni, ma non
@@ -54,7 +55,7 @@ base del Model: appoggiando il Model sul fondale, galleggiano sopra di esso.
 2. Aggiungi un **LocalScript**, cancella il testo di esempio e incolla tutto il
    contenuto di `CreatureLuminose.client.lua`.
    Se avevi già uno script delle serie precedenti, **sostituiscilo** con
-   questo: vale per tutte le 48 creature.
+   questo: vale per tutte le 56 creature.
 3. Premi **Play**.
 
 Lo script lavora su tutte le creature presenti nel gioco, anche se ne importi

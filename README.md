@@ -1,6 +1,6 @@
 # Creature Luminose
 
-Quarantotto creature bioluminescenti in sei serie, modellate
+Cinquantasei creature bioluminescenti in sette serie, modellate
 proceduralmente in Blender con script Python: ogni forma, materiale, luce e
 animazione nasce dal codice. Le serie dalla 5 in poi sono modelli statici
 (senza animazioni) con il setup EEVEE Next richiesto.
@@ -16,6 +16,8 @@ animazione nasce dal codice. Le serie dalla 5 in poi sono modelli statici
   (vedi [più sotto](#serie-5--i-mostri))
 - **Serie 6 – Creature dell'inferno** → [`blender/creature_inferno.py`](blender/creature_inferno.py)
   (vedi [più sotto](#serie-6--creature-luminose-dellinferno))
+- **Serie 7 – Gli angeli** → [`blender/creature_angeli.py`](blender/creature_angeli.py)
+  (vedi [più sotto](#serie-7--gli-angeli))
 
 Tutte sono disponibili anche **per Roblox Studio**, con al massimo 20.000
 triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
@@ -26,6 +28,7 @@ triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 ![Le creature dell'oceano](anteprime/oceano/00_tutte_le_creature.png)
 ![I mostri](anteprime/mostri/00_tutte_le_creature.png)
 ![Le creature dell'inferno](anteprime/inferno/00_tutte_le_creature.png)
+![Gli angeli](anteprime/angeli/00_tutte_le_creature.png)
 
 ## Cosa c'è nel repository
 
@@ -38,8 +41,9 @@ triangoli per creatura: vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md).
 | `blender/creature_strumenti.py` | Strumenti comuni alle serie 5-8: setup EEVEE Next, Blackbody, luci proxy Child Of, ali con Thin Film, occhi da cartone, sneakers, ali membranose |
 | `blender/creature_mostri.py` | Generatore della serie 5 (usa `creature_strumenti.py` e i file precedenti) |
 | `blender/creature_inferno.py` | Generatore della serie 6 (usa `creature_strumenti.py` e i file precedenti) |
+| `blender/creature_angeli.py` | Generatore della serie 7 (usa `creature_strumenti.py` e i file precedenti) |
 | `blender/esporta_roblox.py` | Converte tutte le creature per Roblox (`.glb` + script Luau) |
-| `modelli/…/*.blend` | File Blender pronti da aprire (`modelli/`, `modelli/deserto/`, `modelli/neve/`, `modelli/oceano/`, `modelli/mostri/`, `modelli/inferno/`): una scena per creatura + `00_tutte_le_creature.blend` |
+| `modelli/…/*.blend` | File Blender pronti da aprire (`modelli/`, `modelli/deserto/`, `modelli/neve/`, `modelli/oceano/`, `modelli/mostri/`, `modelli/inferno/`, `modelli/angeli/`): una scena per creatura + `00_tutte_le_creature.blend` |
 | `anteprime/…` | Render di anteprima (Cycles per le serie 1-4, EEVEE Next per le serie 5-8), con le stesse sottocartelle |
 | `roblox/` | Versione per **Roblox Studio**: file `.glb` + script Luau (vedi [`roblox/LEGGIMI.md`](roblox/LEGGIMI.md)) |
 
@@ -72,6 +76,7 @@ cartella (ognuno usa quelli delle serie precedenti), e scegli la creatura:
 | `creature_oceano.py` | `"medusa"`, `"cavalluccio"`, `"granchio"`, `"manta"`, `"squalo"`, `"tartaruga"`, `"pescatrice"`, `"blobfish"` |
 | `creature_mostri.py` | `"pipistrello"`, `"scarabeo"`, `"gargoyle"`, `"zucca"`, `"corvo"`, `"occhio"`, `"calderone"`, `"verme"` |
 | `creature_inferno.py` | `"cerbero"`, `"caronte"`, `"ade"`, `"persefone"`, `"alichino"`, `"ghiacciolo"`, `"flegetonte"`, `"tungtung"` |
+| `creature_angeli.py` | `"serafino"`, `"cherubino"`, `"ofanim"`, `"michele"`, `"gabriele"`, `"raffaele"`, `"custode"`, `"halolo"` |
 
 (oppure `"tutte"` per la scena con le otto creature della serie).
 
@@ -88,7 +93,7 @@ blender --background --python blender/creature_luminose.py -- \
 
 ## Su Roblox Studio
 
-Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 48 creature
+Nella cartella [`roblox/`](roblox/LEGGIMI.md) ci sono tutte le 56 creature
 convertite per Roblox, **ognuna con al massimo 20.000 triangoli in totale**:
 un file `.glb` per creatura (`roblox/modelli/` e le sottocartelle `deserto/`,
 `neve/`, `oceano/`), da importare con *Import 3D* (con **Anchored** attivo), e
@@ -582,6 +587,89 @@ rossi**, le sopracciglia inclinate e rabbiose, la **vena della rabbia** sulla
 fronte, i cornetti e la bocca coi denti. Alza una **mazza rovente** (rampa
 nero → rosso → giallo sui bordi), porta le **sneakers rosse** e ha due alucce
 da lucciola quasi nascoste. Nella sua scena c'è la nebbia rossa con le braci.
+
+## Serie 7 · Gli angeli
+
+Generati da [`blender/creature_angeli.py`](blender/creature_angeli.py).
+Setup: AgX **Medium High Contrast**, esposizione −0.5, Bloom 0.4. Chitina con
+Roughness 0.35 e Coat 0.5, ali Blended con **Thin Film ~400 nm** e Alpha 0.15.
+
+### 01 · Fiammella, il Serafino
+![Fiammella](anteprime/angeli/01_fiammella_serafino.png)
+
+**Sei ali**: le elitre sono aperte e non coprono niente, due ali membranose
+si piegano **davanti agli occhi** (come a nascondino) e due coprono le zampe
+ripiegate. Più un paio d'ali per volare. L'**addome a goccia** (Displace
+leggero) brilla di bianco-oro 5500 K con i bordi arancio 2600 K, dentro un
+alone volumetrico dorato. Le nervature delle ali sono Voronoi (Distance to
+Edge) con emissione 25. Attorno al capo c'è un piccolo **nimbo**.
+
+### 02 · Quattro Musetti, il Cherubino
+![Quattro Musetti](anteprime/angeli/02_quattro_musetti_cherubino.png)
+
+Il pronoto è una cupola di **elettro** (Metallic 0.8, Anisotropic 0.5) con
+**quattro facce scolpite**: davanti un profilo umano dolce con gli occhi
+chiusi, a destra un leoncino con la criniera, a sinistra un bue con le corna,
+dietro un'aquila col becco. Sotto ogni faccia c'è un **organo luminoso ambra
+3200 K**, e c'è anche il lanternino addominale con le scintille bianche. Ha
+elitre, ali doppie e **zampette con gli zoccoli tondi**.
+
+### 03 · Ruotina, l'Ofanim
+![Ruotina](anteprime/angeli/03_ruotina_ofanim.png)
+
+**Ruote dentro ruote**: il corpo è un anello di chitina cristallina, con dentro
+altri due anelli perpendicolari e il mozzo. Sul cerchione ci sono **decine di
+ocelli** bianco-oro (istanze dello stesso occhio). Gli anelli hanno scanalature
+luminose blu 9000 K e un'onda di luce più intensa. In cima c'è una testina
+con le **ali quasi vestigiali**. Nella sua scena la camera ha la **profondità di
+campo f/2.8**.
+
+### 04 · Scudo Stellato, l'Arcangelo Michele
+![Scudo Stellato](anteprime/angeli/04_scudo_stellato_michele.png)
+
+Scarabeo con le elitre coperte da **placche d'armatura sovrapposte** (Metallic
+0.9, Roughness 0.2, bordi che si accendono di bianco-acciaio 8500 K). Sul
+dorso porta uno **scudo a stella a otto punte** (Emission 120, bordo più
+chiaro con il Fresnel), l'elmo con la cresta e, dietro, una **bilancia** con i
+due piatti in perfetto equilibrio. Streaks orizzontale nella sua scena.
+
+### 05 · Trombettina, l'Arcangelo Gabriele
+![Trombettina](anteprime/angeli/05_trombettina_gabriele.png)
+
+Insetto bianco perla con le **antenne a stelo di giglio** (foglie, sei petali,
+stami). L'**addome si apre in una campana di tromba** d'argento che
+proietta un **cono di luce lunare** (7500 K, tinta lattea): la campana ha
+l'emissione dentro, poi ci sono un cono volumetrico e un faretto. Le ali sono
+lunghe, sottili e quasi bianche. Sfondo blu notte.
+
+### 06 · Dottor Smeraldo, l'Arcangelo Raffaele
+![Dottor Smeraldo](anteprime/angeli/06_dottor_smeraldo_raffaele.png)
+
+Viandante dalle **zampe lunghissime**. Le antenne sono il **bastone del
+pellegrino con un serpentello avvolto a spirale** (elica). Sul dorso porta una
+**sacca a forma di pesce** traslucida, e il torace ha Subsurface verde e
+emissione smeraldo, come luce che filtra dalla carne. Ha la conchiglia del
+pellegrino sul petto e una bisaccia.
+
+### 07 · Lanternina, l'Angelo Custode
+![Lanternina](anteprime/angeli/07_lanternina_custode.png)
+
+Cucciolo tondo e morbido con gli occhioni lucidi e le guance rosa. L'addome è
+una **lanterna**: una gabbia di chitina dorata (sfera con **Wireframe**), il
+vetro, e dentro una luce di candela 1900 K con un leggero Noise
+sull'intensità. **Un'ala è più piccola e si china in avanti**, verso chi
+protegge. Nella sua scena un faretto caldo illumina un piccolo cerchio di
+pavimento.
+
+### 08 · Halolo Halolà, il Lucciolo Musicante (brainrot)
+![Halolo Halolà](anteprime/angeli/08_halolo_halola.png)
+
+Corpo a goccia pastello, **occhi enormi da cartone**, bocca a "O" che canta e
+guance rosa, su **tre paia di sneakers** (rosa, gialle, azzurre: la stessa
+scarpa istanziata). Attorno all'addome gira come un hula-hoop un'**aureola
+gigante** (toro Major 0.6, Minor 0.03) con la rampa rosa → giallo → azzurro e il
+nucleo bianco. In fondo all'addome c'è un puntino bianco (Emission 120). Ha
+due alette inutili. Sfondo pastello e luci da discoteca.
 
 ## Setup EEVEE Next (serie 5-8)
 
