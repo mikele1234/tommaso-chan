@@ -1,0 +1,98 @@
+{
+ "bob": {},
+ "luci": {
+  "Long__Luce_01": {
+   "b0": 0.854,
+   "b1": 0.854,
+   "c": [
+    0.8209,
+    0.863,
+    1.0
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.49
+  }
+ },
+ "parti": {
+  "Long__Bocca": {
+   "c": [
+    0.5838,
+    0.1517,
+    0.1897
+   ],
+   "k": "solid"
+  },
+  "Long__Corna_Oro": {
+   "c": [
+    0.9063,
+    0.7674,
+    0.4845
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Long__Criniera": {
+   "c": [
+    0.9547,
+    0.5838,
+    0.3133
+   ],
+   "k": "solid"
+  },
+  "Long__Denti": {
+   "c": [
+    0.9777,
+    0.964,
+    0.9309
+   ],
+   "k": "solid"
+  },
+  "Long__Fiamme_Perla": {
+   "c": [
+    0.8094,
+    0.9104,
+    1.0
+   ],
+   "k": "neon",
+   "t": 0.3
+  },
+  "Long__Gocce_Pioggia": {
+   "c": [
+    0.8378,
+    0.9227,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Long__Muso_Giada": {
+   "c": [
+    0.2717,
+    0.6262,
+    0.4845
+   ],
+   "k": "solid"
+  },
+  "Long__Occhi_Coniglio": {
+   "c": [
+    0.7354,
+    0.1897,
+    0.2478
+   ],
+   "k": "solid"
+  },
+  "Long__Perla_Fiammeggiante": {
+   "c": [
+    0.8891,
+    0.9141,
+    1.0
+   ],
+   "k": "neon"
+  },
+  "Long__Squame_Giada": {
+   "k": "tex"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

@@ -1,0 +1,88 @@
+{
+ "bob": {},
+ "luci": {
+  "Tesorino__Luce_01": {
+   "b0": 0.697,
+   "b1": 0.697,
+   "c": [
+    1.0,
+    0.7247,
+    0.4295
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 6.13
+  },
+  "Tesorino__Luce_02": {
+   "b0": 1.102,
+   "b1": 1.102,
+   "c": [
+    1.0,
+    0.7247,
+    0.4295
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 7.07
+  }
+ },
+ "parti": {
+  "Tesorino__Ali_Ripiegate": {
+   "c": [
+    0.4614,
+    0.3811,
+    0.2478
+   ],
+   "k": "solid"
+  },
+  "Tesorino__Corna": {
+   "c": [
+    0.5838,
+    0.5064,
+    0.3811
+   ],
+   "k": "solid"
+  },
+  "Tesorino__Lanternino_Coda": {
+   "c": [
+    1.0,
+    0.7247,
+    0.4295
+   ],
+   "k": "neon"
+  },
+  "Tesorino__Monete_Oro": {
+   "c": [
+    1.0,
+    0.865,
+    0.5657
+   ],
+   "k": "solid",
+   "metallo": true
+  },
+  "Tesorino__Rubino": {
+   "c": [
+    1.0,
+    0.3492,
+    0.4236
+   ],
+   "k": "glass",
+   "t": 0.6
+  },
+  "Tesorino__Smeraldo": {
+   "c": [
+    0.3492,
+    1.0,
+    0.6652
+   ],
+   "k": "glass",
+   "t": 0.6
+  },
+  "Tesorino__Squame": {
+   "e": 24.0,
+   "k": "tex"
+  }
+ },
+ "perni": {},
+ "scala": {}
+}

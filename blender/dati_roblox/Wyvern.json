@@ -1,0 +1,94 @@
+{
+ "bob": {},
+ "luci": {
+  "Wyvern__Luce_01": {
+   "b0": 0.604,
+   "b1": 0.604,
+   "c": [
+    1.0,
+    0.7247,
+    0.4295
+   ],
+   "cyc": 1,
+   "ph": 0.0,
+   "r": 5.91
+  }
+ },
+ "parti": {
+  "Wyvern__Bocca": {
+   "c": [
+    0.5838,
+    0.1517,
+    0.2209
+   ],
+   "k": "solid"
+  },
+  "Wyvern__Corna_Artigli": {
+   "c": [
+    0.9309,
+    0.8808,
+    0.7354
+   ],
+   "k": "solid"
+  },
+  "Wyvern__Denti": {
+   "c": [
+    0.9777,
+    0.964,
+    0.9309
+   ],
+   "k": "solid"
+  },
+  "Wyvern__Membrana": {
+   "c": [
+    0.4845,
+    0.3811,
+    0.5838
+   ],
+   "k": "solid"
+  },
+  "Wyvern__Occhi": {
+   "c": [
+    1.0,
+    0.9063,
+    0.4845
+   ],
+   "k": "neon"
+  },
+  "Wyvern__Punta_Freccia_Smalti": {
+   "c": [
+    1.0,
+    0.7247,
+    0.4295
+   ],
+   "k": "neon"
+  },
+  "Wyvern__Scaglie": {
+   "c": [
+    0.3811,
+    0.3492,
+    0.4614
+   ],
+   "k": "solid"
+  },
+  "Wyvern__Scudo_Azzurro": {
+   "c": [
+    0.2478,
+    0.4236,
+    0.8543
+   ],
+   "k": "solid"
+  },
+  "Wyvern__Scudo_Oro": {
+   "c": [
+    1.0,
+    0.865,
+    0.5371
+   ],
+   "k": "solid",
+   "metallo": true
+  }
+ },
+ "perni": {},
+ "scala": {}
+}
