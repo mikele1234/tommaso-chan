@@ -926,7 +926,7 @@ def build_corvo():
     m_ottone = CL.m_body("CorvoPeste_Ottone", (0.55, 0.36, 0.12), rough=0.35, metal=1.0, bump=(50.0, 0.2, 'noise'))
     m_lente = ST.m_vetro_sottile("CorvoPeste_Lenti_Vetro", (0.85, 1.0, 0.8), bordo=acido, forza_bordo=1.0)
     m_bagliore = ST.m_luce("CorvoPeste_Bagliore_Acido", acido, 55.0, bordo=(0.8, 1.0, 0.5), forza_bordo=80.0)
-    m_nucleo = ST.m_luce("CorvoPeste_Petto_Radioattivo", acido, 15.0)
+    m_nucleo = ST.m_luce("CorvoPeste_Petto_Radioattivo", acido, 6.0)
     m_alone = CL.m_halo("CorvoPeste_Alone_Tossico", acido, 0.15)
     m_zampe = CL.m_body("CorvoPeste_Zampe", (0.05, 0.045, 0.045), rough=0.5, bump=(60.0, 0.5, 'scales'))
     m_piuma = CL.m_feather("CorvoPeste_Piume_Strappate", (0.006, 0.006, 0.009), (0.012, 0.012, 0.016), acido, 3.0,
@@ -957,7 +957,7 @@ def build_corvo():
     CL.no_shadow(core)
     h = CL.sphere("CorvoPeste_Alone_Petto", (0, -0.12, 0.6), 0.16, m_alone)
     CL.no_shadow(h)
-    ST.proxy(core, (0, -0.2, 0.6), acido, 10.0, nome="CorvoPeste_Luce_Petto")
+    ST.proxy(core, (0, -0.2, 0.6), acido, 6.0, nome="CorvoPeste_Luce_Petto")
     # zampe scheletriche con gli artigli
     for sx in (-1, 1):
         s = side_name(sx)
