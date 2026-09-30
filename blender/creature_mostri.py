@@ -1084,6 +1084,7 @@ def build_occhio():
                            plane_co=V((0, 0, R * cos(lim))), plane_no=V((0, 0, 1)), clear_outer=True)
     eye = CL.mesh_object("OcchioFluttuante_Bulbo", bm, m_scl)
     eye.matrix_world = fr
+    CL.no_shadow(eye)           # niente autombra: sulla sfera lucida faceva l'acne a quadretti
     rl, zl = R * sin(lim), R * cos(lim)
     prof = [(0.002, zl - 0.07), (0.05, zl - 0.066), (0.1, zl - 0.055), (0.16, zl - 0.035), (0.21, zl - 0.014), (rl, zl)]
     iris = DS.lathe("OcchioFluttuante_Iride", prof, m_ir, seg=48, cap_bottom=False)

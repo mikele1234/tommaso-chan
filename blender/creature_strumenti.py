@@ -839,6 +839,7 @@ def setup_eevee(look="Medium High Contrast", esposizione=-0.5, bloom=0.4, size=7
     for attr, val in (('taa_render_samples', campioni), ('taa_samples', 16),
                       ('use_raytracing', True), ('ray_tracing_method', 'SCREEN'),
                       ('use_shadows', True), ('shadow_ray_count', 1), ('shadow_step_count', 6),
+                      ('shadow_pool_size', '1024'),     # pool pieno = ombre a quadretti sulle sfere lucide
                       ('light_threshold', 0.001),
                       ('volumetric_tile_size', '2'), ('volumetric_samples', 96),
                       ('volumetric_sample_distribution', 0.8), ('use_volumetric_shadows', True),
